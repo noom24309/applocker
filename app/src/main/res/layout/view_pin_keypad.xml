@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Row 1: 1 2 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/key_1" style="@style/KeypadKey" android:text="@string/key_1" />
+        <TextView android:id="@+id/key_2" style="@style/KeypadKey" android:text="@string/key_2" />
+        <TextView android:id="@+id/key_3" style="@style/KeypadKey" android:text="@string/key_3" />
+    </LinearLayout>
+
+    <!-- Row 2: 4 5 6 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_s"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/key_4" style="@style/KeypadKey" android:text="@string/key_4" />
+        <TextView android:id="@+id/key_5" style="@style/KeypadKey" android:text="@string/key_5" />
+        <TextView android:id="@+id/key_6" style="@style/KeypadKey" android:text="@string/key_6" />
+    </LinearLayout>
+
+    <!-- Row 3: 7 8 9 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_s"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/key_7" style="@style/KeypadKey" android:text="@string/key_7" />
+        <TextView android:id="@+id/key_8" style="@style/KeypadKey" android:text="@string/key_8" />
+        <TextView android:id="@+id/key_9" style="@style/KeypadKey" android:text="@string/key_9" />
+    </LinearLayout>
+
+    <!-- Row 4: biometric 0 backspace -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_s"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/key_biometric"
+            style="@style/KeypadKey"
+            android:contentDescription="@string/cd_biometric"
+            android:padding="22dp"
+            android:src="@drawable/ic_fingerprint"
+            android:visibility="invisible"
+            app:tint="@color/primary" />
+
+        <TextView android:id="@+id/key_0" style="@style/KeypadKey" android:text="@string/key_0" />
+
+        <ImageView
+            android:id="@+id/key_backspace"
+            style="@style/KeypadKey"
+            android:contentDescription="@string/cd_backspace"
+            android:padding="22dp"
+            android:src="@drawable/ic_backspace"
+            app:tint="@color/text_primary" />
+    </LinearLayout>
+
+</merge>

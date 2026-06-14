@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/intruder_settings_title"
+        app:titleTextColor="@color/text_primary" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingTop="@dimen/space_s"
+            android:paddingEnd="@dimen/screen_padding"
+            android:paddingBottom="@dimen/space_l">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/intruder_settings_subtitle"
+                android:textAppearance="@style/TextAppearance.App.Body" />
+
+            <!-- Enable + permission -->
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.App.Card"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+                    <LinearLayout android:id="@+id/rowEnable" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_intruder" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_enable" />
+                            <TextView style="@style/SettingsRowDesc" android:text="@string/intruder_enable_desc" />
+                        </LinearLayout>
+                        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchEnable"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:clickable="false" android:focusable="false" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
+
+                    <LinearLayout android:id="@+id/rowPermission" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_shield" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_permission_title" />
+                            <TextView android:id="@+id/tvPermissionStatus" style="@style/SettingsRowDesc" tools:text="Granted" />
+                        </LinearLayout>
+                        <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Capture -->
+            <TextView style="@style/SettingsSectionHeader" android:text="@string/intruder_section_capture" />
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.App.Card"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+                    <LinearLayout android:id="@+id/rowAttempts" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_lock" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_after_attempts" />
+                            <TextView style="@style/SettingsRowDesc" android:text="@string/intruder_after_attempts_desc" />
+                        </LinearLayout>
+                        <TextView android:id="@+id/tvAttempts" style="@style/SettingsRowValue" tools:text="2" />
+                        <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
+
+                    <LinearLayout android:id="@+id/rowAppUnlock" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_lock" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_source_app_unlock" />
+                        </LinearLayout>
+                        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchAppUnlock"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:clickable="false" android:focusable="false" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
+
+                    <LinearLayout android:id="@+id/rowOverlay" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_lock" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_source_app_lock" />
+                        </LinearLayout>
+                        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchOverlay"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:clickable="false" android:focusable="false" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
+
+                    <LinearLayout android:id="@+id/rowVault" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_lock" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_source_vault" />
+                        </LinearLayout>
+                        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchVault"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:clickable="false" android:focusable="false" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Storage + notification -->
+            <TextView style="@style/SettingsSectionHeader" android:text="@string/intruder_section_storage" />
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.App.Card"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+                    <LinearLayout android:id="@+id/rowEncrypted" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_shield" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_save_encrypted" />
+                            <TextView style="@style/SettingsRowDesc" android:text="@string/intruder_save_encrypted_desc" />
+                        </LinearLayout>
+                        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchEncrypted"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:clickable="false" android:focusable="false" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
+
+                    <LinearLayout android:id="@+id/rowNotification" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_intruder" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_show_notification" />
+                            <TextView style="@style/SettingsRowDesc" android:text="@string/intruder_show_notification_desc" />
+                        </LinearLayout>
+                        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchNotification"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:clickable="false" android:focusable="false" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
+
+                    <LinearLayout android:id="@+id/rowHideContent" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_shield" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_hide_content" />
+                            <TextView style="@style/SettingsRowDesc" android:text="@string/intruder_hide_content_desc" />
+                        </LinearLayout>
+                        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchHideContent"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:clickable="false" android:focusable="false" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
+
+                    <LinearLayout android:id="@+id/rowAutoDelete" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_delete" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_auto_delete" />
+                            <TextView style="@style/SettingsRowDesc" android:text="@string/intruder_auto_delete_desc" />
+                        </LinearLayout>
+                        <TextView android:id="@+id/tvAutoDelete" style="@style/SettingsRowValue" tools:text="30 days" />
+                        <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
+
+                    <LinearLayout android:id="@+id/rowMaxRecords" style="@style/SettingsRow">
+                        <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_album" app:tint="@color/primary" />
+                        <LinearLayout style="@style/SettingsRowText">
+                            <TextView style="@style/SettingsRowTitle" android:text="@string/intruder_max_records" />
+                            <TextView style="@style/SettingsRowDesc" android:text="@string/intruder_max_records_desc" />
+                        </LinearLayout>
+                        <TextView android:id="@+id/tvMaxRecords" style="@style/SettingsRowValue" tools:text="100" />
+                        <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:text="@string/intruder_privacy_note"
+                android:textColor="@color/text_tertiary"
+                android:textSize="@dimen/text_caption" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,617 @@
+<resources>
+    <string name="app_name">Private Lock Vault</string>
+
+    <!-- Common -->
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="skip">Skip</string>
+    <string name="get_started">Get Started</string>
+    <string name="continue_label">Continue</string>
+    <string name="enable">Enable</string>
+    <string name="cancel">Cancel</string>
+    <string name="coming_next_phase">Coming in next phase</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Secure. Private. Yours.</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">App Lock Protection</string>
+    <string name="onboarding_subtitle_1">Lock your private apps with PIN, Pattern, or Fingerprint.</string>
+    <string name="onboarding_title_2">Private Photo Vault</string>
+    <string name="onboarding_subtitle_2">Hide your personal photos and videos securely.</string>
+    <string name="onboarding_title_3">Intruder Alerts</string>
+    <string name="onboarding_subtitle_3">Capture wrong unlock attempts and protect your privacy.</string>
+
+    <!-- PIN -->
+    <string name="create_pin_title">Create your PIN</string>
+    <string name="create_pin_subtitle">This PIN keeps your vault secure.</string>
+    <string name="confirm_pin_title">Confirm your PIN</string>
+    <string name="confirm_pin_subtitle">Re-enter your PIN to continue.</string>
+    <string name="pin_length_4">4 digits</string>
+    <string name="pin_length_6">6 digits</string>
+    <string name="pin_mismatch">PINs don\'t match. Try again.</string>
+    <string name="pin_too_short">Enter your full PIN.</string>
+    <string name="delete">Delete</string>
+
+    <!-- Biometric setup -->
+    <string name="biometric_title">Enable Biometric Unlock</string>
+    <string name="biometric_subtitle">Use your fingerprint or face to unlock instantly.</string>
+    <string name="biometric_enable">Enable Biometric</string>
+    <string name="biometric_unavailable_subtitle">Biometric unlock isn\'t available on this device. You can still use your PIN.</string>
+    <string name="biometric_prompt_title">Unlock Private Lock Vault</string>
+    <string name="biometric_prompt_subtitle">Confirm your identity to continue</string>
+    <string name="biometric_use">Use Biometric</string>
+
+    <!-- Unlock -->
+    <string name="unlock_title">Enter your PIN</string>
+    <string name="unlock_subtitle">Unlock to access your vault.</string>
+    <string name="unlock_wrong_pin">Wrong PIN. Attempt %1$d.</string>
+
+    <!-- Home -->
+    <string name="home_greeting">Your vault is protected</string>
+    <string name="home_security_status">Security Status</string>
+    <string name="home_security_active">Protection Active</string>
+    <string name="home_security_desc">App lock and vault are ready.</string>
+    <string name="home_locked_apps">Locked Apps</string>
+    <string name="home_photos">Private Photos</string>
+    <string name="home_videos">Private Videos</string>
+    <string name="home_intruders">Intruder Alerts</string>
+    <string name="home_quick_actions">Quick Actions</string>
+    <string name="home_action_lock_app">Lock an App</string>
+    <string name="home_action_add_photo">Add Photo</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_security">Security</string>
+    <string name="settings_change_pin">Change PIN</string>
+    <string name="settings_change_pin_desc">Update your vault PIN</string>
+    <string name="settings_biometric">Biometric Lock</string>
+    <string name="settings_biometric_desc">Unlock using fingerprint or face</string>
+    <string name="settings_auto_lock">Auto Lock</string>
+    <string name="settings_auto_lock_desc">Lock automatically when app goes to background</string>
+    <string name="settings_about">About</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_privacy_policy_desc">How we protect your data</string>
+    <string name="settings_app_version">App Version</string>
+
+    <!-- Weak credential -->
+    <string name="pin_weak_warning">That PIN is too easy to guess. Choose another.</string>
+
+    <!-- Recovery key -->
+    <string name="recovery_title">Your Recovery Key</string>
+    <string name="recovery_subtitle">Save this key somewhere safe. It is the only way to reset your PIN if you forget it.</string>
+    <string name="recovery_warning">You won\'t be able to see this key again. If it is lost, your vault cannot be recovered in future encrypted phases.</string>
+    <string name="recovery_saved_confirm">I\'ve saved my key</string>
+    <string name="recovery_copy">Copy key</string>
+    <string name="recovery_copied">Recovery key copied</string>
+
+    <!-- Forgot PIN / recovery -->
+    <string name="forgot_pin">Forgot PIN?</string>
+    <string name="forgot_pin_title">Reset with Recovery Key</string>
+    <string name="forgot_pin_subtitle">Enter your recovery key to set a new PIN.</string>
+    <string name="forgot_pin_hint">Recovery key</string>
+    <string name="forgot_pin_verify">Verify Key</string>
+    <string name="forgot_pin_wrong">Recovery key is incorrect.</string>
+
+    <!-- Lockout / attempts -->
+    <string name="lockout_try_again">Too many attempts. Try again in %1$s.</string>
+    <string name="attempts_warning">Careful — %1$d failed attempts.</string>
+
+    <!-- Change PIN -->
+    <string name="change_pin_verify_title">Enter current PIN</string>
+    <string name="change_pin_verify_subtitle">Verify it\'s you before changing your PIN.</string>
+    <string name="change_pin_new_title">Set a new PIN</string>
+    <string name="change_pin_new_subtitle">Choose a new PIN.</string>
+    <string name="change_pin_confirm_title">Confirm new PIN</string>
+    <string name="change_pin_confirm_subtitle">Re-enter your new PIN.</string>
+    <string name="change_pin_same">New PIN must differ from the current one.</string>
+    <string name="change_pin_success">PIN updated.</string>
+
+    <!-- Pattern -->
+    <string name="pattern_setup_title">Draw a pattern</string>
+    <string name="pattern_setup_subtitle">Connect at least 4 dots.</string>
+    <string name="pattern_confirm_title">Confirm pattern</string>
+    <string name="pattern_confirm_subtitle">Draw the same pattern again.</string>
+    <string name="pattern_too_short">Connect at least 4 dots.</string>
+    <string name="pattern_mismatch">Patterns don\'t match. Try again.</string>
+    <string name="pattern_unlock_title">Draw your pattern</string>
+    <string name="pattern_unlock_subtitle">Unlock to access your vault.</string>
+    <string name="pattern_saved">Pattern saved.</string>
+    <string name="pattern_wrong">Wrong pattern. Attempt %1$d.</string>
+    <string name="cd_pattern">Pattern drawing area</string>
+
+    <!-- Verify master -->
+    <string name="verify_title">Verify it\'s you</string>
+    <string name="verify_subtitle_pin">Confirm your PIN to change security settings.</string>
+    <string name="verify_subtitle_pattern">Confirm your pattern to change security settings.</string>
+    <string name="verify_wrong">Incorrect. Try again.</string>
+
+    <!-- Security settings -->
+    <string name="settings_change_unlock_method">Change Unlock Method</string>
+    <string name="settings_change_unlock_method_desc">PIN or Pattern</string>
+    <string name="settings_wrong_attempt">Wrong Attempt Protection</string>
+    <string name="settings_wrong_attempt_desc">Locks after repeated wrong attempts</string>
+    <string name="settings_wrong_attempt_info">After 5 wrong attempts the app locks for 30 seconds; after 10, for 5 minutes. Always on.</string>
+    <string name="settings_lock_now">Lock App Now</string>
+    <string name="settings_lock_now_desc">Lock and require authentication</string>
+
+    <!-- Auto-lock options -->
+    <string name="auto_lock_picker_title">Auto Lock</string>
+    <string name="auto_lock_immediate">Immediately</string>
+    <string name="auto_lock_15s">After 15 seconds</string>
+    <string name="auto_lock_30s">After 30 seconds</string>
+    <string name="auto_lock_1m">After 1 minute</string>
+    <string name="auto_lock_5m">After 5 minutes</string>
+    <string name="auto_lock_never">Never while in memory</string>
+
+    <!-- Unlock method options -->
+    <string name="unlock_method_picker_title">Unlock Method</string>
+    <string name="unlock_method_pin">PIN</string>
+    <string name="unlock_method_pattern">Pattern</string>
+
+    <!-- Home -->
+    <string name="home_action_lock_now">Lock App Now</string>
+
+    <!-- Keypad digits -->
+    <string name="key_0">0</string>
+    <string name="key_1">1</string>
+    <string name="key_2">2</string>
+    <string name="key_3">3</string>
+    <string name="key_4">4</string>
+    <string name="key_5">5</string>
+    <string name="key_6">6</string>
+    <string name="key_7">7</string>
+    <string name="key_8">8</string>
+    <string name="key_9">9</string>
+
+    <!-- Vault home -->
+    <string name="vault_title">Vault</string>
+    <string name="vault_photos">Private Photos</string>
+    <string name="vault_videos">Private Videos</string>
+    <string name="vault_albums">Albums</string>
+    <string name="vault_favorites">Favorites</string>
+    <string name="vault_recent">Recently Imported</string>
+    <string name="vault_recycle_bin">Recycle Bin</string>
+    <string name="vault_import_photos">Import Photos</string>
+    <string name="vault_import_videos">Import Videos</string>
+    <string name="vault_import_media">Import Media</string>
+    <string name="vault_create_album">Create Album</string>
+    <string name="vault_open_vault">Open Vault</string>
+    <string name="vault_storage_used">%1$s used</string>
+    <string name="vault_encrypted_status">Vault encrypted</string>
+    <string name="items_count">%1$d items</string>
+
+    <!-- Empty states -->
+    <string name="empty_photos">No private photos yet. Import some to get started.</string>
+    <string name="empty_videos">No private videos yet. Import some to get started.</string>
+    <string name="empty_favorites">No favorites yet.</string>
+    <string name="empty_recent">Nothing imported recently.</string>
+    <string name="empty_recycle_bin">Recycle bin is empty.</string>
+    <string name="empty_album">This album is empty.</string>
+    <string name="empty_albums">No albums yet. Create one to organize your media.</string>
+
+    <!-- Import -->
+    <string name="import_title">Import Media</string>
+    <string name="import_option_photos">Import Photos</string>
+    <string name="import_option_videos">Import Videos</string>
+    <string name="import_option_both">Import Photos &amp; Videos</string>
+    <string name="import_progress_title">Importing…</string>
+    <string name="import_progress_count">%1$d of %2$d</string>
+    <string name="import_complete">Import Complete</string>
+    <string name="import_summary_photos">%1$d photos</string>
+    <string name="import_summary_videos">%1$d videos</string>
+    <string name="import_summary_failed">%1$d failed</string>
+    <string name="import_view_vault">View Vault</string>
+    <string name="import_cancel">Cancel</string>
+    <string name="import_some_failed">Import failed for some files</string>
+
+    <!-- Delete originals -->
+    <string name="delete_originals_title">Remove originals?</string>
+    <string name="delete_originals_message">Do you want to remove the original files from your gallery?</string>
+    <string name="delete_originals_manual">Imported successfully. You can delete originals from your gallery manually.</string>
+
+    <!-- Sort -->
+    <string name="sort_title">Sort by</string>
+    <string name="sort_newest">Newest first</string>
+    <string name="sort_oldest">Oldest first</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_size">Size</string>
+
+    <!-- Selection actions -->
+    <string name="action_select_all">Select all</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_move">Move to album</string>
+    <string name="action_favorite">Favorite</string>
+    <string name="action_export">Export</string>
+    <string name="action_restore">Restore</string>
+    <string name="action_permanent_delete">Delete forever</string>
+    <string name="action_empty_bin">Empty bin</string>
+    <string name="action_details">Details</string>
+    <string name="selection_count">%1$d selected</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_delete_title">Move to Recycle Bin?</string>
+    <string name="confirm_delete_message">Selected items will be moved to the recycle bin.</string>
+    <string name="confirm_permanent_title">Delete forever?</string>
+    <string name="confirm_permanent_message">This permanently deletes the selected files. This can\'t be undone.</string>
+    <string name="confirm_empty_bin_title">Empty recycle bin?</string>
+    <string name="confirm_empty_bin_message">All items in the recycle bin will be permanently deleted.</string>
+
+    <!-- Albums -->
+    <string name="album_create_title">New Album</string>
+    <string name="album_name_hint">Album name</string>
+    <string name="album_rename_title">Rename Album</string>
+    <string name="album_delete_title">Delete album?</string>
+    <string name="album_delete_message">The album will be deleted. Your media stays safe in the main vault.</string>
+    <string name="album_options_title">Album options</string>
+    <string name="create">Create</string>
+    <string name="rename">Rename</string>
+    <string name="delete_label">Delete</string>
+    <string name="move_main_vault">Main Vault (no album)</string>
+    <string name="move_to_album_title">Move to album</string>
+
+    <!-- Export -->
+    <string name="export_title">Export to gallery</string>
+    <string name="export_copy_only">Export copy only</string>
+    <string name="export_and_remove">Export and remove from vault</string>
+    <string name="export_done">%1$d exported to gallery</string>
+    <string name="export_failed">Export failed</string>
+    <string name="export_unsupported">Export needs Android 10 or newer</string>
+    <string name="export_some_failed">Some files could not be exported</string>
+
+    <!-- Details -->
+    <string name="details_title">Details</string>
+    <string name="details_name">Name</string>
+    <string name="details_type">Type</string>
+    <string name="details_size">Size</string>
+    <string name="details_resolution">Resolution</string>
+    <string name="details_duration">Duration</string>
+    <string name="details_imported">Imported</string>
+    <string name="details_album">Album</string>
+    <string name="details_favorite">Favorite</string>
+    <string name="details_protection">Protection</string>
+    <string name="details_protection_encrypted">Encrypted</string>
+    <string name="details_protection_none">Not encrypted</string>
+    <string name="details_none">—</string>
+    <string name="save">Save</string>
+    <string name="type_photo">Photo</string>
+    <string name="type_video">Video</string>
+    <string name="yes_label">Yes</string>
+    <string name="no_label">No</string>
+
+    <!-- Encryption migration -->
+    <string name="migration_title">Securing your vault</string>
+    <string name="migration_message">Encrypting your existing photos and videos. Please keep the app open.</string>
+    <string name="migration_progress">%1$d of %2$d</string>
+    <string name="migration_complete">Vault encrypted</string>
+    <string name="migration_partial">Almost done</string>
+    <string name="migration_summary_ok">%1$d items encrypted</string>
+    <string name="migration_summary_failed">%1$d encrypted, %2$d need another try</string>
+    <string name="migration_retry">Retry failed items</string>
+    <string name="migration_open_vault">Open Vault</string>
+
+    <!-- Toasts / errors -->
+    <string name="toast_deleted">Moved to recycle bin</string>
+    <string name="toast_restored">Restored</string>
+    <string name="toast_album_created">Album created</string>
+    <string name="error_video_playback">Video cannot be played</string>
+    <string name="error_file_missing">This file cannot be opened</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_thumbnail">Media thumbnail</string>
+    <string name="cd_play_video">Play video</string>
+    <string name="cd_favorite">Favorite</string>
+    <string name="cd_close">Close</string>
+    <string name="cd_more_options">More options</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_app_logo">App logo</string>
+    <string name="cd_backspace">Backspace</string>
+    <string name="cd_biometric">Biometric unlock</string>
+    <string name="cd_card_icon">Card icon</string>
+
+    <!-- ===== Phase 5: App Lock ===== -->
+    <string name="applock_title">App Lock</string>
+
+    <!-- Foreground service notification -->
+    <string name="applock_channel_name">App Lock protection</string>
+    <string name="applock_channel_desc">Keeps App Lock running while enabled.</string>
+    <string name="applock_notification_title">App Lock is active</string>
+    <string name="applock_notification_text">Protected apps are being monitored on this device.</string>
+    <string name="applock_notification_stop">Stop</string>
+
+    <!-- Overlay lock screen -->
+    <string name="applock_overlay_title">App Locked</string>
+    <string name="applock_wrong_credential">Incorrect. Try again.</string>
+
+    <!-- Permission setup -->
+    <string name="applock_permission_title">App Lock setup</string>
+    <string name="applock_permission_subtitle">App Lock needs a few permissions to protect your apps. You stay in control — grant them from system Settings.</string>
+    <string name="applock_perm_usage_title">Usage Access</string>
+    <string name="applock_perm_usage_desc">Required to detect when a protected app is opened.</string>
+    <string name="applock_perm_usage_button">Enable Usage Access</string>
+    <string name="applock_perm_overlay_title">Display Over Other Apps</string>
+    <string name="applock_perm_overlay_desc">Required to show the lock screen when protected apps are opened.</string>
+    <string name="applock_perm_overlay_button">Enable Overlay Permission</string>
+    <string name="applock_perm_notification_title">Notification Permission</string>
+    <string name="applock_perm_notification_desc">Required to keep App Lock protection running.</string>
+    <string name="applock_perm_notification_button">Enable Notification</string>
+    <string name="applock_perm_granted">Granted</string>
+    <string name="applock_perm_check_again">Check again</string>
+    <string name="applock_usage_privacy">Usage Access helps App Lock detect when a protected app is opened. This information stays on your device and is never uploaded, sold, or shared.</string>
+
+    <!-- Dashboard -->
+    <string name="applock_complete_setup">Complete Setup</string>
+    <string name="applock_start_protection">Start Protection</string>
+    <string name="applock_stop_protection">Stop Protection</string>
+    <string name="applock_manage_apps">Manage Locked Apps</string>
+    <string name="applock_settings_title">App Lock Settings</string>
+    <string name="applock_settings_desc">Lock delay, re-lock rules and more</string>
+    <string name="applock_status_setup_required">Setup required</string>
+    <string name="applock_status_setup_desc">Grant permissions to start protecting apps.</string>
+    <string name="applock_status_active">Protection active</string>
+    <string name="applock_status_inactive">Protection inactive</string>
+
+    <plurals name="applock_locked_count">
+        <item quantity="one">%d app locked</item>
+        <item quantity="other">%d apps locked</item>
+    </plurals>
+
+    <!-- Installed apps list -->
+    <string name="applock_search_hint">Search apps</string>
+    <string name="applock_filter_all">All</string>
+    <string name="applock_filter_locked">Locked</string>
+    <string name="applock_filter_unlocked">Unlocked</string>
+    <string name="applock_filter_system">System apps</string>
+    <string name="applock_no_apps">No apps to show.</string>
+
+    <!-- App Lock settings -->
+    <string name="applock_setting_master">App Lock</string>
+    <string name="applock_setting_master_desc">Protect selected apps with your master credential</string>
+    <string name="applock_setting_delay">Lock delay</string>
+    <string name="applock_setting_delay_desc">How long an app stays unlocked after unlocking</string>
+    <string name="applock_setting_screen_off">Re-lock after screen off</string>
+    <string name="applock_setting_screen_off_desc">Lock protected apps again when the screen turns off</string>
+    <string name="applock_setting_app_switch">Re-lock after app switch</string>
+    <string name="applock_setting_app_switch_desc">Lock again when you leave a protected app</string>
+    <string name="applock_setting_lock_new">Lock new apps automatically</string>
+    <string name="applock_setting_lock_new_desc">Automatically lock newly installed apps</string>
+    <string name="applock_setting_notification">Show protection notification</string>
+    <string name="applock_setting_notification_desc">Display the ongoing App Lock notification</string>
+    <string name="applock_setting_unlock_method">Unlock method</string>
+    <string name="applock_setting_unlock_method_desc">Managed in Security settings</string>
+
+    <!-- ===== Phase 6: Advanced App Lock ===== -->
+    <!-- Notification additions -->
+    <string name="applock_notification_open">Open</string>
+    <plurals name="applock_notification_count">
+        <item quantity="one">Protecting %d app</item>
+        <item quantity="other">Protecting %d apps</item>
+    </plurals>
+    <string name="applock_new_app_locked_title">New app locked</string>
+    <string name="applock_new_app_locked_text">%1$s was added to your locked apps.</string>
+    <string name="applock_new_app_prompt_title">New app installed</string>
+    <string name="applock_new_app_prompt_text">Tap to protect %1$s with App Lock.</string>
+
+    <!-- Delay modes -->
+    <string name="delay_5s">After 5 seconds</string>
+    <string name="delay_until_screen_off">Until screen off</string>
+    <string name="delay_until_app_switch">Until app switch</string>
+    <string name="delay_until_device_locked">Until device locked</string>
+
+    <!-- Themes -->
+    <string name="theme_default">Default Security</string>
+    <string name="theme_dark">Dark Security</string>
+    <string name="theme_glass">Glass Blur</string>
+    <string name="theme_minimal">Minimal White</string>
+    <string name="theme_calculator">Calculator</string>
+    <string name="theme_fake_crash">Fake Crash</string>
+    <string name="theme_fake_loading">Fake Loading</string>
+
+    <!-- Shared option labels -->
+    <string name="applock_use_global">Use global setting</string>
+    <string name="applock_use_default">Default</string>
+
+    <!-- Fake modes -->
+    <string name="fake_mode_none">Off</string>
+    <string name="fake_mode_crash">Fake crash</string>
+    <string name="fake_mode_loading">Fake loading</string>
+    <string name="fake_mode_calculator">Calculator</string>
+
+    <!-- Fake crash screen -->
+    <string name="fake_crash_title">App has stopped</string>
+    <string name="fake_crash_message">This app keeps stopping.</string>
+    <string name="fake_crash_report">Report</string>
+    <string name="fake_crash_open_again">Open again</string>
+    <string name="fake_crash_close">Close app</string>
+    <string name="fake_crash_reported">Report sent</string>
+
+    <!-- Fake loading screen -->
+    <string name="fake_loading_text">Loading…</string>
+
+    <!-- Calculator lock -->
+    <string name="calculator_zero">0</string>
+    <string name="calculator_clear">C</string>
+    <string name="calculator_backspace">⌫</string>
+    <string name="calculator_percent">%</string>
+    <string name="calculator_divide">÷</string>
+    <string name="calculator_multiply">×</string>
+    <string name="calculator_minus">−</string>
+    <string name="calculator_plus">+</string>
+    <string name="calculator_dot">.</string>
+    <string name="calculator_equals">=</string>
+
+    <!-- Settings sections + new rows -->
+    <string name="applock_section_protection">Protection</string>
+    <string name="applock_section_unlock">Unlock</string>
+    <string name="applock_section_disguise">Disguise</string>
+    <string name="applock_section_privacy">Privacy</string>
+    <string name="applock_section_stability">Stability</string>
+    <string name="applock_setting_theme">Lock screen theme</string>
+    <string name="applock_setting_theme_desc">Choose how the lock screen looks</string>
+    <string name="applock_setting_fake_mode">Default fake mode</string>
+    <string name="applock_setting_fake_mode_desc">Disguise the lock screen</string>
+    <string name="applock_setting_hide_name">Hide app name on lock</string>
+    <string name="applock_setting_hide_name_desc">Don\'t show the locked app\'s name</string>
+    <string name="applock_setting_device_lock">Re-lock after device lock</string>
+    <string name="applock_setting_device_lock_desc">Lock again when the device is locked</string>
+    <string name="applock_setting_hide_recent">Hide recent app preview</string>
+    <string name="applock_setting_hide_recent_desc">Keep sensitive screens out of recents</string>
+    <string name="applock_setting_local_stats">Local stats only</string>
+    <string name="applock_setting_local_stats_desc">Keep simple counters on this device</string>
+    <string name="applock_setting_permissions">Permission status</string>
+    <string name="applock_setting_battery">Battery settings help</string>
+    <string name="applock_setting_battery_desc">Keep protection running in the background</string>
+    <string name="applock_setting_restart_boot">Restart after reboot</string>
+    <string name="applock_setting_restart_boot_desc">Resume protection when the device restarts</string>
+    <string name="applock_setting_troubleshoot">Troubleshooting</string>
+    <string name="applock_setting_troubleshoot_desc">Check setup and fix common issues</string>
+
+    <!-- Theme picker -->
+    <string name="applock_theme_title">Lock screen theme</string>
+    <string name="applock_theme_subtitle">This theme is used when a protected app is opened.</string>
+
+    <!-- Troubleshooting -->
+    <string name="applock_troubleshoot_title">Troubleshooting</string>
+    <string name="applock_troubleshoot_service">Protection service running</string>
+    <string name="applock_troubleshoot_apps">Apps selected to lock</string>
+    <string name="applock_troubleshoot_restart">Restart protection</string>
+    <string name="applock_troubleshoot_open_permissions">Open permissions</string>
+    <string name="applock_troubleshoot_last_check">Checked just now</string>
+
+    <!-- Suggestions -->
+    <string name="applock_suggestions_button">Suggestions</string>
+    <string name="applock_suggestions_title">Suggested apps</string>
+    <string name="applock_suggestions_subtitle">Apps that often hold private content. Review and lock the ones you want.</string>
+    <string name="applock_suggestions_empty">No suggestions right now.</string>
+    <string name="applock_suggestions_lock_all">Lock selected</string>
+    <string name="applock_suggestions_locked">%1$d apps locked</string>
+
+    <!-- Categories -->
+    <string name="category_social">Social</string>
+    <string name="category_messaging">Messaging</string>
+    <string name="category_gallery">Gallery</string>
+    <string name="category_finance">Finance</string>
+    <string name="category_shopping">Shopping</string>
+    <string name="category_browser">Browser</string>
+    <string name="category_settings">System</string>
+    <string name="category_files">Files</string>
+
+    <!-- Per-app settings -->
+    <string name="perapp_subtitle">Override the global settings for this app.</string>
+    <string name="perapp_use_custom">Use custom settings</string>
+    <string name="perapp_use_custom_desc">Apply per-app rules instead of global</string>
+    <string name="perapp_unlock_method">Unlock method</string>
+    <string name="perapp_lock_delay">Lock delay</string>
+    <string name="perapp_fake_mode">Fake mode</string>
+    <string name="perapp_biometric_only">Require biometric only</string>
+    <string name="perapp_method_biometric">Biometric</string>
+    <string name="perapp_saved">Settings saved</string>
+
+    <!-- Local stats -->
+    <string name="applock_stats_title">Today</string>
+    <string name="applock_stats_local_note">Stats stay on this device and are never uploaded or shared.</string>
+    <string name="applock_stat_unlocks">Unlocks today: %1$d</string>
+    <string name="applock_stat_failed">Failed attempts: %1$d</string>
+    <string name="applock_stat_opens">Locked app opens: %1$d</string>
+    <string name="applock_stat_protection">Protection active: %1$s</string>
+    <string name="duration_hm">%1$dh %2$dm</string>
+    <string name="duration_m">%1$dm</string>
+
+    <!-- ===== Phase 7: Intruder Alert ===== -->
+    <string name="intruder_alerts_title">Intruder Alerts</string>
+    <string name="intruder_settings_title">Intruder Alert</string>
+    <string name="intruder_detail_title">Intruder Alert</string>
+
+    <!-- Notification -->
+    <string name="intruder_channel_name">Security Alerts</string>
+    <string name="intruder_channel_desc">Alerts when an intruder photo is captured.</string>
+    <string name="intruder_notification_title">Intruder alert captured</string>
+    <string name="intruder_notification_text">A wrong unlock attempt was recorded.</string>
+    <string name="intruder_notification_title_hidden">Security alert</string>
+    <string name="intruder_notification_text_hidden">Security alert</string>
+    <string name="intruder_notification_open">Open Alerts</string>
+
+    <!-- Sources -->
+    <string name="intruder_source_app_unlock">App Unlock</string>
+    <string name="intruder_source_vault">Vault</string>
+    <string name="intruder_source_app_lock">App Lock</string>
+    <string name="intruder_source_calculator">Fake Calculator</string>
+    <string name="intruder_source_fake_crash">Fake Crash</string>
+    <string name="intruder_source_pattern">Pattern Unlock</string>
+
+    <!-- Alerts list -->
+    <string name="intruder_empty_title">No intruder alerts</string>
+    <string name="intruder_empty_subtitle">Wrong unlock attempts will appear here.</string>
+    <string name="intruder_time_attempts">%1$s · %2$d wrong attempts</string>
+    <string name="intruder_capture_failed">Capture failed</string>
+    <string name="intruder_status_captured">Captured</string>
+    <string name="intruder_delete_selected">Delete selected</string>
+    <string name="intruder_delete_title">Delete alert?</string>
+    <string name="intruder_delete_message">This permanently removes the record and its photo.</string>
+    <string name="intruder_clear_all">Clear all</string>
+    <string name="intruder_clear_all_title">Clear all alerts?</string>
+    <string name="intruder_clear_all_message">All intruder records and photos will be permanently deleted.</string>
+    <string name="intruder_record_missing">This alert is no longer available</string>
+
+    <!-- Detail -->
+    <string name="intruder_no_photo">Photo cannot be opened</string>
+    <string name="intruder_detail_source">Source</string>
+    <string name="intruder_detail_app">App</string>
+    <string name="intruder_detail_method">Method</string>
+    <string name="intruder_detail_attempts">Wrong attempts</string>
+    <string name="intruder_detail_time">Time</string>
+    <string name="intruder_detail_status">Status</string>
+    <string name="intruder_detail_reason">Reason</string>
+    <string name="intruder_export">Export</string>
+    <string name="intruder_export_title">Export photo?</string>
+    <string name="intruder_export_message">Export this intruder photo to your gallery?</string>
+    <string name="intruder_export_done">Exported to gallery</string>
+    <string name="intruder_export_failed">Export failed</string>
+
+    <!-- Settings -->
+    <string name="intruder_settings_subtitle">Capture a front-camera photo after wrong unlock attempts. You control everything.</string>
+    <string name="intruder_enable">Enable Intruder Alert</string>
+    <string name="intruder_enable_desc">Capture a photo after wrong PIN/pattern attempts</string>
+    <string name="intruder_permission_title">Camera permission</string>
+    <string name="intruder_permission_needed">Permission required</string>
+    <string name="intruder_no_camera">Camera is not available</string>
+    <string name="intruder_permission_explanation">Camera permission is used only to capture an intruder photo after multiple wrong unlock attempts. Photos stay on your device and are never uploaded or shared.</string>
+    <string name="intruder_section_capture">Capture</string>
+    <string name="intruder_after_attempts">Capture after wrong attempts</string>
+    <string name="intruder_after_attempts_desc">How many wrong attempts before a photo is taken</string>
+    <string name="intruder_section_storage">Storage &amp; alerts</string>
+    <string name="intruder_save_encrypted">Save photo encrypted</string>
+    <string name="intruder_save_encrypted_desc">Encrypt intruder photos at rest</string>
+    <string name="intruder_show_notification">Show notification after capture</string>
+    <string name="intruder_show_notification_desc">Notify you when a photo is captured</string>
+    <string name="intruder_hide_content">Hide notification content</string>
+    <string name="intruder_hide_content_desc">Show only a generic security alert</string>
+    <string name="intruder_auto_delete">Auto delete old records</string>
+    <string name="intruder_auto_delete_desc">Remove old alerts automatically</string>
+    <string name="intruder_max_records">Maximum records</string>
+    <string name="intruder_max_records_desc">Keep at most this many alerts</string>
+    <string name="intruder_privacy_note">Intruder photos are stored locally on your device, encrypted when enabled, and are never uploaded, sold, or shared.</string>
+
+    <!-- Auto-delete options -->
+    <string name="intruder_autodelete_never">Never</string>
+    <string name="intruder_autodelete_7">After 7 days</string>
+    <string name="intruder_autodelete_30">After 30 days</string>
+    <string name="intruder_autodelete_90">After 90 days</string>
+
+    <!-- Home card -->
+    <string name="intruder_status_disabled">Tap to review alerts</string>
+    <string name="intruder_no_alerts">No alerts yet</string>
+    <plurals name="intruder_alert_count">
+        <item quantity="one">%d alert</item>
+        <item quantity="other">%d alerts</item>
+    </plurals>
+
+    <!-- Privacy policy (App Lock sections) -->
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_policy_body">Usage Access Permission\nThis app uses Usage Access only to detect when apps selected by the user are opened, so the app can show the lock screen. Usage data is processed locally on the device and is not uploaded, sold, shared, or used for advertising.\n\nDisplay Over Other Apps\nThis app uses Display Over Other Apps only to show the lock screen over protected apps.\n\nForeground Service\nThis app uses a foreground service to keep App Lock protection active while enabled by the user.\n\nIntruder Alert\nIntruder Alert uses the device camera only after the user enables the feature and only after wrong PIN or Pattern attempts. Intruder photos are stored locally on the device, encrypted when enabled, and are not uploaded, sold, or shared.</string>
+</resources>

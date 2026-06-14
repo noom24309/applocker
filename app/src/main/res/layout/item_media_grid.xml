@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/thumb_placeholder"
+        android:contentDescription="@string/cd_thumbnail"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@color/thumb_placeholder" />
+
+    <!-- Selection tint -->
+    <View
+        android:id="@+id/selectionOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/selection_overlay"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/thumbnail"
+        app:layout_constraintBottom_toBottomOf="@id/thumbnail"
+        app:layout_constraintStart_toStartOf="@id/thumbnail"
+        app:layout_constraintEnd_toEndOf="@id/thumbnail"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/selectionCheck"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_margin="@dimen/space_s"
+        android:background="@drawable/bg_selection_check"
+        android:contentDescription="@string/cd_thumbnail"
+        android:padding="2dp"
+        android:src="@drawable/ic_check_circle"
+        android:visibility="gone"
+        app:tint="@color/white"
+        app:layout_constraintTop_toTopOf="@id/thumbnail"
+        app:layout_constraintStart_toStartOf="@id/thumbnail"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/favoriteBadge"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_margin="@dimen/space_s"
+        android:contentDescription="@string/cd_favorite"
+        android:src="@drawable/ic_favorite"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/thumbnail"
+        app:layout_constraintEnd_toEndOf="@id/thumbnail"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/playIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:alpha="0.9"
+        android:contentDescription="@string/cd_play_video"
+        android:src="@drawable/ic_play_circle"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/thumbnail"
+        app:layout_constraintBottom_toBottomOf="@id/thumbnail"
+        app:layout_constraintStart_toStartOf="@id/thumbnail"
+        app:layout_constraintEnd_toEndOf="@id/thumbnail"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/durationBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_s"
+        android:background="@drawable/bg_duration_badge"
+        android:paddingStart="6dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="6dp"
+        android:paddingBottom="2dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/badge_text"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/thumbnail"
+        app:layout_constraintEnd_toEndOf="@id/thumbnail"
+        tools:text="1:23"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

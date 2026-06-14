@@ -1,0 +1,43 @@
+package app.lock.photo.valut.features.applock
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import app.lock.photo.valut.databinding.ActivityAppLockBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+/** Host for the App Lock dashboard, installed-apps list and settings. */
+@AndroidEntryPoint
+class AppLockActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityAppLockBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityAppLockBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        if (savedInstanceState == null) {
+            replace(AppLockHomeFragment(), addToBackStack = false)
+        }
+    }
+
+    fun openApps() = replace(AppLockAppsFragment())
+    fun openSettings() = replace(AppLockSettingsFragment())
+    fun openThemePicker() = replace(LockThemePickerFragment())
+    fun openTroubleshooting() = replace(AppLockTroubleshootingFragment())
+    fun openSuggestions() = replace(SuggestedAppsFragment())
+
+    private fun replace(fragment: Fragment, addToBackStack: Boolean = true) {
+        supportFragmentManager.commit {
+            replace(binding.appLockContainer.id, fragment)
+            if (addToBackStack) addToBackStack(null)
+        }
+    }
+
+    companion object {
+        fun intent(context: Context) = Intent(context, AppLockActivity::class.java)
+    }
+}

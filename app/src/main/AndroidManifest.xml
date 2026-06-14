@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <!-- App Lock (Phase 5) -->
+    <!-- Usage Access: detect when a user-selected protected app is opened. Granted by
+         the user in Settings; data is processed locally and never uploaded/shared. -->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- Display over other apps: show the lock screen over a protected app. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Keep App Lock monitoring active while protection is enabled. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- Ongoing protection notification on Android 13+. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Restart protection after reboot (only if the user enabled it). -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Intruder Alert (Phase 7): front-camera selfie after wrong unlock attempts.
+         Requested only when the user enables the feature; photos stay on-device. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="false" />
+
+    <!-- Resolve only launchable apps (no QUERY_ALL_PACKAGES). -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppLockPhotoValut"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".features.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppLockPhotoValut.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".features.onboarding.OnboardingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.CreatePinActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.ConfirmPinActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.RecoveryKeyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.BiometricSetupActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.UnlockActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.PatternUnlockActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.PatternSetupActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.ChangePinActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.ForgotPinActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.auth.VerifyMasterActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.home.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.vault.VaultActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.vault.ImportProgressActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.vault.EncryptionMigrationActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.vault.PhotoViewerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppLockPhotoValut" />
+
+        <activity
+            android:name=".features.vault.VideoPlayerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.AppLockPhotoValut" />
+
+        <!-- App Lock (Phase 5) -->
+        <activity
+            android:name=".features.applock.AppLockActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.applock.AppLockPermissionActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.applock.AppLockOverlayActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:taskAffinity=".applock.overlay"
+            android:theme="@style/Theme.AppLockPhotoValut" />
+
+        <!-- Intruder Alert (Phase 7) -->
+        <activity
+            android:name=".features.intruder.IntruderActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.intruder.IntruderDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppLockPhotoValut" />
+
+        <service
+            android:name=".core.applock.service.AppLockMonitorService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="App Lock monitors the current foreground app locally to show the lock screen for user-selected apps. No usage data leaves the device." />
+        </service>
+
+        <receiver
+            android:name=".core.applock.receiver.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".core.applock.receiver.PackageChangeReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

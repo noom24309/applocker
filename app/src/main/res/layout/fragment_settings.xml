@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="@dimen/space_xl"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingBottom="@dimen/space_l">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_title"
+            android:textAppearance="@style/TextAppearance.App.Display" />
+
+        <!-- Security section -->
+        <TextView
+            style="@style/SettingsSectionHeader"
+            android:text="@string/settings_security" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.App.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Change PIN -->
+                <LinearLayout
+                    android:id="@+id/rowChangePin"
+                    style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_lock"
+                        app:tint="@color/primary" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_change_pin" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_change_pin_desc" />
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- Change Unlock Method -->
+                <LinearLayout
+                    android:id="@+id/rowChangeUnlockMethod"
+                    style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_shield"
+                        app:tint="@color/primary" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_change_unlock_method" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_change_unlock_method_desc" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvUnlockMethodValue"
+                        style="@style/SettingsRowValue"
+                        tools:text="PIN" />
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- Biometric -->
+                <LinearLayout
+                    android:id="@+id/rowBiometric"
+                    style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_fingerprint"
+                        app:tint="@color/primary" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_biometric" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_biometric_desc" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchBiometric"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- Auto Lock -->
+                <LinearLayout
+                    android:id="@+id/rowAutoLock"
+                    style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_shield"
+                        app:tint="@color/primary" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_auto_lock" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_auto_lock_desc" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvAutoLockValue"
+                        style="@style/SettingsRowValue"
+                        tools:text="Immediately" />
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- Wrong Attempt Protection -->
+                <LinearLayout
+                    android:id="@+id/rowWrongAttempt"
+                    style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_intruder"
+                        app:tint="@color/primary" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_wrong_attempt" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_wrong_attempt_desc" />
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- Intruder Alert -->
+                <LinearLayout
+                    android:id="@+id/rowIntruder"
+                    style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_intruder"
+                        app:tint="@color/primary" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/intruder_settings_title" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/intruder_enable_desc" />
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- Lock App Now -->
+                <LinearLayout
+                    android:id="@+id/rowLockNow"
+                    style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_lock"
+                        app:tint="@color/accent_red" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_lock_now" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_lock_now_desc" />
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- About section -->
+        <TextView
+            style="@style/SettingsSectionHeader"
+            android:text="@string/settings_about" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.App.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Privacy Policy -->
+                <LinearLayout
+                    android:id="@+id/rowPrivacy"
+                    style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_shield"
+                        app:tint="@color/primary" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_privacy_policy" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_privacy_policy_desc" />
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- App Version -->
+                <LinearLayout style="@style/SettingsRow">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_check_circle" />
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_app_version" />
+
+                        <TextView
+                            android:id="@+id/tvAppVersion"
+                            style="@style/SettingsRowDesc"
+                            tools:text="1.0" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

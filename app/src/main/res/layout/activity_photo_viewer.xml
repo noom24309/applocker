@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/viewer_bg">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/scrim"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_s"
+        android:paddingTop="@dimen/space_m"
+        android:paddingEnd="@dimen/space_s"
+        android:paddingBottom="@dimen/space_m">
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="@dimen/viewer_action_size"
+            android:layout_height="@dimen/viewer_action_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_close"
+            android:src="@drawable/ic_close"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_body"
+            tools:text="IMG_001" />
+
+        <ImageButton
+            android:id="@+id/btnFavorite"
+            android:layout_width="@dimen/viewer_action_size"
+            android:layout_height="@dimen/viewer_action_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_favorite"
+            android:src="@drawable/ic_favorite_border"
+            app:tint="@color/white" />
+    </LinearLayout>
+
+    <!-- Bottom bar -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/scrim"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/space_m"
+        android:paddingBottom="@dimen/space_m">
+
+        <ImageButton
+            android:id="@+id/btnMove"
+            style="@style/ViewerBottomAction"
+            android:contentDescription="@string/action_move"
+            android:src="@drawable/ic_album" />
+
+        <ImageButton
+            android:id="@+id/btnExport"
+            style="@style/ViewerBottomAction"
+            android:contentDescription="@string/action_export"
+            android:src="@drawable/ic_export" />
+
+        <ImageButton
+            android:id="@+id/btnDetails"
+            style="@style/ViewerBottomAction"
+            android:contentDescription="@string/action_details"
+            android:src="@drawable/ic_more_vert" />
+
+        <ImageButton
+            android:id="@+id/btnDelete"
+            style="@style/ViewerBottomAction"
+            android:contentDescription="@string/action_delete"
+            android:src="@drawable/ic_delete" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand -->
+    <color name="primary">#5B4DF0</color>
+    <color name="primary_dark">#4334D6</color>
+    <color name="primary_light">#8E83F5</color>
+    <color name="primary_container">#ECEAFE</color>
+
+    <!-- Accents -->
+    <color name="accent_green">#22C55E</color>
+    <color name="accent_amber">#F59E0B</color>
+    <color name="accent_red">#EF4444</color>
+    <color name="accent_blue">#3B82F6</color>
+
+    <!-- Surfaces / background -->
+    <color name="background">#F4F5FB</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="card_stroke">#EDEEF5</color>
+
+    <!-- Text -->
+    <color name="text_primary">#15161E</color>
+    <color name="text_secondary">#6B6E82</color>
+    <color name="text_tertiary">#9A9DB0</color>
+    <color name="text_on_primary">#FFFFFFFF</color>
+
+    <!-- Pin / misc -->
+    <color name="pin_dot_empty">#D8DAE8</color>
+    <color name="keypad_pressed">#ECEAFE</color>
+    <color name="divider">#EEEFF5</color>
+    <color name="status_bar">#5B4DF0</color>
+
+    <!-- App Lock overlay themes (Phase 6) -->
+    <color name="overlay_dark_bg">#0E1016</color>
+    <color name="overlay_dark_text">#F4F5FB</color>
+    <color name="overlay_glass_bg">#CC15161E</color>
+    <color name="calculator_bg">#0E1016</color>
+    <color name="calculator_text">#F4F5FB</color>
+    <color name="calculator_accent">#8E83F5</color>
+    <color name="fake_crash_bg">#80000000</color>
+
+    <!-- Vault / viewer -->
+    <color name="scrim">#99000000</color>
+    <color name="badge_bg">#B3000000</color>
+    <color name="viewer_bg">#FF000000</color>
+    <color name="selection_overlay">#665B4DF0</color>
+    <color name="thumb_placeholder">#ECEDF3</color>
+</resources>
