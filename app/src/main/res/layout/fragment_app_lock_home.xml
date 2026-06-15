@@ -130,7 +130,10 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout style="@style/SettingsRow">
+                <LinearLayout
+                    style="@style/SettingsRow"
+                    android:clickable="false"
+                    android:focusable="false">
 
                     <ImageView
                         style="@style/SettingsRowIcon"
@@ -165,7 +168,10 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout style="@style/SettingsRow">
+                <LinearLayout
+                    style="@style/SettingsRow"
+                    android:clickable="false"
+                    android:focusable="false">
 
                     <ImageView
                         style="@style/SettingsRowIcon"

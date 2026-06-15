@@ -5,6 +5,7 @@ import android.net.Uri
 import app.lock.photo.valut.core.security.VaultKeyManager
 import app.lock.photo.valut.core.storage.CryptoFileManager
 import app.lock.photo.valut.core.storage.DecryptPurpose
+import app.lock.photo.valut.core.storage.HiddenGalleryManager
 import app.lock.photo.valut.core.storage.MediaExporter
 import app.lock.photo.valut.core.storage.VaultFileManager
 import app.lock.photo.valut.data.local.dao.VaultAlbumDao
@@ -37,7 +38,8 @@ class VaultRepositoryImpl @Inject constructor(
     private val fileManager: VaultFileManager,
     private val cryptoFileManager: CryptoFileManager,
     private val keyManager: VaultKeyManager,
-    private val exporter: MediaExporter
+    private val exporter: MediaExporter,
+    private val hiddenGalleryManager: HiddenGalleryManager
 ) : VaultRepository {
 
     private val io: CoroutineDispatcher = Dispatchers.IO
@@ -50,6 +52,8 @@ class VaultRepositoryImpl @Inject constructor(
     override fun getRecycleBinFlow(): Flow<List<VaultMediaEntity>> = mediaDao.observeDeletedMedia()
     override fun getMediaByAlbumFlow(albumId: Long): Flow<List<VaultMediaEntity>> =
         mediaDao.observeMediaByAlbum(albumId)
+    override fun getUnsortedMediaFlow(): Flow<List<VaultMediaEntity>> =
+        mediaDao.observeMediaNotInAlbum()
     override fun getAlbumsFlow(): Flow<List<AlbumWithCount>> = albumDao.observeAlbums()
     override fun observeMediaById(id: Long): Flow<VaultMediaEntity?> = mediaDao.observeById(id)
     override fun observeVaultCounts(): Flow<VaultCounts> = mediaDao.observeVaultCounts()
@@ -118,6 +122,37 @@ class VaultRepositoryImpl @Inject constructor(
             fileManager.deleteVaultFile(result.encryptedThumbnailPath)
             ImportItemResult.Failed(ImportItemResult.Failed.Reason.DB_FAILED)
         }
+    }
+
+    override suspend fun setHiddenUri(mediaId: Long, hiddenUri: String) = withContext(io) {
+        mediaDao.updateOriginalUri(mediaId, hiddenUri)
+    }
+
+    override suspend fun restoreToGallery(mediaIds: List<Long>): Int = withContext(io) {
+        val items = mediaDao.getByIds(mediaIds)
+        var restored = 0
+        val toRemove = mutableListOf<Long>()
+        items.forEach { item ->
+            val hidden = item.originalUri
+            val ok = if (hidden.isNullOrEmpty()) {
+                false
+            } else {
+                hiddenGalleryManager.restoreToGallery(
+                    Uri.parse(hidden),
+                    MediaType.fromStorage(item.mediaType)
+                )
+            }
+            // Whether or not a hidden copy existed, removing it from the vault is the intent
+            // of "unhide"; only count items whose original actually returned to the gallery.
+            if (ok) restored++
+            toRemove.add(item.id)
+        }
+        if (toRemove.isNotEmpty()) {
+            val records = mediaDao.getByIds(toRemove)
+            records.forEach(::deleteMediaFiles)
+            mediaDao.deleteMediaRecord(toRemove)
+        }
+        restored
     }
 
     override suspend fun createAlbum(name: String): Long = withContext(io) {

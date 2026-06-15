@@ -29,7 +29,8 @@ import javax.inject.Singleton
 class AppLifecycleObserver @Inject constructor(
     private val appLockStateManager: AppLockStateManager,
     private val settingsRepository: SettingsRepository,
-    private val secureCacheManager: SecureCacheManager
+    private val secureCacheManager: SecureCacheManager,
+    private val appLockOverlayState: app.lock.photo.valut.core.applock.AppLockOverlayStateManager
 ) : DefaultLifecycleObserver, Application.ActivityLifecycleCallbacks {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
@@ -60,6 +61,11 @@ class AppLifecycleObserver @Inject constructor(
     }
 
     private suspend fun evaluateLock() {
+        // The app-lock overlay (for a protected third-party app) brings THIS process to the
+        // foreground. Don't also fire the app's own auto-lock — otherwise two PIN screens
+        // stack and the protected app never opens. (currentActivity may not have updated to
+        // the overlay yet when ProcessLifecycle's onStart fires, so check the shared flag.)
+        if (appLockOverlayState.isOverlayShowing()) return
         val activity = currentActivity.get() ?: return
         if (activity is LockExempt || isShowingLock) return
         if (!appLockStateManager.shouldRequireUnlock()) return

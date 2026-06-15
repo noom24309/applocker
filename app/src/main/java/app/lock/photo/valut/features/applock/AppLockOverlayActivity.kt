@@ -357,7 +357,19 @@ class AppLockOverlayActivity : AppCompatActivity(), LockExempt {
 
     private fun onUnlocked() {
         unlockSucceeded = true
+        // The overlay lives in its own task, so finishing it doesn't reliably reveal the
+        // protected app (it often drops to the launcher). Bring the app's existing task
+        // back to the front explicitly, then close the overlay.
+        launchUnlockedApp(intent.getStringExtra(EXTRA_PACKAGE))
         finish()
+    }
+
+    private fun launchUnlockedApp(packageName: String?) {
+        if (packageName.isNullOrEmpty() || packageName == this.packageName) return
+        val launch = packageManager.getLaunchIntentForPackage(packageName) ?: return
+        // RESET_TASK_IF_NEEDED resumes the existing task instead of restarting the app.
+        launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED)
+        runCatching { startActivity(launch) }
     }
 
     private fun onWrong(lockedOut: Boolean) {
@@ -445,9 +457,10 @@ class AppLockOverlayActivity : AppCompatActivity(), LockExempt {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (!unlockSucceeded) {
-            overlayState.markOverlayDismissed(intent.getStringExtra(EXTRA_PACKAGE) ?: "")
-        }
+        // Clear the overlay flag on both success and dismissal. On success the session is
+        // already marked unlocked (and protected by the reveal window), so this can't cause
+        // a relaunch; it just frees the flag so another locked app can show its overlay.
+        overlayState.markOverlayDismissed(intent.getStringExtra(EXTRA_PACKAGE) ?: "")
     }
 
     companion object {

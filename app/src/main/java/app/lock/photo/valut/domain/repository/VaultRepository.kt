@@ -21,6 +21,8 @@ interface VaultRepository {
     fun getRecentlyImportedFlow(limit: Int = 60): Flow<List<VaultMediaEntity>>
     fun getRecycleBinFlow(): Flow<List<VaultMediaEntity>>
     fun getMediaByAlbumFlow(albumId: Long): Flow<List<VaultMediaEntity>>
+    /** Loose media not filed into any folder (shown under the folders on the vault home). */
+    fun getUnsortedMediaFlow(): Flow<List<VaultMediaEntity>>
     fun getAlbumsFlow(): Flow<List<AlbumWithCount>>
     fun observeMediaById(id: Long): Flow<VaultMediaEntity?>
     fun observeVaultCounts(): Flow<VaultCounts>
@@ -42,6 +44,15 @@ interface VaultRepository {
 
     /** Copies one picked Uri into the vault, builds a thumbnail and saves metadata. */
     suspend fun importSingleMedia(uri: Uri): ImportItemResult
+
+    /** Links a vault item to the hidden-folder copy of its original (for later restore). */
+    suspend fun setHiddenUri(mediaId: Long, hiddenUri: String)
+
+    /**
+     * "Unhide": moves the hidden originals back into the visible gallery and removes the
+     * items from the vault. Returns how many were restored.
+     */
+    suspend fun restoreToGallery(mediaIds: List<Long>): Int
 
     suspend fun createAlbum(name: String): Long
     suspend fun renameAlbum(albumId: Long, newName: String)

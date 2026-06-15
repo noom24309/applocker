@@ -48,16 +48,18 @@ class VaultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            replace(VaultHomeFragment(), addToBackStack = false)
+            replace(PrivateVaultFragment(), addToBackStack = false)
             maybeStartMigration()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        // Never expose the vault while locked.
+        // Never expose the vault while locked. Use the session-locked check (not the full
+        // auto-lock policy) so opening a photo/video and returning doesn't re-lock the vault;
+        // real background transitions are handled by AppLifecycleObserver.
         lifecycleScope.launch {
-            if (appLockStateManager.shouldRequireUnlock()) {
+            if (appLockStateManager.isSessionLocked()) {
                 appLockStateManager.markLocked()
                 startActivity(
                     LockRouter.lockIntent(

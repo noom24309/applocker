@@ -49,7 +49,21 @@ class AppLockAppsFragment : Fragment() {
         }
         setupRecycler()
         setupControls()
+        applyInitialFilter(savedInstanceState)
         observe()
+    }
+
+    /** Apply a one-time starting filter passed via [newInstance] (e.g. LOCKED from Home). */
+    private fun applyInitialFilter(savedInstanceState: Bundle?) {
+        if (savedInstanceState != null) return
+        val filterName = arguments?.getString(ARG_INITIAL_FILTER) ?: return
+        val filter = runCatching { AppFilter.valueOf(filterName) }.getOrNull() ?: return
+        viewModel.setFilter(filter)
+        when (filter) {
+            AppFilter.ALL -> binding.chipAll.isChecked = true
+            AppFilter.LOCKED -> binding.chipLocked.isChecked = true
+            AppFilter.UNLOCKED -> binding.chipUnlocked.isChecked = true
+        }
     }
 
     private fun setupRecycler() {
@@ -107,5 +121,15 @@ class AppLockAppsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val ARG_INITIAL_FILTER = "arg_initial_filter"
+
+        fun newInstance(initialFilter: AppFilter? = null) = AppLockAppsFragment().apply {
+            if (initialFilter != null) {
+                arguments = Bundle().apply { putString(ARG_INITIAL_FILTER, initialFilter.name) }
+            }
+        }
     }
 }

@@ -176,6 +176,10 @@
     <string name="vault_favorites">Favorites</string>
     <string name="vault_recent">Recently Imported</string>
     <string name="vault_recycle_bin">Recycle Bin</string>
+    <string name="vault_folders">Folders</string>
+    <string name="vault_add">Add</string>
+    <string name="vault_add_photo">Add photo / video</string>
+    <string name="vault_create_folder">Create folder</string>
     <string name="vault_import_photos">Import Photos</string>
     <string name="vault_import_videos">Import Videos</string>
     <string name="vault_import_media">Import Media</string>
@@ -262,6 +266,9 @@
     <string name="export_failed">Export failed</string>
     <string name="export_unsupported">Export needs Android 10 or newer</string>
     <string name="export_some_failed">Some files could not be exported</string>
+    <string name="restore_to_gallery">Move back to gallery (unhide)</string>
+    <string name="restore_done">Moved back to gallery</string>
+    <string name="restore_failed">Couldn\'t move back to gallery</string>
 
     <!-- Details -->
     <string name="details_title">Details</string>

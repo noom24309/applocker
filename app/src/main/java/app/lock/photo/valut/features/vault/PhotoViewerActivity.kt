@@ -79,6 +79,10 @@ class PhotoViewerActivity : AppCompatActivity() {
                         when (event) {
                             PhotoViewerViewModel.Event.Empty -> finish()
                             is PhotoViewerViewModel.Event.ExportFinished -> toastExport(event.result)
+                            is PhotoViewerViewModel.Event.RestoredToGallery -> {
+                                val msg = if (event.success) R.string.restore_done else R.string.restore_failed
+                                Toast.makeText(this@PhotoViewerActivity, msg, Toast.LENGTH_SHORT).show()
+                            }
                             PhotoViewerViewModel.Event.ActionDone -> Unit
                         }
                     }
@@ -109,10 +113,20 @@ class PhotoViewerActivity : AppCompatActivity() {
 
     private fun showExportDialog() {
         val item = current() ?: return
-        val labels = arrayOf(getString(R.string.export_copy_only), getString(R.string.export_and_remove))
+        val labels = arrayOf(
+            getString(R.string.export_copy_only),
+            getString(R.string.export_and_remove),
+            getString(R.string.restore_to_gallery)
+        )
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.export_title)
-            .setItems(labels) { _, which -> viewModel.export(item.id, removeFromVault = which == 1) }
+            .setItems(labels) { _, which ->
+                when (which) {
+                    0 -> viewModel.export(item.id, removeFromVault = false)
+                    1 -> viewModel.export(item.id, removeFromVault = true)
+                    2 -> viewModel.restoreToGallery(item.id)
+                }
+            }
             .show()
     }
 

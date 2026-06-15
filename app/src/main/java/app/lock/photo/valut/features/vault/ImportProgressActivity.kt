@@ -3,9 +3,13 @@ package app.lock.photo.valut.features.vault
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
+import android.content.IntentSender
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
@@ -14,16 +18,34 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.storage.HiddenGalleryManager
 import app.lock.photo.valut.databinding.ActivityImportProgressBinding
 import app.lock.photo.valut.features.vault.model.ImportProgressUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ImportProgressActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityImportProgressBinding
     private val viewModel: ImportMediaViewModel by viewModels()
+
+    @Inject
+    lateinit var hiddenGalleryManager: HiddenGalleryManager
+
+    private var galleryRemovalRequested = false
+
+    private val deleteLauncher = registerForActivityResult(
+        ActivityResultContracts.StartIntentSenderForResult()
+    ) { /* The system handled the confirmation; nothing else to do. */ }
+
+    // Media read access lets us resolve the picked items' real MediaStore URIs so the
+    // originals can be removed from the gallery. If denied, import still works; the
+    // originals just stay in the gallery.
+    private val mediaPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { startPendingImport() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +59,30 @@ class ImportProgressActivity : AppCompatActivity() {
         observeState()
 
         if (savedInstanceState == null) {
-            val uris = IntentCompat.getParcelableArrayListExtra(intent, EXTRA_URIS, Uri::class.java)
-                ?: arrayListOf()
-            viewModel.startImport(uris)
+            val missing = missingMediaPermissions()
+            if (missing.isEmpty()) startPendingImport() else mediaPermissionLauncher.launch(missing)
         }
+    }
+
+    private fun startPendingImport() {
+        val uris = IntentCompat.getParcelableArrayListExtra(intent, EXTRA_URIS, Uri::class.java)
+            ?: arrayListOf()
+        val albumId = intent.getLongExtra(EXTRA_ALBUM_ID, ImportMediaViewModel.NO_ALBUM)
+        viewModel.startImport(uris, albumId)
+    }
+
+    private fun missingMediaPermissions(): Array<String> {
+        val needed = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            listOf(
+                android.Manifest.permission.READ_MEDIA_IMAGES,
+                android.Manifest.permission.READ_MEDIA_VIDEO
+            )
+        } else {
+            listOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+        return needed.filter {
+            checkSelfPermission(it) != android.content.pm.PackageManager.PERMISSION_GRANTED
+        }.toTypedArray()
     }
 
     private fun observeState() {
@@ -55,6 +97,8 @@ class ImportProgressActivity : AppCompatActivity() {
         binding.progressGroup.isVisible = !state.isFinished
         binding.successGroup.isVisible = state.isFinished
 
+        if (state.isFinished) maybeRemoveOriginalsFromGallery(state.originalsToRemove)
+
         if (!state.isFinished) {
             binding.tvProgressCount.text = getString(
                 R.string.import_progress_count,
@@ -68,22 +112,49 @@ class ImportProgressActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * After import, the originals are already safely copied into the hidden folder, so
+     * remove them from the gallery. On Android 11+ this shows one system confirmation;
+     * on older versions it deletes directly (best-effort).
+     */
+    private fun maybeRemoveOriginalsFromGallery(originals: List<Uri>) {
+        if (galleryRemovalRequested || originals.isEmpty()) return
+        galleryRemovalRequested = true
+        // Never let a removal failure crash the import — the media is already safe in the
+        // hidden folder; worst case the original simply stays in the gallery.
+        runCatching {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val sender: IntentSender = hiddenGalleryManager.createDeleteRequest(originals)
+                deleteLauncher.launch(IntentSenderRequest.Builder(sender).build())
+            } else {
+                originals.forEach { hiddenGalleryManager.deleteOriginal(it) }
+            }
+        }
+    }
+
     private fun buildSummary(state: ImportProgressUiState): String {
         val parts = mutableListOf(
             getString(R.string.import_summary_photos, state.importedPhotos),
             getString(R.string.import_summary_videos, state.importedVideos)
         )
         if (state.failedCount > 0) parts.add(getString(R.string.import_summary_failed, state.failedCount))
-        // Originals can't be deleted from picker URIs without broad permission.
-        return parts.joinToString("  ·  ") + "\n" + getString(R.string.delete_originals_manual)
+        // Originals are moved into the hidden folder and removed from the gallery, so no
+        // manual cleanup note is shown.
+        return parts.joinToString("  ·  ")
     }
 
     companion object {
         private const val EXTRA_URIS = "extra_uris"
+        private const val EXTRA_ALBUM_ID = "extra_album_id"
 
-        fun intent(context: Context, uris: List<Uri>): Intent {
+        fun intent(
+            context: Context,
+            uris: List<Uri>,
+            albumId: Long = ImportMediaViewModel.NO_ALBUM
+        ): Intent {
             val intent = Intent(context, ImportProgressActivity::class.java)
             intent.putParcelableArrayListExtra(EXTRA_URIS, ArrayList(uris))
+            intent.putExtra(EXTRA_ALBUM_ID, albumId)
             // Propagate read access for the picked URIs to this activity.
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             if (uris.isNotEmpty()) {

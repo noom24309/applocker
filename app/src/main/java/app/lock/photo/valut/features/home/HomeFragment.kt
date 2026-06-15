@@ -43,10 +43,13 @@ class HomeFragment : Fragment() {
         binding.cardAppLock.setOnClickListener {
             startActivity(AppLockActivity.intent(requireContext()))
         }
+        binding.cardLockedApps.setOnClickListener {
+            startActivity(AppLockActivity.lockedAppsIntent(requireContext()))
+        }
         binding.cardIntruder.setOnClickListener {
             startActivity(IntruderActivity.intent(requireContext()))
         }
-        binding.cardOpenVault.setOnClickListener {
+        binding.cardPrivatePhotos.setOnClickListener {
             startActivity(VaultActivity.intent(requireContext()))
         }
         observeState()

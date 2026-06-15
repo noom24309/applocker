@@ -39,7 +39,9 @@ data class ImportProgressUiState(
     val currentFileName: String = "",
     val isImporting: Boolean = false,
     val isCancelled: Boolean = false,
-    val isFinished: Boolean = false
+    val isFinished: Boolean = false,
+    /** Originals safely copied into the hidden folder; ready to be removed from the gallery. */
+    val originalsToRemove: List<android.net.Uri> = emptyList()
 ) {
     val progressPercent: Int
         get() = if (totalCount == 0) 0 else ((completedCount + failedCount) * 100 / totalCount)

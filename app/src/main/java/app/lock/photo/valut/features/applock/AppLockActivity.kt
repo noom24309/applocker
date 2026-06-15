@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import app.lock.photo.valut.databinding.ActivityAppLockBinding
+import app.lock.photo.valut.features.applock.model.AppFilter
 import dagger.hilt.android.AndroidEntryPoint
 
 /** Host for the App Lock dashboard, installed-apps list and settings. */
@@ -21,10 +22,15 @@ class AppLockActivity : AppCompatActivity() {
         setContentView(binding.root)
         if (savedInstanceState == null) {
             replace(AppLockHomeFragment(), addToBackStack = false)
+            // Deep-link from Home's "Locked Apps" card: jump straight to the locked list.
+            if (intent.getBooleanExtra(EXTRA_OPEN_LOCKED_APPS, false)) {
+                openApps(AppFilter.LOCKED)
+            }
         }
     }
 
-    fun openApps() = replace(AppLockAppsFragment())
+    fun openApps(initialFilter: AppFilter? = null) =
+        replace(AppLockAppsFragment.newInstance(initialFilter))
     fun openSettings() = replace(AppLockSettingsFragment())
     fun openThemePicker() = replace(LockThemePickerFragment())
     fun openTroubleshooting() = replace(AppLockTroubleshootingFragment())
@@ -38,6 +44,12 @@ class AppLockActivity : AppCompatActivity() {
     }
 
     companion object {
+        private const val EXTRA_OPEN_LOCKED_APPS = "open_locked_apps"
+
         fun intent(context: Context) = Intent(context, AppLockActivity::class.java)
+
+        /** Opens App Lock straight on the locked-apps list (from Home's stat card). */
+        fun lockedAppsIntent(context: Context) =
+            intent(context).putExtra(EXTRA_OPEN_LOCKED_APPS, true)
     }
 }

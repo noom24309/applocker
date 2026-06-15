@@ -1,10 +1,13 @@
 package app.lock.photo.valut.features.vault
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -40,6 +43,11 @@ class MediaGridFragment : Fragment() {
     private var selectionMode = false
 
     private val isRecycleBin get() = viewModel.source == GridSource.RECYCLE_BIN
+    private val isAlbum get() = viewModel.source == GridSource.ALBUM
+
+    private val pickMedia = registerForActivityResult(
+        ActivityResultContracts.PickMultipleVisualMedia(MAX_ITEMS)
+    ) { uris -> onPickedForAlbum(uris) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -151,6 +159,7 @@ class MediaGridFragment : Fragment() {
         inflateMenu(R.menu.menu_grid)
         menu.findItem(R.id.action_empty_bin).isVisible = isRecycleBin
         menu.findItem(R.id.action_sort).isVisible = !isRecycleBin
+        menu.findItem(R.id.action_add_to_album).isVisible = isAlbum
         setOnMenuItemClickListener(::onNormalMenu)
     }
 
@@ -167,10 +176,20 @@ class MediaGridFragment : Fragment() {
     }
 
     private fun onNormalMenu(item: android.view.MenuItem): Boolean = when (item.itemId) {
+        R.id.action_add_to_album -> {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+            true
+        }
         R.id.action_sort -> { showSortDialog(); true }
         R.id.action_select_all -> { viewModel.selectAll(); true }
         R.id.action_empty_bin -> { confirmEmptyBin(); true }
         else -> false
+    }
+
+    private fun onPickedForAlbum(uris: List<Uri>) {
+        if (uris.isEmpty()) return
+        val albumId = requireArguments().getLong(MediaGridViewModel.ARG_ALBUM_ID, -1L)
+        startActivity(ImportProgressActivity.intent(requireContext(), uris, albumId))
     }
 
     private fun onSelectionMenu(item: android.view.MenuItem): Boolean = when (item.itemId) {
@@ -284,6 +303,7 @@ class MediaGridFragment : Fragment() {
 
     companion object {
         private const val ARG_TITLE = "arg_title"
+        private const val MAX_ITEMS = 100
 
         fun newInstance(source: GridSource, albumId: Long, title: String?): MediaGridFragment =
             MediaGridFragment().apply {

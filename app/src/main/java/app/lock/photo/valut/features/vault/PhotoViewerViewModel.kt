@@ -28,6 +28,7 @@ class PhotoViewerViewModel @Inject constructor(
 
     sealed interface Event {
         data class ExportFinished(val result: ExportResult) : Event
+        data class RestoredToGallery(val success: Boolean) : Event
         data object Empty : Event
         data object ActionDone : Event
     }
@@ -72,6 +73,15 @@ class PhotoViewerViewModel @Inject constructor(
         viewModelScope.launch {
             repository.moveToAlbum(listOf(id), albumId)
             events.trySend(Event.ActionDone)
+        }
+    }
+
+    /** Unhide: move the original back to the gallery and remove it from the vault. */
+    fun restoreToGallery(id: Long) {
+        viewModelScope.launch {
+            val restored = repository.restoreToGallery(listOf(id))
+            removeLocal(id)
+            events.trySend(Event.RestoredToGallery(restored > 0))
         }
     }
 

@@ -27,11 +27,15 @@ class AppLockNotificationHelper @Inject constructor(
     fun ensureChannel() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val manager = context.getSystemService(NotificationManager::class.java) ?: return
+        // Drop the old LOW-importance channel so the new MIN-importance one takes effect
+        // (a channel's importance can't be lowered in place once created).
+        runCatching { manager.deleteNotificationChannel(LEGACY_CHANNEL_ID) }
         if (manager.getNotificationChannel(CHANNEL_ID) != null) return
         val channel = NotificationChannel(
             CHANNEL_ID,
             context.getString(R.string.applock_channel_name),
-            NotificationManager.IMPORTANCE_LOW
+            // MIN: no status-bar icon, no sound; sits collapsed at the bottom of the shade.
+            NotificationManager.IMPORTANCE_MIN
         ).apply {
             description = context.getString(R.string.applock_channel_desc)
             setShowBadge(false)
@@ -72,7 +76,9 @@ class AppLockNotificationHelper @Inject constructor(
             .setContentText(text)
             .setContentIntent(openIntent)
             .setOngoing(true)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
+            // MIN priority + silent keeps it out of the status bar; collapsed in the shade.
+            .setPriority(NotificationCompat.PRIORITY_MIN)
+            .setSilent(true)
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
             .addAction(0, context.getString(R.string.applock_notification_open), openIntent)
             .addAction(0, context.getString(R.string.applock_notification_stop), stopIntent)
@@ -137,7 +143,8 @@ class AppLockNotificationHelper @Inject constructor(
     }
 
     companion object {
-        const val CHANNEL_ID = "app_lock_monitor"
+        const val CHANNEL_ID = "app_lock_monitor_min"
+        private const val LEGACY_CHANNEL_ID = "app_lock_monitor"
         const val NOTIFICATION_ID = 4201
         const val NEW_APP_NOTIFICATION_ID = 4202
     }

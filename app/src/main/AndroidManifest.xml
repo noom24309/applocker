@@ -3,25 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-
-    <!-- App Lock (Phase 5) -->
-    <!-- Usage Access: detect when a user-selected protected app is opened. Granted by
-         the user in Settings; data is processed locally and never uploaded/shared. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
-    <!-- Display over other apps: show the lock screen over a protected app. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!-- Keep App Lock monitoring active while protection is enabled. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
-    <!-- Ongoing protection notification on Android 13+. -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <!-- Restart protection after reboot (only if the user enabled it). -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-    <!-- Intruder Alert (Phase 7): front-camera selfie after wrong unlock attempts.
-         Requested only when the user enables the feature; photos stay on-device. -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature
         android:name="android.hardware.camera.front"

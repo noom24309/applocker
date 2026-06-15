@@ -29,6 +29,21 @@ class AppLockStateManager @Inject constructor(
     }
 
     /**
+     * True only if the session is currently locked right now, ignoring the auto-lock
+     * timing policy. Use this from screens that re-check on every `onResume` (e.g. the
+     * vault), so plain in-app navigation — opening a photo/video and coming back — never
+     * re-triggers the lock. The *timing* decision (IMMEDIATE / delays) is owned by
+     * [AppLifecycleObserver] on real background→foreground transitions, which flips the
+     * session to locked via [markLocked] when a re-auth is actually due.
+     */
+    suspend fun isSessionLocked(): Boolean {
+        val hasCredential = dataStore.pinCreated.first() || dataStore.patternEnabled.first()
+        if (!hasCredential) return false
+        if (!dataStore.appLockEnabled.first()) return false
+        return !dataStore.isAppUnlocked.first()
+    }
+
+    /**
      * True when the app should present an unlock screen. Returns false during
      * first-run setup (no credential yet) so onboarding/PIN setup isn't blocked.
      */

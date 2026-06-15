@@ -27,6 +27,10 @@ interface VaultMediaDao {
     @Query("SELECT * FROM vault_media WHERE isDeleted = 0 ORDER BY dateImported DESC LIMIT :limit")
     fun observeRecentlyImported(limit: Int): Flow<List<VaultMediaEntity>>
 
+    /** Media not filed into any folder/album (the loose items shown under the folders). */
+    @Query("SELECT * FROM vault_media WHERE albumId IS NULL AND isDeleted = 0 ORDER BY dateImported DESC")
+    fun observeMediaNotInAlbum(): Flow<List<VaultMediaEntity>>
+
     @Query("SELECT * FROM vault_media WHERE isDeleted = 1 ORDER BY deletedAt DESC")
     fun observeDeletedMedia(): Flow<List<VaultMediaEntity>>
 
@@ -77,6 +81,10 @@ interface VaultMediaDao {
 
     @Query("UPDATE vault_media SET displayName = :name, dateModified = :now WHERE id = :id")
     suspend fun updateDisplayName(id: Long, name: String, now: Long)
+
+    /** Stores the hidden-folder URI of the original (reused [originalUri] column). */
+    @Query("UPDATE vault_media SET originalUri = :uri WHERE id = :id")
+    suspend fun updateOriginalUri(id: Long, uri: String?)
 
     @Query("UPDATE vault_media SET albumId = NULL WHERE albumId = :albumId")
     suspend fun detachFromAlbum(albumId: Long)
