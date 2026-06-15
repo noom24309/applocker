@@ -245,6 +245,47 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Appearance section -->
+        <TextView
+            style="@style/SettingsSectionHeader"
+            android:text="@string/settings_appearance_section" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.App.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/rowAppearance"
+                style="@style/SettingsRow">
+
+                <ImageView
+                    style="@style/SettingsRowIcon"
+                    android:src="@drawable/ic_theme"
+                    app:tint="@color/primary" />
+
+                <LinearLayout style="@style/SettingsRowText">
+
+                    <TextView
+                        style="@style/SettingsRowTitle"
+                        android:text="@string/settings_appearance" />
+
+                    <TextView
+                        style="@style/SettingsRowDesc"
+                        android:text="@string/settings_appearance_desc" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvAppearanceValue"
+                    style="@style/SettingsRowValue"
+                    tools:text="System Default" />
+
+                <ImageView
+                    style="@style/SettingsRowTrailingIcon"
+                    android:src="@drawable/ic_chevron_right" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
         <!-- About section -->
         <TextView
             style="@style/SettingsSectionHeader"

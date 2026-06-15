@@ -1,10 +1,15 @@
 package app.lock.photo.valut
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
+import app.lock.photo.valut.core.datastore.AppSettingsDataStore
 import app.lock.photo.valut.core.intruder.IntruderCleanupWorker
 import app.lock.photo.valut.core.lock.AppLifecycleObserver
 import app.lock.photo.valut.core.storage.SecureCacheManager
+import app.lock.photo.valut.domain.model.AppearanceMode
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 /**
@@ -21,12 +26,27 @@ class App : Application() {
     @Inject
     lateinit var secureCacheManager: SecureCacheManager
 
+    @Inject
+    lateinit var appSettingsDataStore: AppSettingsDataStore
+
     override fun onCreate() {
         super.onCreate()
+        applyAppearanceMode()
         lifecycleObserver.register(this)
         // Cold start: clear any decrypted temp files left behind by a previous crash/kill.
         runCatching { secureCacheManager.clearAllDecryptedTempFiles() }
         // Schedule the daily intruder-records cleanup (idempotent, never blocks startup).
         runCatching { IntruderCleanupWorker.schedule(this) }
+    }
+
+    /**
+     * Applies the saved Light/Dark/System preference before any activity is shown.
+     * A single DataStore read at cold start is cheap and avoids a theme flash.
+     */
+    private fun applyAppearanceMode() {
+        val mode = runCatching {
+            runBlocking { AppearanceMode.fromStorage(appSettingsDataStore.appearanceMode.first()) }
+        }.getOrDefault(AppearanceMode.DEFAULT)
+        AppCompatDelegate.setDefaultNightMode(mode.nightMode)
     }
 }

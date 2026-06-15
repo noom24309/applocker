@@ -62,7 +62,53 @@
 
     <!-- Navigation -->
     <string name="nav_home">Home</string>
+    <string name="nav_app_lock">App Lock</string>
+    <string name="nav_vault">Vault</string>
+    <string name="nav_tools">Tools</string>
     <string name="nav_settings">Settings</string>
+
+    <!-- Home dashboard (redesign) -->
+    <string name="home_good_morning">Good morning</string>
+    <string name="home_hero_title">You\'re Secure</string>
+    <string name="home_active_protection">Active Protection</string>
+    <string name="home_hero_subtitle">%1$d apps locked · Last scan: Just now</string>
+    <string name="home_hero_apps_locked">Apps Locked</string>
+    <string name="home_hero_photos_safe">Photos Safe</string>
+    <string name="home_hero_alerts">Alerts</string>
+    <string name="home_vault_overview">Vault Overview</string>
+    <string name="home_see_all">See all</string>
+    <string name="home_view_all">View all</string>
+    <string name="home_manage">Manage</string>
+    <string name="home_analyze">Analyze</string>
+    <string name="home_items_secured">items secured</string>
+    <string name="home_documents">Documents</string>
+    <string name="home_qa_lock_apps">Lock Apps</string>
+    <string name="home_qa_import_photos">Import Photos</string>
+    <string name="home_qa_private_camera">Private Camera</string>
+    <string name="home_qa_view_alerts">View Alerts</string>
+    <string name="home_applock_protected">%1$d Apps Protected</string>
+    <string name="home_applock_active_desc">Protection is active</string>
+    <string name="home_active">Active</string>
+    <string name="home_app_whatsapp">WhatsApp</string>
+    <string name="home_app_instagram">Instagram</string>
+    <string name="home_app_gmail">Gmail</string>
+    <string name="home_app_photos">Photos</string>
+    <string name="home_app_more">+8 more</string>
+    <string name="home_recent_alerts">Recent Alerts</string>
+    <string name="home_alert_instagram">Instagram</string>
+    <string name="home_alert_instagram_desc">App Lock · 2 min ago</string>
+    <string name="home_alert_vault">Photo Vault</string>
+    <string name="home_alert_vault_desc">Vault · 1 hr ago</string>
+    <string name="home_storage">Storage</string>
+    <string name="home_vault_storage">Vault Storage</string>
+    <string name="home_storage_used">%1$s of %2$s used</string>
+    <string name="home_storage_percent">%1$d%%</string>
+    <string name="home_legend_photos">Photos</string>
+    <string name="home_legend_videos">Videos</string>
+    <string name="home_legend_docs">Docs</string>
+    <string name="home_upgrade_title">Upgrade to Premium</string>
+    <string name="home_upgrade_desc">Unlock all features</string>
+    <string name="home_upgrade_button">Upgrade</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
@@ -73,6 +119,13 @@
     <string name="settings_biometric_desc">Unlock using fingerprint or face</string>
     <string name="settings_auto_lock">Auto Lock</string>
     <string name="settings_auto_lock_desc">Lock automatically when app goes to background</string>
+    <string name="settings_appearance_section">Appearance</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_appearance_desc">Light, dark or system default</string>
+    <string name="appearance_picker_title">Appearance</string>
+    <string name="appearance_light">Light</string>
+    <string name="appearance_dark">Dark</string>
+    <string name="appearance_system">System Default</string>
     <string name="settings_about">About</string>
     <string name="settings_privacy_policy">Privacy Policy</string>
     <string name="settings_privacy_policy_desc">How we protect your data</string>
@@ -727,4 +780,41 @@
     <string name="docs_export_done">Document exported</string>
     <string name="docs_export_failed">Could not export document</string>
     <string name="docs_open_failed">Could not open this document</string>
+
+    <!-- Premium cleanup / storage / health -->
+    <string name="premium_section_cleanup">Cleanup</string>
+    <string name="premium_section_health">Vault health</string>
+    <string name="duplicates_title">Duplicate Finder</string>
+    <string name="duplicates_subtitle">Find and remove duplicate files</string>
+    <string name="large_files_title">Large Files</string>
+    <string name="large_files_subtitle">Find files taking the most space</string>
+    <string name="cleanup_title">Clear Temporary Cache</string>
+    <string name="cleanup_subtitle">Free up space used by temporary files</string>
+    <string name="cleanup_clear_temp">Clear cache</string>
+    <string name="cleanup_temp_cleared">Temporary cache cleared</string>
+
+    <string name="storage_analyzer_title">Storage Analyzer</string>
+    <string name="storage_analyzer_subtitle">See what\'s using your vault space</string>
+    <string name="storage_total_label">Total vault storage</string>
+    <string name="storage_private_camera">Private Camera</string>
+    <string name="storage_thumbnails">Thumbnails</string>
+    <string name="storage_intruder">Intruder photos</string>
+    <string name="storage_recycle_bin">Recycle Bin</string>
+    <string name="storage_temp_cache">Temporary cache</string>
+
+    <string name="health_title">Vault Health</string>
+    <string name="health_subtitle">Check encryption and fix issues</string>
+    <string name="health_score_label">Health score</string>
+    <string name="health_scan_now">Scan now</string>
+    <string name="health_open_app_lock">Open App Lock</string>
+    <string name="health_last_scan">Last scan: %1$s</string>
+    <string name="health_never">Never</string>
+    <string name="health_encryption">Encryption</string>
+    <string name="health_active">Active</string>
+    <string name="health_inactive">Inactive</string>
+    <string name="health_app_lock">App Lock</string>
+    <string name="health_ready">Ready</string>
+    <string name="health_needs_setup">Needs setup</string>
+    <string name="health_unencrypted">Unencrypted items</string>
+    <string name="health_failed_repairs">Failed repairs</string>
 </resources>

@@ -5,6 +5,18 @@
         android:icon="@drawable/ic_home"
         android:title="@string/nav_home" />
     <item
+        android:id="@+id/nav_app_lock"
+        android:icon="@drawable/ic_shield"
+        android:title="@string/nav_app_lock" />
+    <item
+        android:id="@+id/nav_vault"
+        android:icon="@drawable/ic_vault"
+        android:title="@string/nav_vault" />
+    <item
+        android:id="@+id/nav_tools"
+        android:icon="@drawable/ic_tools"
+        android:title="@string/nav_tools" />
+    <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/nav_settings" />

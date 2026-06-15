@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Dark-mode overrides. Only color NAMES that need to change in dark mode are listed;
+  every other color falls back to values/colors.xml. Because layouts and styles
+  reference these names (not light-specific literals), dark mode applies everywhere
+  without editing layouts.
+-->
+<resources>
+    <!-- Brand: primary stays for consistent gradients/tints; container darkened. -->
+    <color name="primary_container">#262048</color>
+
+    <!-- Surfaces / background — premium dark, not pure black. -->
+    <color name="background">#0B1120</color>
+    <color name="surface">#1E293B</color>
+    <color name="card_stroke">#2A3650</color>
+    <color name="divider">#243049</color>
+    <color name="status_bar">#0B1120</color>
+
+    <!-- Text (DayNight names → dark values). -->
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#CBD5E1</color>
+    <color name="text_tertiary">#94A3B8</color>
+    <color name="text_inverse">#0F172A</color>
+    <color name="text_error">#F87171</color>
+    <color name="text_success">#4ADE80</color>
+    <color name="text_warning">#FBBF24</color>
+
+    <!-- Pin / keypad / misc. -->
+    <color name="pin_dot_empty">#3A4358</color>
+    <color name="keypad_pressed">#232C40</color>
+    <color name="thumb_placeholder">#1E293B</color>
+
+    <!-- Home dashboard tiles. -->
+    <color name="tile_blue_bg">#1E2A45</color>
+    <color name="tile_green_bg">#16321F</color>
+    <color name="tile_pink_bg">#3A1F26</color>
+    <color name="tile_purple_bg">#271F45</color>
+    <color name="tile_gray_bg">#232C40</color>
+    <color name="storage_track">#2A3650</color>
+    <color name="alert_badge_bg">#3A1F22</color>
+</resources>

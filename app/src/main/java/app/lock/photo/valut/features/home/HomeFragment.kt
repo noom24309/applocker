@@ -1,6 +1,7 @@
 package app.lock.photo.valut.features.home
 
 import android.os.Bundle
+import android.text.format.Formatter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +11,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
-import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.features.applock.AppLockActivity
 import app.lock.photo.valut.features.camera.PrivateCameraActivity
 import app.lock.photo.valut.features.intruder.IntruderActivity
-import app.lock.photo.valut.features.premium.PremiumToolsActivity
+import app.lock.photo.valut.features.premium.cleanup.StorageAnalyzerActivity
+import app.lock.photo.valut.features.premium.documents.PrivateDocumentsActivity
 import app.lock.photo.valut.features.vault.VaultActivity
 import app.lock.photo.valut.databinding.FragmentHomeBinding
-import app.lock.photo.valut.databinding.ViewStatContentBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -40,74 +42,91 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupStaticCards()
-        binding.cardLockNow.setOnClickListener { viewModel.lockNow() }
-        binding.cardAppLock.setOnClickListener {
-            startActivity(AppLockActivity.intent(requireContext()))
-        }
-        binding.cardLockedApps.setOnClickListener {
-            startActivity(AppLockActivity.lockedAppsIntent(requireContext()))
-        }
-        binding.cardIntruder.setOnClickListener {
-            startActivity(IntruderActivity.intent(requireContext()))
-        }
-        binding.cardPrivatePhotos.setOnClickListener {
-            startActivity(VaultActivity.intent(requireContext()))
-        }
-        binding.cardPrivateCamera.setOnClickListener {
-            startActivity(PrivateCameraActivity.intent(requireContext()))
-        }
-        binding.cardPremiumTools.setOnClickListener {
-            startActivity(PremiumToolsActivity.intent(requireContext()))
-        }
+        setupNavigation()
         observeState()
-        observeLockNow()
     }
 
-    private fun observeLockNow() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.lockNowFlow.collect { method ->
-                    startActivity(LockRouter.lockIntent(requireContext(), method))
-                }
-            }
+    private fun setupNavigation() {
+        val ctx = requireContext()
+
+        // Header
+        binding.btnAlerts.setOnClickListener { startActivity(IntruderActivity.intent(ctx)) }
+        binding.btnProfile.setOnClickListener {
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottomNav)
+                ?.let { it.selectedItemId = R.id.nav_settings }
         }
-    }
 
-    private fun setupStaticCards() {
-        bindStatLabel(binding.statLockedApps, R.drawable.ic_lock, R.string.home_locked_apps)
-        bindStatLabel(binding.statPhotos, R.drawable.ic_photo, R.string.home_photos)
-        bindStatLabel(binding.statVideos, R.drawable.ic_video, R.string.home_videos)
-        bindStatLabel(binding.statIntruders, R.drawable.ic_intruder, R.string.home_intruders)
-    }
+        // Vault overview
+        val openVault = View.OnClickListener { startActivity(VaultActivity.intent(ctx)) }
+        binding.btnVaultSeeAll.setOnClickListener(openVault)
+        binding.cardVaultPhotos.setOnClickListener(openVault)
+        binding.cardVaultVideos.setOnClickListener(openVault)
+        binding.cardVaultDocuments.setOnClickListener {
+            startActivity(PrivateDocumentsActivity.intent(ctx))
+        }
 
-    private fun bindStatLabel(stat: ViewStatContentBinding, iconRes: Int, labelRes: Int) {
-        stat.statIcon.setImageResource(iconRes)
-        stat.statLabel.setText(labelRes)
+        // Quick actions
+        binding.cardLockApps.setOnClickListener {
+            startActivity(AppLockActivity.lockedAppsIntent(ctx))
+        }
+        binding.cardImport.setOnClickListener { startActivity(VaultActivity.intent(ctx)) }
+        binding.cardPrivateCamera.setOnClickListener {
+            startActivity(PrivateCameraActivity.intent(ctx))
+        }
+        binding.cardViewAlerts.setOnClickListener { startActivity(IntruderActivity.intent(ctx)) }
+
+        // App Lock
+        val openAppLock = View.OnClickListener { startActivity(AppLockActivity.intent(ctx)) }
+        binding.btnAppLockManage.setOnClickListener(openAppLock)
+        binding.cardAppLock.setOnClickListener(openAppLock)
+
+        // Recent alerts
+        val openAlerts = View.OnClickListener { startActivity(IntruderActivity.intent(ctx)) }
+        binding.btnAlertsViewAll.setOnClickListener(openAlerts)
+        binding.cardAlert1.setOnClickListener(openAlerts)
+        binding.cardAlert2.setOnClickListener(openAlerts)
+
+        // Storage
+        binding.btnStorageAnalyze.setOnClickListener {
+            startActivity(StorageAnalyzerActivity.intent(ctx))
+        }
     }
 
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { state ->
-                    binding.statLockedApps.statCount.text = state.lockedApps.toString()
-                    binding.statPhotos.statCount.text = state.photos.toString()
-                    binding.statVideos.statCount.text = state.videos.toString()
-                    binding.statIntruders.statCount.text = state.intruderAlerts.toString()
-                    binding.tvIntruderStatus.text = if (state.intruderAlerts > 0) {
-                        resources.getQuantityString(
-                            R.plurals.intruder_alert_count, state.intruderAlerts, state.intruderAlerts
-                        )
-                    } else {
-                        getString(R.string.intruder_no_alerts)
-                    }
-                    binding.tvSecurityStatus.setText(R.string.home_security_active)
-                    binding.tvAppLockStatus.text = resources.getQuantityString(
-                        R.plurals.applock_locked_count, state.lockedApps, state.lockedApps
-                    )
-                }
+                viewModel.uiState.collect { state -> render(state) }
             }
         }
+    }
+
+    private fun render(state: HomeUiState) {
+        // Hero
+        binding.tvHeroSubtitle.text = getString(R.string.home_hero_subtitle, state.lockedApps)
+        binding.tvHeroAppsLocked.text = state.lockedApps.toString()
+        binding.tvHeroPhotos.text = state.photos.toString()
+        binding.tvHeroAlerts.text = state.intruderAlerts.toString()
+
+        // Vault overview
+        binding.tvOvPhotos.text = state.photos.toString()
+        binding.tvOvVideos.text = state.videos.toString()
+        binding.tvOvDocuments.text = state.documents.toString()
+
+        // App Lock
+        binding.tvAppLockCount.text =
+            getString(R.string.home_applock_protected, state.lockedApps)
+
+        // Storage — 5 GB soft cap, matching the dashboard design
+        val totalBytes = 5L * 1024 * 1024 * 1024
+        val used = state.storageUsedBytes.coerceAtLeast(0)
+        val percent = ((used.toDouble() / totalBytes) * 100).roundToInt().coerceIn(0, 100)
+        binding.tvStorageUsed.text = getString(
+            R.string.home_storage_used,
+            Formatter.formatShortFileSize(requireContext(), used),
+            Formatter.formatShortFileSize(requireContext(), totalBytes)
+        )
+        binding.tvStoragePercent.text = getString(R.string.home_storage_percent, percent)
+        binding.progressStorage.progress = percent
     }
 
     override fun onDestroyView() {

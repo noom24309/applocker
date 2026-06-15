@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.lock.photo.valut.core.lock.AppLockStateManager
 import app.lock.photo.valut.core.security.PatternSecurityManager
+import app.lock.photo.valut.domain.model.AppearanceMode
 import app.lock.photo.valut.domain.model.AutoLockMode
 import app.lock.photo.valut.domain.model.UnlockMethod
 import app.lock.photo.valut.domain.repository.SettingsRepository
@@ -38,6 +39,9 @@ class SecuritySettingsViewModel @Inject constructor(
     val autoLockMode: StateFlow<AutoLockMode> =
         settingsRepository.autoLockMode.stateIn(viewModelScope, started, AutoLockMode.DEFAULT)
 
+    val appearanceMode: StateFlow<AppearanceMode> =
+        settingsRepository.appearanceMode.stateIn(viewModelScope, started, AppearanceMode.DEFAULT)
+
     private val lockNowEvents = Channel<Unit>(Channel.BUFFERED)
     val lockNowFlow = lockNowEvents.receiveAsFlow()
 
@@ -52,6 +56,10 @@ class SecuritySettingsViewModel @Inject constructor(
 
     fun setAutoLockMode(mode: AutoLockMode) {
         viewModelScope.launch { settingsRepository.setAutoLockMode(mode) }
+    }
+
+    fun setAppearanceMode(mode: AppearanceMode) {
+        viewModelScope.launch { settingsRepository.setAppearanceMode(mode) }
     }
 
     /** Switches to PIN-only as the primary method, removing any stored pattern. */

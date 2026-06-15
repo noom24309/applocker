@@ -5,6 +5,7 @@ data class HomeUiState(
     val lockedApps: Int = 0,
     val photos: Int = 0,
     val videos: Int = 0,
+    val documents: Int = 0,
     val albums: Int = 0,
     val favorites: Int = 0,
     val recycleBin: Int = 0,

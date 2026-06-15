@@ -136,6 +136,27 @@
             android:name=".features.premium.documents.PrivateDocumentsActivity"
             android:exported="false" />
 
+        <!-- Premium cleanup tools -->
+        <activity
+            android:name=".features.premium.cleanup.StorageAnalyzerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.premium.cleanup.VaultHealthActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.premium.cleanup.DuplicateFinderActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.premium.cleanup.LargeFilesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.premium.cleanup.SmartCleanupActivity"
+            android:exported="false" />
+
         <activity
             android:name=".features.vault.PhotoViewerActivity"
             android:exported="false"

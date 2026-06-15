@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -10,91 +12,254 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingStart="@dimen/screen_padding"
-        android:paddingTop="@dimen/space_xl"
+        android:paddingTop="@dimen/space_l"
         android:paddingEnd="@dimen/screen_padding"
         android:paddingBottom="@dimen/space_l">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.App.Display" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
-            android:text="@string/home_greeting"
-            android:textAppearance="@style/TextAppearance.App.Body" />
-
-        <!-- Security status card -->
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.App.Card"
+        <!-- ===== Header ===== -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_l">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_good_morning"
+                    style="@style/TextAppearance.App.Medium"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textSize="28sp"
+                    style="@style/TextAppearance.App.Bold"
+                    android:textAppearance="@style/TextAppearance.App.Display" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnAlerts"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_circle_soft"
+                android:visibility="gone"
+                android:contentDescription="@string/intruder_alerts_title"
+                android:padding="9dp"
+                android:src="@drawable/ic_bell"
+                app:tint="@color/text_primary" />
+
+            <ImageView
+                android:id="@+id/btnProfile"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="@dimen/space_s"
+                android:background="@drawable/bg_circle_soft"
+                android:contentDescription="@string/settings_title"
+                android:padding="8dp"
+                android:src="@drawable/ic_settings"
+                app:tint="@color/text_primary" />
+        </LinearLayout>
+
+        <!-- ===== Hero security card ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_l"
+            android:background="@drawable/bg_hero_card"
+            android:orientation="vertical"
+            android:padding="@dimen/space_l">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/space_m">
+                android:orientation="horizontal">
 
-                <FrameLayout
-                    android:layout_width="@dimen/card_icon_size"
-                    android:layout_height="@dimen/card_icon_size"
-                    android:background="@drawable/bg_icon_container">
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/bg_status_dot_green" />
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/cd_card_icon"
-                        android:src="@drawable/ic_shield"
-                        app:tint="@color/primary" />
-                </FrameLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_m"
+                    android:layout_marginStart="@dimen/space_s"
                     android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvSecurityStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_security_active"
-                        android:textColor="@color/text_primary"
-                        android:textSize="@dimen/text_heading"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_security_desc"
-                        android:textAppearance="@style/TextAppearance.App.Body" />
-                </LinearLayout>
+                    android:text="@string/home_active_protection"
+                    android:textColor="@color/white"
+                    style="@style/TextAppearance.App.SemiBold"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:contentDescription="@string/cd_card_icon"
-                    android:src="@drawable/ic_check_circle" />
+                    android:src="@drawable/ic_shield"
+                    app:tint="@color/white" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <!-- Stat cards: row 1 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_s"
+                android:text="@string/home_hero_title"
+                android:textColor="@color/white"
+                style="@style/TextAppearance.App.Bold"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeroSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:textColor="@color/hero_text_muted"
+                style="@style/TextAppearance.App.Medium"
+
+                tools:text="12 apps locked · Last scan: Just now" />
+
+            <!-- Stat pills -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_hero_pill"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_s">
+
+                    <TextView
+                        android:id="@+id/tvHeroAppsLocked"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        style="@style/TextAppearance.App.Bold"
+                        android:textStyle="bold"
+                        tools:text="12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_hero_apps_locked"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        style="@style/TextAppearance.App.Medium"
+                        android:textColor="@color/hero_text_muted" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_s"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_hero_pill"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_s">
+
+                    <TextView
+                        android:id="@+id/tvHeroPhotos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        style="@style/TextAppearance.App.Bold"
+                        android:textStyle="bold"
+                        tools:text="248" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_hero_photos_safe"
+                        android:textSize="12sp"
+
+                        style="@style/TextAppearance.App.Medium"
+                        android:textColor="@color/hero_text_muted"
+                />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_s"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_hero_pill"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_s">
+
+                    <TextView
+                        android:id="@+id/tvHeroAlerts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        style="@style/TextAppearance.App.Bold"
+                        android:textStyle="bold"
+                        tools:text="3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_hero_alerts"
+                        android:textSize="12sp"
+
+                        style="@style/TextAppearance.App.Medium"
+                        android:textColor="@color/hero_text_muted" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== Vault Overview ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_l"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_vault_overview"
+                android:textColor="@color/text_primary"
+                style="@style/TextAppearance.App.Bold"
+             />
+
+            <TextView
+                android:id="@+id/btnVaultSeeAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_chevron_right"
+                android:drawablePadding="2dp"
+                android:drawableTint="@color/primary"
+                android:gravity="center_vertical"
+                android:text="@string/home_see_all"
+                style="@style/TextAppearance.App.SemiBold"
+                android:textColor="@color/primary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_m"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardLockedApps"
+                android:id="@+id/cardVaultPhotos"
                 style="@style/Widget.App.Card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -103,13 +268,116 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <include
-                    layout="@layout/view_stat_content"
-                    android:id="@+id/statLockedApps" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_m">
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_tile_green">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/cd_card_icon"
+                            android:src="@drawable/ic_photo"
+                            app:tint="@color/text_primary" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvOvPhotos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_s"
+                        android:textColor="@color/text_primary"
+                        style="@style/TextAppearance.App.SemiBold"
+                        tools:text="248" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_items_secured"
+                        android:textColor="@color/text_tertiary"
+                        android:singleLine="true"
+                        style="@style/TextAppearance.App.Medium"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_legend_photos"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_caption"
+                        style="@style/TextAppearance.App.SemiBold" />
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardPrivatePhotos"
+                android:id="@+id/cardVaultVideos"
+                style="@style/Widget.App.Card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_s"
+                android:layout_marginEnd="@dimen/space_s"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_m">
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_tile_green">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/cd_card_icon"
+                            android:src="@drawable/ic_video"
+                            app:tint="@color/accent_green" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvOvVideos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_s"
+                        android:textColor="@color/text_primary"
+                        style="@style/TextAppearance.App.SemiBold"
+                        tools:text="47" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_items_secured"
+                        android:textColor="@color/text_tertiary"
+                        android:singleLine="true"
+
+                        style="@style/TextAppearance.App.Medium"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_legend_videos"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_caption"
+                        style="@style/TextAppearance.App.SemiBold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardVaultDocuments"
                 style="@style/Widget.App.Card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -118,45 +386,57 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <include
-                    layout="@layout/view_stat_content"
-                    android:id="@+id/statPhotos" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_m">
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_tile_pink">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/cd_card_icon"
+                            android:src="@drawable/ic_document"
+                            app:tint="@color/accent_red" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvOvDocuments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_s"
+                        android:textColor="@color/text_primary"
+                        style="@style/TextAppearance.App.SemiBold"
+                        tools:text="19" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_items_secured"
+                        android:textColor="@color/text_tertiary"
+                        android:singleLine="true"
+
+                        style="@style/TextAppearance.App.Medium"
+                        android:textSize="11sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_documents"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_caption"
+                        style="@style/TextAppearance.App.SemiBold" />
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <!-- Stat cards: row 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_m"
-            android:orientation="horizontal">
-
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.App.Card"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_s"
-                android:layout_weight="1">
-
-                <include
-                    layout="@layout/view_stat_content"
-                    android:id="@+id/statVideos" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.App.Card"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_s"
-                android:layout_weight="1">
-
-                <include
-                    layout="@layout/view_stat_content"
-                    android:id="@+id/statIntruders" />
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-
-        <!-- Quick actions -->
+        <!-- ===== Quick Actions ===== -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,29 +444,32 @@
             android:text="@string/home_quick_actions"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_heading"
-            android:textStyle="bold" />
+            style="@style/TextAppearance.App.Bold"
+            />
 
-        <!-- Lock App Now (actionable) -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardLockNow"
-            style="@style/Widget.App.Card"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_m"
-            android:clickable="true"
-            android:focusable="true">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
+            <!-- Lock Apps -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/cardLockApps"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/space_m">
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <FrameLayout
-                    android:layout_width="@dimen/card_icon_size"
-                    android:layout_height="@dimen/card_icon_size"
-                    android:background="@drawable/bg_icon_container">
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_tile_gray">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -194,162 +477,151 @@
                         android:layout_gravity="center"
                         android:contentDescription="@string/cd_card_icon"
                         android:src="@drawable/ic_lock"
-                        app:tint="@color/accent_red" />
+                        app:tint="@color/text_primary" />
                 </FrameLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_m"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_action_lock_now"
-                        android:textColor="@color/text_primary"
-                        android:textSize="@dimen/text_body"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_lock_now_desc"
-                        android:textAppearance="@style/TextAppearance.App.Body" />
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/cd_card_icon"
-                    android:src="@drawable/ic_chevron_right" />
+                    android:layout_marginTop="@dimen/space_s"
+                    android:text="@string/home_qa_lock_apps"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <!-- Private Camera -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardPrivateCamera"
-            style="@style/Widget.App.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_m"
-            android:clickable="true"
-            android:focusable="true">
-
+            <!-- Import Photos -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/cardImport"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/space_m">
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <FrameLayout
-                    android:layout_width="@dimen/card_icon_size"
-                    android:layout_height="@dimen/card_icon_size"
-                    android:background="@drawable/bg_icon_container">
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_tile_gray">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:contentDescription="@string/cd_card_icon"
-                        android:src="@drawable/ic_photo"
-                        app:tint="@color/primary" />
+                        android:src="@drawable/ic_import"
+                        app:tint="@color/text_primary" />
                 </FrameLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_m"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_private_camera"
-                        android:textColor="@color/text_primary"
-                        android:textSize="@dimen/text_body"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_private_camera_desc"
-                        android:textAppearance="@style/TextAppearance.App.Body" />
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/cd_card_icon"
-                    android:src="@drawable/ic_chevron_right" />
+                    android:layout_marginTop="@dimen/space_s"
+                    android:text="@string/home_qa_import_photos"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <!-- Premium Tools -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardPremiumTools"
-            style="@style/Widget.App.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_m"
-            android:clickable="true"
-            android:focusable="true">
-
+            <!-- Private Camera (highlighted) -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/cardPrivateCamera"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/space_m">
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <FrameLayout
-                    android:layout_width="@dimen/card_icon_size"
-                    android:layout_height="@dimen/card_icon_size"
-                    android:background="@drawable/bg_icon_container">
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_tile_gray">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:contentDescription="@string/cd_card_icon"
-                        android:src="@drawable/ic_note"
-                        app:tint="@color/primary" />
+                        android:src="@drawable/ic_camera"
+                        app:tint="@color/text_primary" />
                 </FrameLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_m"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_premium_tools"
-                        android:textColor="@color/text_primary"
-                        android:textSize="@dimen/text_body"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_premium_tools_desc"
-                        android:textAppearance="@style/TextAppearance.App.Body" />
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/cd_card_icon"
-                    android:src="@drawable/ic_chevron_right" />
+                    android:layout_marginTop="@dimen/space_s"
+                    android:text="@string/home_qa_private_camera"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <!-- App Lock -->
+            <!-- View Alerts -->
+            <LinearLayout
+                android:id="@+id/cardViewAlerts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_tile_gray">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/cd_card_icon"
+                        android:src="@drawable/ic_bell"
+                        app:tint="@color/text_primary" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_s"
+                    android:text="@string/home_qa_view_alerts"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== App Lock ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_l"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/applock_title"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_heading"
+                style="@style/TextAppearance.App.Bold"/>
+
+            <TextView
+                android:id="@+id/btnAppLockManage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_manage"
+                android:textColor="@color/primary"
+                style="@style/TextAppearance.App.SemiBold"/>
+        </LinearLayout>
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardAppLock"
             style="@style/Widget.App.Card"
@@ -362,58 +634,109 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="@dimen/space_m">
 
-                <FrameLayout
-                    android:layout_width="@dimen/card_icon_size"
-                    android:layout_height="@dimen/card_icon_size"
-                    android:background="@drawable/bg_icon_container">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/cd_card_icon"
-                        android:src="@drawable/ic_lock"
-                        app:tint="@color/primary" />
-                </FrameLayout>
-
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_m"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/card_icon_size"
+                        android:layout_height="@dimen/card_icon_size"
+                        android:background="@drawable/bg_tile_blue">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/cd_card_icon"
+                            android:src="@drawable/ic_shield"
+                            app:tint="@color/primary" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_m"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvAppLockCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_primary"
+                            style="@style/TextAppearance.App.SemiBold"
+                            android:textStyle="bold"
+                            tools:text="12 Apps Protected" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_applock_active_desc"
+                            android:textColor="@color/text_secondary"
+                            style="@style/TextAppearance.App.Medium"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginEnd="@dimen/space_xs"
+                        android:background="@drawable/bg_status_dot_green" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/applock_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="@dimen/text_body"
+                        android:text="@string/home_active"
+                        android:textColor="@color/accent_green"
+                        android:textSize="@dimen/text_caption"
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvAppLockStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/applock_status_inactive"
-                        android:textAppearance="@style/TextAppearance.App.Body" />
                 </LinearLayout>
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/cd_card_icon"
-                    android:src="@drawable/ic_chevron_right" />
+
+
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Intruder Alerts -->
+        <!-- ===== Recent Alerts ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_l"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_recent_alerts"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_heading"
+                style="@style/TextAppearance.App.Bold"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnAlertsViewAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_chevron_right"
+                android:drawablePadding="2dp"
+                android:drawableTint="@color/primary"
+                android:gravity="center_vertical"
+                android:text="@string/home_view_all"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_caption"
+                style="@style/TextAppearance.App.SemiBold" />
+        </LinearLayout>
+
+        <!-- Alert row 1 -->
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardIntruder"
+            android:id="@+id/cardAlert1"
             style="@style/Widget.App.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -428,19 +751,14 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/space_m">
 
-                <FrameLayout
+                <ImageView
                     android:layout_width="@dimen/card_icon_size"
                     android:layout_height="@dimen/card_icon_size"
-                    android:background="@drawable/bg_icon_container">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/cd_card_icon"
-                        android:src="@drawable/ic_intruder"
-                        app:tint="@color/primary" />
-                </FrameLayout>
+                    android:background="@drawable/bg_circle_pink"
+                    android:contentDescription="@string/cd_card_icon"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_intruder"
+                    app:tint="@color/accent_red" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -454,22 +772,256 @@
                         android:layout_height="wrap_content"
                         android:text="@string/intruder_alerts_title"
                         android:textColor="@color/text_primary"
-                        android:textSize="@dimen/text_body"
-                        android:textStyle="bold" />
+                        style="@style/TextAppearance.App.SemiBold" />
 
                     <TextView
-                        android:id="@+id/tvIntruderStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/intruder_status_disabled"
-                        android:textAppearance="@style/TextAppearance.App.Body" />
+                        android:text="@string/home_alert_instagram_desc"
+                        android:textColor="@color/text_secondary"
+                        style="@style/TextAppearance.App.Medium" />
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_s"
+                    android:background="@drawable/bg_alert_badge"
+                    android:paddingStart="8dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="3dp"
+                    android:text="3x"
+                    android:textColor="@color/accent_red"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:contentDescription="@string/cd_card_icon"
-                    android:src="@drawable/ic_chevron_right" />
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_tertiary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Alert row 2 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardAlert2"
+            style="@style/Widget.App.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_s"
+            android:clickable="true"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_m">
+
+                <ImageView
+                    android:layout_width="@dimen/card_icon_size"
+                    android:layout_height="@dimen/card_icon_size"
+                    android:background="@drawable/bg_circle_pink"
+                    android:contentDescription="@string/cd_card_icon"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_intruder"
+                    app:tint="@color/accent_red" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_alert_vault"
+                        android:textColor="@color/text_primary"
+                        style="@style/TextAppearance.App.SemiBold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_alert_vault_desc"
+                        android:textColor="@color/text_secondary"
+                        style="@style/TextAppearance.App.Medium"  />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_s"
+                    android:background="@drawable/bg_alert_badge"
+                    android:paddingStart="8dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="3dp"
+                    android:text="1x"
+                    android:textColor="@color/accent_red"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="@string/cd_card_icon"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_tertiary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== Storage ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_l"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_storage"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_heading"
+                style="@style/TextAppearance.App.Bold"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/btnStorageAnalyze"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_analyze"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_caption"
+                style="@style/TextAppearance.App.SemiBold" />
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.App.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_m">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_vault_storage"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_primary"
+                            style="@style/TextAppearance.App.SemiBold"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvStorageUsed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_secondary"
+                            style="@style/TextAppearance.App.Medium"
+                            tools:text="1.4 GB of 5 GB used" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvStoragePercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary"
+                        style="@style/TextAppearance.App.Bold"
+                        tools:text="28%" />
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressStorage"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="@dimen/space_m"
+                    android:max="100"
+                    android:progress="28"
+                    android:progressDrawable="@drawable/bg_storage_progress" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_m"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/bg_dot"
+                        android:backgroundTint="@color/accent_blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_xs"
+                        android:text="@string/home_legend_photos"
+                        android:textColor="@color/text_secondary"
+                        style="@style/TextAppearance.App.Regular"
+                         />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/space_m"
+                        android:background="@drawable/bg_dot"
+                        android:backgroundTint="@color/primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_xs"
+                        android:text="@string/home_legend_videos"
+                        android:textColor="@color/text_secondary"
+                        style="@style/TextAppearance.App.Regular"
+                        />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/space_m"
+                        android:background="@drawable/bg_dot"
+                        android:backgroundTint="@color/accent_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_xs"
+                        android:text="@string/home_legend_docs"
+                        style="@style/TextAppearance.App.Regular"
+
+                        android:textColor="@color/text_secondary"
+                      />
+                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

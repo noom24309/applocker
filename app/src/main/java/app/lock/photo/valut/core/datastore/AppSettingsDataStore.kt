@@ -43,6 +43,7 @@ class AppSettingsDataStore(
         val UNLOCK_METHOD = stringPreferencesKey("unlock_method")
         val APP_LOCK_ENABLED = booleanPreferencesKey("app_lock_enabled")
         val AUTO_LOCK_MODE = stringPreferencesKey("auto_lock_mode")
+        val APPEARANCE_MODE = stringPreferencesKey("appearance_mode")
 
         val LAST_UNLOCK_TIME = longPreferencesKey("last_unlock_time")
         val LAST_BACKGROUND_TIME = longPreferencesKey("last_background_time")
@@ -166,6 +167,9 @@ class AppSettingsDataStore(
 
     val autoLockMode: Flow<String?> = readNullable(Keys.AUTO_LOCK_MODE)
     suspend fun setAutoLockMode(value: String) = write(Keys.AUTO_LOCK_MODE, value)
+
+    val appearanceMode: Flow<String?> = readNullable(Keys.APPEARANCE_MODE)
+    suspend fun setAppearanceMode(value: String) = write(Keys.APPEARANCE_MODE, value)
 
     // --- Session / timestamps ---
     val lastUnlockTime: Flow<Long> = read(Keys.LAST_UNLOCK_TIME, 0L)

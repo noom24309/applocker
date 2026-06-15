@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AppLockPhotoValut" parent="Theme.Material3.Light.NoActionBar">
+    <!-- Base application theme (DayNight: light here, dark in values-night/themes.xml). -->
+    <style name="Base.Theme.AppLockPhotoValut" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorOnPrimary">@color/text_on_primary</item>
@@ -13,6 +13,19 @@
         <item name="android:navigationBarColor">@color/background</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+
+        <!-- App-wide Inter typeface (weight-mapped family). -->
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="fontFamily">@font/inter</item>
+
+        <!-- Semantic text colors (DayNight via @color names). -->
+        <item name="colorTextPrimary">@color/text_primary</item>
+        <item name="colorTextSecondary">@color/text_secondary</item>
+        <item name="colorTextTertiary">@color/text_tertiary</item>
+        <item name="colorTextInverse">@color/text_inverse</item>
+        <item name="colorTextError">@color/text_error</item>
+        <item name="colorTextSuccess">@color/text_success</item>
+        <item name="colorTextWarning">@color/text_warning</item>
     </style>
 
     <style name="Theme.AppLockPhotoValut" parent="Base.Theme.AppLockPhotoValut" />
@@ -26,22 +39,75 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
     </style>
 
-    <!-- Text styles -->
+    <!-- Inter weight styles. Each sets the matching Inter font file. -->
+    <style name="TextAppearance.App.Regular" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.Medium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.SemiBold" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/inter_semi</item>
+        <item name="fontFamily">@font/inter_semi</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.Bold" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+    </style>
+
+    <!-- Text styles — colors come from theme attributes so they adapt to light/dark. -->
     <style name="TextAppearance.App.Display" parent="TextAppearance.Material3.HeadlineMedium">
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/text_display</item>
     </style>
 
     <style name="TextAppearance.App.Title" parent="TextAppearance.Material3.TitleLarge">
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/text_title</item>
     </style>
 
     <style name="TextAppearance.App.Body" parent="TextAppearance.Material3.BodyMedium">
-        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textColor">?attr/colorTextSecondary</item>
         <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="TextAppearance.App.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">?attr/colorTextTertiary</item>
+        <item name="android:textSize">@dimen/text_caption</item>
+    </style>
+
+    <style name="TextAppearance.App.Error" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">?attr/colorTextError</item>
+        <item name="android:textSize">@dimen/text_caption</item>
+    </style>
+
+    <style name="TextAppearance.App.Success" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">?attr/colorTextSuccess</item>
+        <item name="android:textSize">@dimen/text_caption</item>
+    </style>
+
+    <style name="TextAppearance.App.Warning" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">?attr/colorTextWarning</item>
+        <item name="android:textSize">@dimen/text_caption</item>
     </style>
 
     <!-- Primary button -->
@@ -219,11 +285,11 @@
 
     <!-- Card -->
     <style name="Widget.App.Card" parent="Widget.Material3.CardView.Elevated">
-        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="cardBackgroundColor">@color/tile_gray_bg</item>
         <item name="cardCornerRadius">@dimen/radius_l</item>
-        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardElevation">0dp</item>
         <item name="strokeColor">@color/card_stroke</item>
-        <item name="strokeWidth">@dimen/card_stroke_width</item>
+        <item name="strokeWidth">0dp</item>
     </style>
 
     <!-- Private Camera capture-result actions -->

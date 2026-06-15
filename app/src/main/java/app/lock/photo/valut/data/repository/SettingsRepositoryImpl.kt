@@ -1,6 +1,7 @@
 package app.lock.photo.valut.data.repository
 
 import app.lock.photo.valut.core.datastore.AppSettingsDataStore
+import app.lock.photo.valut.domain.model.AppearanceMode
 import app.lock.photo.valut.domain.model.AutoLockMode
 import app.lock.photo.valut.domain.model.UnlockMethod
 import app.lock.photo.valut.domain.repository.SettingsRepository
@@ -27,6 +28,9 @@ class SettingsRepositoryImpl @Inject constructor(
     override val autoLockMode: Flow<AutoLockMode> =
         dataStore.autoLockMode.map { AutoLockMode.fromStorage(it) }
 
+    override val appearanceMode: Flow<AppearanceMode> =
+        dataStore.appearanceMode.map { AppearanceMode.fromStorage(it) }
+
     override suspend fun completeOnboarding() = dataStore.setOnboardingCompleted(true)
 
     override suspend fun setBiometricEnabled(enabled: Boolean) =
@@ -40,4 +44,7 @@ class SettingsRepositoryImpl @Inject constructor(
 
     override suspend fun setAutoLockMode(mode: AutoLockMode) =
         dataStore.setAutoLockMode(mode.name)
+
+    override suspend fun setAppearanceMode(mode: AppearanceMode) =
+        dataStore.setAppearanceMode(mode.name)
 }

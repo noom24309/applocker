@@ -15,7 +15,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.core.permissions.BiometricHelper
+import androidx.appcompat.app.AppCompatDelegate
 import app.lock.photo.valut.databinding.FragmentSettingsBinding
+import app.lock.photo.valut.domain.model.AppearanceMode
 import app.lock.photo.valut.domain.model.AutoLockMode
 import app.lock.photo.valut.features.auth.ChangePinActivity
 import app.lock.photo.valut.features.auth.PatternSetupActivity
@@ -85,6 +87,7 @@ class SettingsFragment : Fragment() {
             )
         }
         binding.rowLockNow.setOnClickListener { viewModel.lockNow() }
+        binding.rowAppearance.setOnClickListener { showAppearancePicker() }
         binding.rowPrivacy.setOnClickListener { showPrivacyPolicy() }
     }
 
@@ -105,6 +108,11 @@ class SettingsFragment : Fragment() {
                 launch {
                     viewModel.autoLockMode.collect {
                         binding.tvAutoLockValue.setText(autoLockLabel(it))
+                    }
+                }
+                launch {
+                    viewModel.appearanceMode.collect {
+                        binding.tvAppearanceValue.setText(appearanceLabel(it))
                     }
                 }
                 launch {
@@ -175,6 +183,29 @@ class SettingsFragment : Fragment() {
             }
             .setNegativeButton(R.string.cancel, null)
             .show()
+    }
+
+    private fun showAppearancePicker() {
+        val modes = AppearanceMode.entries.toTypedArray()
+        val labels = modes.map { getString(appearanceLabel(it)) }.toTypedArray()
+        val checked = modes.indexOf(viewModel.appearanceMode.value)
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.appearance_picker_title)
+            .setSingleChoiceItems(labels, checked) { dialog, which ->
+                dialog.dismiss()
+                val mode = modes[which]
+                viewModel.setAppearanceMode(mode)
+                // Apply immediately; AppCompat recreates activities to the new mode.
+                AppCompatDelegate.setDefaultNightMode(mode.nightMode)
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
+    }
+
+    private fun appearanceLabel(mode: AppearanceMode): Int = when (mode) {
+        AppearanceMode.LIGHT -> R.string.appearance_light
+        AppearanceMode.DARK -> R.string.appearance_dark
+        AppearanceMode.SYSTEM -> R.string.appearance_system
     }
 
     private fun showPrivacyPolicy() {
