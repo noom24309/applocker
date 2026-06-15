@@ -118,6 +118,24 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppLockPhotoValut" />
 
+        <!-- Premium Tools (Phase 11) -->
+        <activity
+            android:name=".features.premium.PremiumToolsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.premium.notes.PrivateNotesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.premium.notes.PrivateNoteEditorActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".features.premium.documents.PrivateDocumentsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".features.vault.PhotoViewerActivity"
             android:exported="false"

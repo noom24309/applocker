@@ -119,3 +119,54 @@ val MIGRATION_5_6 = object : Migration(5, 6) {
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_intruder_attempts_triggerSource` ON `intruder_attempts` (`triggerSource`)")
     }
 }
+
+/**
+ * v6 → v7 (Phase 11 Premium Tools). Adds the private_notes and private_documents tables
+ * for encrypted notes/documents. Additive only — no existing table is touched.
+ */
+val MIGRATION_6_7 = object : Migration(6, 7) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL(
+            """
+            CREATE TABLE IF NOT EXISTS `private_notes` (
+              `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+              `title` TEXT NOT NULL,
+              `encryptedContent` TEXT NOT NULL,
+              `vaultMode` TEXT NOT NULL DEFAULT 'REAL',
+              `isFavorite` INTEGER NOT NULL DEFAULT 0,
+              `isLocked` INTEGER NOT NULL DEFAULT 0,
+              `isDeleted` INTEGER NOT NULL DEFAULT 0,
+              `deletedAt` INTEGER,
+              `createdAt` INTEGER NOT NULL,
+              `updatedAt` INTEGER NOT NULL,
+              `lastViewedAt` INTEGER NOT NULL DEFAULT 0
+            )
+            """.trimIndent()
+        )
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_notes_isDeleted` ON `private_notes` (`isDeleted`)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_notes_vaultMode` ON `private_notes` (`vaultMode`)")
+
+        db.execSQL(
+            """
+            CREATE TABLE IF NOT EXISTS `private_documents` (
+              `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+              `displayName` TEXT NOT NULL,
+              `mimeType` TEXT NOT NULL,
+              `vaultFileName` TEXT NOT NULL,
+              `encryptedFilePath` TEXT NOT NULL,
+              `sizeBytes` INTEGER NOT NULL DEFAULT 0,
+              `vaultMode` TEXT NOT NULL DEFAULT 'REAL',
+              `isFavorite` INTEGER NOT NULL DEFAULT 0,
+              `isDeleted` INTEGER NOT NULL DEFAULT 0,
+              `deletedAt` INTEGER,
+              `checksum` TEXT,
+              `source` TEXT NOT NULL DEFAULT 'IMPORTED',
+              `dateImported` INTEGER NOT NULL,
+              `updatedAt` INTEGER NOT NULL
+            )
+            """.trimIndent()
+        )
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_documents_isDeleted` ON `private_documents` (`isDeleted`)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_documents_vaultMode` ON `private_documents` (`vaultMode`)")
+    }
+}

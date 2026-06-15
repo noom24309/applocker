@@ -620,7 +620,7 @@
 
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">Privacy Policy</string>
-    <string name="privacy_policy_body">Usage Access Permission\nThis app uses Usage Access only to detect when apps selected by the user are opened, so the app can show the lock screen. Usage data is processed locally on the device and is not uploaded, sold, shared, or used for advertising.\n\nDisplay Over Other Apps\nThis app uses Display Over Other Apps only to show the lock screen over protected apps.\n\nForeground Service\nThis app uses a foreground service to keep App Lock protection active while enabled by the user.\n\nIntruder Alert\nIntruder Alert uses the device camera only after the user enables the feature and only after wrong PIN or Pattern attempts. Intruder photos are stored locally on the device, encrypted when enabled, and are not uploaded, sold, or shared.</string>
+    <string name="privacy_policy_body">Usage Access Permission\nThis app uses Usage Access only to detect when apps selected by the user are opened, so the app can show the lock screen. Usage data is processed locally on the device and is not uploaded, sold, shared, or used for advertising.\n\nDisplay Over Other Apps\nThis app uses Display Over Other Apps only to show the lock screen over protected apps.\n\nForeground Service\nThis app uses a foreground service to keep App Lock protection active while enabled by the user.\n\nIntruder Alert\nIntruder Alert uses the device camera only after the user enables the feature and only after wrong PIN or Pattern attempts. Intruder photos are stored locally on the device, encrypted when enabled, and are not uploaded, sold, or shared.\n\nPremium Tools\nPremium cleanup tools such as duplicate finder, large file finder, and storage analyzer process vault files locally on the device. No photos, videos, documents, notes, file names, or analysis results are uploaded or shared.\n\nPrivate Notes and Private Documents are stored locally in encrypted form. The app does not upload or share this content.\n\nHidden and locked albums are privacy features controlled by the user and stored locally on the device.</string>
 
     <!-- Phase 9: Private Camera -->
     <string name="camera_title">Private Camera</string>
@@ -684,4 +684,47 @@
     <string name="details_source">Source</string>
     <string name="details_source_imported">Imported</string>
     <string name="details_source_private_camera">Private Camera</string>
+
+    <!-- Phase 11: Premium Tools -->
+    <string name="close">Close</string>
+    <string name="premium_tools_title">Premium Tools</string>
+    <string name="premium_section_private_tools">Private tools</string>
+    <string name="premium_badge">PREMIUM</string>
+    <string name="premium_more_tools_note">More premium tools are on the way. Everything is processed locally on your device — nothing is uploaded.</string>
+    <string name="home_premium_tools">Premium Tools</string>
+    <string name="home_premium_tools_desc">Private notes, documents and vault tools.</string>
+
+    <!-- Notes -->
+    <string name="notes_title">Private Notes</string>
+    <string name="notes_subtitle">Encrypted notes stored only on this device</string>
+    <string name="notes_search_hint">Search notes</string>
+    <string name="notes_empty">No notes yet. Tap + to create one.</string>
+    <string name="notes_new">New note</string>
+    <string name="notes_editor_title">Note</string>
+    <string name="notes_title_hint">Title</string>
+    <string name="notes_body_hint">Write something private…</string>
+    <string name="notes_export">Export as text</string>
+    <string name="notes_save_failed">Could not save note</string>
+    <string name="notes_export_done">Note exported</string>
+    <string name="notes_export_failed">Could not export note</string>
+    <string name="notes_delete_title">Delete note?</string>
+    <string name="notes_delete_message">This note will be removed.</string>
+
+    <!-- Documents -->
+    <string name="documents_title">Private Documents</string>
+    <string name="documents_subtitle">Import and store documents encrypted</string>
+    <string name="documents_search_hint">Search documents</string>
+    <string name="documents_empty">No documents yet. Tap + to import.</string>
+    <string name="documents_import">Import documents</string>
+    <string name="documents_meta">%1$s · %2$s · %3$s</string>
+    <string name="documents_open_text">Open as text</string>
+    <string name="documents_export">Export</string>
+    <string name="documents_export_warning">A decrypted copy will be saved to the location you choose, leaving the encrypted vault. Continue?</string>
+    <string name="documents_delete_title">Delete document?</string>
+    <string name="documents_delete_message">This document will be removed.</string>
+    <string name="docs_import_done">Documents imported</string>
+    <string name="docs_import_failed">Some documents could not be imported</string>
+    <string name="docs_export_done">Document exported</string>
+    <string name="docs_export_failed">Could not export document</string>
+    <string name="docs_open_failed">Could not open this document</string>
 </resources>

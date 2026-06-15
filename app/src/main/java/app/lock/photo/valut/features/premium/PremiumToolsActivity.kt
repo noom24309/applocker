@@ -1,0 +1,68 @@
+package app.lock.photo.valut.features.premium
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import app.lock.photo.valut.core.lock.AppLockStateManager
+import app.lock.photo.valut.core.lock.LockRouter
+import app.lock.photo.valut.databinding.ActivityPremiumToolsBinding
+import app.lock.photo.valut.domain.model.IntruderTrigger
+import app.lock.photo.valut.domain.repository.SettingsRepository
+import app.lock.photo.valut.features.premium.cleanup.DuplicateFinderActivity
+import app.lock.photo.valut.features.premium.cleanup.LargeFilesActivity
+import app.lock.photo.valut.features.premium.cleanup.SmartCleanupActivity
+import app.lock.photo.valut.features.premium.cleanup.StorageAnalyzerActivity
+import app.lock.photo.valut.features.premium.cleanup.VaultHealthActivity
+import app.lock.photo.valut.features.premium.documents.PrivateDocumentsActivity
+import app.lock.photo.valut.features.premium.notes.PrivateNotesActivity
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+/** Phase 11 — Premium Tools dashboard. Only the implemented tools are shown (no fake buttons). */
+@AndroidEntryPoint
+class PremiumToolsActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityPremiumToolsBinding
+
+    @Inject lateinit var appLockStateManager: AppLockStateManager
+    @Inject lateinit var settingsRepository: SettingsRepository
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityPremiumToolsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.toolbar.setNavigationOnClickListener { finish() }
+        binding.cardNotes.setOnClickListener { startActivity(PrivateNotesActivity.intent(this)) }
+        binding.cardDocuments.setOnClickListener { startActivity(PrivateDocumentsActivity.intent(this)) }
+        binding.cardDuplicates.setOnClickListener { startActivity(DuplicateFinderActivity.intent(this)) }
+        binding.cardLargeFiles.setOnClickListener { startActivity(LargeFilesActivity.intent(this)) }
+        binding.cardSmartCleanup.setOnClickListener { startActivity(SmartCleanupActivity.intent(this)) }
+        binding.cardStorage.setOnClickListener { startActivity(StorageAnalyzerActivity.intent(this)) }
+        binding.cardHealth.setOnClickListener { startActivity(VaultHealthActivity.intent(this)) }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            if (appLockStateManager.isSessionLocked()) {
+                appLockStateManager.markLocked()
+                startActivity(
+                    LockRouter.lockIntent(
+                        this@PremiumToolsActivity,
+                        settingsRepository.unlockMethod.first(),
+                        IntruderTrigger.VAULT_UNLOCK
+                    )
+                )
+                finish()
+            }
+        }
+    }
+
+    companion object {
+        fun intent(context: Context) = Intent(context, PremiumToolsActivity::class.java)
+    }
+}

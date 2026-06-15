@@ -8,9 +8,12 @@ import app.lock.photo.valut.core.database.MIGRATION_2_3
 import app.lock.photo.valut.core.database.MIGRATION_3_4
 import app.lock.photo.valut.core.database.MIGRATION_4_5
 import app.lock.photo.valut.core.database.MIGRATION_5_6
+import app.lock.photo.valut.core.database.MIGRATION_6_7
 import app.lock.photo.valut.data.local.dao.AppLockStatsDao
 import app.lock.photo.valut.data.local.dao.IntruderAttemptDao
 import app.lock.photo.valut.data.local.dao.LockedAppDao
+import app.lock.photo.valut.data.local.dao.PrivateDocumentDao
+import app.lock.photo.valut.data.local.dao.PrivateNoteDao
 import app.lock.photo.valut.data.local.dao.VaultAlbumDao
 import app.lock.photo.valut.data.local.dao.VaultMediaDao
 import dagger.Module
@@ -33,7 +36,7 @@ object DatabaseModule {
         AppDatabase::class.java,
         Constants.DATABASE_NAME
     )
-        .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+        .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
         // v1 was an empty placeholder schema (pre Phase 3) with no user media; only that
         // legacy case may fall back. Real data (v2+) always uses a proper migration.
         .fallbackToDestructiveMigrationFrom(dropAllTables = true, 1)
@@ -53,4 +56,10 @@ object DatabaseModule {
 
     @Provides
     fun provideAppLockStatsDao(db: AppDatabase): AppLockStatsDao = db.appLockStatsDao()
+
+    @Provides
+    fun providePrivateNoteDao(db: AppDatabase): PrivateNoteDao = db.privateNoteDao()
+
+    @Provides
+    fun providePrivateDocumentDao(db: AppDatabase): PrivateDocumentDao = db.privateDocumentDao()
 }

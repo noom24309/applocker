@@ -14,6 +14,7 @@ import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.features.applock.AppLockActivity
 import app.lock.photo.valut.features.camera.PrivateCameraActivity
 import app.lock.photo.valut.features.intruder.IntruderActivity
+import app.lock.photo.valut.features.premium.PremiumToolsActivity
 import app.lock.photo.valut.features.vault.VaultActivity
 import app.lock.photo.valut.databinding.FragmentHomeBinding
 import app.lock.photo.valut.databinding.ViewStatContentBinding
@@ -55,6 +56,9 @@ class HomeFragment : Fragment() {
         }
         binding.cardPrivateCamera.setOnClickListener {
             startActivity(PrivateCameraActivity.intent(requireContext()))
+        }
+        binding.cardPremiumTools.setOnClickListener {
+            startActivity(PremiumToolsActivity.intent(requireContext()))
         }
         observeState()
         observeLockNow()

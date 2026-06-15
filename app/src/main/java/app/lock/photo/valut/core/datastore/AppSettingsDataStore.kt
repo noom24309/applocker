@@ -99,6 +99,11 @@ class AppSettingsDataStore(
         val PRIVATE_CAMERA_SHOW_CAPTURE_PREVIEW = booleanPreferencesKey("private_camera_show_capture_preview")
         val PRIVATE_CAMERA_KEEP_SCREEN_AWAKE = booleanPreferencesKey("private_camera_keep_screen_awake")
         val PRIVATE_CAMERA_DEFAULT_ALBUM_REAL = longPreferencesKey("private_camera_default_album_real")
+
+        // --- Phase 11: Premium Tools ---
+        val PREMIUM_UNLOCKED_LOCAL = booleanPreferencesKey("premium_unlocked_local")
+        val PREMIUM_TRIAL_USED = booleanPreferencesKey("premium_trial_used")
+        val LAST_VAULT_SCAN_TIME = longPreferencesKey("last_vault_scan_time")
     }
 
     // --- Onboarding ---
@@ -313,6 +318,17 @@ class AppSettingsDataStore(
 
     val privateCameraDefaultAlbumReal: Flow<Long> = read(Keys.PRIVATE_CAMERA_DEFAULT_ALBUM_REAL, -1L)
     suspend fun setPrivateCameraDefaultAlbumReal(value: Long) = write(Keys.PRIVATE_CAMERA_DEFAULT_ALBUM_REAL, value)
+
+    // --- Phase 11: Premium Tools ---
+    // Defaults to true so the implemented tools are usable now; Phase 12 will gate via Billing.
+    val premiumUnlockedLocal: Flow<Boolean> = read(Keys.PREMIUM_UNLOCKED_LOCAL, true)
+    suspend fun setPremiumUnlockedLocal(value: Boolean) = write(Keys.PREMIUM_UNLOCKED_LOCAL, value)
+
+    val premiumTrialUsed: Flow<Boolean> = read(Keys.PREMIUM_TRIAL_USED, false)
+    suspend fun setPremiumTrialUsed(value: Boolean) = write(Keys.PREMIUM_TRIAL_USED, value)
+
+    val lastVaultScanTime: Flow<Long> = read(Keys.LAST_VAULT_SCAN_TIME, 0L)
+    suspend fun setLastVaultScanTime(value: Long) = write(Keys.LAST_VAULT_SCAN_TIME, value)
 
     // --- helpers ---
     private fun read(key: Preferences.Key<Boolean>, default: Boolean): Flow<Boolean> =

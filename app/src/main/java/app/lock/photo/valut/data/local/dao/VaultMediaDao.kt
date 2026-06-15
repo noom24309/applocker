@@ -89,6 +89,34 @@ interface VaultMediaDao {
     @Query("UPDATE vault_media SET albumId = NULL WHERE albumId = :albumId")
     suspend fun detachFromAlbum(albumId: Long)
 
+    // --- Phase 11 premium cleanup tools ---
+
+    /** Active photos for the duplicate scan (checksum may be null until computed). */
+    @Query("SELECT * FROM vault_media WHERE mediaType = 'PHOTO' AND isDeleted = 0")
+    suspend fun getActivePhotos(): List<VaultMediaEntity>
+
+    @Query("UPDATE vault_media SET checksum = :checksum WHERE id = :id")
+    suspend fun updateChecksum(id: Long, checksum: String)
+
+    /** Active media at or above [minSizeBytes], biggest first (type filtered in the VM). */
+    @Query("SELECT * FROM vault_media WHERE isDeleted = 0 AND sizeBytes >= :minSizeBytes ORDER BY sizeBytes DESC")
+    fun observeLargeFiles(minSizeBytes: Long): Flow<List<VaultMediaEntity>>
+
+    @Query("SELECT COALESCE(SUM(sizeBytes), 0) FROM vault_media WHERE mediaType = 'PHOTO' AND isDeleted = 0")
+    suspend fun sumActivePhotoBytes(): Long
+
+    @Query("SELECT COALESCE(SUM(sizeBytes), 0) FROM vault_media WHERE mediaType = 'VIDEO' AND isDeleted = 0")
+    suspend fun sumActiveVideoBytes(): Long
+
+    @Query("SELECT COALESCE(SUM(sizeBytes), 0) FROM vault_media WHERE isDeleted = 1")
+    suspend fun sumRecycleBinBytes(): Long
+
+    @Query("SELECT COALESCE(SUM(sizeBytes), 0) FROM vault_media WHERE source = 'PRIVATE_CAMERA' AND isDeleted = 0")
+    suspend fun sumPrivateCameraBytes(): Long
+
+    @Query("SELECT COUNT(*) FROM vault_media WHERE isDeleted = 1")
+    suspend fun countRecycleBin(): Int
+
     // --- Phase 4 encryption / migration ---
 
     @Query("SELECT COUNT(*) FROM vault_media WHERE isEncrypted = 0")
