@@ -17,7 +17,13 @@ interface VaultAlbumDao {
         SELECT a.*,
           (SELECT COUNT(*) FROM vault_media m WHERE m.albumId = a.id AND m.isDeleted = 0) AS itemCount,
           (SELECT m.filePath FROM vault_media m WHERE m.albumId = a.id AND m.isDeleted = 0
-             ORDER BY m.dateImported DESC LIMIT 1) AS coverPath
+             ORDER BY m.dateImported DESC, m.id DESC LIMIT 1) AS coverPath,
+          (SELECT m.thumbnailPath FROM vault_media m WHERE m.albumId = a.id AND m.isDeleted = 0
+             ORDER BY m.dateImported DESC, m.id DESC LIMIT 1) AS coverThumbPath,
+          (SELECT m.isEncrypted FROM vault_media m WHERE m.albumId = a.id AND m.isDeleted = 0
+             ORDER BY m.dateImported DESC, m.id DESC LIMIT 1) AS coverEncrypted,
+          (SELECT m.encryptedThumbnailPath FROM vault_media m WHERE m.albumId = a.id AND m.isDeleted = 0
+             ORDER BY m.dateImported DESC, m.id DESC LIMIT 1) AS coverEncryptedThumbPath
         FROM vault_album a
         WHERE a.isHidden = 0
         ORDER BY a.sortOrder ASC, a.createdAt DESC

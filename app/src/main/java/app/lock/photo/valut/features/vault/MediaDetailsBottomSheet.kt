@@ -49,7 +49,8 @@ class MediaDetailsBottomSheet : BottomSheetDialogFragment() {
                         duration = details.durationText,
                         imported = details.importedDateText,
                         favorite = details.isFavorite,
-                        encrypted = details.isEncrypted
+                        encrypted = details.isEncrypted,
+                        source = details.source
                     )
                 }
             }
@@ -63,7 +64,8 @@ class MediaDetailsBottomSheet : BottomSheetDialogFragment() {
         duration: String?,
         imported: String,
         favorite: Boolean,
-        encrypted: Boolean
+        encrypted: Boolean,
+        source: String
     ): String {
         val none = getString(R.string.details_none)
         val typeText = getString(if (type == MediaType.VIDEO) R.string.type_video else R.string.type_photo)
@@ -76,6 +78,12 @@ class MediaDetailsBottomSheet : BottomSheetDialogFragment() {
             lines.add("${getString(R.string.details_duration)}: ${duration ?: none}")
         }
         lines.add("${getString(R.string.details_imported)}: $imported")
+        val sourceText = getString(
+            if (source == app.lock.photo.valut.domain.model.MediaSource.PRIVATE_CAMERA)
+                R.string.details_source_private_camera
+            else R.string.details_source_imported
+        )
+        lines.add("${getString(R.string.details_source)}: $sourceText")
         lines.add("${getString(R.string.details_favorite)}: ${if (favorite) getString(R.string.yes_label) else getString(R.string.no_label)}")
         val protection = getString(if (encrypted) R.string.details_protection_encrypted else R.string.details_protection_none)
         lines.add("${getString(R.string.details_protection)}: $protection")

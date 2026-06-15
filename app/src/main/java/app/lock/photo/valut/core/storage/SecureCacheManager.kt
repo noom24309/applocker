@@ -23,6 +23,9 @@ class SecureCacheManager @Inject constructor(
     /** Dedicated temp area for decrypted intruder photos/thumbnails. */
     val intruderTempDir: File get() = File(tempDir, INTRUDER_TEMP_DIR)
 
+    /** Dedicated temp area for plain photos/videos captured by the Private Camera, before encryption. */
+    val privateCameraTempDir: File get() = File(tempDir, PRIVATE_CAMERA_TEMP_DIR)
+
     fun ensureTempDir() {
         tempDir.mkdirs()
         File(tempDir, ".nomedia").takeIf { !it.exists() }?.createNewFile()
@@ -44,6 +47,32 @@ class SecureCacheManager @Inject constructor(
         ensureIntruderTempDir()
         val safeExt = extension.ifBlank { "jpg" }
         return File(intruderTempDir, "${UUID.randomUUID()}.$safeExt")
+    }
+
+    fun ensurePrivateCameraTempDir() {
+        ensureTempDir()
+        privateCameraTempDir.mkdirs()
+    }
+
+    /** A temp file for a plain photo captured by the Private Camera (encrypted right after). */
+    fun createPrivateCameraTempPhotoFile(): File {
+        ensurePrivateCameraTempDir()
+        return File(privateCameraTempDir, "${UUID.randomUUID()}.jpg")
+    }
+
+    /** A temp file for a plain video recorded by the Private Camera (encrypted right after). */
+    fun createPrivateCameraTempVideoFile(): File {
+        ensurePrivateCameraTempDir()
+        return File(privateCameraTempDir, "${UUID.randomUUID()}.mp4")
+    }
+
+    fun deletePrivateCameraTempFile(file: File?) {
+        runCatching { if (file != null && file.exists()) file.delete() }
+    }
+
+    /** Clears only the plain Private Camera temp files. */
+    fun clearPrivateCameraTempFiles() {
+        privateCameraTempDir.listFiles()?.forEach { it.deleteRecursively() }
     }
 
     /** Recursively clears every decrypted temp file (vault + intruder), keeping .nomedia. */
@@ -76,5 +105,6 @@ class SecureCacheManager @Inject constructor(
     private companion object {
         const val TEMP_DIR = "private_vault_temp"
         const val INTRUDER_TEMP_DIR = "intruder"
+        const val PRIVATE_CAMERA_TEMP_DIR = "private_camera"
     }
 }

@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.databinding.ItemAlbumBinding
 import app.lock.photo.valut.features.vault.model.AlbumUiModel
-import com.bumptech.glide.Glide
 
 class AlbumsAdapter(
+    private val thumbnailLoader: SecureThumbnailLoader,
     private val onClick: (AlbumUiModel) -> Unit,
     private val onOptions: (AlbumUiModel, View) -> Unit
 ) : ListAdapter<AlbumUiModel, AlbumsAdapter.AlbumViewHolder>(DIFF) {
@@ -23,7 +24,12 @@ class AlbumsAdapter(
         fun bind(item: AlbumUiModel) = with(binding) {
             albumName.text = item.name
             albumCount.text = root.context.getString(R.string.items_count, item.itemCount)
-            Glide.with(cover).load(item.coverPath).centerCrop().into(cover)
+            thumbnailLoader.loadCover(
+                cover,
+                item.coverEncrypted,
+                item.coverEncryptedThumbPath,
+                item.coverThumbPath ?: item.coverPath
+            )
             root.setOnClickListener { onClick(item) }
             albumMore.setOnClickListener { onOptions(item, it) }
         }

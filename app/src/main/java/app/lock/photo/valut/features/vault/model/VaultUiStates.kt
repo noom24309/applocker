@@ -19,14 +19,20 @@ data class AlbumUiModel(
     val id: Long,
     val name: String,
     val itemCount: Int,
-    val coverPath: String?
+    val coverPath: String?,
+    val coverThumbPath: String?,
+    val coverEncrypted: Boolean,
+    val coverEncryptedThumbPath: String?
 )
 
 fun AlbumWithCount.toUiModel(): AlbumUiModel = AlbumUiModel(
     id = album.id,
     name = album.name,
     itemCount = itemCount,
-    coverPath = coverPath
+    coverPath = coverPath,
+    coverThumbPath = coverThumbPath,
+    coverEncrypted = coverEncrypted == true,
+    coverEncryptedThumbPath = coverEncryptedThumbPath
 )
 
 /** Import progress state for the progress screen. */

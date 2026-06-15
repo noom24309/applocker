@@ -14,6 +14,7 @@ import app.lock.photo.valut.data.local.entity.VaultAlbumEntity
 import app.lock.photo.valut.data.local.entity.VaultMediaEntity
 import app.lock.photo.valut.data.local.relation.AlbumWithCount
 import app.lock.photo.valut.data.local.relation.VaultCounts
+import app.lock.photo.valut.domain.model.CaptureSaveResult
 import app.lock.photo.valut.domain.model.ENCRYPTION_VERSION
 import app.lock.photo.valut.domain.model.ExportResult
 import app.lock.photo.valut.domain.model.ImportItemResult
@@ -122,6 +123,78 @@ class VaultRepositoryImpl @Inject constructor(
             fileManager.deleteVaultFile(result.encryptedThumbnailPath)
             ImportItemResult.Failed(ImportItemResult.Failed.Reason.DB_FAILED)
         }
+    }
+
+    override suspend fun savePrivateCameraPhoto(tempFile: File, albumId: Long?): CaptureSaveResult =
+        savePrivateCameraCapture(tempFile, MediaType.PHOTO, albumId, durationMillis = null)
+
+    override suspend fun savePrivateCameraVideo(
+        tempFile: File,
+        albumId: Long?,
+        durationMillis: Long?
+    ): CaptureSaveResult =
+        savePrivateCameraCapture(tempFile, MediaType.VIDEO, albumId, durationMillis)
+
+    /**
+     * Shared capture→encrypt→persist pipeline. Reuses [CryptoFileManager.encryptUriToVault]
+     * by handing it a file:// Uri for the plain temp file, then stores the row tagged as a
+     * private-camera capture and deletes the plain temp. Returns a typed result either way.
+     */
+    private suspend fun savePrivateCameraCapture(
+        tempFile: File,
+        mediaType: MediaType,
+        albumId: Long?,
+        durationMillis: Long?
+    ): CaptureSaveResult = withContext(io) {
+        if (!tempFile.exists() || tempFile.length() == 0L) {
+            return@withContext CaptureSaveResult.Failed(CaptureSaveResult.Reason.TEMP_MISSING)
+        }
+        if (!keyManager.hasVaultKey()) {
+            return@withContext CaptureSaveResult.Failed(CaptureSaveResult.Reason.NO_KEY)
+        }
+        val result = cryptoFileManager.encryptUriToVault(Uri.fromFile(tempFile), mediaType)
+            ?: return@withContext CaptureSaveResult.Failed(CaptureSaveResult.Reason.ENCRYPT_FAILED)
+
+        val now = System.currentTimeMillis()
+        val entity = VaultMediaEntity(
+            displayName = result.vaultFileName.substringBeforeLast('.'),
+            originalFileName = tempFile.name,
+            vaultFileName = result.vaultFileName,
+            mimeType = result.mimeType,
+            mediaType = mediaType.storageValue,
+            albumId = albumId,
+            filePath = result.encryptedFilePath,
+            thumbnailPath = result.encryptedThumbnailPath,
+            sizeBytes = result.plainSizeBytes,
+            durationMillis = durationMillis ?: result.durationMillis,
+            width = result.width,
+            height = result.height,
+            dateImported = now,
+            dateModified = now,
+            source = MediaSource.PRIVATE_CAMERA,
+            isEncrypted = true,
+            encryptionVersion = ENCRYPTION_VERSION,
+            keyVersion = keyManager.getCurrentKeyVersion(),
+            encryptedFilePath = result.encryptedFilePath,
+            encryptedThumbnailPath = result.encryptedThumbnailPath,
+            encryptedSizeBytes = result.encryptedSizeBytes,
+            checksum = result.checksum,
+            migrationStatus = MigrationStatus.ENCRYPTED
+        )
+        try {
+            val id = mediaDao.insertMedia(entity)
+            cryptoFileManager.secureDeletePlainFile(tempFile)
+            CaptureSaveResult.Success(id, mediaType)
+        } catch (e: Exception) {
+            fileManager.deleteVaultFile(result.encryptedFilePath)
+            fileManager.deleteVaultFile(result.encryptedThumbnailPath)
+            cryptoFileManager.secureDeletePlainFile(tempFile)
+            CaptureSaveResult.Failed(CaptureSaveResult.Reason.DB_FAILED)
+        }
+    }
+
+    override suspend fun deleteCapturedMedia(mediaId: Long) {
+        permanentlyDeleteMedia(listOf(mediaId))
     }
 
     override suspend fun setHiddenUri(mediaId: Long, hiddenUri: String) = withContext(io) {

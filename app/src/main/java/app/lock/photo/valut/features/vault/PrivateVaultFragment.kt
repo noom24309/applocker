@@ -20,7 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.databinding.FragmentPrivateVaultBinding
+import app.lock.photo.valut.domain.model.CameraMode
 import app.lock.photo.valut.domain.model.MediaType
+import app.lock.photo.valut.features.camera.PrivateCameraActivity
 import app.lock.photo.valut.features.vault.adapter.AlbumsAdapter
 import app.lock.photo.valut.features.vault.adapter.MediaGridAdapter
 import app.lock.photo.valut.features.vault.model.VaultMediaUiModel
@@ -67,6 +69,7 @@ class PrivateVaultFragment : Fragment() {
 
     private fun setupRecyclers() {
         foldersAdapter = AlbumsAdapter(
+            thumbnailLoader,
             onClick = { album -> host().openAlbumDetail(album.id, album.name) },
             onOptions = { _, _ -> /* folder management added later */ }
         )
@@ -127,7 +130,9 @@ class PrivateVaultFragment : Fragment() {
     private fun showAddMenu() {
         val labels = arrayOf(
             getString(R.string.vault_create_folder),
-            getString(R.string.vault_add_photo)
+            getString(R.string.vault_add_photo),
+            getString(R.string.camera_capture_photo),
+            getString(R.string.camera_record_video)
         )
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.vault_add)
@@ -136,6 +141,12 @@ class PrivateVaultFragment : Fragment() {
                     0 -> showCreateFolderDialog()
                     1 -> pickMedia.launch(
                         PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo)
+                    )
+                    2 -> startActivity(
+                        PrivateCameraActivity.intent(requireContext(), CameraMode.PHOTO)
+                    )
+                    3 -> startActivity(
+                        PrivateCameraActivity.intent(requireContext(), CameraMode.VIDEO)
                     )
                 }
             }

@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.features.applock.AppLockActivity
+import app.lock.photo.valut.features.camera.PrivateCameraActivity
 import app.lock.photo.valut.features.intruder.IntruderActivity
 import app.lock.photo.valut.features.vault.VaultActivity
 import app.lock.photo.valut.databinding.FragmentHomeBinding
@@ -51,6 +52,9 @@ class HomeFragment : Fragment() {
         }
         binding.cardPrivatePhotos.setOnClickListener {
             startActivity(VaultActivity.intent(requireContext()))
+        }
+        binding.cardPrivateCamera.setOnClickListener {
+            startActivity(PrivateCameraActivity.intent(requireContext()))
         }
         observeState()
         observeLockNow()

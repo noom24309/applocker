@@ -89,6 +89,16 @@ class AppSettingsDataStore(
         val INTRUDER_HIDE_NOTIFICATION_CONTENT = booleanPreferencesKey("intruder_hide_notification_content")
         val INTRUDER_AUTO_DELETE_MODE = stringPreferencesKey("intruder_auto_delete_mode")
         val INTRUDER_MAX_RECORDS = intPreferencesKey("intruder_max_records")
+
+        // --- Phase 9: Private Camera ---
+        val PRIVATE_CAMERA_DEFAULT_FACING = stringPreferencesKey("private_camera_default_facing")
+        val PRIVATE_CAMERA_DEFAULT_MODE = stringPreferencesKey("private_camera_default_mode")
+        val PRIVATE_CAMERA_RECORD_AUDIO = booleanPreferencesKey("private_camera_record_audio")
+        val PRIVATE_CAMERA_VIDEO_QUALITY = stringPreferencesKey("private_camera_video_quality")
+        val PRIVATE_CAMERA_PHOTO_QUALITY = stringPreferencesKey("private_camera_photo_quality")
+        val PRIVATE_CAMERA_SHOW_CAPTURE_PREVIEW = booleanPreferencesKey("private_camera_show_capture_preview")
+        val PRIVATE_CAMERA_KEEP_SCREEN_AWAKE = booleanPreferencesKey("private_camera_keep_screen_awake")
+        val PRIVATE_CAMERA_DEFAULT_ALBUM_REAL = longPreferencesKey("private_camera_default_album_real")
     }
 
     // --- Onboarding ---
@@ -278,6 +288,31 @@ class AppSettingsDataStore(
 
     val intruderMaxRecords: Flow<Int> = read(Keys.INTRUDER_MAX_RECORDS, 100)
     suspend fun setIntruderMaxRecords(value: Int) = write(Keys.INTRUDER_MAX_RECORDS, value)
+
+    // --- Phase 9: Private Camera ---
+    val privateCameraDefaultFacing: Flow<String?> = readNullable(Keys.PRIVATE_CAMERA_DEFAULT_FACING)
+    suspend fun setPrivateCameraDefaultFacing(value: String) = write(Keys.PRIVATE_CAMERA_DEFAULT_FACING, value)
+
+    val privateCameraDefaultMode: Flow<String?> = readNullable(Keys.PRIVATE_CAMERA_DEFAULT_MODE)
+    suspend fun setPrivateCameraDefaultMode(value: String) = write(Keys.PRIVATE_CAMERA_DEFAULT_MODE, value)
+
+    val privateCameraRecordAudioEnabled: Flow<Boolean> = read(Keys.PRIVATE_CAMERA_RECORD_AUDIO, false)
+    suspend fun setPrivateCameraRecordAudioEnabled(value: Boolean) = write(Keys.PRIVATE_CAMERA_RECORD_AUDIO, value)
+
+    val privateCameraVideoQuality: Flow<String?> = readNullable(Keys.PRIVATE_CAMERA_VIDEO_QUALITY)
+    suspend fun setPrivateCameraVideoQuality(value: String) = write(Keys.PRIVATE_CAMERA_VIDEO_QUALITY, value)
+
+    val privateCameraPhotoQuality: Flow<String?> = readNullable(Keys.PRIVATE_CAMERA_PHOTO_QUALITY)
+    suspend fun setPrivateCameraPhotoQuality(value: String) = write(Keys.PRIVATE_CAMERA_PHOTO_QUALITY, value)
+
+    val privateCameraShowCapturePreview: Flow<Boolean> = read(Keys.PRIVATE_CAMERA_SHOW_CAPTURE_PREVIEW, true)
+    suspend fun setPrivateCameraShowCapturePreview(value: Boolean) = write(Keys.PRIVATE_CAMERA_SHOW_CAPTURE_PREVIEW, value)
+
+    val privateCameraKeepScreenAwake: Flow<Boolean> = read(Keys.PRIVATE_CAMERA_KEEP_SCREEN_AWAKE, true)
+    suspend fun setPrivateCameraKeepScreenAwake(value: Boolean) = write(Keys.PRIVATE_CAMERA_KEEP_SCREEN_AWAKE, value)
+
+    val privateCameraDefaultAlbumReal: Flow<Long> = read(Keys.PRIVATE_CAMERA_DEFAULT_ALBUM_REAL, -1L)
+    suspend fun setPrivateCameraDefaultAlbumReal(value: Long) = write(Keys.PRIVATE_CAMERA_DEFAULT_ALBUM_REAL, value)
 
     // --- helpers ---
     private fun read(key: Preferences.Key<Boolean>, default: Boolean): Flow<Boolean> =

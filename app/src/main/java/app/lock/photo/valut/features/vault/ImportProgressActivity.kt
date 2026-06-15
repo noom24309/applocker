@@ -40,13 +40,6 @@ class ImportProgressActivity : AppCompatActivity() {
         ActivityResultContracts.StartIntentSenderForResult()
     ) { /* The system handled the confirmation; nothing else to do. */ }
 
-    // Media read access lets us resolve the picked items' real MediaStore URIs so the
-    // originals can be removed from the gallery. If denied, import still works; the
-    // originals just stay in the gallery.
-    private val mediaPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { startPendingImport() }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
@@ -58,10 +51,9 @@ class ImportProgressActivity : AppCompatActivity() {
 
         observeState()
 
-        if (savedInstanceState == null) {
-            val missing = missingMediaPermissions()
-            if (missing.isEmpty()) startPendingImport() else mediaPermissionLauncher.launch(missing)
-        }
+        // Photo Picker URIs already carry read grants (clipData + FLAG_GRANT_READ_URI_PERMISSION),
+        // so no media permission is needed — start importing right away.
+        if (savedInstanceState == null) startPendingImport()
     }
 
     private fun startPendingImport() {
@@ -69,20 +61,6 @@ class ImportProgressActivity : AppCompatActivity() {
             ?: arrayListOf()
         val albumId = intent.getLongExtra(EXTRA_ALBUM_ID, ImportMediaViewModel.NO_ALBUM)
         viewModel.startImport(uris, albumId)
-    }
-
-    private fun missingMediaPermissions(): Array<String> {
-        val needed = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            listOf(
-                android.Manifest.permission.READ_MEDIA_IMAGES,
-                android.Manifest.permission.READ_MEDIA_VIDEO
-            )
-        } else {
-            listOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-        }
-        return needed.filter {
-            checkSelfPermission(it) != android.content.pm.PackageManager.PERMISSION_GRANTED
-        }.toTypedArray()
     }
 
     private fun observeState() {

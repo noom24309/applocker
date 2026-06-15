@@ -34,6 +34,24 @@ class SecureThumbnailLoader @Inject constructor(
         }
     }
 
+    /**
+     * Loads an album cover from raw fields (encrypted thumbnail decrypted in memory, or
+     * Glide on a plain path). Used by the folders list where we only have cover columns.
+     */
+    fun loadCover(
+        imageView: ImageView,
+        isEncrypted: Boolean,
+        encryptedThumbPath: String?,
+        plainPath: String?
+    ) {
+        if (isEncrypted && encryptedThumbPath != null) {
+            loadEncrypted(imageView, encryptedThumbPath)
+        } else {
+            imageView.tag = null
+            Glide.with(imageView).load(plainPath).centerCrop().into(imageView)
+        }
+    }
+
     fun loadFullImage(imageView: ImageView, item: VaultMediaUiModel) {
         val encPath = item.encryptedFilePath
         if (item.isEncrypted && encPath != null) {

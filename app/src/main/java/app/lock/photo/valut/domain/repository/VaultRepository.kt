@@ -4,6 +4,7 @@ import android.net.Uri
 import app.lock.photo.valut.data.local.entity.VaultMediaEntity
 import app.lock.photo.valut.data.local.relation.AlbumWithCount
 import app.lock.photo.valut.data.local.relation.VaultCounts
+import app.lock.photo.valut.domain.model.CaptureSaveResult
 import app.lock.photo.valut.domain.model.ExportResult
 import app.lock.photo.valut.domain.model.ImportItemResult
 import kotlinx.coroutines.flow.Flow
@@ -44,6 +45,23 @@ interface VaultRepository {
 
     /** Copies one picked Uri into the vault, builds a thumbnail and saves metadata. */
     suspend fun importSingleMedia(uri: Uri): ImportItemResult
+
+    /**
+     * Encrypts a Private-Camera photo (a plain temp file) into the vault, builds an
+     * encrypted thumbnail, tags it [MediaSource.PRIVATE_CAMERA], optionally files it into
+     * [albumId], then deletes the plain temp file. Never touches public storage.
+     */
+    suspend fun savePrivateCameraPhoto(tempFile: File, albumId: Long?): CaptureSaveResult
+
+    /** Same as [savePrivateCameraPhoto] but for a recorded video, carrying its duration. */
+    suspend fun savePrivateCameraVideo(
+        tempFile: File,
+        albumId: Long?,
+        durationMillis: Long?
+    ): CaptureSaveResult
+
+    /** Permanently removes a just-captured item (encrypted file + thumbnail + Room row). */
+    suspend fun deleteCapturedMedia(mediaId: Long)
 
     /** Links a vault item to the hidden-folder copy of its original (for later restore). */
     suspend fun setHiddenUri(mediaId: Long, hiddenUri: String)

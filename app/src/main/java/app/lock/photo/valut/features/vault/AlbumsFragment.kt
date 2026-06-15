@@ -15,12 +15,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.databinding.FragmentAlbumsBinding
 import app.lock.photo.valut.features.vault.adapter.AlbumsAdapter
 import app.lock.photo.valut.features.vault.model.AlbumUiModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AlbumsFragment : Fragment() {
@@ -29,6 +31,9 @@ class AlbumsFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: AlbumsViewModel by viewModels()
     private lateinit var adapter: AlbumsAdapter
+
+    @Inject
+    lateinit var thumbnailLoader: SecureThumbnailLoader
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -43,7 +48,7 @@ class AlbumsFragment : Fragment() {
         binding.emptyState.emptyIcon.setImageResource(R.drawable.ic_album)
         binding.emptyState.emptyText.setText(R.string.empty_albums)
 
-        adapter = AlbumsAdapter(onClick = ::openAlbum, onOptions = ::showOptions)
+        adapter = AlbumsAdapter(thumbnailLoader, onClick = ::openAlbum, onOptions = ::showOptions)
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerView.adapter = adapter
 

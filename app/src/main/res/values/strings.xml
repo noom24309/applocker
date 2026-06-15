@@ -621,4 +621,67 @@
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">Privacy Policy</string>
     <string name="privacy_policy_body">Usage Access Permission\nThis app uses Usage Access only to detect when apps selected by the user are opened, so the app can show the lock screen. Usage data is processed locally on the device and is not uploaded, sold, shared, or used for advertising.\n\nDisplay Over Other Apps\nThis app uses Display Over Other Apps only to show the lock screen over protected apps.\n\nForeground Service\nThis app uses a foreground service to keep App Lock protection active while enabled by the user.\n\nIntruder Alert\nIntruder Alert uses the device camera only after the user enables the feature and only after wrong PIN or Pattern attempts. Intruder photos are stored locally on the device, encrypted when enabled, and are not uploaded, sold, or shared.</string>
+
+    <!-- Phase 9: Private Camera -->
+    <string name="camera_title">Private Camera</string>
+    <string name="camera_permission_rationale">Camera permission is used to capture private photos and videos directly into your encrypted vault.</string>
+    <string name="camera_audio_permission_rationale">Microphone permission is used only when you record private videos with sound.</string>
+    <string name="camera_grant_permission">Grant permission</string>
+    <string name="camera_flash">Flash</string>
+    <string name="camera_switch">Switch camera</string>
+    <string name="camera_audio">Audio</string>
+    <string name="camera_capture">Capture</string>
+    <string name="camera_mode_photo">Photo</string>
+    <string name="camera_mode_video">Video</string>
+    <string name="camera_album_main_vault">Main Vault</string>
+    <string name="camera_save_to">Save to</string>
+    <string name="camera_save_to_chip">Save to: %s</string>
+    <string name="camera_create_folder">Create new folder</string>
+    <string name="camera_create_folder_title">New folder</string>
+    <string name="camera_folder_name_hint">Folder name</string>
+    <string name="camera_securing">Securing private media…</string>
+    <string name="camera_saved_to_vault">Saved to vault</string>
+    <string name="camera_saved_to_album">Saved to %s</string>
+    <string name="camera_action_view">View</string>
+    <string name="camera_action_again">Again</string>
+    <string name="camera_action_move">Move</string>
+    <string name="camera_action_delete">Delete</string>
+    <string name="camera_action_done">Done</string>
+
+    <!-- Settings -->
+    <string name="camera_settings_title">Camera settings</string>
+    <string name="camera_setting_default_facing">Default camera: %s</string>
+    <string name="camera_setting_default_mode">Default mode: %s</string>
+    <string name="camera_setting_video_quality">Video quality: %s</string>
+    <string name="camera_setting_photo_quality">Photo quality: %s</string>
+    <string name="camera_setting_record_audio">Record video with sound</string>
+    <string name="camera_setting_keep_awake">Keep screen awake while camera open</string>
+    <string name="camera_setting_show_preview">Show capture preview</string>
+    <string name="camera_facing_back">Back</string>
+    <string name="camera_facing_front">Front</string>
+    <string name="camera_quality_storage_saver">Storage Saver</string>
+    <string name="camera_quality_standard">Standard</string>
+    <string name="camera_quality_high">High</string>
+
+    <!-- Errors -->
+    <string name="camera_error_capture">Could not capture photo</string>
+    <string name="camera_error_record">Could not record video</string>
+    <string name="camera_error_secure">Could not secure this file</string>
+    <string name="camera_error_no_camera">Camera is not available</string>
+    <string name="camera_error_in_use">Camera is already in use</string>
+    <string name="camera_error_permission">Camera permission is required</string>
+    <string name="camera_error_storage">Not enough storage to save private media</string>
+    <string name="camera_audio_denied_muted">Audio permission denied. Recording muted video.</string>
+    <string name="camera_quality_unsupported">Selected quality is not supported on this device</string>
+
+    <!-- Entry points -->
+    <string name="home_private_camera">Private Camera</string>
+    <string name="home_private_camera_desc">Capture secure photos and videos directly into your vault.</string>
+    <string name="camera_capture_photo">Capture Photo</string>
+    <string name="camera_record_video">Record Video</string>
+
+    <!-- Media details source label -->
+    <string name="details_source">Source</string>
+    <string name="details_source_imported">Imported</string>
+    <string name="details_source_private_camera">Private Camera</string>
 </resources>

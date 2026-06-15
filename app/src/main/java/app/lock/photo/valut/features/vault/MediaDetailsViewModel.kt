@@ -24,7 +24,8 @@ data class MediaDetails(
     val importedDateText: String,
     val albumId: Long?,
     val isFavorite: Boolean,
-    val isEncrypted: Boolean
+    val isEncrypted: Boolean,
+    val source: String
 )
 
 @HiltViewModel
@@ -56,7 +57,8 @@ class MediaDetailsViewModel @Inject constructor(
                 importedDateText = Formatters.formatDate(item.dateImported),
                 albumId = item.albumId,
                 isFavorite = item.isFavorite,
-                isEncrypted = item.isEncrypted
+                isEncrypted = item.isEncrypted,
+                source = item.source
             )
         }
     }
