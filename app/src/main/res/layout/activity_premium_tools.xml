@@ -121,13 +121,30 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout style="@style/SettingsRow" android:clickable="false" android:focusable="false">
-                    <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_photo" app:tint="@color/primary" />
+                <LinearLayout
+                    style="@style/SettingsRow"
+                    android:clickable="false"
+                    android:focusable="false">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_photo"
+                        app:tint="@color/primary" />
+
                     <LinearLayout style="@style/SettingsRowText">
-                        <TextView style="@style/SettingsRowTitle" android:text="@string/duplicates_title" />
-                        <TextView style="@style/SettingsRowDesc" android:text="@string/duplicates_subtitle" />
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/duplicates_title" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/duplicates_subtitle" />
                     </LinearLayout>
-                    <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -140,13 +157,30 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout style="@style/SettingsRow" android:clickable="false" android:focusable="false">
-                    <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_video" app:tint="@color/primary" />
+                <LinearLayout
+                    style="@style/SettingsRow"
+                    android:clickable="false"
+                    android:focusable="false">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_video"
+                        app:tint="@color/primary" />
+
                     <LinearLayout style="@style/SettingsRowText">
-                        <TextView style="@style/SettingsRowTitle" android:text="@string/large_files_title" />
-                        <TextView style="@style/SettingsRowDesc" android:text="@string/large_files_subtitle" />
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/large_files_title" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/large_files_subtitle" />
                     </LinearLayout>
-                    <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -159,13 +193,30 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout style="@style/SettingsRow" android:clickable="false" android:focusable="false">
-                    <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_check_circle" app:tint="@color/primary" />
+                <LinearLayout
+                    style="@style/SettingsRow"
+                    android:clickable="false"
+                    android:focusable="false">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_check_circle"
+                        app:tint="@color/primary" />
+
                     <LinearLayout style="@style/SettingsRowText">
-                        <TextView style="@style/SettingsRowTitle" android:text="@string/cleanup_title" />
-                        <TextView style="@style/SettingsRowDesc" android:text="@string/cleanup_subtitle" />
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/cleanup_title" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/cleanup_subtitle" />
                     </LinearLayout>
-                    <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -183,13 +234,30 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout style="@style/SettingsRow" android:clickable="false" android:focusable="false">
-                    <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_document" app:tint="@color/primary" />
+                <LinearLayout
+                    style="@style/SettingsRow"
+                    android:clickable="false"
+                    android:focusable="false">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_document"
+                        app:tint="@color/primary" />
+
                     <LinearLayout style="@style/SettingsRowText">
-                        <TextView style="@style/SettingsRowTitle" android:text="@string/storage_analyzer_title" />
-                        <TextView style="@style/SettingsRowDesc" android:text="@string/storage_analyzer_subtitle" />
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/storage_analyzer_title" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/storage_analyzer_subtitle" />
                     </LinearLayout>
-                    <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -202,13 +270,30 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout style="@style/SettingsRow" android:clickable="false" android:focusable="false">
-                    <ImageView style="@style/SettingsRowIcon" android:src="@drawable/ic_shield" app:tint="@color/primary" />
+                <LinearLayout
+                    style="@style/SettingsRow"
+                    android:clickable="false"
+                    android:focusable="false">
+
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_shield"
+                        app:tint="@color/primary" />
+
                     <LinearLayout style="@style/SettingsRowText">
-                        <TextView style="@style/SettingsRowTitle" android:text="@string/health_title" />
-                        <TextView style="@style/SettingsRowDesc" android:text="@string/health_subtitle" />
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/health_title" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/health_subtitle" />
                     </LinearLayout>
-                    <ImageView style="@style/SettingsRowTrailingIcon" android:src="@drawable/ic_chevron_right" />
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

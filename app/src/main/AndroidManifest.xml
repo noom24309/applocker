@@ -147,23 +147,23 @@
 
         <!-- Premium cleanup tools -->
         <activity
-            android:name=".features.premium.cleanup.StorageAnalyzerActivity"
+            android:name=".features.premium.cleanup.storage.StorageAnalyzerActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.cleanup.VaultHealthActivity"
+            android:name=".features.premium.cleanup.health.VaultHealthActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.cleanup.DuplicateFinderActivity"
+            android:name=".features.premium.cleanup.duplicates.DuplicateFinderActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.cleanup.LargeFilesActivity"
+            android:name=".features.premium.cleanup.largefiles.LargeFilesActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.cleanup.SmartCleanupActivity"
+            android:name=".features.premium.cleanup.smartcleanup.SmartCleanupActivity"
             android:exported="false" />
 
         <activity

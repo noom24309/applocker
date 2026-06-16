@@ -18,11 +18,11 @@ import app.lock.photo.valut.domain.repository.DocumentCardsRepository
 import app.lock.photo.valut.domain.repository.PrivateDocumentsRepository
 import app.lock.photo.valut.domain.repository.SettingsRepository
 import kotlinx.coroutines.flow.combine
-import app.lock.photo.valut.features.premium.cleanup.DuplicateFinderActivity
-import app.lock.photo.valut.features.premium.cleanup.LargeFilesActivity
-import app.lock.photo.valut.features.premium.cleanup.SmartCleanupActivity
-import app.lock.photo.valut.features.premium.cleanup.StorageAnalyzerActivity
-import app.lock.photo.valut.features.premium.cleanup.VaultHealthActivity
+import app.lock.photo.valut.features.premium.cleanup.duplicates.DuplicateFinderActivity
+import app.lock.photo.valut.features.premium.cleanup.largefiles.LargeFilesActivity
+import app.lock.photo.valut.features.premium.cleanup.smartcleanup.SmartCleanupActivity
+import app.lock.photo.valut.features.premium.cleanup.storage.StorageAnalyzerActivity
+import app.lock.photo.valut.features.premium.cleanup.health.VaultHealthActivity
 import app.lock.photo.valut.features.premium.documents.PrivateDocumentsActivity
 import app.lock.photo.valut.features.premium.notes.PrivateNotesActivity
 import dagger.hilt.android.AndroidEntryPoint

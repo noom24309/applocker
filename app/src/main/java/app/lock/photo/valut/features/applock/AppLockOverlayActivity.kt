@@ -47,6 +47,9 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
     private lateinit var binding: ActivityAppLockOverlayBinding
     private val viewModel: AppLockOverlayViewModel by viewModels()
 
+    // Fullscreen lock overlay: manages its own immersive layout.
+    override val applyEdgeToEdgeInsets: Boolean = false
+
     @Inject lateinit var biometricHelper: BiometricHelper
     @Inject lateinit var iconCacheManager: AppIconCacheManager
     @Inject lateinit var overlayState: AppLockOverlayStateManager

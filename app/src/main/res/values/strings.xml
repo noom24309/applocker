@@ -415,6 +415,8 @@
     <string name="applock_status_setup_desc">Grant permissions to start protecting apps.</string>
     <string name="applock_status_active">Protection active</string>
     <string name="applock_status_inactive">Protection inactive</string>
+    <string name="applock_setup_first">Complete permission setup first</string>
+    <string name="applock_setup_done_lock_apps">Setup complete — now choose apps to lock</string>
 
     <plurals name="applock_locked_count">
         <item quantity="one">%d app locked</item>
@@ -920,4 +922,41 @@
     <string name="health_needs_setup">Needs setup</string>
     <string name="health_unencrypted">Unencrypted items</string>
     <string name="health_failed_repairs">Failed repairs</string>
+
+    <!-- Cleanup: shared selection / actions -->
+    <string name="cleanup_selected_summary">%1$d selected · %2$s</string>
+    <string name="cleanup_none_selected">Nothing selected</string>
+    <string name="cleanup_delete_selected">Move to Recycle Bin</string>
+    <string name="cleanup_select_first">Select items to remove first</string>
+    <string name="cleanup_moved_to_bin">%1$d item(s) moved to Recycle Bin</string>
+    <string name="cleanup_confirm_title">Move to Recycle Bin?</string>
+    <string name="cleanup_confirm_message">%1$d item(s) (%2$s) will be moved to the Recycle Bin. You can restore them later.</string>
+    <string name="cleanup_confirm_move">Move</string>
+    <string name="cleanup_cancel">Cancel</string>
+
+    <!-- Large Files screen -->
+    <string name="large_files_empty">No files above this size</string>
+    <string name="filter_all">All</string>
+    <string name="filter_photos">Photos</string>
+    <string name="filter_videos">Videos</string>
+    <string name="sort_largest">Largest</string>
+    <string name="large_files_min_size">Minimum size</string>
+    <string name="size_5mb">5 MB</string>
+    <string name="size_10mb">10 MB</string>
+    <string name="size_25mb">25 MB</string>
+    <string name="size_50mb">50 MB</string>
+    <string name="size_100mb">100 MB</string>
+
+    <!-- Duplicate Finder screen -->
+    <string name="duplicates_scan">Scan for duplicates</string>
+    <string name="duplicates_rescan">Scan again</string>
+    <string name="duplicates_scanning">Scanning… %1$d/%2$d</string>
+    <string name="duplicates_empty">No duplicate photos found</string>
+    <string name="duplicates_not_scanned">Tap scan to find byte-identical photos in your vault.</string>
+    <string name="duplicates_keep_newest">Keep newest</string>
+    <string name="duplicates_keep_oldest">Keep oldest</string>
+    <string name="duplicates_keep_best">Keep best</string>
+    <string name="duplicates_group_header">%1$d copies · %2$s recoverable</string>
+    <string name="duplicates_recommended">Recommended to keep</string>
+    <string name="cd_media_thumbnail">Media thumbnail</string>
 </resources>

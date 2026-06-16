@@ -45,6 +45,9 @@ class PrivateCameraActivity : BaseActivity() {
     private lateinit var binding: ActivityPrivateCameraBinding
     private val viewModel: PrivateCameraViewModel by viewModels()
 
+    // Fullscreen camera preview: fills the screen behind the system bars.
+    override val applyEdgeToEdgeInsets: Boolean = false
+
     @Inject lateinit var appLockStateManager: AppLockStateManager
     @Inject lateinit var settingsRepository: SettingsRepository
 

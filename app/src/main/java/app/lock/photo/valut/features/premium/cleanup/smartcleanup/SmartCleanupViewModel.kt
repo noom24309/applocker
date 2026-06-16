@@ -1,4 +1,4 @@
-package app.lock.photo.valut.features.premium.cleanup
+package app.lock.photo.valut.features.premium.cleanup.smartcleanup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,9 +1,8 @@
-package app.lock.photo.valut.features.premium.cleanup
+package app.lock.photo.valut.features.premium.cleanup.storage
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.lock.photo.valut.R
-import app.lock.photo.valut.domain.model.VaultHealth
+import app.lock.photo.valut.domain.model.StorageBreakdown
 import app.lock.photo.valut.domain.repository.PremiumToolsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -16,35 +15,27 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class VaultHealthViewModel @Inject constructor(
+class StorageAnalyzerViewModel @Inject constructor(
     private val repository: PremiumToolsRepository
 ) : ViewModel() {
 
-    private val _health = MutableStateFlow<VaultHealth?>(null)
-    val health: StateFlow<VaultHealth?> = _health.asStateFlow()
-
-    private val _isScanning = MutableStateFlow(false)
-    val isScanning: StateFlow<Boolean> = _isScanning.asStateFlow()
+    private val _breakdown = MutableStateFlow<StorageBreakdown?>(null)
+    val breakdown: StateFlow<StorageBreakdown?> = _breakdown.asStateFlow()
 
     private val _events = Channel<Int>(Channel.BUFFERED)
     val messages: Flow<Int> = _events.receiveAsFlow()
 
-    init { scan() }
+    init { refresh() }
 
-    fun scan() {
-        viewModelScope.launch {
-            _isScanning.value = true
-            repository.markScanned()
-            _health.value = repository.getVaultHealth()
-            _isScanning.value = false
-        }
+    fun refresh() {
+        viewModelScope.launch { _breakdown.value = repository.getStorageBreakdown() }
     }
 
     fun clearTempCache() {
         viewModelScope.launch {
             repository.clearTempCache()
-            _events.send(R.string.cleanup_temp_cleared)
-            scan()
+            _events.send(app.lock.photo.valut.R.string.cleanup_temp_cleared)
+            refresh()
         }
     }
 }

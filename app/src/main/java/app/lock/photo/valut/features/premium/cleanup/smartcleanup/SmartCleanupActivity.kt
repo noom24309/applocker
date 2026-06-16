@@ -1,4 +1,4 @@
-package app.lock.photo.valut.features.premium.cleanup
+package app.lock.photo.valut.features.premium.cleanup.smartcleanup
 
 import app.lock.photo.valut.core.ui.BaseActivity
 

@@ -25,6 +25,9 @@ class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    // Applies its own per-view insets (fragment top + bottom-nav bottom) below.
+    override val applyEdgeToEdgeInsets: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

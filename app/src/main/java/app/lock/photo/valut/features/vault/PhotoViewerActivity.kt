@@ -33,6 +33,9 @@ class PhotoViewerActivity : BaseActivity() {
     private lateinit var pagerAdapter: PhotoPagerAdapter
     private var initialPositionApplied = false
 
+    // Immersive viewer: draws under the system bars and manages them itself.
+    override val applyEdgeToEdgeInsets: Boolean = false
+
     @javax.inject.Inject
     lateinit var thumbnailLoader: SecureThumbnailLoader
 

@@ -14,7 +14,7 @@ import app.lock.photo.valut.R
 import app.lock.photo.valut.features.applock.AppLockActivity
 import app.lock.photo.valut.features.camera.PrivateCameraActivity
 import app.lock.photo.valut.features.intruder.IntruderActivity
-import app.lock.photo.valut.features.premium.cleanup.StorageAnalyzerActivity
+import app.lock.photo.valut.features.premium.cleanup.storage.StorageAnalyzerActivity
 import app.lock.photo.valut.features.premium.documents.PrivateDocumentsActivity
 import app.lock.photo.valut.features.vault.VaultActivity
 import app.lock.photo.valut.databinding.FragmentHomeBinding

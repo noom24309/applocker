@@ -1,10 +1,12 @@
 package app.lock.photo.valut.features.applock
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -27,9 +29,20 @@ class AppLockHomeFragment : Fragment() {
     private val viewModel: AppLockHomeViewModel by viewModels()
     private val statsViewModel: AppLockStatsViewModel by viewModels()
 
+    /** Latest live permission status, mirrored from [render] to gate the lock actions. */
+    private var permissionsGranted = false
+
     private val permissionLauncher = registerForActivityResult(
         androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
-    ) { viewModel.refreshPermissions() }
+    ) { result ->
+        viewModel.refreshPermissions()
+        // Setup wizard finished with everything granted → turn the feature on so the
+        // user lands straight on "choose apps to lock".
+        if (result.resultCode == Activity.RESULT_OK) {
+            viewModel.setAppLockEnabled(true)
+            Toast.makeText(requireContext(), R.string.applock_setup_done_lock_apps, Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,12 +55,22 @@ class AppLockHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         binding.masterSwitch.setOnClickListener {
-            viewModel.setAppLockEnabled(binding.masterSwitch.isChecked)
+            val wantOn = binding.masterSwitch.isChecked
+            // Enabling the feature requires the permission setup to be done first.
+            if (wantOn && !permissionsGranted) {
+                binding.masterSwitch.isChecked = false
+                requireSetupThen()
+            } else {
+                viewModel.setAppLockEnabled(wantOn)
+            }
         }
         binding.btnCompleteSetup.setOnClickListener { openPermissions() }
         binding.btnStart.setOnClickListener { viewModel.startProtection() }
         binding.btnStop.setOnClickListener { viewModel.stopProtection() }
-        binding.cardManageApps.setOnClickListener { host().openApps() }
+        // Can't meaningfully lock apps until permissions are granted — gate the screen.
+        binding.cardManageApps.setOnClickListener {
+            if (permissionsGranted) host().openApps() else requireSetupThen()
+        }
         binding.cardSettings.setOnClickListener { host().openSettings() }
         observe()
     }
@@ -82,6 +105,7 @@ class AppLockHomeFragment : Fragment() {
     }
 
     private fun render(state: AppLockHomeUiState) {
+        permissionsGranted = state.permissionsGranted
         binding.masterSwitch.isChecked = state.isAppLockEnabled
 
         val countText = resources.getQuantityString(
@@ -109,6 +133,12 @@ class AppLockHomeFragment : Fragment() {
         binding.btnStart.isVisible = state.permissionsGranted && state.isAppLockEnabled &&
             !state.isServiceRunning && state.lockedAppsCount > 0
         binding.btnStop.isVisible = state.permissionsGranted && state.isServiceRunning
+    }
+
+    /** Tells the user setup comes first, then routes into the permission wizard. */
+    private fun requireSetupThen() {
+        Toast.makeText(requireContext(), R.string.applock_setup_first, Toast.LENGTH_SHORT).show()
+        openPermissions()
     }
 
     private fun openPermissions() {

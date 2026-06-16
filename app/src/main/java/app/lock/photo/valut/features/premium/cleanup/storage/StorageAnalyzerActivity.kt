@@ -1,4 +1,4 @@
-package app.lock.photo.valut.features.premium.cleanup
+package app.lock.photo.valut.features.premium.cleanup.storage
 
 import app.lock.photo.valut.core.ui.BaseActivity
 
@@ -15,6 +15,8 @@ import app.lock.photo.valut.core.common.Formatters
 import app.lock.photo.valut.databinding.ActivityStorageAnalyzerBinding
 import app.lock.photo.valut.databinding.ViewStorageRowBinding
 import app.lock.photo.valut.domain.model.StorageBreakdown
+import app.lock.photo.valut.features.premium.cleanup.duplicates.DuplicateFinderActivity
+import app.lock.photo.valut.features.premium.cleanup.largefiles.LargeFilesActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

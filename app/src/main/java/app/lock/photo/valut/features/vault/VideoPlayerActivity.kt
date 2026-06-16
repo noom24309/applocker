@@ -34,6 +34,9 @@ class VideoPlayerActivity : BaseActivity() {
     private var player: ExoPlayer? = null
     private var preparedPath: String? = null
 
+    // Immersive fullscreen player: video extends under the system bars.
+    override val applyEdgeToEdgeInsets: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
