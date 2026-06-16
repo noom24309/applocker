@@ -137,6 +137,24 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="Widget.App.Chip.SoftClose" parent="Widget.Material3.Chip.Filter">
+        <item name="android:minHeight">44dp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipBackgroundColor">@color/tile_gray_bg</item>
+        <item name="chipCornerRadius">22dp</item>
+        <item name="chipMinHeight">44dp</item>
+        <item name="chipStartPadding">18dp</item>
+        <item name="chipEndPadding">18dp</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="closeIconSize">20dp</item>
+        <item name="closeIconVisible">true</item>
+        <item name="textEndPadding">8dp</item>
+        <item name="textStartPadding">0dp</item>
+    </style>
+
     <!-- Numeric keypad key (shared by digit TextViews and icon ImageViews) -->
     <style name="KeypadKey">
         <item name="android:layout_width">0dp</item>

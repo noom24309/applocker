@@ -13,6 +13,8 @@
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="@string/applock_manage_apps"
+
+        style="@style/TextAppearance.App.Bold"
         app:titleTextColor="@color/text_primary" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -20,14 +22,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/screen_padding"
         android:layout_marginEnd="@dimen/screen_padding"
+        android:background="@color/tile_gray_bg"
         android:hint="@string/applock_search_hint"
-        app:startIconDrawable="@drawable/ic_select_all"
+        app:startIconDrawable="@drawable/iv_search"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance.App.Medium"
+
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLines="1" />
@@ -37,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/screen_padding"
+        android:layout_marginTop="8dp"
         android:paddingEnd="@dimen/screen_padding"
         android:scrollbars="none">
 
@@ -55,7 +61,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipAll"
-                    style="@style/Widget.Material3.Chip.Filter"
+                    style="@style/Widget.App.Chip.SoftClose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -63,14 +69,14 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipLocked"
-                    style="@style/Widget.Material3.Chip.Filter"
+                    style="@style/Widget.App.Chip.SoftClose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/applock_filter_locked" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipUnlocked"
-                    style="@style/Widget.Material3.Chip.Filter"
+                    style="@style/Widget.App.Chip.SoftClose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/applock_filter_unlocked" />
@@ -78,7 +84,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSystem"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.App.Chip.SoftClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

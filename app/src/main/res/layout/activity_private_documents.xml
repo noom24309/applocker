@@ -68,7 +68,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipAll"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.App.Chip.SoftClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -76,14 +76,14 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipFavorites"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.App.Chip.SoftClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cards_filter_favorites" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDeleted"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.App.Chip.SoftClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cards_filter_deleted" />

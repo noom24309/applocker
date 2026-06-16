@@ -83,6 +83,10 @@
     <color name="tile_pink_bg">#FDEBEF</color>
     <color name="tile_purple_bg">#F0EBFE</color>
     <color name="tile_gray_bg">#F6F8F5</color>
+    <color name="chip_soft_bg">#EEEEEE</color>
+    <color name="switch_track_off">#E7E9F2</color>
+    <color name="switch_thumb_off">#FFFFFFFF</color>
+    <color name="switch_thumb_off_stroke">#CBD5E1</color>
 
     <color name="alert_badge_bg">#FDE7E7</color>
     <color name="storage_track">#E7E9F2</color>
