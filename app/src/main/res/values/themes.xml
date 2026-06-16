@@ -147,11 +147,10 @@
         <item name="chipCornerRadius">22dp</item>
         <item name="chipMinHeight">44dp</item>
         <item name="chipStartPadding">18dp</item>
-        <item name="chipEndPadding">18dp</item>
+        <item name="chipEndPadding">10dp</item>
         <item name="chipStrokeWidth">0dp</item>
-        <item name="closeIconSize">20dp</item>
-        <item name="closeIconVisible">true</item>
-        <item name="textEndPadding">8dp</item>
+        <item name="closeIconVisible">false</item>
+        <item name="textEndPadding">0dp</item>
         <item name="textStartPadding">0dp</item>
     </style>
 
