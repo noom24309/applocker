@@ -55,7 +55,7 @@ class IntruderDetailActivity : BaseActivity() {
         binding = ActivityIntruderDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.setNavigationOnClickListener { finish() }
+        binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.btnDelete.setOnClickListener { confirmDelete() }
         binding.btnExport.setOnClickListener { confirmExport() }
 

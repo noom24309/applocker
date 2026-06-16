@@ -23,6 +23,10 @@
         <item name="android:fontFamily">@font/inter</item>
         <item name="fontFamily">@font/inter</item>
 
+        <!-- Default TextView style: tight padding like the home screen (applies to
+             every plain TextView that doesn't set its own style). -->
+        <item name="android:textViewStyle">@style/Widget.App.TextView</item>
+
         <!-- Semantic text colors (DayNight via @color names → dark values). -->
         <item name="colorTextPrimary">@color/text_primary</item>
         <item name="colorTextSecondary">@color/text_secondary</item>

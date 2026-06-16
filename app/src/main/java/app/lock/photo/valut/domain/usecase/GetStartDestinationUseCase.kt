@@ -15,7 +15,9 @@ class GetStartDestinationUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(): StartDestination {
         if (!repository.onboardingCompleted.first()) return StartDestination.ONBOARDING
-        if (!repository.pinCreated.first()) return StartDestination.CREATE_PIN
+        // A master credential exists when either a PIN or a pattern has been set up.
+        val hasCredential = repository.pinCreated.first() || repository.patternEnabled.first()
+        if (!hasCredential) return StartDestination.SETUP_CREDENTIAL
         return StartDestination.LOCKED
     }
 }

@@ -18,6 +18,10 @@
         <item name="android:fontFamily">@font/inter</item>
         <item name="fontFamily">@font/inter</item>
 
+        <!-- Default TextView style: tight padding like the home screen (applies to
+             every plain TextView that doesn't set its own style). -->
+        <item name="android:textViewStyle">@style/Widget.App.TextView</item>
+
         <!-- Semantic text colors (DayNight via @color names). -->
         <item name="colorTextPrimary">@color/text_primary</item>
         <item name="colorTextSecondary">@color/text_secondary</item>
@@ -29,6 +33,11 @@
     </style>
 
     <style name="Theme.AppLockPhotoValut" parent="Base.Theme.AppLockPhotoValut" />
+
+    <!-- App-wide default for plain TextViews: tight font padding like the home screen. -->
+    <style name="Widget.App.TextView" parent="android:Widget.TextView">
+        <item name="android:includeFontPadding">false</item>
+    </style>
 
     <!-- Splash uses brand color background -->
     <style name="Theme.AppLockPhotoValut.Splash" parent="Theme.AppLockPhotoValut">
@@ -144,6 +153,7 @@
         <item name="android:textStyle">normal</item>
         <item name="checkedIconVisible">false</item>
         <item name="chipBackgroundColor">@color/tile_gray_bg</item>
+        <item name="fontFamily">@font/inter_medium</item>
         <item name="chipCornerRadius">22dp</item>
         <item name="chipMinHeight">44dp</item>
         <item name="chipStartPadding">18dp</item>
@@ -177,7 +187,9 @@
         <item name="android:layout_marginBottom">@dimen/space_s</item>
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">@dimen/text_caption</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/inter_semi</item>
+        <item name="fontFamily">@font/inter_semi</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:letterSpacing">0.04</item>
     </style>
 
@@ -213,8 +225,10 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/text_primary</item>
-        <item name="android:textSize">@dimen/text_body</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/inter_semi</item>
+        <item name="fontFamily">@font/inter_semi</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="SettingsRowDesc">
@@ -223,6 +237,9 @@
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">@dimen/text_caption</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="SettingsRowValue">
@@ -232,7 +249,9 @@
         <item name="android:layout_marginEnd">@dimen/space_s</item>
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/text_caption</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/inter_semi</item>
+        <item name="fontFamily">@font/inter_semi</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="SettingsRowTrailingIcon">
@@ -298,6 +317,9 @@
         <item name="android:drawablePadding">@dimen/space_m</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <!-- Card -->
@@ -348,6 +370,9 @@
         <item name="android:paddingBottom">@dimen/space_m</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="CameraSettingSwitchRow">
@@ -365,6 +390,9 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <!-- Premium badge chip (Phase 11) -->

@@ -17,7 +17,7 @@ import app.lock.photo.valut.core.applock.ForegroundAppDetector
 import app.lock.photo.valut.core.datastore.AppSettingsDataStore
 import app.lock.photo.valut.data.local.dao.LockedAppDao
 import app.lock.photo.valut.domain.usecase.RecordLocalAppLockStatsUseCase
-import app.lock.photo.valut.features.applock.AppLockOverlayActivity
+import app.lock.photo.valut.features.applock.overlay.AppLockOverlayActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

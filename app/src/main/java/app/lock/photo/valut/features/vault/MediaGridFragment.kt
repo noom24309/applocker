@@ -1,4 +1,7 @@
 package app.lock.photo.valut.features.vault
+import app.lock.photo.valut.features.importmedia.ImportProgressActivity
+import app.lock.photo.valut.features.vault.photo.PhotoViewerActivity
+import app.lock.photo.valut.features.vault.video.VideoPlayerActivity
 
 import android.net.Uri
 import android.os.Bundle

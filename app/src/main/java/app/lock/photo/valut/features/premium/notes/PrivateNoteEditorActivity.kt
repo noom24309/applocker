@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -39,18 +40,19 @@ class PrivateNoteEditorActivity : BaseActivity() {
         binding = ActivityNoteEditorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.setNavigationOnClickListener { saveAndFinish() }
-        binding.toolbar.inflateMenu(R.menu.menu_note_editor)
-        binding.toolbar.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.action_save -> { saveAndFinish(); true }
-                R.id.action_export -> { viewModel.requestExport(); true }
-                else -> false
-            }
-        }
+        binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         onBackPressedDispatcher.addCallback(this) { saveAndFinish() }
 
+        binding.bodyInput.doAfterTextChanged { updateMeta() }
+        updateMeta()
+
         observe()
+    }
+
+    private fun updateMeta() {
+        val text = binding.bodyInput.text?.toString().orEmpty()
+        val words = text.split(Regex("\\s+")).count { it.isNotBlank() }
+        binding.tvMeta.text = getString(R.string.notes_meta_count, words, text.length)
     }
 
     private fun observe() {
@@ -62,6 +64,7 @@ class PrivateNoteEditorActivity : BaseActivity() {
                             populated = true
                             binding.titleInput.setText(state.title)
                             binding.bodyInput.setText(state.content)
+                            updateMeta()
                         }
                     }
                 }

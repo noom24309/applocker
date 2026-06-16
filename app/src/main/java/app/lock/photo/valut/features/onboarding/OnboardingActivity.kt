@@ -15,7 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.databinding.ActivityOnboardingBinding
-import app.lock.photo.valut.features.auth.CreatePinActivity
+import app.lock.photo.valut.features.auth.ChooseUnlockMethodActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -103,7 +103,7 @@ class OnboardingActivity : BaseActivity(), LockExempt {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.finished.collect { finished ->
                     if (finished) {
-                        startActivity(Intent(this@OnboardingActivity, CreatePinActivity::class.java))
+                        startActivity(Intent(this@OnboardingActivity, ChooseUnlockMethodActivity::class.java))
                         finish()
                     }
                 }

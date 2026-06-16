@@ -1,4 +1,10 @@
 package app.lock.photo.valut.features.applock
+import app.lock.photo.valut.features.applock.home.AppLockHomeFragment
+import app.lock.photo.valut.features.applock.apps.AppLockAppsFragment
+import app.lock.photo.valut.features.applock.settings.AppLockSettingsFragment
+import app.lock.photo.valut.features.applock.theme.LockThemePickerFragment
+import app.lock.photo.valut.features.applock.troubleshooting.AppLockTroubleshootingFragment
+import app.lock.photo.valut.features.applock.suggested.SuggestedAppsFragment
 
 import app.lock.photo.valut.core.ui.BaseActivity
 

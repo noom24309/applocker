@@ -26,8 +26,8 @@ import app.lock.photo.valut.domain.repository.SettingsRepository
 import app.lock.photo.valut.features.camera.model.CaptureResultUiState
 import app.lock.photo.valut.features.camera.model.PrivateCameraEvent
 import app.lock.photo.valut.features.camera.model.PrivateCameraUiState
-import app.lock.photo.valut.features.vault.PhotoViewerActivity
-import app.lock.photo.valut.features.vault.VideoPlayerActivity
+import app.lock.photo.valut.features.vault.photo.PhotoViewerActivity
+import app.lock.photo.valut.features.vault.video.VideoPlayerActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

@@ -33,7 +33,7 @@ class PrivateNotesActivity : BaseActivity() {
         binding = ActivityPrivateNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.setNavigationOnClickListener { finish() }
+        binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         adapter = NotesAdapter(
             onClick = { startActivity(PrivateNoteEditorActivity.intent(this, it.id)) },
             onFavorite = { viewModel.toggleFavorite(it.id) },

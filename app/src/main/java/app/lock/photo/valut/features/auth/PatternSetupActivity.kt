@@ -2,6 +2,8 @@ package app.lock.photo.valut.features.auth
 
 import app.lock.photo.valut.core.ui.BaseActivity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -16,12 +18,19 @@ import app.lock.photo.valut.databinding.ActivityPatternSetupBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-/** Two-phase pattern setup (draw → confirm) launched after master verification. */
+/**
+ * Two-phase pattern setup (draw → confirm). Reachable two ways:
+ * - from Security settings (after master verification) → just saves and finishes;
+ * - as the first-run credential ([EXTRA_FIRST_RUN], chosen on the unlock-method screen)
+ *   → continues into the recovery-key step, mirroring the PIN setup flow.
+ */
 @AndroidEntryPoint
 class PatternSetupActivity : BaseActivity(), LockExempt {
 
     private lateinit var binding: ActivityPatternSetupBinding
     private val viewModel: PatternSetupViewModel by viewModels()
+
+    private val firstRun: Boolean by lazy { intent.getBooleanExtra(EXTRA_FIRST_RUN, false) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +77,12 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
                         PatternSetupViewModel.Event.ProceedToConfirm -> Unit // handled by phase flow
                         PatternSetupViewModel.Event.Saved -> {
                             Toast.makeText(this@PatternSetupActivity, R.string.pattern_saved, Toast.LENGTH_SHORT).show()
-                            finish()
+                            if (firstRun) {
+                                startActivity(Intent(this@PatternSetupActivity, RecoveryKeyActivity::class.java))
+                                finishAffinity()
+                            } else {
+                                finish()
+                            }
                         }
                     }
                 }
@@ -81,5 +95,14 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
         binding.errorPattern.isVisible = true
         binding.patternView.showError()
         binding.patternView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
+    }
+
+    companion object {
+        private const val EXTRA_FIRST_RUN = "extra_first_run"
+
+        /** Pattern setup as the first-run credential — continues to the recovery key. */
+        fun firstRunIntent(context: Context): Intent =
+            Intent(context, PatternSetupActivity::class.java)
+                .putExtra(EXTRA_FIRST_RUN, true)
     }
 }

@@ -1,4 +1,6 @@
 package app.lock.photo.valut.features.vault
+import app.lock.photo.valut.features.importmedia.ImportMediaBottomSheet
+import app.lock.photo.valut.features.importmedia.ImportProgressActivity
 
 import android.net.Uri
 import android.os.Bundle

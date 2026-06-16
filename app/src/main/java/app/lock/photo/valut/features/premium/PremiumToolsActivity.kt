@@ -18,12 +18,12 @@ import app.lock.photo.valut.domain.repository.DocumentCardsRepository
 import app.lock.photo.valut.domain.repository.PrivateDocumentsRepository
 import app.lock.photo.valut.domain.repository.SettingsRepository
 import kotlinx.coroutines.flow.combine
-import app.lock.photo.valut.features.premium.cleanup.duplicates.DuplicateFinderActivity
-import app.lock.photo.valut.features.premium.cleanup.largefiles.LargeFilesActivity
-import app.lock.photo.valut.features.premium.cleanup.smartcleanup.SmartCleanupActivity
-import app.lock.photo.valut.features.premium.cleanup.storage.StorageAnalyzerActivity
-import app.lock.photo.valut.features.premium.cleanup.health.VaultHealthActivity
-import app.lock.photo.valut.features.premium.documents.PrivateDocumentsActivity
+import app.lock.photo.valut.features.cleanup.duplicates.DuplicateFinderActivity
+import app.lock.photo.valut.features.cleanup.largefiles.LargeFilesActivity
+import app.lock.photo.valut.features.cleanup.smartcleanup.SmartCleanupActivity
+import app.lock.photo.valut.features.cleanup.storage.StorageAnalyzerActivity
+import app.lock.photo.valut.features.cleanup.health.VaultHealthActivity
+import app.lock.photo.valut.features.documents.PrivateDocumentsActivity
 import app.lock.photo.valut.features.premium.notes.PrivateNotesActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
@@ -45,7 +45,7 @@ class PremiumToolsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPremiumToolsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.toolbar.setNavigationOnClickListener { finish() }
+        binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.cardNotes.setOnClickListener { startActivity(PrivateNotesActivity.intent(this)) }
         binding.cardDocuments.setOnClickListener { startActivity(PrivateDocumentsActivity.intent(this)) }
         binding.cardDuplicates.setOnClickListener { startActivity(DuplicateFinderActivity.intent(this)) }

@@ -2,7 +2,6 @@ package app.lock.photo.valut.features.auth
 
 import app.lock.photo.valut.core.ui.BaseActivity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -13,7 +12,7 @@ import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.core.permissions.BiometricHelper
 import app.lock.photo.valut.databinding.ActivityBiometricSetupBinding
-import app.lock.photo.valut.features.home.MainActivity
+import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -78,7 +77,7 @@ class BiometricSetupActivity : BaseActivity(), LockExempt {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.doneFlow.collect {
-                    startActivity(Intent(this@BiometricSetupActivity, MainActivity::class.java))
+                    startActivity(AppLockPermissionActivity.gateIntent(this@BiometricSetupActivity))
                     finishAffinity()
                 }
             }

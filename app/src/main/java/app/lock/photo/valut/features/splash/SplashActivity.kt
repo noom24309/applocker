@@ -12,7 +12,7 @@ import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.databinding.ActivitySplashBinding
 import app.lock.photo.valut.domain.model.StartDestination
-import app.lock.photo.valut.features.auth.CreatePinActivity
+import app.lock.photo.valut.features.auth.ChooseUnlockMethodActivity
 import app.lock.photo.valut.features.onboarding.OnboardingActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -45,7 +45,7 @@ class SplashActivity : BaseActivity(), LockExempt {
     private fun navigateTo(route: SplashRoute) {
         val intent = when (route.destination) {
             StartDestination.ONBOARDING -> Intent(this, OnboardingActivity::class.java)
-            StartDestination.CREATE_PIN -> Intent(this, CreatePinActivity::class.java)
+            StartDestination.SETUP_CREDENTIAL -> Intent(this, ChooseUnlockMethodActivity::class.java)
             StartDestination.LOCKED -> LockRouter.lockIntent(this, route.unlockMethod)
         }
         startActivity(intent)

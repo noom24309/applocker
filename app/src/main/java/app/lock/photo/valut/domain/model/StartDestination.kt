@@ -7,8 +7,8 @@ enum class StartDestination {
     /** First launch — show onboarding. */
     ONBOARDING,
 
-    /** Onboarding done but no master credential yet. */
-    CREATE_PIN,
+    /** Onboarding done but no master credential yet — let the user choose PIN or pattern. */
+    SETUP_CREDENTIAL,
 
     /** A credential exists — require unlocking (PIN or pattern, per [UnlockMethod]). */
     LOCKED

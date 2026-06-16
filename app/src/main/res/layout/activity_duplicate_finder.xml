@@ -7,13 +7,38 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.MaterialToolbar
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="@string/duplicates_title"
-        app:titleTextColor="@color/text_primary" />
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="6dp"
+            android:padding="8dp"
+            android:contentDescription="@string/cd_card_icon"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.App.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="@string/duplicates_title"
+            android:textColor="@color/text_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_back"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnScan"
@@ -42,6 +67,7 @@
         android:layout_marginStart="@dimen/space_m"
         android:layout_marginTop="4dp"
         android:textColor="@color/text_secondary"
+        style="@style/TextAppearance.App.Medium"
         android:textSize="@dimen/text_caption"
         android:visibility="gone"
         tools:text="Scanning… 12/240"
@@ -107,6 +133,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="@dimen/space_l"
+            style="@style/TextAppearance.App.Medium"
             android:text="@string/duplicates_not_scanned"
             android:textColor="@color/text_tertiary"
             android:textSize="@dimen/text_body"

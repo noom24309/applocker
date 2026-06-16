@@ -55,6 +55,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".features.auth.ChooseUnlockMethodActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".features.auth.CreatePinActivity"
             android:exported="false" />
 
@@ -103,7 +107,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".features.vault.ImportProgressActivity"
+            android:name=".features.importmedia.ImportProgressActivity"
             android:exported="false" />
 
         <activity
@@ -133,46 +137,46 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".features.premium.documents.PrivateDocumentsActivity"
+            android:name=".features.documents.PrivateDocumentsActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.documents.cards.AddEditDocumentCardActivity"
+            android:name=".features.documents.cards.AddEditDocumentCardActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".features.premium.documents.cards.DocumentCardDetailActivity"
+            android:name=".features.documents.cards.DocumentCardDetailActivity"
             android:exported="false" />
 
         <!-- Premium cleanup tools -->
         <activity
-            android:name=".features.premium.cleanup.storage.StorageAnalyzerActivity"
+            android:name=".features.cleanup.storage.StorageAnalyzerActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.cleanup.health.VaultHealthActivity"
+            android:name=".features.cleanup.health.VaultHealthActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.cleanup.duplicates.DuplicateFinderActivity"
+            android:name=".features.cleanup.duplicates.DuplicateFinderActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.cleanup.largefiles.LargeFilesActivity"
+            android:name=".features.cleanup.largefiles.LargeFilesActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.premium.cleanup.smartcleanup.SmartCleanupActivity"
+            android:name=".features.cleanup.smartcleanup.SmartCleanupActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.vault.PhotoViewerActivity"
+            android:name=".features.vault.photo.PhotoViewerActivity"
             android:exported="false"
             android:theme="@style/Theme.AppLockPhotoValut" />
 
         <activity
-            android:name=".features.vault.VideoPlayerActivity"
+            android:name=".features.vault.video.VideoPlayerActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.AppLockPhotoValut" />
@@ -183,11 +187,11 @@
             android:exported="false" />
 
         <activity
-            android:name=".features.applock.AppLockPermissionActivity"
+            android:name=".features.permissions.AppLockPermissionActivity"
             android:exported="false" />
 
         <activity
-            android:name=".features.applock.AppLockOverlayActivity"
+            android:name=".features.applock.overlay.AppLockOverlayActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:launchMode="singleTask"

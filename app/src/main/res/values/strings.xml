@@ -22,6 +22,15 @@
     <string name="onboarding_title_3">Intruder Alerts</string>
     <string name="onboarding_subtitle_3">Capture wrong unlock attempts and protect your privacy.</string>
 
+    <!-- Choose unlock method -->
+    <string name="choose_method_title">Choose how to unlock</string>
+    <string name="choose_method_subtitle">Pick the lock you\'ll use to open the app. You can add fingerprint unlock in the next steps.</string>
+    <string name="choose_method_pattern_title">Pattern</string>
+    <string name="choose_method_pattern_desc">Draw a pattern to unlock — quick and easy.</string>
+    <string name="choose_method_pin_title">PIN</string>
+    <string name="choose_method_pin_desc">Use a 4- or 6-digit numeric PIN.</string>
+    <string name="choose_method_recommended">Recommended</string>
+
     <!-- PIN -->
     <string name="create_pin_title">Create your PIN</string>
     <string name="create_pin_subtitle">This PIN keeps your vault secure.</string>
@@ -417,6 +426,8 @@
     <string name="applock_status_inactive">Protection inactive</string>
     <string name="applock_setup_first">Complete permission setup first</string>
     <string name="applock_setup_done_lock_apps">Setup complete — now choose apps to lock</string>
+    <string name="applock_setup_skip">Skip for now</string>
+    <string name="applock_activate_protection">Activate protection</string>
 
     <plurals name="applock_locked_count">
         <item quantity="one">%d app locked</item>
@@ -758,6 +769,8 @@
     <string name="notes_editor_title">Note</string>
     <string name="notes_title_hint">Title</string>
     <string name="notes_body_hint">Write something private…</string>
+    <string name="notes_encrypted_badge">End-to-end encrypted</string>
+    <string name="notes_meta_count">%1$d words · %2$d characters</string>
     <string name="notes_export">Export as text</string>
     <string name="notes_save_failed">Could not save note</string>
     <string name="notes_export_done">Note exported</string>
