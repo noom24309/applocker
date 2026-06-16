@@ -1,10 +1,11 @@
 package app.lock.photo.valut.features.intruder
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import app.lock.photo.valut.databinding.ActivityIntruderBinding
@@ -12,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /** Host for the intruder alerts list and intruder settings. FLAG_SECURE throughout. */
 @AndroidEntryPoint
-class IntruderActivity : AppCompatActivity() {
+class IntruderActivity : BaseActivity() {
 
     private lateinit var binding: ActivityIntruderBinding
 

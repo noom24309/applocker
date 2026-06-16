@@ -765,7 +765,7 @@
 
     <!-- Documents -->
     <string name="documents_title">Private Documents</string>
-    <string name="documents_subtitle">Import and store documents encrypted</string>
+    <string name="documents_subtitle">Securely store your personal cards and files</string>
     <string name="documents_search_hint">Search documents</string>
     <string name="documents_empty">No documents yet. Tap + to import.</string>
     <string name="documents_import">Import documents</string>
@@ -780,6 +780,109 @@
     <string name="docs_export_done">Document exported</string>
     <string name="docs_export_failed">Could not export document</string>
     <string name="docs_open_failed">Could not open this document</string>
+
+    <!-- Document cards (wallet-style) -->
+    <string name="documents_tools_summary">%1$d cards · %2$d files</string>
+    <string name="documents_tab_cards">Cards</string>
+    <string name="documents_tab_files">Files</string>
+    <string name="documents_header_subtitle">Securely store your personal cards and files</string>
+    <string name="cards_search_hint">Search cards</string>
+    <string name="cards_filter_all">All</string>
+    <string name="cards_filter_favorites">Favorites</string>
+    <string name="cards_filter_deleted">Deleted</string>
+    <string name="cards_empty_title">No document cards yet</string>
+    <string name="cards_empty_subtitle">Add ID cards, licences, passports, and private documents securely.</string>
+    <string name="cards_empty_favorites">No favorite cards yet</string>
+    <string name="cards_empty_deleted">No deleted cards</string>
+    <string name="cards_add_button">Add Document Card</string>
+
+    <!-- Add sheet -->
+    <string name="add_sheet_title">Add to Private Documents</string>
+    <string name="add_import_file">Import File</string>
+
+    <!-- Card types -->
+    <string name="card_type_id">ID Card</string>
+    <string name="card_type_licence">Driving Licence</string>
+    <string name="card_type_passport">Passport</string>
+    <string name="card_type_student">Student Card</string>
+    <string name="card_type_work">Work Card</string>
+    <string name="card_type_vehicle">Vehicle Registration</string>
+    <string name="card_type_insurance">Insurance Card</string>
+    <string name="card_type_other">Other Document</string>
+
+    <!-- Card field labels -->
+    <string name="card_field_holder_name">Holder name</string>
+    <string name="card_field_student_name">Student name</string>
+    <string name="card_field_employee_name">Employee name</string>
+    <string name="card_field_owner_name">Owner name</string>
+    <string name="card_field_title">Title</string>
+    <string name="card_field_id_number">ID number</string>
+    <string name="card_field_licence_number">Licence number</string>
+    <string name="card_field_passport_number">Passport number</string>
+    <string name="card_field_student_id">Student ID</string>
+    <string name="card_field_employee_id">Employee ID</string>
+    <string name="card_field_vehicle_number">Vehicle number</string>
+    <string name="card_field_policy_number">Policy number</string>
+    <string name="card_field_number">Number</string>
+    <string name="card_field_date_of_birth">Date of birth</string>
+    <string name="card_field_institute_name">Institute name</string>
+    <string name="card_field_company_name">Company name</string>
+    <string name="card_field_registration_number">Registration number</string>
+    <string name="card_field_provider_name">Provider name</string>
+    <string name="card_field_country">Country</string>
+    <string name="card_field_country_state">Country / state</string>
+    <string name="card_field_nationality">Nationality</string>
+    <string name="card_field_expiry">Expiry date</string>
+    <string name="card_field_notes">Notes</string>
+    <string name="card_field_optional">Optional</string>
+
+    <!-- Add / edit card -->
+    <string name="card_add_title">Add Card</string>
+    <string name="card_edit_title">Edit Card</string>
+    <string name="card_section_images">Card images</string>
+    <string name="card_section_details">Details</string>
+    <string name="card_section_color">Card color</string>
+    <string name="card_front_image">Front image</string>
+    <string name="card_back_image">Back image</string>
+    <string name="card_add_front">Add front image</string>
+    <string name="card_add_back">Add back image</string>
+    <string name="card_replace_image">Replace</string>
+    <string name="card_remove_image">Remove</string>
+    <string name="card_expiry_set">Set expiry date</string>
+    <string name="card_expiry_clear">Clear</string>
+    <string name="card_save">Save card</string>
+    <string name="card_saving">Saving…</string>
+    <string name="card_error_need_something">Add a name, number or image first</string>
+    <string name="card_error_save_failed">Could not save card</string>
+    <string name="card_error_image_failed">Image cannot be opened</string>
+    <string name="card_error_add_failed">Could not add this document</string>
+    <string name="card_error_no_storage">Not enough storage</string>
+    <string name="card_saved">Card saved</string>
+
+    <!-- Card detail -->
+    <string name="card_detail_title">Card</string>
+    <string name="card_show_number">Show</string>
+    <string name="card_hide_number">Hide</string>
+    <string name="card_verify_to_show">Please verify to view full number</string>
+    <string name="card_created_at">Added %1$s</string>
+    <string name="card_updated_at">Updated %1$s</string>
+    <string name="card_action_edit">Edit</string>
+    <string name="card_action_export">Export</string>
+    <string name="card_export_front">Export front image</string>
+    <string name="card_export_back">Export back image</string>
+    <string name="card_export_warning">This will create a decrypted copy outside your vault. Continue?</string>
+    <string name="card_export_done">Image exported</string>
+    <string name="card_export_failed">Export failed</string>
+    <string name="card_open_failed">Could not open document</string>
+    <string name="card_delete_title">Delete card?</string>
+    <string name="card_delete_message">This card will be moved to Deleted.</string>
+    <string name="card_restore">Restore</string>
+    <string name="card_delete_forever">Delete forever</string>
+    <string name="card_delete_forever_message">This card and its images will be permanently removed.</string>
+    <string name="card_restored">Card restored</string>
+    <string name="cd_card_front">Card front image</string>
+    <string name="cd_card_back">Card back image</string>
+    <string name="cd_card_color">Card color option</string>
 
     <!-- Premium cleanup / storage / health -->
     <string name="premium_section_cleanup">Cleanup</string>

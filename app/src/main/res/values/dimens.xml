@@ -36,6 +36,14 @@
     <dimen name="card_icon_size">44dp</dimen>
     <dimen name="logo_size">96dp</dimen>
 
+    <!-- Document cards (wallet) -->
+    <dimen name="card_wallet_radius">20dp</dimen>
+    <dimen name="card_wallet_height">200dp</dimen>
+    <dimen name="card_wallet_padding">20dp</dimen>
+    <dimen name="card_wallet_icon">28dp</dimen>
+    <dimen name="card_swatch_size">36dp</dimen>
+    <dimen name="card_image_height">200dp</dimen>
+
     <!-- Vault grid -->
     <dimen name="grid_spacing">3dp</dimen>
     <dimen name="thumb_corner">10dp</dimen>

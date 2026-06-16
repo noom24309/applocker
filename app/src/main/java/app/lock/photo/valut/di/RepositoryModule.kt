@@ -1,6 +1,7 @@
 package app.lock.photo.valut.di
 
 import app.lock.photo.valut.data.repository.AppLockRepositoryImpl
+import app.lock.photo.valut.data.repository.DocumentCardsRepositoryImpl
 import app.lock.photo.valut.data.repository.IntruderRepositoryImpl
 import app.lock.photo.valut.data.repository.PremiumToolsRepositoryImpl
 import app.lock.photo.valut.data.repository.PrivateDocumentsRepositoryImpl
@@ -8,6 +9,7 @@ import app.lock.photo.valut.data.repository.PrivateNotesRepositoryImpl
 import app.lock.photo.valut.data.repository.SettingsRepositoryImpl
 import app.lock.photo.valut.data.repository.VaultRepositoryImpl
 import app.lock.photo.valut.domain.repository.AppLockRepository
+import app.lock.photo.valut.domain.repository.DocumentCardsRepository
 import app.lock.photo.valut.domain.repository.IntruderRepository
 import app.lock.photo.valut.domain.repository.PremiumToolsRepository
 import app.lock.photo.valut.domain.repository.PrivateDocumentsRepository
@@ -65,4 +67,10 @@ abstract class RepositoryModule {
     abstract fun bindPremiumToolsRepository(
         impl: PremiumToolsRepositoryImpl
     ): PremiumToolsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindDocumentCardsRepository(
+        impl: DocumentCardsRepositoryImpl
+    ): DocumentCardsRepository
 }

@@ -1,18 +1,19 @@
 package app.lock.photo.valut.features.premium.cleanup
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import app.lock.photo.valut.R
 
 /**
  * Placeholder for the Smart Cleanup tool. The [SmartCleanupViewModel] and repository logic
  * already exist; the full UI is wired up in a later Phase 11 iteration.
  */
-class SmartCleanupActivity : AppCompatActivity() {
+class SmartCleanupActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

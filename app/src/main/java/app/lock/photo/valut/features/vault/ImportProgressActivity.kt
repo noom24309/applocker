@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.vault
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
@@ -11,7 +13,6 @@ import android.view.WindowManager
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ImportProgressActivity : AppCompatActivity() {
+class ImportProgressActivity : BaseActivity() {
 
     private lateinit var binding: ActivityImportProgressBinding
     private val viewModel: ImportMediaViewModel by viewModels()

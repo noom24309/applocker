@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/surface"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/space_m"
+    android:paddingBottom="@dimen/space_l">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="@dimen/space_s"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingBottom="@dimen/space_s"
+        android:text="@string/add_sheet_title"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_heading"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/optionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+</LinearLayout>

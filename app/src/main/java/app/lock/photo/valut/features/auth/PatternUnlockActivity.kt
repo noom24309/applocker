@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.auth
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
@@ -19,7 +21,7 @@ import javax.inject.Inject
 
 /** Pattern unlock screen with the same lockout and biometric behaviour as PIN unlock. */
 @AndroidEntryPoint
-class PatternUnlockActivity : androidx.appcompat.app.AppCompatActivity(), LockScreen {
+class PatternUnlockActivity : BaseActivity(), LockScreen {
 
     private lateinit var binding: ActivityPatternUnlockBinding
     private val viewModel: PatternUnlockViewModel by viewModels()

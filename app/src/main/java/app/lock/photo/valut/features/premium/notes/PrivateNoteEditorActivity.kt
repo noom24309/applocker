@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.premium.notes
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +11,6 @@ import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -20,7 +21,7 @@ import kotlinx.coroutines.launch
 
 /** Full-screen encrypted note editor. FLAG_SECURE; auto-saves on exit. */
 @AndroidEntryPoint
-class PrivateNoteEditorActivity : AppCompatActivity() {
+class PrivateNoteEditorActivity : BaseActivity() {
 
     private lateinit var binding: ActivityNoteEditorBinding
     private val viewModel: PrivateNoteEditorViewModel by viewModels()

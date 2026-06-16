@@ -1,9 +1,10 @@
 package app.lock.photo.valut.features.vault
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
@@ -25,7 +26,7 @@ import javax.inject.Inject
  * from screenshots/recents, and re-checks the lock state on resume.
  */
 @AndroidEntryPoint
-class VaultActivity : AppCompatActivity() {
+class VaultActivity : BaseActivity() {
 
     private lateinit var binding: ActivityVaultBinding
 

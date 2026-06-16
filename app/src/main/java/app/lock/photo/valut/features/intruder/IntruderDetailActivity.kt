@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.intruder
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -8,7 +10,6 @@ import android.text.format.DateUtils
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -28,7 +29,7 @@ import javax.inject.Inject
 
 /** Full-screen intruder photo + details. FLAG_SECURE; decrypted photo cleared on close. */
 @AndroidEntryPoint
-class IntruderDetailActivity : AppCompatActivity() {
+class IntruderDetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityIntruderDetailBinding
     private val viewModel: IntruderDetailViewModel by viewModels()

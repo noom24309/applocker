@@ -1,10 +1,11 @@
 package app.lock.photo.valut.features.auth
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
 
 /** Two-phase pattern setup (draw → confirm) launched after master verification. */
 @AndroidEntryPoint
-class PatternSetupActivity : AppCompatActivity(), LockExempt {
+class PatternSetupActivity : BaseActivity(), LockExempt {
 
     private lateinit var binding: ActivityPatternSetupBinding
     private val viewModel: PatternSetupViewModel by viewModels()

@@ -136,6 +136,15 @@
             android:name=".features.premium.documents.PrivateDocumentsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".features.premium.documents.cards.AddEditDocumentCardActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".features.premium.documents.cards.DocumentCardDetailActivity"
+            android:exported="false" />
+
         <!-- Premium cleanup tools -->
         <activity
             android:name=".features.premium.cleanup.StorageAnalyzerActivity"

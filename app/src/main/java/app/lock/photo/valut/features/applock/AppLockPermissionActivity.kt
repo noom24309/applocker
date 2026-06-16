@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.applock
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -7,7 +9,6 @@ import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
  * forced — each card shows status and a single action; Continue unlocks once granted.
  */
 @AndroidEntryPoint
-class AppLockPermissionActivity : AppCompatActivity() {
+class AppLockPermissionActivity : BaseActivity() {
 
     private lateinit var binding: ActivityAppLockPermissionBinding
     private val viewModel: AppLockPermissionViewModel by viewModels()

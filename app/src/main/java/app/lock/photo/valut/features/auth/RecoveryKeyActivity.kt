@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.auth
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -7,7 +9,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
  * hash is stored. Continues to biometric setup.
  */
 @AndroidEntryPoint
-class RecoveryKeyActivity : AppCompatActivity(), LockExempt {
+class RecoveryKeyActivity : BaseActivity(), LockExempt {
 
     private lateinit var binding: ActivityRecoveryKeyBinding
     private val viewModel: RecoveryKeyViewModel by viewModels()

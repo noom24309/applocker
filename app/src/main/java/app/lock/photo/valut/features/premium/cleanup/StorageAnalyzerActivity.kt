@@ -1,11 +1,12 @@
 package app.lock.photo.valut.features.premium.cleanup
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -18,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class StorageAnalyzerActivity : AppCompatActivity() {
+class StorageAnalyzerActivity : BaseActivity() {
 
     private lateinit var binding: ActivityStorageAnalyzerBinding
     private val viewModel: StorageAnalyzerViewModel by viewModels()

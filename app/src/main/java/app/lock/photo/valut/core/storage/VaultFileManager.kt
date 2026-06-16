@@ -45,11 +45,14 @@ class VaultFileManager @Inject constructor(
     // Phase 11 encrypted private documents.
     val encryptedDocumentsDir: File get() = File(encryptedRoot, "documents")
 
+    // Phase 12 encrypted document-card images (front/back).
+    val encryptedDocumentCardsDir: File get() = File(encryptedRoot, "cards")
+
     fun createVaultDirectories() {
         listOf(
             root, photosDir, videosDir, thumbnailsDir, tempDir,
             encryptedRoot, encryptedPhotosDir, encryptedVideosDir, encryptedThumbnailsDir,
-            encryptedDocumentsDir,
+            encryptedDocumentsDir, encryptedDocumentCardsDir,
             intruderRoot, intruderEncryptedDir, intruderThumbnailsDir
         ).forEach { it.mkdirs() }
         // Prevent media scanning of the entire vault tree.

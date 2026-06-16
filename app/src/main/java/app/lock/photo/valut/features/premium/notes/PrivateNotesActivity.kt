@@ -1,11 +1,12 @@
 package app.lock.photo.valut.features.premium.notes
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
@@ -20,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PrivateNotesActivity : AppCompatActivity() {
+class PrivateNotesActivity : BaseActivity() {
 
     private lateinit var binding: ActivityPrivateNotesBinding
     private val viewModel: PrivateNotesViewModel by viewModels()

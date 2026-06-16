@@ -170,3 +170,39 @@ val MIGRATION_6_7 = object : Migration(6, 7) {
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_documents_vaultMode` ON `private_documents` (`vaultMode`)")
     }
 }
+
+/**
+ * v7 → v8 (Phase 12 Document Cards). Adds the private_document_cards table for wallet-style
+ * encrypted cards (ID, licence, passport, …). Additive only — no existing table is touched,
+ * so imported files, notes and the vault are all left intact.
+ */
+val MIGRATION_7_8 = object : Migration(7, 8) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL(
+            """
+            CREATE TABLE IF NOT EXISTS `private_document_cards` (
+              `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+              `cardType` TEXT NOT NULL,
+              `holderNameEncrypted` TEXT,
+              `documentNumberEncrypted` TEXT,
+              `secondaryTextEncrypted` TEXT,
+              `issuerEncrypted` TEXT,
+              `notesEncrypted` TEXT,
+              `expiryDate` INTEGER,
+              `frontImageEncryptedPath` TEXT,
+              `backImageEncryptedPath` TEXT,
+              `cardColorKey` TEXT NOT NULL DEFAULT 'indigo',
+              `vaultMode` TEXT NOT NULL DEFAULT 'REAL',
+              `isFavorite` INTEGER NOT NULL DEFAULT 0,
+              `isDeleted` INTEGER NOT NULL DEFAULT 0,
+              `deletedAt` INTEGER,
+              `createdAt` INTEGER NOT NULL,
+              `updatedAt` INTEGER NOT NULL
+            )
+            """.trimIndent()
+        )
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_document_cards_isDeleted` ON `private_document_cards` (`isDeleted`)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_document_cards_vaultMode` ON `private_document_cards` (`vaultMode`)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_document_cards_isFavorite` ON `private_document_cards` (`isFavorite`)")
+    }
+}

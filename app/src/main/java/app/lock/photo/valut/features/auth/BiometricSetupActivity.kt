@@ -1,9 +1,10 @@
 package app.lock.photo.valut.features.auth
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +23,7 @@ import javax.inject.Inject
  * Falls back to a simple "Continue" action when biometrics aren't available.
  */
 @AndroidEntryPoint
-class BiometricSetupActivity : AppCompatActivity(), LockExempt {
+class BiometricSetupActivity : BaseActivity(), LockExempt {
 
     private lateinit var binding: ActivityBiometricSetupBinding
     private val viewModel: BiometricSetupViewModel by viewModels()

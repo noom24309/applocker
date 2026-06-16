@@ -1,11 +1,12 @@
 package app.lock.photo.valut.features.vault
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -21,7 +22,7 @@ import kotlinx.coroutines.launch
  * shown with plain files still on disk.
  */
 @AndroidEntryPoint
-class EncryptionMigrationActivity : AppCompatActivity() {
+class EncryptionMigrationActivity : BaseActivity() {
 
     private lateinit var binding: ActivityEncryptionMigrationBinding
     private val viewModel: EncryptionMigrationViewModel by viewModels()

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/card_wallet_height"
+    android:layout_marginStart="@dimen/screen_padding"
+    android:layout_marginTop="@dimen/space_m"
+    android:layout_marginEnd="@dimen/screen_padding"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="@dimen/card_wallet_radius"
+    app:cardElevation="3dp">
+
+    <FrameLayout
+        android:id="@+id/gradientLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_card_indigo"
+        android:padding="@dimen/card_wallet_padding">
+
+        <ImageView
+            android:id="@+id/cardWatermark"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="bottom|end"
+            android:alpha="0.16"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_card_id"
+            app:tint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/cardTypeIcon"
+                    android:layout_width="@dimen/card_wallet_icon"
+                    android:layout_height="@dimen/card_wallet_icon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_card_id"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/cardTypeLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_heading"
+                    android:textStyle="bold"
+                    tools:text="ID CARD" />
+
+                <ImageView
+                    android:id="@+id/cardFavorite"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="@dimen/space_s"
+                    android:contentDescription="@string/action_favorite"
+                    android:src="@drawable/ic_favorite_border"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="@dimen/space_s"
+                    android:alpha="0.9"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/white" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/cardHolderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Ahmed Ali" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_s"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cardNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFeatureSettings="tnum"
+                    android:letterSpacing="0.12"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_body"
+                    tools:text="•••• 4321" />
+
+                <TextView
+                    android:id="@+id/cardExpiry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_s"
+                    android:alpha="0.92"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_caption"
+                    tools:text="12/2029" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,9 +1,10 @@
 package app.lock.photo.valut.features.applock
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import app.lock.photo.valut.databinding.ActivityAppLockBinding
@@ -12,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /** Host for the App Lock dashboard, installed-apps list and settings. */
 @AndroidEntryPoint
-class AppLockActivity : AppCompatActivity() {
+class AppLockActivity : BaseActivity() {
 
     private lateinit var binding: ActivityAppLockBinding
 

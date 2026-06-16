@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/card_detail_title"
+        app:titleTextColor="@color/text_primary" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingTop="@dimen/space_s"
+            android:paddingEnd="@dimen/screen_padding"
+            android:paddingBottom="@dimen/space_xl">
+
+            <include
+                android:id="@+id/preview"
+                layout="@layout/item_document_card" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/frontImageCard"
+                style="@style/Widget.App.Card"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_image_height"
+                android:layout_marginTop="@dimen/space_m"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/frontImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/cd_card_front"
+                    android:scaleType="centerCrop" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/backImageCard"
+                style="@style/Widget.App.Card"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_image_height"
+                android:layout_marginTop="@dimen/space_s"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/backImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/cd_card_back"
+                    android:scaleType="centerCrop" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_l">
+
+                    <!-- Holder -->
+                    <LinearLayout
+                        android:id="@+id/rowHolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/holderLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_tertiary"
+                            android:textSize="@dimen/text_caption"
+                            tools:text="Holder name" />
+
+                        <TextView
+                            android:id="@+id/holderValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body"
+                            android:textStyle="bold"
+                            tools:text="Ahmed Ali" />
+                    </LinearLayout>
+
+                    <!-- Number with show/hide -->
+                    <LinearLayout
+                        android:id="@+id/rowNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_m"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/numberLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_tertiary"
+                                android:textSize="@dimen/text_caption"
+                                tools:text="ID number" />
+
+                            <TextView
+                                android:id="@+id/numberValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFeatureSettings="tnum"
+                                android:letterSpacing="0.08"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/text_body"
+                                android:textStyle="bold"
+                                tools:text="•••• 4321" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/showHideButton"
+                            style="@style/Widget.Material3.Button.TextButton.Icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_show_number"
+                            android:textColor="@color/primary"
+                            app:icon="@drawable/ic_visibility"
+                            app:iconTint="@color/primary" />
+                    </LinearLayout>
+
+                    <!-- Secondary -->
+                    <LinearLayout
+                        android:id="@+id/rowSecondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_m"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/secondaryLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_tertiary"
+                            android:textSize="@dimen/text_caption"
+                            tools:text="Institute name" />
+
+                        <TextView
+                            android:id="@+id/secondaryValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body"
+                            tools:text="City University" />
+                    </LinearLayout>
+
+                    <!-- Issuer -->
+                    <LinearLayout
+                        android:id="@+id/rowIssuer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_m"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/issuerLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_tertiary"
+                            android:textSize="@dimen/text_caption"
+                            tools:text="Country" />
+
+                        <TextView
+                            android:id="@+id/issuerValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body"
+                            tools:text="United Kingdom" />
+                    </LinearLayout>
+
+                    <!-- Expiry -->
+                    <LinearLayout
+                        android:id="@+id/rowExpiry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_m"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_field_expiry"
+                            android:textColor="@color/text_tertiary"
+                            android:textSize="@dimen/text_caption" />
+
+                        <TextView
+                            android:id="@+id/expiryValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body"
+                            tools:text="12/2029" />
+                    </LinearLayout>
+
+                    <!-- Notes -->
+                    <LinearLayout
+                        android:id="@+id/rowNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_m"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_field_notes"
+                            android:textColor="@color/text_tertiary"
+                            android:textSize="@dimen/text_caption" />
+
+                        <TextView
+                            android:id="@+id/notesValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body"
+                            tools:text="Some notes" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/createdText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:textColor="@color/text_tertiary"
+                android:textSize="@dimen/text_caption"
+                tools:text="Added 12 Jun 2026" />
+
+            <TextView
+                android:id="@+id/updatedText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/text_tertiary"
+                android:textSize="@dimen/text_caption"
+                tools:text="Updated 12 Jun 2026" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.applock
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -13,7 +15,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -41,7 +42,7 @@ import javax.inject.Inject
  * FLAG_SECURE keeps it out of screenshots/recents; Back/Home keep the app locked.
  */
 @AndroidEntryPoint
-class AppLockOverlayActivity : AppCompatActivity(), LockExempt {
+class AppLockOverlayActivity : BaseActivity(), LockExempt {
 
     private lateinit var binding: ActivityAppLockOverlayBinding
     private val viewModel: AppLockOverlayViewModel by viewModels()

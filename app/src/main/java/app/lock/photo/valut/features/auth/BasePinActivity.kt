@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.auth
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -7,7 +9,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.common.Constants
@@ -21,7 +22,7 @@ import app.lock.photo.valut.core.lock.LockExempt
  * This base wires the numeric keypad, manages the entered digits and renders the
  * dot indicator, then notifies the subclass when a full PIN is entered.
  */
-abstract class BasePinActivity : AppCompatActivity(), LockExempt {
+abstract class BasePinActivity : BaseActivity(), LockExempt {
 
     @get:LayoutRes
     protected abstract val layoutRes: Int

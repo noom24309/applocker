@@ -1,15 +1,23 @@
 package app.lock.photo.valut.features.premium
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.AppLockStateManager
 import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.databinding.ActivityPremiumToolsBinding
 import app.lock.photo.valut.domain.model.IntruderTrigger
+import app.lock.photo.valut.domain.model.VaultMode
+import app.lock.photo.valut.domain.repository.DocumentCardsRepository
+import app.lock.photo.valut.domain.repository.PrivateDocumentsRepository
 import app.lock.photo.valut.domain.repository.SettingsRepository
+import kotlinx.coroutines.flow.combine
 import app.lock.photo.valut.features.premium.cleanup.DuplicateFinderActivity
 import app.lock.photo.valut.features.premium.cleanup.LargeFilesActivity
 import app.lock.photo.valut.features.premium.cleanup.SmartCleanupActivity
@@ -24,12 +32,14 @@ import javax.inject.Inject
 
 /** Phase 11 — Premium Tools dashboard. Only the implemented tools are shown (no fake buttons). */
 @AndroidEntryPoint
-class PremiumToolsActivity : AppCompatActivity() {
+class PremiumToolsActivity : BaseActivity() {
 
     private lateinit var binding: ActivityPremiumToolsBinding
 
     @Inject lateinit var appLockStateManager: AppLockStateManager
     @Inject lateinit var settingsRepository: SettingsRepository
+    @Inject lateinit var documentCardsRepository: DocumentCardsRepository
+    @Inject lateinit var privateDocumentsRepository: PrivateDocumentsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +53,24 @@ class PremiumToolsActivity : AppCompatActivity() {
         binding.cardSmartCleanup.setOnClickListener { startActivity(SmartCleanupActivity.intent(this)) }
         binding.cardStorage.setOnClickListener { startActivity(StorageAnalyzerActivity.intent(this)) }
         binding.cardHealth.setOnClickListener { startActivity(VaultHealthActivity.intent(this)) }
+
+        observeDocumentCounts()
+    }
+
+    /** Shows live "%d cards · %d files" on the Private Documents tile. */
+    private fun observeDocumentCounts() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                combine(
+                    documentCardsRepository.observeActiveCount(VaultMode.REAL),
+                    privateDocumentsRepository.observeDocuments(VaultMode.REAL)
+                ) { cardCount, files -> cardCount to files.size }
+                    .collect { (cardCount, fileCount) ->
+                        binding.documentsSubtitle.text =
+                            getString(R.string.documents_tools_summary, cardCount, fileCount)
+                    }
+            }
+        }
     }
 
     override fun onResume() {

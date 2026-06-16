@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.camera
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +9,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -39,7 +40,7 @@ import javax.inject.Inject
  * captures in the background and never writes to public storage.
  */
 @AndroidEntryPoint
-class PrivateCameraActivity : AppCompatActivity() {
+class PrivateCameraActivity : BaseActivity() {
 
     private lateinit var binding: ActivityPrivateCameraBinding
     private val viewModel: PrivateCameraViewModel by viewModels()

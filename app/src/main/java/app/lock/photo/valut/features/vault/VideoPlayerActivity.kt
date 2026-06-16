@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.vault
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -7,7 +9,6 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 @AndroidEntryPoint
-class VideoPlayerActivity : AppCompatActivity() {
+class VideoPlayerActivity : BaseActivity() {
 
     private lateinit var binding: ActivityVideoPlayerBinding
     private val viewModel: VideoPlayerViewModel by viewModels()

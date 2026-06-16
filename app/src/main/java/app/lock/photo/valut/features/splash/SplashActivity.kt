@@ -1,9 +1,10 @@
 package app.lock.photo.valut.features.splash
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -17,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SplashActivity : AppCompatActivity(), LockExempt {
+class SplashActivity : BaseActivity(), LockExempt {
 
     private lateinit var binding: ActivitySplashBinding
     private val viewModel: SplashViewModel by viewModels()

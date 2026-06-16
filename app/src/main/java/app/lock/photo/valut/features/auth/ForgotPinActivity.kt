@@ -1,9 +1,10 @@
 package app.lock.photo.valut.features.auth
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
  * Change-PIN in reset mode (no old PIN required). Purely local — no email/server.
  */
 @AndroidEntryPoint
-class ForgotPinActivity : AppCompatActivity(), LockExempt {
+class ForgotPinActivity : BaseActivity(), LockExempt {
 
     private lateinit var binding: ActivityForgotPinBinding
     private val viewModel: ForgotPinViewModel by viewModels()

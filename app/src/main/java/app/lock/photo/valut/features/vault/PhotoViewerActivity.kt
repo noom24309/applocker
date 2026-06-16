@@ -1,11 +1,12 @@
 package app.lock.photo.valut.features.vault
 
+import app.lock.photo.valut.core.ui.BaseActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -25,7 +26,7 @@ import kotlinx.coroutines.launch
 import android.widget.Toast
 
 @AndroidEntryPoint
-class PhotoViewerActivity : AppCompatActivity() {
+class PhotoViewerActivity : BaseActivity() {
 
     private lateinit var binding: ActivityPhotoViewerBinding
     private val viewModel: PhotoViewerViewModel by viewModels()
