@@ -24,7 +24,7 @@ interface VaultRepository {
     fun getMediaByAlbumFlow(albumId: Long): Flow<List<VaultMediaEntity>>
     /** Loose media not filed into any folder (shown under the folders on the vault home). */
     fun getUnsortedMediaFlow(): Flow<List<VaultMediaEntity>>
-    fun getAlbumsFlow(): Flow<List<AlbumWithCount>>
+    fun getAlbumsFlow(mediaType: String? = null): Flow<List<AlbumWithCount>>
     fun observeMediaById(id: Long): Flow<VaultMediaEntity?>
     fun observeVaultCounts(): Flow<VaultCounts>
 
@@ -72,7 +72,7 @@ interface VaultRepository {
      */
     suspend fun restoreToGallery(mediaIds: List<Long>): Int
 
-    suspend fun createAlbum(name: String): Long
+    suspend fun createAlbum(name: String, mediaType: String? = null): Long
     suspend fun renameAlbum(albumId: Long, newName: String)
     /** Deletes the album; media is preserved and detached to the main vault. */
     suspend fun deleteAlbum(albumId: Long)

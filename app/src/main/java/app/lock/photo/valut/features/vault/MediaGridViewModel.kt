@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import app.lock.photo.valut.data.local.entity.VaultMediaEntity
 import app.lock.photo.valut.domain.model.ExportResult
 import app.lock.photo.valut.domain.model.GridSource
+import app.lock.photo.valut.domain.model.MediaType
 import app.lock.photo.valut.domain.model.SortOrder
 import app.lock.photo.valut.domain.repository.VaultRepository
 import app.lock.photo.valut.features.vault.model.AlbumUiModel
@@ -39,6 +40,12 @@ class MediaGridViewModel @Inject constructor(
         GridSource.valueOf(savedStateHandle[ARG_SOURCE] ?: GridSource.PHOTOS.name)
     private val albumId: Long = savedStateHandle[ARG_ALBUM_ID] ?: -1L
 
+    /** Photos-only / videos-only view (used by the Pictures/Videos album flow), or null for all. */
+    val mediaFilter: MediaType? =
+        savedStateHandle.get<String?>(ARG_MEDIA_FILTER)?.let {
+            runCatching { MediaType.valueOf(it) }.getOrNull()
+        }
+
     private val sourceFlow = when (source) {
         GridSource.PHOTOS -> repository.getPhotosFlow()
         GridSource.VIDEOS -> repository.getVideosFlow()
@@ -57,13 +64,15 @@ class MediaGridViewModel @Inject constructor(
     val items: StateFlow<List<VaultMediaUiModel>> = combine(
         sourceFlow, sortOrder, selectedIds
     ) { entities, order, selected ->
-        entities.sortedWith(comparatorFor(order)).map { it.toUiModel(isSelected = it.id in selected) }
+        entities.sortedWith(comparatorFor(order))
+            .map { it.toUiModel(isSelected = it.id in selected) }
+            .filter { mediaFilter == null || it.mediaType == mediaFilter }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
     val selectionCount: StateFlow<Int> =
         selectedIds.map { it.size }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), 0)
 
-    val albums: StateFlow<List<AlbumUiModel>> = repository.getAlbumsFlow()
+    val albums: StateFlow<List<AlbumUiModel>> = repository.getAlbumsFlow(mediaFilter?.name)
         .map { list -> list.map { it.toUiModel() } }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
@@ -141,5 +150,6 @@ class MediaGridViewModel @Inject constructor(
     companion object {
         const val ARG_SOURCE = "arg_source"
         const val ARG_ALBUM_ID = "arg_album_id"
+        const val ARG_MEDIA_FILTER = "arg_media_filter"
     }
 }

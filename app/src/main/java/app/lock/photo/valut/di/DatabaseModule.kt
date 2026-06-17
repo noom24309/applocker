@@ -10,6 +10,7 @@ import app.lock.photo.valut.core.database.MIGRATION_4_5
 import app.lock.photo.valut.core.database.MIGRATION_5_6
 import app.lock.photo.valut.core.database.MIGRATION_6_7
 import app.lock.photo.valut.core.database.MIGRATION_7_8
+import app.lock.photo.valut.core.database.MIGRATION_8_9
 import app.lock.photo.valut.data.local.dao.AppLockStatsDao
 import app.lock.photo.valut.data.local.dao.IntruderAttemptDao
 import app.lock.photo.valut.data.local.dao.LockedAppDao
@@ -38,7 +39,7 @@ object DatabaseModule {
         AppDatabase::class.java,
         Constants.DATABASE_NAME
     )
-        .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8)
+        .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
         // v1 was an empty placeholder schema (pre Phase 3) with no user media; only that
         // legacy case may fall back. Real data (v2+) always uses a proper migration.
         // NOTE: must be 1 (not 2) — MIGRATION_2_3 starts at 2, and Room forbids a version

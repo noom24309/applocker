@@ -49,7 +49,7 @@ class VaultActivity : BaseActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            replace(PrivateVaultFragment(), addToBackStack = false)
+            replace(VaultHomeFragment(), addToBackStack = false)
             maybeStartMigration()
         }
     }
@@ -91,10 +91,15 @@ class VaultActivity : BaseActivity() {
         replace(MediaGridFragment.newInstance(source, albumId, title))
     }
 
-    fun openAlbums() = replace(AlbumsFragment())
+    fun openAlbums(mediaFilter: app.lock.photo.valut.domain.model.MediaType? = null) =
+        replace(AlbumsFragment.newInstance(mediaFilter))
 
-    fun openAlbumDetail(albumId: Long, name: String) {
-        replace(MediaGridFragment.newInstance(GridSource.ALBUM, albumId, name))
+    fun openAlbumDetail(
+        albumId: Long,
+        name: String,
+        mediaFilter: app.lock.photo.valut.domain.model.MediaType? = null
+    ) {
+        replace(MediaGridFragment.newInstance(GridSource.ALBUM, albumId, name, mediaFilter))
     }
 
     private fun replace(fragment: Fragment, addToBackStack: Boolean = true) {

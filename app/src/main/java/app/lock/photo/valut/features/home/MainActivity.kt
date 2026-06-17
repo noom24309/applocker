@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import app.lock.photo.valut.R
 import app.lock.photo.valut.databinding.ActivityMainBinding
-import app.lock.photo.valut.features.applock.AppLockActivity
 import app.lock.photo.valut.features.premium.PremiumToolsActivity
 import app.lock.photo.valut.features.settings.SettingsFragment
 import app.lock.photo.valut.features.vault.VaultActivity
@@ -44,16 +43,8 @@ class MainActivity : BaseActivity() {
                     showFragment(HomeFragment())
                     true
                 }
-                R.id.nav_settings -> {
-                    showFragment(SettingsFragment())
-                    true
-                }
-                // App Lock, Vault and Tools open their own screens; keep the
-                // current tab selected so returning lands back where we were.
-                R.id.nav_app_lock -> {
-                    startActivity(AppLockActivity.intent(this))
-                    false
-                }
+                // Vault and Tools open their own screens; keep the current tab
+                // selected so returning lands back where we were.
                 R.id.nav_vault -> {
                     startActivity(VaultActivity.intent(this))
                     false
@@ -64,6 +55,14 @@ class MainActivity : BaseActivity() {
                 }
                 else -> false
             }
+        }
+    }
+
+    /** Opens Settings over the home tab (reachable via the gear on Home). */
+    fun showSettings() {
+        supportFragmentManager.commit {
+            replace(binding.fragmentContainer.id, SettingsFragment())
+            addToBackStack(null)
         }
     }
 

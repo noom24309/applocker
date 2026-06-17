@@ -6,12 +6,18 @@
     android:layout_height="match_parent"
     android:background="@color/viewer_bg">
 
+    <!--
+      texture_view: a secure window (FLAG_SECURE) with the default SurfaceView often renders
+      black / fails to show video on many devices and emulators. A TextureView plays reliably
+      while still being excluded from screenshots by the window flag.
+    -->
     <androidx.media3.ui.PlayerView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:resize_mode="fit"
-        app:show_buffering="when_playing" />
+        app:show_buffering="when_playing"
+        app:surface_type="texture_view" />
 
     <TextView
         android:id="@+id/tvError"

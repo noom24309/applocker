@@ -232,6 +232,11 @@
 
     <!-- Vault home -->
     <string name="vault_title">Vault</string>
+    <string name="vault_dashboard_subtitle">Protect your privacy security</string>
+    <string name="vault_cat_pictures">Pictures</string>
+    <string name="vault_cat_videos">Videos</string>
+    <string name="vault_cat_apps">Apps</string>
+    <string name="vault_cat_documents">Documents</string>
     <string name="vault_photos">Private Photos</string>
     <string name="vault_videos">Private Videos</string>
     <string name="vault_albums">Albums</string>
@@ -259,6 +264,8 @@
     <string name="empty_recycle_bin">Recycle bin is empty.</string>
     <string name="empty_album">This album is empty.</string>
     <string name="empty_albums">No albums yet. Create one to organize your media.</string>
+    <string name="empty_pictures">No pictures</string>
+    <string name="empty_videos_short">No videos</string>
 
     <!-- Import -->
     <string name="import_title">Import Media</string>

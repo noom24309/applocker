@@ -55,7 +55,8 @@ class VaultRepositoryImpl @Inject constructor(
         mediaDao.observeMediaByAlbum(albumId)
     override fun getUnsortedMediaFlow(): Flow<List<VaultMediaEntity>> =
         mediaDao.observeMediaNotInAlbum()
-    override fun getAlbumsFlow(): Flow<List<AlbumWithCount>> = albumDao.observeAlbums()
+    override fun getAlbumsFlow(mediaType: String?): Flow<List<AlbumWithCount>> =
+        albumDao.observeAlbums(mediaType)
     override fun observeMediaById(id: Long): Flow<VaultMediaEntity?> = mediaDao.observeById(id)
     override fun observeVaultCounts(): Flow<VaultCounts> = mediaDao.observeVaultCounts()
 
@@ -228,9 +229,11 @@ class VaultRepositoryImpl @Inject constructor(
         restored
     }
 
-    override suspend fun createAlbum(name: String): Long = withContext(io) {
+    override suspend fun createAlbum(name: String, mediaType: String?): Long = withContext(io) {
         val now = System.currentTimeMillis()
-        albumDao.insertAlbum(VaultAlbumEntity(name = name.trim(), createdAt = now, updatedAt = now))
+        albumDao.insertAlbum(
+            VaultAlbumEntity(name = name.trim(), createdAt = now, updatedAt = now, mediaType = mediaType)
+        )
     }
 
     override suspend fun renameAlbum(albumId: Long, newName: String) = withContext(io) {

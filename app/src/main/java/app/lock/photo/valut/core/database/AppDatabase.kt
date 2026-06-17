@@ -36,7 +36,7 @@ import app.lock.photo.valut.data.local.entity.VaultMediaEntity
         PrivateDocumentEntity::class,
         PrivateDocumentCardEntity::class
     ],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -13,10 +13,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.databinding.FragmentAlbumsBinding
+import app.lock.photo.valut.domain.model.MediaType
+import app.lock.photo.valut.features.vault.adapter.AlbumListItem
 import app.lock.photo.valut.features.vault.adapter.AlbumsAdapter
 import app.lock.photo.valut.features.vault.model.AlbumUiModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -35,6 +39,11 @@ class AlbumsFragment : Fragment() {
     @Inject
     lateinit var thumbnailLoader: SecureThumbnailLoader
 
+    /** Photos-only / videos-only entry point, or null for all media. */
+    private val mediaFilter: MediaType? by lazy {
+        arguments?.getString(ARG_MEDIA_FILTER)?.let { runCatching { MediaType.valueOf(it) }.getOrNull() }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -45,27 +54,36 @@ class AlbumsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setNavigationOnClickListener { parentFragmentManager.popBackStack() }
-        binding.emptyState.emptyIcon.setImageResource(R.drawable.ic_album)
-        binding.emptyState.emptyText.setText(R.string.empty_albums)
+        binding.toolbar.title = getString(
+            when (mediaFilter) {
+                MediaType.PHOTO -> R.string.vault_cat_pictures
+                MediaType.VIDEO -> R.string.vault_cat_videos
+                else -> R.string.vault_albums
+            }
+        )
+        // The grid carries its own "+" create tile, so the FAB is hidden here.
+        binding.fabCreateAlbum.isVisible = false
 
-        adapter = AlbumsAdapter(thumbnailLoader, onClick = ::openAlbum, onOptions = ::showOptions)
+        adapter = AlbumsAdapter(
+            thumbnailLoader,
+            onClick = ::openAlbum,
+            onOptions = ::showOptions,
+            onCreate = ::showCreateDialog
+        )
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerView.adapter = adapter
-
-        binding.fabCreateAlbum.setOnClickListener { showCreateDialog() }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.albums.collect { albums ->
-                    adapter.submitList(albums)
-                    binding.emptyState.root.isVisible = albums.isEmpty()
+                    adapter.submitList(albums.map { AlbumListItem.Album(it) } + AlbumListItem.AddTile)
                 }
             }
         }
     }
 
     private fun openAlbum(album: AlbumUiModel) {
-        (activity as VaultActivity).openAlbumDetail(album.id, album.name)
+        (activity as VaultActivity).openAlbumDetail(album.id, album.name, mediaFilter)
     }
 
     private fun showOptions(album: AlbumUiModel, anchor: View) {
@@ -122,5 +140,13 @@ class AlbumsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val ARG_MEDIA_FILTER = "arg_media_filter"
+
+        fun newInstance(mediaFilter: MediaType? = null) = AlbumsFragment().apply {
+            arguments = bundleOf(ARG_MEDIA_FILTER to mediaFilter?.name)
+        }
     }
 }

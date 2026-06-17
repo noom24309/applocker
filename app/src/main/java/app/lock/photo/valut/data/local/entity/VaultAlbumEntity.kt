@@ -12,5 +12,7 @@ data class VaultAlbumEntity(
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis(),
     val isHidden: Boolean = false,
-    val sortOrder: Int = 0
+    val sortOrder: Int = 0,
+    /** "PHOTO" or "VIDEO" — keeps the Pictures and Videos folder sets separate. Null = legacy/all. */
+    val mediaType: String? = null
 )

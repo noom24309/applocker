@@ -1,5 +1,6 @@
 package app.lock.photo.valut.features.vault
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.lock.photo.valut.domain.repository.VaultRepository
@@ -15,16 +16,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AlbumsViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val repository: VaultRepository
 ) : ViewModel() {
 
-    val albums: StateFlow<List<AlbumUiModel>> = repository.getAlbumsFlow()
+    /** Which folder set this screen shows ("PHOTO"/"VIDEO"), or null for all. */
+    private val mediaType: String? = savedStateHandle[AlbumsFragment.ARG_MEDIA_FILTER]
+
+    val albums: StateFlow<List<AlbumUiModel>> = repository.getAlbumsFlow(mediaType)
         .map { list -> list.map { it.toUiModel() } }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
     fun createAlbum(name: String) {
         if (name.isBlank()) return
-        viewModelScope.launch { repository.createAlbum(name) }
+        viewModelScope.launch { repository.createAlbum(name, mediaType) }
     }
 
     fun renameAlbum(albumId: Long, newName: String) {

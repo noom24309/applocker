@@ -4,6 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.lock.photo.valut.core.common.Formatters
 import app.lock.photo.valut.core.storage.VaultFileManager
+import app.lock.photo.valut.domain.model.VaultMode
+import app.lock.photo.valut.domain.repository.AppLockRepository
+import app.lock.photo.valut.domain.repository.PrivateDocumentsRepository
 import app.lock.photo.valut.domain.repository.VaultRepository
 import app.lock.photo.valut.features.vault.model.VaultHomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +22,9 @@ import javax.inject.Inject
 @HiltViewModel
 class VaultHomeViewModel @Inject constructor(
     private val repository: VaultRepository,
-    private val fileManager: VaultFileManager
+    private val fileManager: VaultFileManager,
+    private val appLockRepository: AppLockRepository,
+    private val documentsRepository: PrivateDocumentsRepository
 ) : ViewModel() {
 
     private val events = Channel<Unit>(Channel.BUFFERED)
@@ -32,11 +37,15 @@ class VaultHomeViewModel @Inject constructor(
 
     val uiState: StateFlow<VaultHomeUiState> = combine(
         repository.observeVaultCounts(),
-        repository.getAlbumsFlow()
-    ) { counts, albums ->
+        repository.getAlbumsFlow(),
+        appLockRepository.observeLockedPackageNames(),
+        documentsRepository.observeDocuments(VaultMode.REAL)
+    ) { counts, albums, lockedApps, documents ->
         VaultHomeUiState(
             photoCount = counts.photoCount,
             videoCount = counts.videoCount,
+            appCount = lockedApps.size,
+            documentCount = documents.size,
             albumCount = albums.size,
             favoriteCount = counts.favoriteCount,
             recycleBinCount = counts.recycleBinCount,

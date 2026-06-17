@@ -7,6 +7,8 @@ import app.lock.photo.valut.data.local.relation.AlbumWithCount
 data class VaultHomeUiState(
     val photoCount: Int = 0,
     val videoCount: Int = 0,
+    val appCount: Int = 0,
+    val documentCount: Int = 0,
     val albumCount: Int = 0,
     val favoriteCount: Int = 0,
     val recycleBinCount: Int = 0,

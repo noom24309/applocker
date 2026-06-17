@@ -81,7 +81,21 @@ class MediaGridFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         binding.emptyState.emptyIcon.setImageResource(emptyIcon())
         binding.emptyState.emptyText.setText(emptyText())
+
+        // Inside a folder, a "+" FAB adds media of this view's type (photos or videos).
+        binding.fabAdd.isVisible = isAlbum
+        binding.fabAdd.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(pickerType()))
+        }
     }
+
+    /** Constrain the picker to the view's media type so Pictures/Videos stay separate. */
+    private fun pickerType(): ActivityResultContracts.PickVisualMedia.VisualMediaType =
+        when (viewModel.mediaFilter) {
+            MediaType.PHOTO -> ActivityResultContracts.PickVisualMedia.ImageOnly
+            MediaType.VIDEO -> ActivityResultContracts.PickVisualMedia.VideoOnly
+            else -> ActivityResultContracts.PickVisualMedia.ImageAndVideo
+        }
 
     private fun observe() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -180,7 +194,7 @@ class MediaGridFragment : Fragment() {
 
     private fun onNormalMenu(item: android.view.MenuItem): Boolean = when (item.itemId) {
         R.id.action_add_to_album -> {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+            pickMedia.launch(PickVisualMediaRequest(pickerType()))
             true
         }
         R.id.action_sort -> { showSortDialog(); true }
@@ -290,13 +304,17 @@ class MediaGridFragment : Fragment() {
         else -> R.drawable.ic_photo
     }
 
-    private fun emptyText(): Int = when (viewModel.source) {
-        GridSource.PHOTOS -> R.string.empty_photos
-        GridSource.VIDEOS -> R.string.empty_videos
-        GridSource.FAVORITES -> R.string.empty_favorites
-        GridSource.RECENT -> R.string.empty_recent
-        GridSource.RECYCLE_BIN -> R.string.empty_recycle_bin
-        GridSource.ALBUM -> R.string.empty_album
+    private fun emptyText(): Int = when {
+        isAlbum && viewModel.mediaFilter == MediaType.PHOTO -> R.string.empty_pictures
+        isAlbum && viewModel.mediaFilter == MediaType.VIDEO -> R.string.empty_videos_short
+        else -> when (viewModel.source) {
+            GridSource.PHOTOS -> R.string.empty_photos
+            GridSource.VIDEOS -> R.string.empty_videos
+            GridSource.FAVORITES -> R.string.empty_favorites
+            GridSource.RECENT -> R.string.empty_recent
+            GridSource.RECYCLE_BIN -> R.string.empty_recycle_bin
+            GridSource.ALBUM -> R.string.empty_album
+        }
     }
 
     override fun onDestroyView() {
@@ -308,12 +326,18 @@ class MediaGridFragment : Fragment() {
         private const val ARG_TITLE = "arg_title"
         private const val MAX_ITEMS = 100
 
-        fun newInstance(source: GridSource, albumId: Long, title: String?): MediaGridFragment =
+        fun newInstance(
+            source: GridSource,
+            albumId: Long,
+            title: String?,
+            mediaFilter: MediaType? = null
+        ): MediaGridFragment =
             MediaGridFragment().apply {
                 arguments = bundleOf(
                     MediaGridViewModel.ARG_SOURCE to source.name,
                     MediaGridViewModel.ARG_ALBUM_ID to albumId,
-                    ARG_TITLE to title
+                    ARG_TITLE to title,
+                    MediaGridViewModel.ARG_MEDIA_FILTER to mediaFilter?.name
                 )
             }
     }

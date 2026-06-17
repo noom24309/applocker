@@ -206,3 +206,15 @@ val MIGRATION_7_8 = object : Migration(7, 8) {
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_private_document_cards_isFavorite` ON `private_document_cards` (`isFavorite`)")
     }
 }
+
+/**
+ * v8 → v9 (typed albums). Adds a `mediaType` column to vault_album so the Pictures and Videos
+ * folder sets stay separate. Existing albums are tagged 'PHOTO' so they remain visible under
+ * Pictures. Additive — no media is touched.
+ */
+val MIGRATION_8_9 = object : Migration(8, 9) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE vault_album ADD COLUMN mediaType TEXT")
+        db.execSQL("UPDATE vault_album SET mediaType = 'PHOTO' WHERE mediaType IS NULL")
+    }
+}

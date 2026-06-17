@@ -90,14 +90,17 @@ class VideoPlayerActivity : BaseActivity() {
 
     private fun prepare(file: File) {
         if (preparedPath == file.absolutePath) return
-        if (!file.exists()) {
+        if (!file.exists() || file.length() == 0L) {
             showError()
             return
         }
+        val exo = player ?: return
         binding.tvError.isVisible = false
         preparedPath = file.absolutePath
-        player?.setMediaItem(MediaItem.fromUri(Uri.fromFile(file)))
-        player?.prepare()
+        exo.setMediaItem(MediaItem.fromUri(Uri.fromFile(file)))
+        exo.prepare()
+        exo.playWhenReady = true
+        exo.play()
     }
 
     private fun initPlayer() {

@@ -30,5 +30,16 @@
             android:id="@+id/emptyState"
             layout="@layout/view_empty_state"
             android:visibility="gone" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/space_l"
+            android:contentDescription="@string/vault_add_photo"
+            android:src="@drawable/ic_add"
+            android:visibility="gone"
+            app:tint="@color/white" />
     </FrameLayout>
 </LinearLayout>
