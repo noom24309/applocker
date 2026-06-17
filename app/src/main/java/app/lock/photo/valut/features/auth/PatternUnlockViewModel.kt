@@ -1,16 +1,11 @@
 package app.lock.photo.valut.features.auth
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.lock.photo.valut.core.lock.AppLockStateManager
-import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.core.security.PatternSecurityManager
 import app.lock.photo.valut.core.security.WrongAttemptManager
-import app.lock.photo.valut.domain.model.IntruderTrigger
-import app.lock.photo.valut.domain.model.IntruderTriggerContext
 import app.lock.photo.valut.domain.repository.SettingsRepository
-import app.lock.photo.valut.domain.usecase.HandleIntruderWrongAttemptUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -26,19 +21,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PatternUnlockViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
     private val patternSecurityManager: PatternSecurityManager,
     private val wrongAttemptManager: WrongAttemptManager,
     private val appLockStateManager: AppLockStateManager,
-    private val settingsRepository: SettingsRepository,
-    private val handleIntruderWrongAttempt: HandleIntruderWrongAttemptUseCase
+    private val settingsRepository: SettingsRepository
 ) : ViewModel() {
-
-    private val triggerSource: IntruderTrigger =
-        when (IntruderTrigger.fromStorage(savedStateHandle[LockRouter.EXTRA_TRIGGER_SOURCE])) {
-            IntruderTrigger.VAULT_UNLOCK -> IntruderTrigger.VAULT_UNLOCK
-            else -> IntruderTrigger.PATTERN_UNLOCK
-        }
 
     sealed interface Event {
         data object Success : Event
@@ -68,13 +55,6 @@ class PatternUnlockViewModel @Inject constructor(
                 onAuthenticated()
             } else {
                 val status = wrongAttemptManager.recordWrongAttempt()
-                handleIntruderWrongAttempt(
-                    IntruderTriggerContext(
-                        trigger = triggerSource,
-                        unlockMethod = "PATTERN",
-                        wrongAttemptCount = status.attemptCount
-                    )
-                )
                 _state.update {
                     it.copy(
                         attemptCount = status.attemptCount,

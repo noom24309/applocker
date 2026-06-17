@@ -236,6 +236,16 @@ class VaultRepositoryImpl @Inject constructor(
         )
     }
 
+    override suspend fun getOrCreateAlbum(name: String, mediaType: String?): Long = withContext(io) {
+        albumDao.findByNameAndType(name.trim(), mediaType)?.id
+            ?: run {
+                val now = System.currentTimeMillis()
+                albumDao.insertAlbum(
+                    VaultAlbumEntity(name = name.trim(), createdAt = now, updatedAt = now, mediaType = mediaType)
+                )
+            }
+    }
+
     override suspend fun renameAlbum(albumId: Long, newName: String) = withContext(io) {
         albumDao.renameAlbum(albumId, newName.trim(), System.currentTimeMillis())
     }

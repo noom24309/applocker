@@ -21,13 +21,12 @@ data class StorageBreakdown(
     val documentsBytes: Long = 0,
     val privateCameraBytes: Long = 0,
     val recycleBinBytes: Long = 0,
-    val intruderBytes: Long = 0,
     val thumbnailsBytes: Long = 0,
     val tempCacheBytes: Long = 0
 ) {
     val totalBytes: Long
         get() = photosBytes + videosBytes + documentsBytes + recycleBinBytes +
-            intruderBytes + thumbnailsBytes + tempCacheBytes
+            thumbnailsBytes + tempCacheBytes
 }
 
 /** Vault health snapshot. */
@@ -36,7 +35,6 @@ data class VaultHealth(
     val unencryptedCount: Int,
     val failedRepairCount: Int,
     val recycleBinCount: Int,
-    val intruderCount: Int,
     val tempCacheBytes: Long,
     val appLockReady: Boolean,
     val lastScanAt: Long

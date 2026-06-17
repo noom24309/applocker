@@ -81,11 +81,6 @@ class SettingsFragment : Fragment() {
         binding.rowBiometric.setOnClickListener { toggleBiometric() }
         binding.rowAutoLock.setOnClickListener { showAutoLockPicker() }
         binding.rowWrongAttempt.setOnClickListener { showWrongAttemptInfo() }
-        binding.rowIntruder.setOnClickListener {
-            startActivity(
-                app.lock.photo.valut.features.intruder.IntruderActivity.intent(requireContext(), openSettings = true)
-            )
-        }
         binding.rowLockNow.setOnClickListener { viewModel.lockNow() }
         binding.rowAppearance.setOnClickListener { showAppearancePicker() }
         binding.rowPrivacy.setOnClickListener { showPrivacyPolicy() }

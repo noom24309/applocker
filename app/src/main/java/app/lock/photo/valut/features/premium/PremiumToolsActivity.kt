@@ -12,7 +12,6 @@ import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.AppLockStateManager
 import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.databinding.ActivityPremiumToolsBinding
-import app.lock.photo.valut.domain.model.IntruderTrigger
 import app.lock.photo.valut.domain.model.VaultMode
 import app.lock.photo.valut.domain.repository.DocumentCardsRepository
 import app.lock.photo.valut.domain.repository.PrivateDocumentsRepository
@@ -81,8 +80,7 @@ class PremiumToolsActivity : BaseActivity() {
                 startActivity(
                     LockRouter.lockIntent(
                         this@PremiumToolsActivity,
-                        settingsRepository.unlockMethod.first(),
-                        IntruderTrigger.VAULT_UNLOCK
+                        settingsRepository.unlockMethod.first()
                     )
                 )
                 finish()

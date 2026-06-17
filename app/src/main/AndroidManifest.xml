@@ -198,16 +198,6 @@
             android:taskAffinity=".applock.overlay"
             android:theme="@style/Theme.AppLockPhotoValut" />
 
-        <!-- Intruder Alert (Phase 7) -->
-        <activity
-            android:name=".features.intruder.IntruderActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".features.intruder.IntruderDetailActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppLockPhotoValut" />
-
         <service
             android:name=".core.applock.service.AppLockMonitorService"
             android:exported="false"

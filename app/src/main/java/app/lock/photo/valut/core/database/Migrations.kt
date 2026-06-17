@@ -218,3 +218,13 @@ val MIGRATION_8_9 = object : Migration(8, 9) {
         db.execSQL("UPDATE vault_album SET mediaType = 'PHOTO' WHERE mediaType IS NULL")
     }
 }
+
+/**
+ * v9 → v10 (Intruder Alert removed). Drops the now-unused intruder_attempts table and its
+ * indices. Only this one table is touched; vault, app-lock and document data are untouched.
+ */
+val MIGRATION_9_10 = object : Migration(9, 10) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("DROP TABLE IF EXISTS intruder_attempts")
+    }
+}

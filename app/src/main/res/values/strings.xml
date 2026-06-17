@@ -12,15 +12,67 @@
     <string name="coming_next_phase">Coming in next phase</string>
 
     <!-- Splash -->
-    <string name="splash_tagline">Secure. Private. Yours.</string>
+    <string name="splash_tagline">Private. Secure. Yours.</string>
+    <string name="splash_brand_lock">Lock</string>
+    <string name="splash_brand_amp">&amp;</string>
+    <string name="splash_brand_vault">Vault</string>
+    <string name="splash_securing">Securing your vault…</string>
+
+    <!-- Home screen (Lock & Vault redesign) -->
+    <string name="lv_brand_a">Lock &amp;</string>
+    <string name="lv_brand_b">Vault</string>
+    <string name="lv_subtitle">Secure your apps. Protect your privacy.</string>
+    <string name="lv_search_hint">Search apps...</string>
+    <string name="lv_chip_all">All</string>
+    <string name="lv_chip_locked">Locked</string>
+    <string name="lv_chip_unlocked">Unlocked</string>
+    <string name="lv_chip_system">System</string>
+    <string name="lv_stat_locked_apps">Locked Apps</string>
+    <string name="lv_stat_protection">Protection</string>
+    <string name="lv_stat_protection_value">Active</string>
+    <string name="lv_stat_protection_off">Off</string>
+    <string name="lv_stat_blocked">Blocked Today</string>
+    <string name="lv_stat_time">Protection Time</string>
+    <string name="lv_installed_apps">Installed Apps</string>
+    <string name="lv_app_count">(%1$d)</string>
+    <string name="lv_sort_az">Sort: A-Z</string>
+    <string name="lv_sort_za">Sort: Z-A</string>
+    <string name="lv_complete_setup">Complete Setup</string>
+    <string name="lv_complete_setup_sub">Grant remaining permissions to ensure complete protection.</string>
+    <string name="lv_finish_setup">Finish Setup</string>
+    <string name="lv_nav_home">Home</string>
+    <string name="lv_nav_vault">Vault</string>
+    <string name="lv_nav_tools">Tools</string>
+
+    <!-- Vault home (Lock & Vault redesign) -->
+    <string name="lv_vault_subtitle">Your private photos &amp; videos, secured.</string>
+    <string name="lv_vault_safe_title">Vault is Safe</string>
+    <string name="lv_vault_safe_sub">All your files are encrypted and stored securely.</string>
+    <string name="lv_vault_unsafe_title">Finish Encryption</string>
+    <string name="lv_vault_unsafe_sub">Some files are not encrypted yet. Tap to secure them.</string>
+    <string name="lv_vault_learn_more">Learn more</string>
+    <string name="lv_vault_used">Used</string>
+    <string name="lv_vault_percent">%1$d%%</string>
+    <string name="lv_vault_import_photos">Import Photos</string>
+    <string name="lv_vault_import_videos">Import Videos</string>
+    <string name="lv_vault_new_album">New Album</string>
+    <string name="lv_vault_settings">Vault Settings</string>
+    <string name="lv_vault_albums">Albums</string>
+    <string name="lv_vault_recent">Recent Media</string>
+    <string name="lv_view_all">View All</string>
+    <string name="lv_vault_all_photos">All Photos</string>
+    <string name="lv_vault_protected_title">Your Vault is Protected</string>
+    <string name="lv_vault_protected_sub">AES-256 encryption keeps your memories completely private.</string>
+    <string name="lv_vault_check_health">Check Health</string>
+    <string name="lv_vault_recent_empty">No media yet. Import photos or videos to get started.</string>
 
     <!-- Onboarding -->
     <string name="onboarding_title_1">App Lock Protection</string>
     <string name="onboarding_subtitle_1">Lock your private apps with PIN, Pattern, or Fingerprint.</string>
     <string name="onboarding_title_2">Private Photo Vault</string>
     <string name="onboarding_subtitle_2">Hide your personal photos and videos securely.</string>
-    <string name="onboarding_title_3">Intruder Alerts</string>
-    <string name="onboarding_subtitle_3">Capture wrong unlock attempts and protect your privacy.</string>
+    <string name="onboarding_title_3">Stay Private</string>
+    <string name="onboarding_subtitle_3">Your photos and files stay encrypted on your device.</string>
 
     <!-- Choose unlock method -->
     <string name="choose_method_title">Choose how to unlock</string>
@@ -64,7 +116,6 @@
     <string name="home_locked_apps">Locked Apps</string>
     <string name="home_photos">Private Photos</string>
     <string name="home_videos">Private Videos</string>
-    <string name="home_intruders">Intruder Alerts</string>
     <string name="home_quick_actions">Quick Actions</string>
     <string name="home_action_lock_app">Lock an App</string>
     <string name="home_action_add_photo">Add Photo</string>
@@ -602,98 +653,9 @@
     <string name="duration_hm">%1$dh %2$dm</string>
     <string name="duration_m">%1$dm</string>
 
-    <!-- ===== Phase 7: Intruder Alert ===== -->
-    <string name="intruder_alerts_title">Intruder Alerts</string>
-    <string name="intruder_settings_title">Intruder Alert</string>
-    <string name="intruder_detail_title">Intruder Alert</string>
-
-    <!-- Notification -->
-    <string name="intruder_channel_name">Security Alerts</string>
-    <string name="intruder_channel_desc">Alerts when an intruder photo is captured.</string>
-    <string name="intruder_notification_title">Intruder alert captured</string>
-    <string name="intruder_notification_text">A wrong unlock attempt was recorded.</string>
-    <string name="intruder_notification_title_hidden">Security alert</string>
-    <string name="intruder_notification_text_hidden">Security alert</string>
-    <string name="intruder_notification_open">Open Alerts</string>
-
-    <!-- Sources -->
-    <string name="intruder_source_app_unlock">App Unlock</string>
-    <string name="intruder_source_vault">Vault</string>
-    <string name="intruder_source_app_lock">App Lock</string>
-    <string name="intruder_source_calculator">Fake Calculator</string>
-    <string name="intruder_source_fake_crash">Fake Crash</string>
-    <string name="intruder_source_pattern">Pattern Unlock</string>
-
-    <!-- Alerts list -->
-    <string name="intruder_empty_title">No intruder alerts</string>
-    <string name="intruder_empty_subtitle">Wrong unlock attempts will appear here.</string>
-    <string name="intruder_time_attempts">%1$s · %2$d wrong attempts</string>
-    <string name="intruder_capture_failed">Capture failed</string>
-    <string name="intruder_status_captured">Captured</string>
-    <string name="intruder_delete_selected">Delete selected</string>
-    <string name="intruder_delete_title">Delete alert?</string>
-    <string name="intruder_delete_message">This permanently removes the record and its photo.</string>
-    <string name="intruder_clear_all">Clear all</string>
-    <string name="intruder_clear_all_title">Clear all alerts?</string>
-    <string name="intruder_clear_all_message">All intruder records and photos will be permanently deleted.</string>
-    <string name="intruder_record_missing">This alert is no longer available</string>
-
-    <!-- Detail -->
-    <string name="intruder_no_photo">Photo cannot be opened</string>
-    <string name="intruder_detail_source">Source</string>
-    <string name="intruder_detail_app">App</string>
-    <string name="intruder_detail_method">Method</string>
-    <string name="intruder_detail_attempts">Wrong attempts</string>
-    <string name="intruder_detail_time">Time</string>
-    <string name="intruder_detail_status">Status</string>
-    <string name="intruder_detail_reason">Reason</string>
-    <string name="intruder_export">Export</string>
-    <string name="intruder_export_title">Export photo?</string>
-    <string name="intruder_export_message">Export this intruder photo to your gallery?</string>
-    <string name="intruder_export_done">Exported to gallery</string>
-    <string name="intruder_export_failed">Export failed</string>
-
-    <!-- Settings -->
-    <string name="intruder_settings_subtitle">Capture a front-camera photo after wrong unlock attempts. You control everything.</string>
-    <string name="intruder_enable">Enable Intruder Alert</string>
-    <string name="intruder_enable_desc">Capture a photo after wrong PIN/pattern attempts</string>
-    <string name="intruder_permission_title">Camera permission</string>
-    <string name="intruder_permission_needed">Permission required</string>
-    <string name="intruder_no_camera">Camera is not available</string>
-    <string name="intruder_permission_explanation">Camera permission is used only to capture an intruder photo after multiple wrong unlock attempts. Photos stay on your device and are never uploaded or shared.</string>
-    <string name="intruder_section_capture">Capture</string>
-    <string name="intruder_after_attempts">Capture after wrong attempts</string>
-    <string name="intruder_after_attempts_desc">How many wrong attempts before a photo is taken</string>
-    <string name="intruder_section_storage">Storage &amp; alerts</string>
-    <string name="intruder_save_encrypted">Save photo encrypted</string>
-    <string name="intruder_save_encrypted_desc">Encrypt intruder photos at rest</string>
-    <string name="intruder_show_notification">Show notification after capture</string>
-    <string name="intruder_show_notification_desc">Notify you when a photo is captured</string>
-    <string name="intruder_hide_content">Hide notification content</string>
-    <string name="intruder_hide_content_desc">Show only a generic security alert</string>
-    <string name="intruder_auto_delete">Auto delete old records</string>
-    <string name="intruder_auto_delete_desc">Remove old alerts automatically</string>
-    <string name="intruder_max_records">Maximum records</string>
-    <string name="intruder_max_records_desc">Keep at most this many alerts</string>
-    <string name="intruder_privacy_note">Intruder photos are stored locally on your device, encrypted when enabled, and are never uploaded, sold, or shared.</string>
-
-    <!-- Auto-delete options -->
-    <string name="intruder_autodelete_never">Never</string>
-    <string name="intruder_autodelete_7">After 7 days</string>
-    <string name="intruder_autodelete_30">After 30 days</string>
-    <string name="intruder_autodelete_90">After 90 days</string>
-
-    <!-- Home card -->
-    <string name="intruder_status_disabled">Tap to review alerts</string>
-    <string name="intruder_no_alerts">No alerts yet</string>
-    <plurals name="intruder_alert_count">
-        <item quantity="one">%d alert</item>
-        <item quantity="other">%d alerts</item>
-    </plurals>
-
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">Privacy Policy</string>
-    <string name="privacy_policy_body">Usage Access Permission\nThis app uses Usage Access only to detect when apps selected by the user are opened, so the app can show the lock screen. Usage data is processed locally on the device and is not uploaded, sold, shared, or used for advertising.\n\nDisplay Over Other Apps\nThis app uses Display Over Other Apps only to show the lock screen over protected apps.\n\nForeground Service\nThis app uses a foreground service to keep App Lock protection active while enabled by the user.\n\nIntruder Alert\nIntruder Alert uses the device camera only after the user enables the feature and only after wrong PIN or Pattern attempts. Intruder photos are stored locally on the device, encrypted when enabled, and are not uploaded, sold, or shared.\n\nPremium Tools\nPremium cleanup tools such as duplicate finder, large file finder, and storage analyzer process vault files locally on the device. No photos, videos, documents, notes, file names, or analysis results are uploaded or shared.\n\nPrivate Notes and Private Documents are stored locally in encrypted form. The app does not upload or share this content.\n\nHidden and locked albums are privacy features controlled by the user and stored locally on the device.</string>
+    <string name="privacy_policy_body">Usage Access Permission\nThis app uses Usage Access only to detect when apps selected by the user are opened, so the app can show the lock screen. Usage data is processed locally on the device and is not uploaded, sold, shared, or used for advertising.\n\nDisplay Over Other Apps\nThis app uses Display Over Other Apps only to show the lock screen over protected apps.\n\nForeground Service\nThis app uses a foreground service to keep App Lock protection active while enabled by the user.\n\nPremium Tools\nPremium cleanup tools such as duplicate finder, large file finder, and storage analyzer process vault files locally on the device. No photos, videos, documents, notes, file names, or analysis results are uploaded or shared.\n\nPrivate Notes and Private Documents are stored locally in encrypted form. The app does not upload or share this content.\n\nHidden and locked albums are privacy features controlled by the user and stored locally on the device.</string>
 
     <!-- Phase 9: Private Camera -->
     <string name="camera_title">Private Camera</string>
@@ -923,7 +885,6 @@
     <string name="storage_total_label">Total vault storage</string>
     <string name="storage_private_camera">Private Camera</string>
     <string name="storage_thumbnails">Thumbnails</string>
-    <string name="storage_intruder">Intruder photos</string>
     <string name="storage_recycle_bin">Recycle Bin</string>
     <string name="storage_temp_cache">Temporary cache</string>
 

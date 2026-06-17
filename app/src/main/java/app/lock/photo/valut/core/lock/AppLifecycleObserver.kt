@@ -61,6 +61,10 @@ class AppLifecycleObserver @Inject constructor(
     }
 
     private suspend fun evaluateLock() {
+        // Returning from a trusted external screen we launched ourselves (system photo /
+        // document picker, delete confirmation) must not auto-lock — otherwise the unlock
+        // screen pops over an in-progress import. Consumed once per foreground return.
+        if (AutoLockGuard.consumeSuppression()) return
         // The app-lock overlay (for a protected third-party app) brings THIS process to the
         // foreground. Don't also fire the app's own auto-lock — otherwise two PIN screens
         // stack and the protected app never opens. (currentActivity may not have updated to

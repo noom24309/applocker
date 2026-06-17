@@ -79,18 +79,6 @@ class AppSettingsDataStore(
         val BATTERY_HELP_SHOWN = booleanPreferencesKey("battery_help_shown")
         val LAST_HANDLED_PACKAGE_TIME = longPreferencesKey("last_handled_package_time")
 
-        // --- Phase 7: Intruder Alert ---
-        val INTRUDER_ALERT_ENABLED = booleanPreferencesKey("intruder_alert_enabled")
-        val INTRUDER_CAPTURE_AFTER_ATTEMPTS = intPreferencesKey("intruder_capture_after_attempts")
-        val INTRUDER_CAPTURE_ON_APP_UNLOCK = booleanPreferencesKey("intruder_capture_on_app_unlock")
-        val INTRUDER_CAPTURE_ON_APP_LOCK_OVERLAY = booleanPreferencesKey("intruder_capture_on_app_lock_overlay")
-        val INTRUDER_CAPTURE_ON_VAULT_UNLOCK = booleanPreferencesKey("intruder_capture_on_vault_unlock")
-        val INTRUDER_SAVE_ENCRYPTED = booleanPreferencesKey("intruder_save_encrypted")
-        val INTRUDER_SHOW_NOTIFICATION = booleanPreferencesKey("intruder_show_notification")
-        val INTRUDER_HIDE_NOTIFICATION_CONTENT = booleanPreferencesKey("intruder_hide_notification_content")
-        val INTRUDER_AUTO_DELETE_MODE = stringPreferencesKey("intruder_auto_delete_mode")
-        val INTRUDER_MAX_RECORDS = intPreferencesKey("intruder_max_records")
-
         // --- Phase 9: Private Camera ---
         val PRIVATE_CAMERA_DEFAULT_FACING = stringPreferencesKey("private_camera_default_facing")
         val PRIVATE_CAMERA_DEFAULT_MODE = stringPreferencesKey("private_camera_default_mode")
@@ -266,37 +254,6 @@ class AppSettingsDataStore(
 
     val lastHandledPackageTime: Flow<Long> = read(Keys.LAST_HANDLED_PACKAGE_TIME, 0L)
     suspend fun setLastHandledPackageTime(value: Long) = write(Keys.LAST_HANDLED_PACKAGE_TIME, value)
-
-    // --- Phase 7: Intruder Alert ---
-    val intruderAlertEnabled: Flow<Boolean> = read(Keys.INTRUDER_ALERT_ENABLED, false)
-    suspend fun setIntruderAlertEnabled(value: Boolean) = write(Keys.INTRUDER_ALERT_ENABLED, value)
-
-    val intruderCaptureAfterAttempts: Flow<Int> = read(Keys.INTRUDER_CAPTURE_AFTER_ATTEMPTS, 2)
-    suspend fun setIntruderCaptureAfterAttempts(value: Int) = write(Keys.INTRUDER_CAPTURE_AFTER_ATTEMPTS, value)
-
-    val intruderCaptureOnAppUnlock: Flow<Boolean> = read(Keys.INTRUDER_CAPTURE_ON_APP_UNLOCK, true)
-    suspend fun setIntruderCaptureOnAppUnlock(value: Boolean) = write(Keys.INTRUDER_CAPTURE_ON_APP_UNLOCK, value)
-
-    val intruderCaptureOnAppLockOverlay: Flow<Boolean> = read(Keys.INTRUDER_CAPTURE_ON_APP_LOCK_OVERLAY, true)
-    suspend fun setIntruderCaptureOnAppLockOverlay(value: Boolean) = write(Keys.INTRUDER_CAPTURE_ON_APP_LOCK_OVERLAY, value)
-
-    val intruderCaptureOnVaultUnlock: Flow<Boolean> = read(Keys.INTRUDER_CAPTURE_ON_VAULT_UNLOCK, true)
-    suspend fun setIntruderCaptureOnVaultUnlock(value: Boolean) = write(Keys.INTRUDER_CAPTURE_ON_VAULT_UNLOCK, value)
-
-    val intruderSaveEncrypted: Flow<Boolean> = read(Keys.INTRUDER_SAVE_ENCRYPTED, true)
-    suspend fun setIntruderSaveEncrypted(value: Boolean) = write(Keys.INTRUDER_SAVE_ENCRYPTED, value)
-
-    val intruderShowNotification: Flow<Boolean> = read(Keys.INTRUDER_SHOW_NOTIFICATION, true)
-    suspend fun setIntruderShowNotification(value: Boolean) = write(Keys.INTRUDER_SHOW_NOTIFICATION, value)
-
-    val intruderHideNotificationContent: Flow<Boolean> = read(Keys.INTRUDER_HIDE_NOTIFICATION_CONTENT, false)
-    suspend fun setIntruderHideNotificationContent(value: Boolean) = write(Keys.INTRUDER_HIDE_NOTIFICATION_CONTENT, value)
-
-    val intruderAutoDeleteMode: Flow<String?> = readNullable(Keys.INTRUDER_AUTO_DELETE_MODE)
-    suspend fun setIntruderAutoDeleteMode(value: String) = write(Keys.INTRUDER_AUTO_DELETE_MODE, value)
-
-    val intruderMaxRecords: Flow<Int> = read(Keys.INTRUDER_MAX_RECORDS, 100)
-    suspend fun setIntruderMaxRecords(value: Int) = write(Keys.INTRUDER_MAX_RECORDS, value)
 
     // --- Phase 9: Private Camera ---
     val privateCameraDefaultFacing: Flow<String?> = readNullable(Keys.PRIVATE_CAMERA_DEFAULT_FACING)

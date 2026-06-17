@@ -23,6 +23,9 @@ class SplashActivity : BaseActivity(), LockExempt {
     private lateinit var binding: ActivitySplashBinding
     private val viewModel: SplashViewModel by viewModels()
 
+    // Full-bleed branded splash: the gradient must reach behind the status/nav bars.
+    override val applyEdgeToEdgeInsets: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)

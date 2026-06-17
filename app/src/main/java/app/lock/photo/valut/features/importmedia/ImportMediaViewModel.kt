@@ -43,6 +43,7 @@ class ImportMediaViewModel @Inject constructor(
             var videos = 0
             val originalsToRemove = mutableListOf<Uri>()
             val importedIds = mutableListOf<Long>()
+            val videoIds = mutableListOf<Long>()
             for ((index, uri) in uris.withIndex()) {
                 if (!isActive) break
                 _state.update { it.copy(currentFileName = "${index + 1} / ${uris.size}") }
@@ -50,7 +51,12 @@ class ImportMediaViewModel @Inject constructor(
                     is ImportItemResult.Success -> {
                         completed++
                         importedIds.add(result.mediaId)
-                        if (result.mediaType == MediaType.VIDEO) videos++ else photos++
+                        if (result.mediaType == MediaType.VIDEO) {
+                            videos++
+                            videoIds.add(result.mediaId)
+                        } else {
+                            photos++
+                        }
                         // Copy the original into the hidden shared folder (survives uninstall).
                         // Only when that copy succeeds do we queue the original for removal,
                         // so a photo is never lost. We queue the *resolved* MediaStore URI
@@ -75,8 +81,15 @@ class ImportMediaViewModel @Inject constructor(
                 }
             }
             // File freshly-imported items into the target folder, if one was given.
+            // Otherwise, auto-collect any imported videos into the "All Videos" album so
+            // every added video lands in a dedicated folder.
             if (albumId != NO_ALBUM && importedIds.isNotEmpty()) {
                 repository.moveToAlbum(importedIds, albumId)
+            } else if (videoIds.isNotEmpty()) {
+                val videosAlbumId = repository.getOrCreateAlbum(
+                    ALL_VIDEOS_ALBUM, MediaType.VIDEO.storageValue
+                )
+                repository.moveToAlbum(videoIds, videosAlbumId)
             }
             _state.update {
                 it.copy(
@@ -95,5 +108,6 @@ class ImportMediaViewModel @Inject constructor(
 
     companion object {
         const val NO_ALBUM = -1L
+        private const val ALL_VIDEOS_ALBUM = "All Videos"
     }
 }

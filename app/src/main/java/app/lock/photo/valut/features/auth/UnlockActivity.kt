@@ -11,7 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockScreen
 import app.lock.photo.valut.core.permissions.BiometricHelper
-import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
+import app.lock.photo.valut.features.home.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -118,7 +118,7 @@ class UnlockActivity : BasePinActivity(), LockScreen {
     }
 
     private fun goToMain() {
-        startActivity(AppLockPermissionActivity.gateIntent(this))
+        startActivity(Intent(this, MainActivity::class.java))
         finishAffinity()
     }
 

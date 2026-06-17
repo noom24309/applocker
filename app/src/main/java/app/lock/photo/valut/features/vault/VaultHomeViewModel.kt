@@ -9,6 +9,7 @@ import app.lock.photo.valut.domain.repository.AppLockRepository
 import app.lock.photo.valut.domain.repository.PrivateDocumentsRepository
 import app.lock.photo.valut.domain.repository.VaultRepository
 import app.lock.photo.valut.features.vault.model.VaultHomeUiState
+import app.lock.photo.valut.features.vault.model.toUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
@@ -39,8 +40,9 @@ class VaultHomeViewModel @Inject constructor(
         repository.observeVaultCounts(),
         repository.getAlbumsFlow(),
         appLockRepository.observeLockedPackageNames(),
-        documentsRepository.observeDocuments(VaultMode.REAL)
-    ) { counts, albums, lockedApps, documents ->
+        documentsRepository.observeDocuments(VaultMode.REAL),
+        repository.getRecentlyImportedFlow(limit = 12)
+    ) { counts, albums, lockedApps, documents, recent ->
         VaultHomeUiState(
             photoCount = counts.photoCount,
             videoCount = counts.videoCount,
@@ -50,6 +52,10 @@ class VaultHomeViewModel @Inject constructor(
             favoriteCount = counts.favoriteCount,
             recycleBinCount = counts.recycleBinCount,
             storageUsedText = Formatters.formatSize(counts.storageUsedBytes),
+            storagePercent = deviceStoragePercent(),
+            encryptionActive = repository.hasVaultKey(),
+            albums = albums.map { it.toUiModel() },
+            recentMedia = recent.map { it.toUiModel() },
             isLoading = false
         )
     }.stateIn(
@@ -57,6 +63,13 @@ class VaultHomeViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = VaultHomeUiState()
     )
+
+    /** Device storage used %, shown by the "Vault is Safe" ring. */
+    private fun deviceStoragePercent(): Int = runCatching {
+        val stat = android.os.StatFs(fileManager.encryptedPhotosDir.path)
+        val total = stat.totalBytes
+        if (total <= 0L) 0 else (((total - stat.availableBytes) * 100) / total).toInt()
+    }.getOrDefault(0)
 
     fun createAlbum(name: String) {
         if (name.isBlank()) return

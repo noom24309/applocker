@@ -7,14 +7,9 @@ import app.lock.photo.valut.core.applock.AppLockSessionManager
 import app.lock.photo.valut.core.security.PatternSecurityManager
 import app.lock.photo.valut.core.security.PinSecurityManager
 import app.lock.photo.valut.core.security.WrongAttemptManager
-import app.lock.photo.valut.domain.model.FakeMode
-import app.lock.photo.valut.domain.model.IntruderTrigger
-import app.lock.photo.valut.domain.model.IntruderTriggerContext
-import app.lock.photo.valut.domain.model.LockTheme
 import app.lock.photo.valut.domain.repository.AppLockRepository
 import app.lock.photo.valut.domain.repository.SettingsRepository
 import app.lock.photo.valut.domain.usecase.GetEffectiveLockSettingsUseCase
-import app.lock.photo.valut.domain.usecase.HandleIntruderWrongAttemptUseCase
 import app.lock.photo.valut.domain.usecase.RecordLocalAppLockStatsUseCase
 import app.lock.photo.valut.features.applock.model.AppLockOverlayUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,8 +39,7 @@ class AppLockOverlayViewModel @Inject constructor(
     private val appLockRepository: AppLockRepository,
     private val settingsRepository: SettingsRepository,
     private val getEffectiveLockSettings: GetEffectiveLockSettingsUseCase,
-    private val recordStats: RecordLocalAppLockStatsUseCase,
-    private val handleIntruderWrongAttempt: HandleIntruderWrongAttemptUseCase
+    private val recordStats: RecordLocalAppLockStatsUseCase
 ) : ViewModel() {
 
     sealed interface Event {
@@ -129,15 +123,6 @@ class AppLockOverlayViewModel @Inject constructor(
         appLockRepository.recordPerAppFailedUnlock(packageName)
         recordStats(RecordLocalAppLockStatsUseCase.Event.FAILURE)
         val status = wrongAttemptManager.recordWrongAttempt()
-        handleIntruderWrongAttempt(
-            IntruderTriggerContext(
-                trigger = intruderTrigger(),
-                lockedPackageName = packageName,
-                lockedAppName = _state.value.lockedAppName,
-                unlockMethod = if (_state.value.unlockMethod.usesPattern) "PATTERN" else "PIN",
-                wrongAttemptCount = status.attemptCount
-            )
-        )
         _state.update {
             it.copy(
                 attemptCount = status.attemptCount,
@@ -146,15 +131,6 @@ class AppLockOverlayViewModel @Inject constructor(
             )
         }
         events.trySend(Event.Wrong(status.attemptCount, status.lockedOut))
-    }
-
-    private fun intruderTrigger(): IntruderTrigger {
-        val s = _state.value
-        return when {
-            s.fakeMode == FakeMode.FAKE_CALCULATOR || s.theme == LockTheme.CALCULATOR -> IntruderTrigger.FAKE_CALCULATOR
-            s.fakeMode == FakeMode.FAKE_CRASH || s.theme == LockTheme.FAKE_CRASH -> IntruderTrigger.FAKE_CRASH
-            else -> IntruderTrigger.APP_LOCK_OVERLAY
-        }
     }
 
     private suspend fun refreshLockout() {

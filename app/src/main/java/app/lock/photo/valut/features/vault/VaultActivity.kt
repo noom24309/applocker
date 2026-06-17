@@ -65,8 +65,7 @@ class VaultActivity : BaseActivity() {
                 startActivity(
                     LockRouter.lockIntent(
                         this@VaultActivity,
-                        settingsRepository.unlockMethod.first(),
-                        app.lock.photo.valut.domain.model.IntruderTrigger.VAULT_UNLOCK
+                        settingsRepository.unlockMethod.first()
                     )
                 )
                 finish()

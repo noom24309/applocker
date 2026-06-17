@@ -13,6 +13,10 @@ data class VaultHomeUiState(
     val favoriteCount: Int = 0,
     val recycleBinCount: Int = 0,
     val storageUsedText: String = Formatters.formatSize(0),
+    val storagePercent: Int = 0,
+    val encryptionActive: Boolean = false,
+    val albums: List<AlbumUiModel> = emptyList(),
+    val recentMedia: List<VaultMediaUiModel> = emptyList(),
     val isLoading: Boolean = true
 )
 

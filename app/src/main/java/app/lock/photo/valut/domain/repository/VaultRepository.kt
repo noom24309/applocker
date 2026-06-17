@@ -73,6 +73,9 @@ interface VaultRepository {
     suspend fun restoreToGallery(mediaIds: List<Long>): Int
 
     suspend fun createAlbum(name: String, mediaType: String? = null): Long
+
+    /** Returns the id of the album with [name]+[mediaType], creating it if missing. */
+    suspend fun getOrCreateAlbum(name: String, mediaType: String? = null): Long
     suspend fun renameAlbum(albumId: Long, newName: String)
     /** Deletes the album; media is preserved and detached to the main vault. */
     suspend fun deleteAlbum(albumId: Long)

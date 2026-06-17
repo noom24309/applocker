@@ -4,8 +4,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Brand -->
-    <color name="primary">#5B4DF0</color>
-    <color name="primary_dark">#4334D6</color>
+    <color name="primary">#6559EB</color>
+    <color name="primary_dark">#6559EB</color>
     <color name="primary_light">#8E83F5</color>
     <color name="primary_container">#ECEAFE</color>
 
@@ -16,7 +16,7 @@
     <color name="accent_blue">#3B82F6</color>
 
     <!-- Surfaces / background -->
-    <color name="background">#ffffff</color>
+    <color name="background">#FBFBFE</color>
     <color name="surface">#FFFFFFFF</color>
     <color name="card_stroke">#EDEEF5</color>
 
@@ -90,4 +90,42 @@
 
     <color name="alert_badge_bg">#FDE7E7</color>
     <color name="storage_track">#E7E9F2</color>
+
+    <!-- Splash screen (branded) -->
+    <color name="splash_grad_top">#5A63F0</color>
+    <color name="splash_grad_bottom">#8B3CE6</color>
+    <color name="splash_accent">#2FE0D0</color>
+    <color name="splash_lock_green">#16D08D</color>
+    <color name="splash_blob">#1AFFFFFF</color>
+    <color name="splash_glass">#26FFFFFF</color>
+    <color name="splash_halo">#14FFFFFF</color>
+    <color name="splash_dot">#33FFFFFF</color>
+    <color name="splash_subtitle">#CDD7FB</color>
+
+    <!-- Home screen (Lock & Vault redesign) -->
+    <color name="home_bg">#FBFBFE</color>
+    <color name="home_primary">#5F57D5</color>
+    <color name="home_primary_dark">#4036D9</color>
+    <color name="home_primary_light">#EEEFFF</color>
+    <color name="home_card">#FFFFFF</color>
+    <color name="home_title">#071333</color>
+    <color name="home_subtitle">#6F7590</color>
+    <color name="home_border">#E2E2EC</color>
+    <color name="home_divider">#EEF0F6</color>
+    <color name="home_success">#16C76A</color>
+    <color name="home_info">#2F7BFF</color>
+    <color name="home_teal">#22C7D9</color>
+    <color name="home_toggle_off">#DADDE8</color>
+    <color name="home_hint">#A3A7BC</color>
+    <color name="home_chip_text">#5F6680</color>
+    <color name="home_system_icon">#7B8098</color>
+    <color name="home_setup_stroke">#D8D4FF</color>
+    <color name="home_setup_bg">#F4F3FF</color>
+    <!-- Soft icon-tile backgrounds for the stats card -->
+    <color name="home_tile_purple">#EEEFFF</color>
+    <color name="home_tile_green">#E3F9EE</color>
+    <color name="home_tile_blue">#E5F0FF</color>
+    <color name="home_tile_teal">#E2F8FB</color>
+    <color name="home_tile_amber">#FFF1DD</color>
+    <color name="home_tile_pink">#FDEBEF</color>
 </resources>

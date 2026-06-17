@@ -6,7 +6,6 @@ import app.lock.photo.valut.core.security.VaultKeyManager
 import app.lock.photo.valut.core.storage.CryptoFileManager
 import app.lock.photo.valut.core.storage.SecureCacheManager
 import app.lock.photo.valut.core.storage.VaultFileManager
-import app.lock.photo.valut.data.local.dao.IntruderAttemptDao
 import app.lock.photo.valut.data.local.dao.PrivateDocumentDao
 import app.lock.photo.valut.data.local.dao.VaultMediaDao
 import app.lock.photo.valut.data.local.entity.VaultMediaEntity
@@ -30,7 +29,6 @@ import javax.inject.Singleton
 class PremiumToolsRepositoryImpl @Inject constructor(
     private val mediaDao: VaultMediaDao,
     private val documentDao: PrivateDocumentDao,
-    private val intruderDao: IntruderAttemptDao,
     private val fileManager: VaultFileManager,
     private val secureCacheManager: SecureCacheManager,
     private val cryptoFileManager: CryptoFileManager,
@@ -70,7 +68,6 @@ class PremiumToolsRepositoryImpl @Inject constructor(
             documentsBytes = documentDao.sumActiveSize(VaultMode.REAL),
             privateCameraBytes = mediaDao.sumPrivateCameraBytes(),
             recycleBinBytes = mediaDao.sumRecycleBinBytes(),
-            intruderBytes = folderSize(fileManager.intruderEncryptedDir),
             thumbnailsBytes = folderSize(fileManager.encryptedThumbnailsDir),
             tempCacheBytes = folderSize(secureCacheManager.tempDir)
         )
@@ -82,7 +79,6 @@ class PremiumToolsRepositoryImpl @Inject constructor(
             unencryptedCount = mediaDao.observeUnencryptedCount().first(),
             failedRepairCount = mediaDao.observeFailedCount().first(),
             recycleBinCount = mediaDao.countRecycleBin(),
-            intruderCount = intruderDao.countAttempts(),
             tempCacheBytes = folderSize(secureCacheManager.tempDir),
             appLockReady = permissionChecker.hasAllRequiredAppLockPermissions(),
             lastScanAt = dataStore.lastVaultScanTime.first()

@@ -3,7 +3,6 @@ package app.lock.photo.valut
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import app.lock.photo.valut.core.datastore.AppSettingsDataStore
-import app.lock.photo.valut.core.intruder.IntruderCleanupWorker
 import app.lock.photo.valut.core.lock.AppLifecycleObserver
 import app.lock.photo.valut.core.storage.SecureCacheManager
 import app.lock.photo.valut.domain.model.AppearanceMode
@@ -35,8 +34,6 @@ class App : Application() {
         lifecycleObserver.register(this)
         // Cold start: clear any decrypted temp files left behind by a previous crash/kill.
         runCatching { secureCacheManager.clearAllDecryptedTempFiles() }
-        // Schedule the daily intruder-records cleanup (idempotent, never blocks startup).
-        runCatching { IntruderCleanupWorker.schedule(this) }
     }
 
     /**

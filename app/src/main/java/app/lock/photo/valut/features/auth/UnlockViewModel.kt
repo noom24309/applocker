@@ -1,16 +1,11 @@
 package app.lock.photo.valut.features.auth
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.lock.photo.valut.core.lock.AppLockStateManager
-import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.core.security.PinSecurityManager
 import app.lock.photo.valut.core.security.WrongAttemptManager
-import app.lock.photo.valut.domain.model.IntruderTrigger
-import app.lock.photo.valut.domain.model.IntruderTriggerContext
 import app.lock.photo.valut.domain.repository.SettingsRepository
-import app.lock.photo.valut.domain.usecase.HandleIntruderWrongAttemptUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -33,16 +28,11 @@ data class UnlockUiState(
 
 @HiltViewModel
 class UnlockViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
     private val pinSecurityManager: PinSecurityManager,
     private val wrongAttemptManager: WrongAttemptManager,
     private val appLockStateManager: AppLockStateManager,
-    private val settingsRepository: SettingsRepository,
-    private val handleIntruderWrongAttempt: HandleIntruderWrongAttemptUseCase
+    private val settingsRepository: SettingsRepository
 ) : ViewModel() {
-
-    private val triggerSource: IntruderTrigger =
-        IntruderTrigger.fromStorage(savedStateHandle[LockRouter.EXTRA_TRIGGER_SOURCE])
 
     sealed interface Event {
         data object Success : Event
@@ -73,13 +63,6 @@ class UnlockViewModel @Inject constructor(
                 onAuthenticated()
             } else {
                 val status = wrongAttemptManager.recordWrongAttempt()
-                handleIntruderWrongAttempt(
-                    IntruderTriggerContext(
-                        trigger = triggerSource,
-                        unlockMethod = "PIN",
-                        wrongAttemptCount = status.attemptCount
-                    )
-                )
                 _state.update {
                     it.copy(
                         attemptCount = status.attemptCount,

@@ -37,11 +37,6 @@ class VaultFileManager @Inject constructor(
     val encryptedVideosDir: File get() = File(encryptedRoot, "videos")
     val encryptedThumbnailsDir: File get() = File(encryptedRoot, "thumbnails")
 
-    // Phase 7 intruder storage tree.
-    private val intruderRoot: File get() = File(root, "intruder")
-    val intruderEncryptedDir: File get() = File(intruderRoot, "encrypted")
-    val intruderThumbnailsDir: File get() = File(intruderRoot, "thumbnails")
-
     // Phase 11 encrypted private documents.
     val encryptedDocumentsDir: File get() = File(encryptedRoot, "documents")
 
@@ -52,16 +47,9 @@ class VaultFileManager @Inject constructor(
         listOf(
             root, photosDir, videosDir, thumbnailsDir, tempDir,
             encryptedRoot, encryptedPhotosDir, encryptedVideosDir, encryptedThumbnailsDir,
-            encryptedDocumentsDir, encryptedDocumentCardsDir,
-            intruderRoot, intruderEncryptedDir, intruderThumbnailsDir
+            encryptedDocumentsDir, encryptedDocumentCardsDir
         ).forEach { it.mkdirs() }
         // Prevent media scanning of the entire vault tree.
-        File(root, ".nomedia").takeIf { !it.exists() }?.createNewFile()
-    }
-
-    /** Ensures the intruder storage subtree exists. */
-    fun createIntruderDirectories() {
-        listOf(intruderRoot, intruderEncryptedDir, intruderThumbnailsDir).forEach { it.mkdirs() }
         File(root, ".nomedia").takeIf { !it.exists() }?.createNewFile()
     }
 

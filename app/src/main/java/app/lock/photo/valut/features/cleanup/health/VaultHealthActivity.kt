@@ -54,7 +54,6 @@ class VaultHealthActivity : BaseActivity() {
         addRow(getString(R.string.health_unencrypted), h.unencryptedCount.toString())
         addRow(getString(R.string.health_failed_repairs), h.failedRepairCount.toString())
         addRow(getString(R.string.storage_recycle_bin), h.recycleBinCount.toString())
-        addRow(getString(R.string.home_intruders), h.intruderCount.toString())
         addRow(getString(R.string.storage_temp_cache), Formatters.formatSize(h.tempCacheBytes))
     }
 

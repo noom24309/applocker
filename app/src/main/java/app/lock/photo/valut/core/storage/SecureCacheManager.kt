@@ -20,9 +20,6 @@ class SecureCacheManager @Inject constructor(
 
     val tempDir: File get() = File(context.cacheDir, TEMP_DIR)
 
-    /** Dedicated temp area for decrypted intruder photos/thumbnails. */
-    val intruderTempDir: File get() = File(tempDir, INTRUDER_TEMP_DIR)
-
     /** Dedicated temp area for plain photos/videos captured by the Private Camera, before encryption. */
     val privateCameraTempDir: File get() = File(tempDir, PRIVATE_CAMERA_TEMP_DIR)
 
@@ -31,22 +28,10 @@ class SecureCacheManager @Inject constructor(
         File(tempDir, ".nomedia").takeIf { !it.exists() }?.createNewFile()
     }
 
-    fun ensureIntruderTempDir() {
-        ensureTempDir()
-        intruderTempDir.mkdirs()
-    }
-
     fun createTempDecryptedFile(extension: String): File {
         ensureTempDir()
         val safeExt = extension.ifBlank { "tmp" }
         return File(tempDir, "${UUID.randomUUID()}.$safeExt")
-    }
-
-    /** A temp file for a decrypted intruder photo (in the intruder temp subdir). */
-    fun createIntruderTempFile(extension: String): File {
-        ensureIntruderTempDir()
-        val safeExt = extension.ifBlank { "jpg" }
-        return File(intruderTempDir, "${UUID.randomUUID()}.$safeExt")
     }
 
     fun ensurePrivateCameraTempDir() {
@@ -75,14 +60,9 @@ class SecureCacheManager @Inject constructor(
         privateCameraTempDir.listFiles()?.forEach { it.deleteRecursively() }
     }
 
-    /** Recursively clears every decrypted temp file (vault + intruder), keeping .nomedia. */
+    /** Recursively clears every decrypted temp file, keeping .nomedia. */
     fun clearAllDecryptedTempFiles() {
         tempDir.listFiles()?.forEach { if (it.name != ".nomedia") it.deleteRecursively() }
-    }
-
-    /** Clears only the decrypted intruder temp files. */
-    fun clearIntruderTempFiles() {
-        intruderTempDir.listFiles()?.forEach { it.deleteRecursively() }
     }
 
     fun clearOldTempFiles(maxAgeMillis: Long) {
@@ -104,7 +84,6 @@ class SecureCacheManager @Inject constructor(
 
     private companion object {
         const val TEMP_DIR = "private_vault_temp"
-        const val INTRUDER_TEMP_DIR = "intruder"
         const val PRIVATE_CAMERA_TEMP_DIR = "private_camera"
     }
 }

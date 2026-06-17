@@ -37,6 +37,18 @@ interface VaultAlbumDao {
     @Query("SELECT * FROM vault_album WHERE id = :id")
     suspend fun getById(id: Long): VaultAlbumEntity?
 
+    /** Finds an album by exact name + media type (used for the auto "All Videos" folder). */
+    @Query(
+        """
+        SELECT * FROM vault_album
+        WHERE name = :name
+          AND isHidden = 0
+          AND ((:mediaType IS NULL AND mediaType IS NULL) OR mediaType = :mediaType)
+        LIMIT 1
+        """
+    )
+    suspend fun findByNameAndType(name: String, mediaType: String?): VaultAlbumEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAlbum(album: VaultAlbumEntity): Long
 

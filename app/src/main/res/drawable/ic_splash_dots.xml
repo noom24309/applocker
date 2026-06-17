@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="56"
+    android:viewportHeight="56">
+    <group>
+        <path android:fillColor="@color/splash_dot" android:pathData="M4,4 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M16,4 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M28,4 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M40,4 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M52,4 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+
+        <path android:fillColor="@color/splash_dot" android:pathData="M4,16 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M16,16 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M28,16 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M40,16 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M52,16 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+
+        <path android:fillColor="@color/splash_dot" android:pathData="M4,28 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M16,28 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M28,28 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M40,28 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M52,28 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+
+        <path android:fillColor="@color/splash_dot" android:pathData="M4,40 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M16,40 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M28,40 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M40,40 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M52,40 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+
+        <path android:fillColor="@color/splash_dot" android:pathData="M4,52 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M16,52 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M28,52 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M40,52 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+        <path android:fillColor="@color/splash_dot" android:pathData="M52,52 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+    </group>
+</vector>

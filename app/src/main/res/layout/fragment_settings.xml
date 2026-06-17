@@ -187,33 +187,6 @@
                         android:src="@drawable/ic_chevron_right" />
                 </LinearLayout>
 
-                <View style="@style/SettingsDivider" />
-
-                <!-- Intruder Alert -->
-                <LinearLayout
-                    android:id="@+id/rowIntruder"
-                    style="@style/SettingsRow">
-
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_intruder"
-                        app:tint="@color/primary" />
-
-                    <LinearLayout style="@style/SettingsRowText">
-
-                        <TextView
-                            style="@style/SettingsRowTitle"
-                            android:text="@string/intruder_settings_title" />
-
-                        <TextView
-                            style="@style/SettingsRowDesc"
-                            android:text="@string/intruder_enable_desc" />
-                    </LinearLayout>
-
-                    <ImageView
-                        style="@style/SettingsRowTrailingIcon"
-                        android:src="@drawable/ic_chevron_right" />
-                </LinearLayout>
 
                 <View style="@style/SettingsDivider" />
 

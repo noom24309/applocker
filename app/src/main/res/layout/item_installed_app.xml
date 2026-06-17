@@ -4,58 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:gravity="center_vertical"
-    android:minHeight="64dp"
-    android:orientation="horizontal"
-    android:paddingStart="@dimen/screen_padding"
-    android:paddingTop="@dimen/space_s"
-    android:paddingEnd="@dimen/screen_padding"
-    android:paddingBottom="@dimen/space_s">
-
-    <ImageView
-        android:id="@+id/appIcon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:contentDescription="@string/cd_card_icon"
-        tools:src="@drawable/ic_lock" />
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_m"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:id="@+id/rowRoot"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-        <TextView
-            android:id="@+id/appName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_body"
-            android:textStyle="bold"
-            tools:text="Instagram" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:cardBackgroundColor="@color/thumb_placeholder"
+            app:cardCornerRadius="13dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
 
-        <TextView
-            android:id="@+id/appPackage"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/appIcon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/cd_card_icon"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/ic_lock" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_tertiary"
-            android:textSize="@dimen/text_caption"
-            tools:text="com.instagram.android" />
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/appName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/home_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="WhatsApp" />
+
+            <TextView
+                android:id="@+id/appPackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/home_subtitle"
+                android:textSize="14sp"
+                tools:text="com.whatsapp" />
+        </LinearLayout>
+
+        <!-- Custom lock switch -->
+        <FrameLayout
+            android:id="@+id/switchTrack"
+            android:layout_width="52dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_lv_pill">
+
+            <FrameLayout
+                android:id="@+id/switchThumb"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/bg_lv_switch_thumb"
+                android:elevation="2dp">
+
+                <ImageView
+                    android:id="@+id/switchIcon"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_lock" />
+            </FrameLayout>
+        </FrameLayout>
     </LinearLayout>
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/lockSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:focusable="false"
-        app:thumbTint="@color/switch_lock_thumb_tint"
-        app:trackTint="@color/switch_lock_track_tint" />
-
+    <View
+        android:id="@+id/rowDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/home_divider" />
 </LinearLayout>

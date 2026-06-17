@@ -37,7 +37,7 @@ class AppLockAppsViewModel @Inject constructor(
     ) { all, locked, q, filter, showSystem ->
         val lockedSet = locked.toHashSet()
         all.asSequence()
-            .filter { showSystem || !it.isSystemApp }
+            .filter { filter == AppFilter.SYSTEM || showSystem || !it.isSystemApp }
             .filter { q.isBlank() || it.appName.contains(q, ignoreCase = true) }
             .map {
                 InstalledAppUiModel(
@@ -52,6 +52,7 @@ class AppLockAppsViewModel @Inject constructor(
                     AppFilter.ALL -> true
                     AppFilter.LOCKED -> it.isLocked
                     AppFilter.UNLOCKED -> !it.isLocked
+                    AppFilter.SYSTEM -> it.isSystemApp
                 }
             }
             .toList()
@@ -77,6 +78,15 @@ class AppLockAppsViewModel @Inject constructor(
             )
             // Keep the service in sync: start when first app is locked.
             if (locked && serviceManager.canStartProtection() && !serviceManager.isServiceRunning()) {
+                serviceManager.startProtection()
+            }
+        }
+    }
+
+    /** Start the monitor service once it can run — e.g. after permissions were just granted. */
+    fun ensureProtectionRunning() {
+        viewModelScope.launch {
+            if (serviceManager.canStartProtection() && !serviceManager.isServiceRunning()) {
                 serviceManager.startProtection()
             }
         }

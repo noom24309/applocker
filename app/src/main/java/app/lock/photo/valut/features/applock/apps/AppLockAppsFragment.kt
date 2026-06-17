@@ -1,7 +1,9 @@
 package app.lock.photo.valut.features.applock.apps
 import app.lock.photo.valut.features.applock.AppLockActivity
 import app.lock.photo.valut.features.applock.perapp.PerAppLockSettingsBottomSheet
+import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +18,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.lock.photo.valut.core.applock.AppIconCacheManager
+import app.lock.photo.valut.core.applock.AppLockPermissionChecker
 import app.lock.photo.valut.databinding.FragmentAppLockAppsBinding
 import app.lock.photo.valut.features.applock.model.AppFilter
+import app.lock.photo.valut.features.applock.model.InstalledAppUiModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,7 +38,15 @@ class AppLockAppsFragment : Fragment() {
     @Inject
     lateinit var iconCacheManager: AppIconCacheManager
 
+    @Inject
+    lateinit var permissionChecker: AppLockPermissionChecker
+
     private lateinit var adapter: AppLockAppsAdapter
+
+    /** Permission setup is only requested when the user actually locks an app. */
+    private val permissionLauncher = registerForActivityResult(
+        androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
+    ) { viewModel.ensureProtectionRunning() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -64,12 +76,13 @@ class AppLockAppsFragment : Fragment() {
             AppFilter.ALL -> binding.chipAll.isChecked = true
             AppFilter.LOCKED -> binding.chipLocked.isChecked = true
             AppFilter.UNLOCKED -> binding.chipUnlocked.isChecked = true
+            AppFilter.SYSTEM -> binding.chipSystem.isChecked = true
         }
     }
 
     private fun setupRecycler() {
         adapter = AppLockAppsAdapter(
-            onToggle = { app, locked -> viewModel.setLocked(app, locked) },
+            onToggle = { app, locked -> handleToggle(app, locked) },
             onConfigure = { app ->
                 PerAppLockSettingsBottomSheet.newInstance(app.packageName, app.appName)
                     .show(childFragmentManager, "perAppLock")
@@ -107,6 +120,18 @@ class AppLockAppsFragment : Fragment() {
                     viewModel.showSystemApps.collect { binding.chipSystem.isChecked = it }
                 }
             }
+        }
+    }
+
+    /**
+     * Locks/unlocks an app. The first time the user locks one without the App Lock
+     * permissions, we mark it locked and open the permission screen so protection can
+     * actually start — that is the only place the permission flow is triggered.
+     */
+    private fun handleToggle(app: InstalledAppUiModel, locked: Boolean) {
+        viewModel.setLocked(app, locked)
+        if (locked && !permissionChecker.hasAllRequiredAppLockPermissions()) {
+            permissionLauncher.launch(Intent(requireContext(), AppLockPermissionActivity::class.java))
         }
     }
 

@@ -70,10 +70,9 @@ class AppLockHomeFragment : Fragment() {
         binding.btnCompleteSetup.setOnClickListener { openPermissions() }
         binding.btnStart.setOnClickListener { viewModel.startProtection() }
         binding.btnStop.setOnClickListener { viewModel.stopProtection() }
-        // Can't meaningfully lock apps until permissions are granted — gate the screen.
-        binding.cardManageApps.setOnClickListener {
-            if (permissionsGranted) host().openApps() else requireSetupThen()
-        }
+        // Open the apps list freely; the permission prompt happens only when the user
+        // actually toggles a lock on an app (handled in the list itself).
+        binding.cardManageApps.setOnClickListener { host().openApps() }
         binding.cardSettings.setOnClickListener { host().openSettings() }
         observe()
     }

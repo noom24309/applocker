@@ -57,7 +57,6 @@ class StorageAnalyzerActivity : BaseActivity() {
         addRow(getString(R.string.documents_title), b.documentsBytes, total)
         addRow(getString(R.string.storage_private_camera), b.privateCameraBytes, total)
         addRow(getString(R.string.storage_thumbnails), b.thumbnailsBytes, total)
-        addRow(getString(R.string.storage_intruder), b.intruderBytes, total)
         addRow(getString(R.string.storage_recycle_bin), b.recycleBinBytes, total)
         addRow(getString(R.string.storage_temp_cache), b.tempCacheBytes, total)
     }

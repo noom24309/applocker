@@ -1,5 +1,7 @@
 package app.lock.photo.valut.core.ui
 
+import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.updatePadding
+import app.lock.photo.valut.core.lock.AutoLockGuard
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -57,6 +60,40 @@ abstract class BaseActivity : AppCompatActivity() {
             insets
         }
         ViewCompat.requestApplyInsets(view)
+    }
+
+    /**
+     * Every `registerForActivityResult(...).launch(...)` (from this activity or its
+     * fragments) routes through here. When the target is an *external* app — the system
+     * photo / document picker, a share sheet — we tell [AutoLockGuard] to skip the next
+     * auto-lock so returning with the picked file doesn't pop the unlock screen over the
+     * import. Launching one of our own activities (same package) never suppresses, so a
+     * genuine background→foreground still locks.
+     */
+    override fun startActivityForResult(intent: Intent, requestCode: Int, options: Bundle?) {
+        suppressAutoLockIfExternal(intent)
+        super.startActivityForResult(intent, requestCode, options)
+    }
+
+    /** A system confirmation dialog (e.g. a MediaStore delete request) — always external. */
+    override fun startIntentSenderForResult(
+        intent: IntentSender,
+        requestCode: Int,
+        fillInIntent: Intent?,
+        flagsMask: Int,
+        flagsValues: Int,
+        extraFlags: Int,
+        options: Bundle?
+    ) {
+        AutoLockGuard.suppressNextAutoLock()
+        super.startIntentSenderForResult(
+            intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options
+        )
+    }
+
+    private fun suppressAutoLockIfExternal(intent: Intent) {
+        val target = intent.component?.packageName
+        if (target != packageName) AutoLockGuard.suppressNextAutoLock()
     }
 
     override fun onResume() {

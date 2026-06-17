@@ -9,7 +9,7 @@ data class InstalledAppUiModel(
 )
 
 /** Filter applied to the installed-apps list. */
-enum class AppFilter { ALL, LOCKED, UNLOCKED }
+enum class AppFilter { ALL, LOCKED, UNLOCKED, SYSTEM }
 
 /** Dashboard state for the App Lock home screen. */
 data class AppLockHomeUiState(
