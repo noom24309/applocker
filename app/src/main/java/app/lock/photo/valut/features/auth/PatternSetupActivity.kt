@@ -32,16 +32,32 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
 
     private val firstRun: Boolean by lazy { intent.getBooleanExtra(EXTRA_FIRST_RUN, false) }
 
+    /** Pattern currently drawn on screen, submitted only when the user taps Continue. */
+    private var drawnNodes: List<Int>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPatternSetupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.patternView.onPatternComplete = { nodes -> viewModel.submit(nodes) }
-        binding.btnCancel.setOnClickListener { finish() }
+        // Drawing keeps the pattern on screen; submission waits for Continue.
+        binding.patternView.onPatternComplete = { nodes ->
+            drawnNodes = nodes
+            binding.btnContinue.isEnabled = true
+        }
+        binding.btnContinue.setOnClickListener { drawnNodes?.let { viewModel.submit(it) } }
+        binding.btnClear.setOnClickListener { clearPattern() }
+        binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         observePhase()
         observeEvents()
+    }
+
+    private fun clearPattern() {
+        binding.patternView.reset()
+        binding.errorPattern.isVisible = false
+        drawnNodes = null
+        binding.btnContinue.isEnabled = false
     }
 
     private fun observePhase() {
@@ -50,6 +66,8 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
                 viewModel.phase.collect { phase ->
                     binding.patternView.reset()
                     binding.errorPattern.isVisible = false
+                    drawnNodes = null
+                    binding.btnContinue.isEnabled = false
                     when (phase) {
                         PatternSetupViewModel.Phase.DRAW -> {
                             binding.titlePattern.setText(R.string.pattern_setup_title)

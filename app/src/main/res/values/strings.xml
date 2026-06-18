@@ -188,8 +188,49 @@
     <string name="appearance_system">System Default</string>
     <string name="settings_about">About</string>
     <string name="settings_privacy_policy">Privacy Policy</string>
-    <string name="settings_privacy_policy_desc">How we protect your data</string>
+    <string name="settings_privacy_policy_desc">Read our privacy policy</string>
     <string name="settings_app_version">App Version</string>
+
+    <!-- Settings redesign (screenshot match) -->
+    <string name="settings_subtitle">Manage security, privacy and app preferences.</string>
+    <string name="settings_security_status">Security Status</string>
+    <string name="settings_security_status_desc">Your device and data are protected.</string>
+    <string name="settings_security_status_active">All security features are active</string>
+    <string name="settings_change_pin_desc_alt">Change your app unlock PIN</string>
+    <string name="settings_change_pattern">Change Pattern</string>
+    <string name="settings_change_pattern_desc">Change your unlock pattern</string>
+    <string name="settings_biometric_alt">Biometric Unlock</string>
+    <string name="settings_biometric_desc_alt">Unlock with the app</string>
+    <string name="settings_auto_lock_desc_alt">Lock app automatically</string>
+    <string name="settings_wrong_attempt_desc_alt">Lock app after multiple failed attempts</string>
+    <string name="settings_attempts_value">%1$d attempts</string>
+    <string name="settings_section_app_lock">App Lock</string>
+    <string name="settings_app_lock_settings">App Lock Settings</string>
+    <string name="settings_app_lock_settings_desc">Manage existing preferences</string>
+    <string name="settings_lock_overlay">Lock Screen Overlay</string>
+    <string name="settings_lock_overlay_desc">Configure lock screen and behavior</string>
+    <string name="settings_disguise">Disguise Mode</string>
+    <string name="settings_disguise_desc">Hide the app as Calculator</string>
+    <string name="settings_section_preferences">Preferences</string>
+    <string name="settings_appearance_desc_alt">Light, dark or system theme</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_desc">Manage app notifications</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_desc">App language</string>
+    <string name="settings_language_default">English</string>
+    <string name="settings_section_more">More</string>
+    <string name="settings_about_app">About Lock &amp; Vault</string>
+    <string name="settings_about_app_desc">Version, licenses and more</string>
+    <string name="settings_about_message">Lock &amp; Vault\nVersion %1$s\n\nAll your data is encrypted and processed locally on this device.</string>
+
+    <!-- Short value labels for settings rows -->
+    <string name="auto_lock_immediate_short">Immediately</string>
+    <string name="auto_lock_15s_short">15 seconds</string>
+    <string name="auto_lock_30s_short">30 seconds</string>
+    <string name="auto_lock_1m_short">1 minute</string>
+    <string name="auto_lock_5m_short">5 minutes</string>
+    <string name="auto_lock_never_short">Never</string>
+    <string name="appearance_system_short">System</string>
 
     <!-- Weak credential -->
     <string name="pin_weak_warning">That PIN is too easy to guess. Choose another.</string>
@@ -225,8 +266,10 @@
     <string name="change_pin_success">PIN updated.</string>
 
     <!-- Pattern -->
-    <string name="pattern_setup_title">Draw a pattern</string>
-    <string name="pattern_setup_subtitle">Connect at least 4 dots.</string>
+    <string name="pattern_setup_title">Set Your Pattern</string>
+    <string name="pattern_setup_subtitle">Draw a pattern to unlock the app. Connect at least 4 dots.</string>
+    <string name="pattern_clear">Clear Pattern</string>
+    <string name="pattern_hint_note">Make it memorable but hard for others to guess.</string>
     <string name="pattern_confirm_title">Confirm pattern</string>
     <string name="pattern_confirm_subtitle">Draw the same pattern again.</string>
     <string name="pattern_too_short">Connect at least 4 dots.</string>
@@ -454,6 +497,17 @@
     <!-- Overlay lock screen -->
     <string name="applock_overlay_title">App Locked</string>
     <string name="applock_wrong_credential">Incorrect. Try again.</string>
+
+    <!-- Permission setup (screenshot redesign) -->
+    <string name="applock_setup_title">Set up App Lock</string>
+    <string name="applock_setup_subtitle">Grant the required permissions to activate protection.</string>
+    <string name="applock_perm_usage_desc_alt">Needed to detect when selected apps are opened</string>
+    <string name="applock_perm_overlay_title_alt">Draw over other apps</string>
+    <string name="applock_perm_overlay_desc_alt">Needed to show the lock screen over protected apps</string>
+    <string name="applock_perm_notification_title_alt">Notifications</string>
+    <string name="applock_perm_notification_desc_alt">Needed to keep protection running reliably and show important alerts</string>
+    <string name="applock_perm_grant">Grant</string>
+    <string name="applock_perm_privacy_note">These permissions are used only for app protection on your device.</string>
 
     <!-- Permission setup -->
     <string name="applock_permission_title">App Lock setup</string>
@@ -719,6 +773,43 @@
     <string name="details_source">Source</string>
     <string name="details_source_imported">Imported</string>
     <string name="details_source_private_camera">Private Camera</string>
+
+    <!-- Tools dashboard (screenshot redesign) -->
+    <string name="tools_header_subtitle">Smart tools to clean, organize &amp; secure your device.</string>
+    <string name="tools_hero_title">Device is Healthy</string>
+    <string name="tools_hero_desc">Your device is clean and protected. Keep it up!</string>
+    <string name="tools_hero_protected">Protected</string>
+    <string name="tools_hero_percent">92%</string>
+    <string name="tools_section_cleanup">Cleanup Tools</string>
+    <string name="tools_section_security">Security &amp; Privacy</string>
+    <string name="tools_duplicate_finder">Duplicate Finder</string>
+    <string name="tools_duplicate_desc">Find and remove duplicate photos, videos and files</string>
+    <string name="tools_large_files">Large Files</string>
+    <string name="tools_large_files_desc">Find large files taking up valuable storage</string>
+    <string name="tools_smart_cleanup">Smart Cleanup</string>
+    <string name="tools_smart_cleanup_desc">Free up space, cache and unnecessary data</string>
+    <string name="tools_storage_analyzer">Storage Analyzer</string>
+    <string name="tools_storage_analyzer_desc">Analyze storage and manage your space.</string>
+    <string name="tools_view_details">View Details</string>
+    <string name="tools_vault_health">Vault Health</string>
+    <string name="tools_vault_health_desc">Scan encryption status and security</string>
+    <string name="tools_privacy_scan">Privacy Scan</string>
+    <string name="tools_privacy_scan_desc">Check app permissions and privacy</string>
+    <string name="tools_permission_manager">Permission Manager</string>
+    <string name="tools_permission_manager_desc">Manage app permissions and access</string>
+    <string name="tools_secure_delete">Secure Delete</string>
+    <string name="tools_secure_delete_desc">Permanently delete sensitive files</string>
+    <string name="tools_status_secure">Secure</string>
+    <string name="tools_status_no_issues">No Issues</string>
+    <string name="tools_status_manage">Manage</string>
+    <string name="tools_optimize_title">Keep Your Device Optimized</string>
+    <string name="tools_optimize_desc">Regular cleanup and scans help keep your device fast, secure and private</string>
+    <string name="tools_run_smart_scan">Run Smart Scan</string>
+    <string name="tools_coming_soon">Coming soon</string>
+    <string name="tools_sample_dup_size">1.26 GB</string>
+    <string name="tools_sample_large_size">2.34 GB</string>
+    <string name="tools_sample_cleanup_size">1.03 GB</string>
+    <string name="tools_sample_delete_count">0</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Close</string>

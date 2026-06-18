@@ -4,32 +4,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/home_bg"
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="@dimen/screen_padding"
-        android:paddingTop="@dimen/space_xl"
-        android:paddingEnd="@dimen/screen_padding"
-        android:paddingBottom="@dimen/space_l">
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="24dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- ===== Header ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings_title"
-            android:textAppearance="@style/TextAppearance.App.Display" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <!-- Security section -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_title"
+                    android:textColor="@color/home_title"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    style="@style/TextAppearance.App.Medium"
+                    android:text="@string/settings_subtitle"
+                    android:textColor="@color/home_subtitle"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_lv_circle_light">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_account"
+                    app:tint="@color/home_primary" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- ===== Security Status ===== -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSecurityStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/primary_container"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_lv_icon_tile"
+                    android:backgroundTint="@color/primary">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_shield"
+                        app:tint="@color/white" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_security_status"
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inter_semi" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        style="@style/TextAppearance.App.Medium"
+                        android:text="@string/settings_security_status_desc"
+                        android:textColor="@color/home_subtitle"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="5dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_check_circle"
+                            app:tint="@color/home_success" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextAppearance.App.Medium"
+                            android:text="@string/settings_security_status_active"
+                            android:textColor="@color/home_success"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/home_primary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== Security ===== -->
         <TextView
             style="@style/SettingsSectionHeader"
             android:text="@string/settings_security" />
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.App.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,10 +175,15 @@
                     android:id="@+id/rowChangePin"
                     style="@style/SettingsRow">
 
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_lock"
-                        app:tint="@color/primary" />
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_purple">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_lock"
+                            app:tint="@color/home_primary" />
+                    </FrameLayout>
 
                     <LinearLayout style="@style/SettingsRowText">
 
@@ -54,45 +193,47 @@
 
                         <TextView
                             style="@style/SettingsRowDesc"
-                            android:text="@string/settings_change_pin_desc" />
+                            android:text="@string/settings_change_pin_desc_alt" />
                     </LinearLayout>
 
                     <ImageView
                         style="@style/SettingsRowTrailingIcon"
-                        android:src="@drawable/ic_chevron_right" />
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
                 </LinearLayout>
 
                 <View style="@style/SettingsDivider" />
 
-                <!-- Change Unlock Method -->
+                <!-- Change Pattern -->
                 <LinearLayout
-                    android:id="@+id/rowChangeUnlockMethod"
+                    android:id="@+id/rowChangePattern"
                     style="@style/SettingsRow">
 
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_shield"
-                        app:tint="@color/primary" />
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_purple">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_pattern"
+                            app:tint="@color/home_primary" />
+                    </FrameLayout>
 
                     <LinearLayout style="@style/SettingsRowText">
 
                         <TextView
                             style="@style/SettingsRowTitle"
-                            android:text="@string/settings_change_unlock_method" />
+                            android:text="@string/settings_change_pattern" />
 
                         <TextView
                             style="@style/SettingsRowDesc"
-                            android:text="@string/settings_change_unlock_method_desc" />
+                            android:text="@string/settings_change_pattern_desc" />
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvUnlockMethodValue"
-                        style="@style/SettingsRowValue"
-                        tools:text="PIN" />
 
                     <ImageView
                         style="@style/SettingsRowTrailingIcon"
-                        android:src="@drawable/ic_chevron_right" />
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
                 </LinearLayout>
 
                 <View style="@style/SettingsDivider" />
@@ -102,20 +243,25 @@
                     android:id="@+id/rowBiometric"
                     style="@style/SettingsRow">
 
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_fingerprint"
-                        app:tint="@color/primary" />
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_blue">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_fingerprint"
+                            app:tint="@color/home_info" />
+                    </FrameLayout>
 
                     <LinearLayout style="@style/SettingsRowText">
 
                         <TextView
                             style="@style/SettingsRowTitle"
-                            android:text="@string/settings_biometric" />
+                            android:text="@string/settings_biometric_alt" />
 
                         <TextView
                             style="@style/SettingsRowDesc"
-                            android:text="@string/settings_biometric_desc" />
+                            android:text="@string/settings_biometric_desc_alt" />
                     </LinearLayout>
 
                     <com.google.android.material.materialswitch.MaterialSwitch
@@ -133,10 +279,15 @@
                     android:id="@+id/rowAutoLock"
                     style="@style/SettingsRow">
 
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_shield"
-                        app:tint="@color/primary" />
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_teal">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_clock"
+                            app:tint="@color/home_teal" />
+                    </FrameLayout>
 
                     <LinearLayout style="@style/SettingsRowText">
 
@@ -146,17 +297,19 @@
 
                         <TextView
                             style="@style/SettingsRowDesc"
-                            android:text="@string/settings_auto_lock_desc" />
+                            android:text="@string/settings_auto_lock_desc_alt" />
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/tvAutoLockValue"
                         style="@style/SettingsRowValue"
-                        tools:text="Immediately" />
+                        android:textColor="@color/home_primary"
+                        tools:text="5 minutes" />
 
                     <ImageView
                         style="@style/SettingsRowTrailingIcon"
-                        android:src="@drawable/ic_chevron_right" />
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
                 </LinearLayout>
 
                 <View style="@style/SettingsDivider" />
@@ -166,10 +319,15 @@
                     android:id="@+id/rowWrongAttempt"
                     style="@style/SettingsRow">
 
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_intruder"
-                        app:tint="@color/primary" />
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_pink">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_intruder"
+                            app:tint="@color/accent_red" />
+                    </FrameLayout>
 
                     <LinearLayout style="@style/SettingsRowText">
 
@@ -179,95 +337,231 @@
 
                         <TextView
                             style="@style/SettingsRowDesc"
-                            android:text="@string/settings_wrong_attempt_desc" />
+                            android:text="@string/settings_wrong_attempt_desc_alt" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvWrongAttemptValue"
+                        style="@style/SettingsRowValue"
+                        android:textColor="@color/home_primary"
+                        tools:text="5 attempts" />
 
                     <ImageView
                         style="@style/SettingsRowTrailingIcon"
-                        android:src="@drawable/ic_chevron_right" />
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
                 </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
+        <!-- ===== App Lock ===== -->
+        <TextView
+            style="@style/SettingsSectionHeader"
+            android:text="@string/settings_section_app_lock" />
 
-                <View style="@style/SettingsDivider" />
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
 
-                <!-- Lock App Now -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- App Lock Settings -->
                 <LinearLayout
-                    android:id="@+id/rowLockNow"
+                    android:id="@+id/rowAppLockSettings"
                     style="@style/SettingsRow">
 
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_lock"
-                        app:tint="@color/accent_red" />
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_purple">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_apps"
+                            app:tint="@color/home_primary" />
+                    </FrameLayout>
 
                     <LinearLayout style="@style/SettingsRowText">
 
                         <TextView
                             style="@style/SettingsRowTitle"
-                            android:text="@string/settings_lock_now" />
+                            android:text="@string/settings_app_lock_settings" />
 
                         <TextView
                             style="@style/SettingsRowDesc"
-                            android:text="@string/settings_lock_now_desc" />
+                            android:text="@string/settings_app_lock_settings_desc" />
                     </LinearLayout>
 
                     <ImageView
                         style="@style/SettingsRowTrailingIcon"
-                        android:src="@drawable/ic_chevron_right" />
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- Lock Screen Overlay -->
+                <LinearLayout
+                    android:id="@+id/rowLockOverlay"
+                    style="@style/SettingsRow">
+
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_blue">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_layers"
+                            app:tint="@color/home_info" />
+                    </FrameLayout>
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_lock_overlay" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_lock_overlay_desc" />
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
+                </LinearLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <!-- Disguise Mode -->
+                <LinearLayout
+                    android:id="@+id/rowDisguise"
+                    style="@style/SettingsRow">
+
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_amber">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_calculator"
+                            app:tint="@color/accent_amber" />
+                    </FrameLayout>
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_disguise" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_disguise_desc" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchDisguise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Appearance section -->
+        <!-- ===== Preferences ===== -->
         <TextView
             style="@style/SettingsSectionHeader"
-            android:text="@string/settings_appearance_section" />
+            android:text="@string/settings_section_preferences" />
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.App.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
 
             <LinearLayout
-                android:id="@+id/rowAppearance"
-                style="@style/SettingsRow">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <ImageView
-                    style="@style/SettingsRowIcon"
-                    android:src="@drawable/ic_theme"
-                    app:tint="@color/primary" />
+                <!-- Notifications -->
+                <LinearLayout
+                    android:id="@+id/rowNotifications"
+                    style="@style/SettingsRow">
 
-                <LinearLayout style="@style/SettingsRowText">
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_purple">
 
-                    <TextView
-                        style="@style/SettingsRowTitle"
-                        android:text="@string/settings_appearance" />
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_bell"
+                            app:tint="@color/home_primary" />
+                    </FrameLayout>
 
-                    <TextView
-                        style="@style/SettingsRowDesc"
-                        android:text="@string/settings_appearance_desc" />
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_notifications" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_notifications_desc" />
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvAppearanceValue"
-                    style="@style/SettingsRowValue"
-                    tools:text="System Default" />
+                <View style="@style/SettingsDivider" />
 
-                <ImageView
-                    style="@style/SettingsRowTrailingIcon"
-                    android:src="@drawable/ic_chevron_right" />
+                <!-- Language -->
+                <LinearLayout
+                    android:id="@+id/rowLanguage"
+                    style="@style/SettingsRow">
+
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_teal">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_globe"
+                            app:tint="@color/home_teal" />
+                    </FrameLayout>
+
+                    <LinearLayout style="@style/SettingsRowText">
+
+                        <TextView
+                            style="@style/SettingsRowTitle"
+                            android:text="@string/settings_language" />
+
+                        <TextView
+                            style="@style/SettingsRowDesc"
+                            android:text="@string/settings_language_desc" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvLanguageValue"
+                        style="@style/SettingsRowValue"
+                        android:textColor="@color/home_primary"
+                        android:text="@string/settings_language_default" />
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
+                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- About section -->
+        <!-- ===== More ===== -->
         <TextView
             style="@style/SettingsSectionHeader"
-            android:text="@string/settings_about" />
+            android:text="@string/settings_section_more" />
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.App.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -279,10 +573,15 @@
                     android:id="@+id/rowPrivacy"
                     style="@style/SettingsRow">
 
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_shield"
-                        app:tint="@color/primary" />
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_purple">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_shield"
+                            app:tint="@color/home_primary" />
+                    </FrameLayout>
 
                     <LinearLayout style="@style/SettingsRowText">
 
@@ -297,29 +596,43 @@
 
                     <ImageView
                         style="@style/SettingsRowTrailingIcon"
-                        android:src="@drawable/ic_chevron_right" />
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
                 </LinearLayout>
 
                 <View style="@style/SettingsDivider" />
 
-                <!-- App Version -->
-                <LinearLayout style="@style/SettingsRow">
+                <!-- About -->
+                <LinearLayout
+                    android:id="@+id/rowAbout"
+                    style="@style/SettingsRow">
 
-                    <ImageView
-                        style="@style/SettingsRowIcon"
-                        android:src="@drawable/ic_check_circle" />
+                    <FrameLayout
+                        style="@style/SettingsIconTile"
+                        android:backgroundTint="@color/home_tile_blue">
+
+                        <ImageView
+                            style="@style/SettingsIconImg"
+                            android:src="@drawable/ic_info"
+                            app:tint="@color/home_info" />
+                    </FrameLayout>
 
                     <LinearLayout style="@style/SettingsRowText">
 
                         <TextView
                             style="@style/SettingsRowTitle"
-                            android:text="@string/settings_app_version" />
+                            android:text="@string/settings_about_app" />
 
                         <TextView
                             android:id="@+id/tvAppVersion"
                             style="@style/SettingsRowDesc"
-                            tools:text="1.0" />
+                            android:text="@string/settings_about_app_desc" />
                     </LinearLayout>
+
+                    <ImageView
+                        style="@style/SettingsRowTrailingIcon"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/home_hint" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

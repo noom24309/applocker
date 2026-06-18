@@ -125,7 +125,7 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
 
     private fun bindCard(
         granted: Boolean,
-        check: android.widget.ImageView,
+        check: android.view.View,
         button: com.google.android.material.button.MaterialButton
     ) {
         check.isVisible = granted

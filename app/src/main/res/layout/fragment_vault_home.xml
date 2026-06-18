@@ -156,29 +156,33 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <FrameLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="66dp"
                     android:layout_height="66dp">
 
                     <com.google.android.material.progressindicator.CircularProgressIndicator
                         android:id="@+id/storageRing"
-                        android:layout_width="66dp"
-                        android:layout_height="66dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:indeterminate="false"
                         android:max="100"
                         android:progress="0"
                         app:indicatorColor="@color/home_primary"
-                        app:indicatorSize="66dp"
+                        app:indicatorSize="62dp"
                         app:trackColor="#D9DAF0"
                         app:trackCornerRadius="8dp"
-                        app:trackThickness="6dp" />
+                        app:trackThickness="4dp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:id="@+id/tvStoragePercent"
@@ -198,7 +202,7 @@
                             android:textColor="@color/home_subtitle"
                             android:textSize="9sp" />
                     </LinearLayout>
-                </FrameLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
             <!-- ===== Quick actions ===== -->

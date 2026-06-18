@@ -2,6 +2,8 @@ package app.lock.photo.valut.features.home
 
 import app.lock.photo.valut.core.ui.BaseActivity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -35,6 +37,7 @@ class MainActivity : BaseActivity() {
 
         if (savedInstanceState == null) {
             showFragment(HomeFragment())
+            if (intent.getBooleanExtra(EXTRA_OPEN_SETTINGS, false)) showSettings()
         }
 
         binding.bottomNav.setOnItemSelectedListener { item ->
@@ -55,6 +58,15 @@ class MainActivity : BaseActivity() {
                 }
                 else -> false
             }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        if (intent.getBooleanExtra(EXTRA_OPEN_SETTINGS, false)) {
+            binding.bottomNav.selectedItemId = R.id.nav_home
+            showSettings()
         }
     }
 
@@ -86,5 +98,16 @@ class MainActivity : BaseActivity() {
         supportFragmentManager.commit {
             replace(binding.fragmentContainer.id, fragment)
         }
+    }
+
+    companion object {
+        private const val EXTRA_OPEN_SETTINGS = "open_settings"
+
+        /** Returns to the (existing) home host and opens the Settings screen. */
+        fun settingsIntent(context: Context) =
+            Intent(context, MainActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                putExtra(EXTRA_OPEN_SETTINGS, true)
+            }
     }
 }
