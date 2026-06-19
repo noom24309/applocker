@@ -3,11 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Brand -->
-    <color name="primary">#6559EB</color>
-    <color name="primary_dark">#6559EB</color>
+    <!-- Brand — aligned to the HomeFragment palette (home_primary) so every screen and
+         Material widget uses the exact same purple as the home dashboard. -->
+    <color name="primary">#5F57D5</color>
+    <color name="primary_dark">#5F57D5</color>
     <color name="primary_light">#8E83F5</color>
-    <color name="primary_container">#ECEAFE</color>
+    <color name="primary_container">#EEEFFF</color>
 
     <!-- Accents -->
     <color name="accent_green">#22C55E</color>

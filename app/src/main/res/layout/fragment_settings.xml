@@ -431,42 +431,6 @@
                         android:src="@drawable/ic_chevron_right"
                         app:tint="@color/home_hint" />
                 </LinearLayout>
-
-                <View style="@style/SettingsDivider" />
-
-                <!-- Disguise Mode -->
-                <LinearLayout
-                    android:id="@+id/rowDisguise"
-                    style="@style/SettingsRow">
-
-                    <FrameLayout
-                        style="@style/SettingsIconTile"
-                        android:backgroundTint="@color/home_tile_amber">
-
-                        <ImageView
-                            style="@style/SettingsIconImg"
-                            android:src="@drawable/ic_calculator"
-                            app:tint="@color/accent_amber" />
-                    </FrameLayout>
-
-                    <LinearLayout style="@style/SettingsRowText">
-
-                        <TextView
-                            style="@style/SettingsRowTitle"
-                            android:text="@string/settings_disguise" />
-
-                        <TextView
-                            style="@style/SettingsRowDesc"
-                            android:text="@string/settings_disguise_desc" />
-                    </LinearLayout>
-
-                    <com.google.android.material.materialswitch.MaterialSwitch
-                        android:id="@+id/switchDisguise"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false" />
-                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

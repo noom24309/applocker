@@ -1,28 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="1" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <!-- ===== Custom Bottom Navigation (no BottomNavigationView) ===== -->
+    <LinearLayout
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_lv_bottom_nav"
-        app:elevation="12dp"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        android:elevation="14dp"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/navHome"
+            style="@style/LvNavTab">
+
+            <View
+                android:id="@+id/navHomeIndicator"
+                style="@style/LvNavIndicator"
+                android:backgroundTint="@color/home_primary" />
+
+            <ImageView
+                android:id="@+id/navHomeIcon"
+                style="@style/LvNavIcon"
+                android:src="@drawable/ic_home"
+                app:tint="@color/home_primary" />
+
+            <TextView
+                android:id="@+id/navHomeLabel"
+                style="@style/LvNavLabel"
+                android:text="@string/lv_nav_home"
+                android:textColor="@color/home_primary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navVault"
+            style="@style/LvNavTab">
+
+            <View
+                android:id="@+id/navVaultIndicator"
+                style="@style/LvNavIndicator"
+                android:backgroundTint="@color/home_primary"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/navVaultIcon"
+                style="@style/LvNavIcon"
+                android:src="@drawable/ic_vault"
+                app:tint="@color/home_system_icon" />
+
+            <TextView
+                android:id="@+id/navVaultLabel"
+                style="@style/LvNavLabel"
+                android:text="@string/lv_nav_vault"
+                android:textColor="@color/home_system_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navTools"
+            style="@style/LvNavTab">
+
+            <View
+                android:id="@+id/navToolsIndicator"
+                style="@style/LvNavIndicator"
+                android:backgroundTint="@color/home_primary"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/navToolsIcon"
+                style="@style/LvNavIcon"
+                android:src="@drawable/ic_tools"
+                app:tint="@color/home_system_icon" />
+
+            <TextView
+                android:id="@+id/navToolsLabel"
+                style="@style/LvNavLabel"
+                android:text="@string/lv_nav_tools"
+                android:textColor="@color/home_system_icon" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -23,9 +23,7 @@ import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.databinding.FragmentVaultHomeBinding
 import app.lock.photo.valut.domain.model.GridSource
 import app.lock.photo.valut.features.cleanup.health.VaultHealthActivity
-import app.lock.photo.valut.features.home.MainActivity
 import app.lock.photo.valut.features.importmedia.ImportProgressActivity
-import app.lock.photo.valut.features.premium.PremiumToolsActivity
 import app.lock.photo.valut.features.vault.adapter.VaultAlbumRowAdapter
 import app.lock.photo.valut.features.vault.adapter.VaultRecentAdapter
 import app.lock.photo.valut.features.vault.model.AlbumUiModel
@@ -66,21 +64,20 @@ class VaultHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupLists()
         setupClicks()
-        setupBottomNav()
         observeState()
     }
 
     private fun setupLists() {
         albumsAdapter = VaultAlbumRowAdapter(thumbnailLoader) { album ->
-            if (album.id < 0L) host().openGrid(GridSource.PHOTOS, title = album.name)
-            else host().openAlbumDetail(album.id, album.name)
+            if (album.id < 0L) openGrid(GridSource.PHOTOS, title = album.name)
+            else openGrid(GridSource.ALBUM, albumId = album.id, title = album.name)
         }
         binding.recyclerAlbums.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerAlbums.adapter = albumsAdapter
 
         recentAdapter = VaultRecentAdapter(thumbnailLoader) {
-            host().openGrid(GridSource.RECENT)
+            openGrid(GridSource.RECENT)
         }
         binding.recyclerRecent.layoutManager = GridLayoutManager(requireContext(), 4)
         binding.recyclerRecent.adapter = recentAdapter
@@ -99,22 +96,19 @@ class VaultHomeFragment : Fragment() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly))
         }
         binding.actionNewAlbum.setOnClickListener { showCreateAlbumDialog() }
-        binding.actionSettings.setOnClickListener { host().openAlbums() }
+        binding.actionSettings.setOnClickListener { openAlbums() }
 
-        binding.btnAlbumsViewAll.setOnClickListener { host().openAlbums() }
-        binding.btnRecentViewAll.setOnClickListener { host().openGrid(GridSource.RECENT) }
+        binding.btnAlbumsViewAll.setOnClickListener { openAlbums() }
+        binding.btnRecentViewAll.setOnClickListener { openGrid(GridSource.RECENT) }
     }
 
-    private fun setupBottomNav() {
-        binding.navHome.setOnClickListener {
-            startActivity(Intent(requireContext(), MainActivity::class.java))
-            requireActivity().finish()
-        }
-        binding.navVault.setOnClickListener { /* already here */ }
-        binding.navTools.setOnClickListener {
-            startActivity(PremiumToolsActivity.intent(requireContext()))
-            requireActivity().finish()
-        }
+    /** Opens the deeper vault browse screens (FLAG_SECURE [SecureVaultActivity] subclasses). */
+    private fun openGrid(source: GridSource, albumId: Long = -1L, title: String? = null) {
+        startActivity(MediaGridActivity.intent(requireContext(), source, albumId, title))
+    }
+
+    private fun openAlbums() {
+        startActivity(AlbumsActivity.intent(requireContext()))
     }
 
     private fun observeState() {
@@ -177,8 +171,6 @@ class VaultHomeFragment : Fragment() {
         if (uris.isEmpty()) return
         startActivity(ImportProgressActivity.intent(requireContext(), uris))
     }
-
-    private fun host(): VaultActivity = requireActivity() as VaultActivity
 
     private fun toast(msg: String) = Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
 

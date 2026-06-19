@@ -216,37 +216,73 @@
                 <LinearLayout
                     android:id="@+id/actionImportPhotos"
                     style="@style/LvQuickAction">
-                    <FrameLayout style="@style/LvQuickTile" android:backgroundTint="@color/home_primary">
-                        <ImageView style="@style/LvQuickIcon" android:src="@drawable/ic_photo" />
+
+                    <FrameLayout
+                        style="@style/LvQuickTile"
+                        android:backgroundTint="@color/home_primary">
+
+                        <ImageView
+                            style="@style/LvQuickIcon"
+                            android:src="@drawable/ic_photo" />
                     </FrameLayout>
-                    <TextView style="@style/LvQuickLabel" android:text="@string/lv_vault_import_photos" />
+
+                    <TextView
+                        style="@style/LvQuickLabel"
+                        android:text="@string/lv_vault_import_photos" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/actionImportVideos"
                     style="@style/LvQuickAction">
-                    <FrameLayout style="@style/LvQuickTile" android:backgroundTint="@color/accent_blue">
-                        <ImageView style="@style/LvQuickIcon" android:src="@drawable/ic_video" />
+
+                    <FrameLayout
+                        style="@style/LvQuickTile"
+                        android:backgroundTint="@color/accent_blue">
+
+                        <ImageView
+                            style="@style/LvQuickIcon"
+                            android:src="@drawable/ic_video" />
                     </FrameLayout>
-                    <TextView style="@style/LvQuickLabel" android:text="@string/lv_vault_import_videos" />
+
+                    <TextView
+                        style="@style/LvQuickLabel"
+                        android:text="@string/lv_vault_import_videos" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/actionNewAlbum"
                     style="@style/LvQuickAction">
-                    <FrameLayout style="@style/LvQuickTile" android:backgroundTint="@color/accent_red">
-                        <ImageView style="@style/LvQuickIcon" android:src="@drawable/ic_album" />
+
+                    <FrameLayout
+                        style="@style/LvQuickTile"
+                        android:backgroundTint="@color/accent_red">
+
+                        <ImageView
+                            style="@style/LvQuickIcon"
+                            android:src="@drawable/ic_album" />
                     </FrameLayout>
-                    <TextView style="@style/LvQuickLabel" android:text="@string/lv_vault_new_album" />
+
+                    <TextView
+                        style="@style/LvQuickLabel"
+                        android:text="@string/lv_vault_new_album" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/actionSettings"
                     style="@style/LvQuickAction">
-                    <FrameLayout style="@style/LvQuickTile" android:backgroundTint="@color/accent_amber">
-                        <ImageView style="@style/LvQuickIcon" android:src="@drawable/ic_lock" />
+
+                    <FrameLayout
+                        style="@style/LvQuickTile"
+                        android:backgroundTint="@color/accent_amber">
+
+                        <ImageView
+                            style="@style/LvQuickIcon"
+                            android:src="@drawable/ic_lock" />
                     </FrameLayout>
-                    <TextView style="@style/LvQuickLabel" android:text="@string/lv_vault_settings" />
+
+                    <TextView
+                        style="@style/LvQuickLabel"
+                        android:text="@string/lv_vault_settings" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -421,39 +457,4 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <!-- ===== Bottom Navigation ===== -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_lv_bottom_nav"
-        android:elevation="14dp"
-        android:orientation="horizontal"
-        android:paddingTop="8dp"
-        android:paddingBottom="10dp">
-
-        <LinearLayout
-            android:id="@+id/navHome"
-            style="@style/LvNavTab">
-            <View style="@style/LvNavIndicator" android:visibility="invisible" />
-            <ImageView android:id="@+id/navHomeIcon" style="@style/LvNavIcon" android:src="@drawable/ic_home" app:tint="@color/home_system_icon" />
-            <TextView android:id="@+id/navHomeLabel" style="@style/LvNavLabel" android:text="@string/lv_nav_home" android:textColor="@color/home_system_icon" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/navVault"
-            style="@style/LvNavTab">
-            <View style="@style/LvNavIndicator" android:backgroundTint="@color/home_primary" />
-            <ImageView android:id="@+id/navVaultIcon" style="@style/LvNavIcon" android:src="@drawable/ic_vault" app:tint="@color/home_primary" />
-            <TextView android:id="@+id/navVaultLabel" style="@style/LvNavLabel" android:text="@string/lv_nav_vault" android:textColor="@color/home_primary" android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/navTools"
-            style="@style/LvNavTab">
-            <View style="@style/LvNavIndicator" android:visibility="invisible" />
-            <ImageView android:id="@+id/navToolsIcon" style="@style/LvNavIcon" android:src="@drawable/ic_tools" app:tint="@color/home_system_icon" />
-            <TextView android:id="@+id/navToolsLabel" style="@style/LvNavLabel" android:text="@string/lv_nav_tools" android:textColor="@color/home_system_icon" />
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

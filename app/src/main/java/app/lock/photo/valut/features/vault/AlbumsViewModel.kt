@@ -21,7 +21,7 @@ class AlbumsViewModel @Inject constructor(
 ) : ViewModel() {
 
     /** Which folder set this screen shows ("PHOTO"/"VIDEO"), or null for all. */
-    private val mediaType: String? = savedStateHandle[AlbumsFragment.ARG_MEDIA_FILTER]
+    private val mediaType: String? = savedStateHandle[AlbumsActivity.EXTRA_MEDIA_FILTER]
 
     val albums: StateFlow<List<AlbumUiModel>> = repository.getAlbumsFlow(mediaType)
         .map { list -> list.map { it.toUiModel() } }

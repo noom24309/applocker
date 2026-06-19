@@ -103,7 +103,15 @@
             android:exported="false" />
 
         <activity
-            android:name=".features.vault.VaultActivity"
+            android:name=".features.settings.SettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.vault.AlbumsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.vault.MediaGridActivity"
             android:exported="false" />
 
         <activity
@@ -121,11 +129,6 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppLockPhotoValut" />
-
-        <!-- Premium Tools (Phase 11) -->
-        <activity
-            android:name=".features.premium.PremiumToolsActivity"
-            android:exported="false" />
 
         <activity
             android:name=".features.premium.notes.PrivateNotesActivity"
@@ -184,6 +187,26 @@
         <!-- App Lock (Phase 5) -->
         <activity
             android:name=".features.applock.AppLockActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.applock.apps.AppLockAppsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.applock.settings.AppLockSettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.applock.theme.LockThemePickerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.applock.troubleshooting.AppLockTroubleshootingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.applock.suggested.SuggestedAppsActivity"
             android:exported="false" />
 
         <activity

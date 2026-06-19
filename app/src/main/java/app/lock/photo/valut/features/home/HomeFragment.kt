@@ -30,6 +30,7 @@ import app.lock.photo.valut.features.applock.model.InstalledAppUiModel
 import app.lock.photo.valut.features.applock.perapp.PerAppLockSettingsBottomSheet
 import app.lock.photo.valut.features.applock.stats.AppLockStatsViewModel
 import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
+import app.lock.photo.valut.features.settings.SettingsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -107,7 +108,7 @@ class HomeFragment : Fragment() {
 
     private fun setupControls() {
         binding.btnSettings.setOnClickListener {
-            (requireActivity() as MainActivity).showSettings()
+            startActivity(SettingsActivity.intent(requireContext()))
         }
         binding.btnFilter.setOnClickListener {
             binding.searchInput.requestFocus()

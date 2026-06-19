@@ -4,84 +4,153 @@ import app.lock.photo.valut.core.ui.BaseActivity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.lifecycle.lifecycleScope
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.lock.AppLockStateManager
+import app.lock.photo.valut.core.lock.LockRouter
+import app.lock.photo.valut.core.storage.SecureCacheManager
 import app.lock.photo.valut.databinding.ActivityMainBinding
-import app.lock.photo.valut.features.premium.PremiumToolsActivity
-import app.lock.photo.valut.features.settings.SettingsFragment
-import app.lock.photo.valut.features.vault.VaultActivity
+import app.lock.photo.valut.domain.repository.SettingsRepository
+import app.lock.photo.valut.domain.repository.VaultRepository
+import app.lock.photo.valut.features.premium.ToolsFragment
+import app.lock.photo.valut.features.vault.EncryptionMigrationActivity
+import app.lock.photo.valut.features.vault.VaultHomeFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
- * Host activity for the post-unlock experience. Switches between the home
- * dashboard and settings via the bottom navigation bar.
+ * Host activity for the post-unlock experience. Shows the Home, Vault and Tools tabs as
+ * fragments, switched via a custom bottom bar (no BottomNavigationView). The whole surface
+ * is FLAG_SECURE because the Vault tab renders private media thumbnails.
  */
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    @Inject lateinit var appLockStateManager: AppLockStateManager
+    @Inject lateinit var settingsRepository: SettingsRepository
+    @Inject lateinit var secureCacheManager: SecureCacheManager
+    @Inject lateinit var vaultRepository: VaultRepository
+
     // Applies its own per-view insets (fragment top + bottom-nav bottom) below.
     override val applyEdgeToEdgeInsets: Boolean = false
 
+    private var currentTab = Tab.HOME
+
+    /** Pre-Phase-4 plain files are migrated to encrypted storage once, on first Vault open. */
+    private var migrationChecked = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         applyWindowInsets()
 
-        if (savedInstanceState == null) {
-            showFragment(HomeFragment())
-            if (intent.getBooleanExtra(EXTRA_OPEN_SETTINGS, false)) showSettings()
-        }
+        binding.navHome.setOnClickListener { selectTab(Tab.HOME) }
+        binding.navVault.setOnClickListener { selectTab(Tab.VAULT) }
+        binding.navTools.setOnClickListener { selectTab(Tab.TOOLS) }
 
-        binding.bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    showFragment(HomeFragment())
-                    true
+        if (savedInstanceState == null) {
+            selectTab(Tab.HOME)
+        } else {
+            currentTab = runCatching {
+                Tab.valueOf(savedInstanceState.getString(STATE_TAB, Tab.HOME.name))
+            }.getOrDefault(Tab.HOME)
+            updateNavSelection()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(STATE_TAB, currentTab.name)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Never expose the post-unlock surface while locked. Use the session-locked check
+        // (not the full auto-lock policy) so returning from a viewer/sub-screen doesn't re-lock.
+        lifecycleScope.launch {
+            if (appLockStateManager.isSessionLocked()) {
+                appLockStateManager.markLocked()
+                startActivity(
+                    LockRouter.lockIntent(this@MainActivity, settingsRepository.unlockMethod.first())
+                )
+                finish()
+                return@launch
+            }
+            runCatching { secureCacheManager.clearAllDecryptedTempFiles() }
+        }
+    }
+
+    private fun selectTab(tab: Tab) {
+        val hasFragment = supportFragmentManager.findFragmentById(binding.fragmentContainer.id) != null
+        if (tab != currentTab || !hasFragment) {
+            currentTab = tab
+            showFragment(
+                when (tab) {
+                    Tab.HOME -> HomeFragment()
+                    Tab.VAULT -> VaultHomeFragment()
+                    Tab.TOOLS -> ToolsFragment()
                 }
-                // Vault and Tools open their own screens; keep the current tab
-                // selected so returning lands back where we were.
-                R.id.nav_vault -> {
-                    startActivity(VaultActivity.intent(this))
-                    false
-                }
-                R.id.nav_tools -> {
-                    startActivity(PremiumToolsActivity.intent(this))
-                    false
-                }
-                else -> false
+            )
+        }
+        if (tab == Tab.VAULT) maybeStartMigration()
+        updateNavSelection()
+    }
+
+    /** If pre-Phase-4 plain files remain, route to the encryption screen before browsing. */
+    private fun maybeStartMigration() {
+        if (migrationChecked) return
+        migrationChecked = true
+        lifecycleScope.launch {
+            val unencrypted = vaultRepository.observeUnencryptedCount().first()
+            if (unencrypted > 0) {
+                startActivity(EncryptionMigrationActivity.intent(this@MainActivity))
             }
         }
     }
 
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        setIntent(intent)
-        if (intent.getBooleanExtra(EXTRA_OPEN_SETTINGS, false)) {
-            binding.bottomNav.selectedItemId = R.id.nav_home
-            showSettings()
+    private fun showFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            replace(binding.fragmentContainer.id, fragment)
         }
     }
 
-    /** Opens Settings over the home tab (reachable via the gear on Home). */
-    fun showSettings() {
-        supportFragmentManager.commit {
-            replace(binding.fragmentContainer.id, SettingsFragment())
-            addToBackStack(null)
-        }
+    private fun updateNavSelection() {
+        styleTab(binding.navHomeIcon, binding.navHomeLabel, binding.navHomeIndicator, currentTab == Tab.HOME)
+        styleTab(binding.navVaultIcon, binding.navVaultLabel, binding.navVaultIndicator, currentTab == Tab.VAULT)
+        styleTab(binding.navToolsIcon, binding.navToolsLabel, binding.navToolsIndicator, currentTab == Tab.TOOLS)
+    }
+
+    private fun styleTab(icon: ImageView, label: TextView, indicator: View, selected: Boolean) {
+        val color = ContextCompat.getColor(
+            this, if (selected) R.color.home_primary else R.color.home_system_icon
+        )
+        icon.setColorFilter(color)
+        label.setTextColor(color)
+        label.setTypeface(null, if (selected) Typeface.BOLD else Typeface.NORMAL)
+        indicator.visibility = if (selected) View.VISIBLE else View.INVISIBLE
     }
 
     /**
-     * Edge-to-edge: content draws behind the system bars, so push the fragment
-     * content below the status bar and lift the bottom nav above the navigation
-     * bar (with side padding for display cutouts).
+     * Edge-to-edge: content draws behind the system bars, so push the fragment content below
+     * the status bar and lift the bottom nav above the navigation bar (with cutout padding).
      */
     private fun applyWindowInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
@@ -94,20 +163,11 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun showFragment(fragment: Fragment) {
-        supportFragmentManager.commit {
-            replace(binding.fragmentContainer.id, fragment)
-        }
-    }
+    private enum class Tab { HOME, VAULT, TOOLS }
 
     companion object {
-        private const val EXTRA_OPEN_SETTINGS = "open_settings"
+        private const val STATE_TAB = "current_tab"
 
-        /** Returns to the (existing) home host and opens the Settings screen. */
-        fun settingsIntent(context: Context) =
-            Intent(context, MainActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                putExtra(EXTRA_OPEN_SETTINGS, true)
-            }
+        fun intent(context: Context) = Intent(context, MainActivity::class.java)
     }
 }

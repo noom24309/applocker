@@ -209,8 +209,6 @@
     <string name="settings_app_lock_settings_desc">Manage existing preferences</string>
     <string name="settings_lock_overlay">Lock Screen Overlay</string>
     <string name="settings_lock_overlay_desc">Configure lock screen and behavior</string>
-    <string name="settings_disguise">Disguise Mode</string>
-    <string name="settings_disguise_desc">Hide the app as Calculator</string>
     <string name="settings_section_preferences">Preferences</string>
     <string name="settings_appearance_desc_alt">Light, dark or system theme</string>
     <string name="settings_notifications">Notifications</string>
@@ -793,23 +791,14 @@
     <string name="tools_view_details">View Details</string>
     <string name="tools_vault_health">Vault Health</string>
     <string name="tools_vault_health_desc">Scan encryption status and security</string>
-    <string name="tools_privacy_scan">Privacy Scan</string>
-    <string name="tools_privacy_scan_desc">Check app permissions and privacy</string>
-    <string name="tools_permission_manager">Permission Manager</string>
-    <string name="tools_permission_manager_desc">Manage app permissions and access</string>
-    <string name="tools_secure_delete">Secure Delete</string>
-    <string name="tools_secure_delete_desc">Permanently delete sensitive files</string>
     <string name="tools_status_secure">Secure</string>
-    <string name="tools_status_no_issues">No Issues</string>
-    <string name="tools_status_manage">Manage</string>
     <string name="tools_optimize_title">Keep Your Device Optimized</string>
     <string name="tools_optimize_desc">Regular cleanup and scans help keep your device fast, secure and private</string>
     <string name="tools_run_smart_scan">Run Smart Scan</string>
-    <string name="tools_coming_soon">Coming soon</string>
+    <string name="settings_open_unavailable">This screen isn\'t available on your device</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>
     <string name="tools_sample_cleanup_size">1.03 GB</string>
-    <string name="tools_sample_delete_count">0</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Close</string>
