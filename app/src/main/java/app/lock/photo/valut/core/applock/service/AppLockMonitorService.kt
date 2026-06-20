@@ -1,5 +1,7 @@
 package app.lock.photo.valut.core.applock.service
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -8,6 +10,7 @@ import android.content.IntentFilter
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
+import android.os.SystemClock
 import app.lock.photo.valut.core.applock.AppLockNotificationHelper
 import app.lock.photo.valut.core.applock.AppLockOverlayStateManager
 import app.lock.photo.valut.core.applock.AppLockPermissionChecker
@@ -218,6 +221,36 @@ class AppLockMonitorService : Service() {
         screenReceiver = receiver
     }
 
+    /**
+     * Keep protection alive when the user swipes the app away from recents. A started foreground
+     * service normally survives task removal, but some OEMs kill the whole process on swipe;
+     * reschedule a restart so locking keeps working in the background as long as at least one app
+     * is still locked. Removing the notification (Android 14+) does not stop the service either.
+     */
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        if (lockedPackages.isNotEmpty()) {
+            val restartIntent = Intent(applicationContext, AppLockMonitorService::class.java)
+                .setAction(ACTION_START)
+            var flags = PendingIntent.FLAG_ONE_SHOT
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                flags = flags or PendingIntent.FLAG_IMMUTABLE
+            }
+            val pending = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                PendingIntent.getForegroundService(this, RESTART_REQUEST_CODE, restartIntent, flags)
+            } else {
+                PendingIntent.getService(this, RESTART_REQUEST_CODE, restartIntent, flags)
+            }
+            runCatching {
+                getSystemService(AlarmManager::class.java)?.setAndAllowWhileIdle(
+                    AlarmManager.ELAPSED_REALTIME,
+                    SystemClock.elapsedRealtime() + RESTART_DELAY_MILLIS,
+                    pending
+                )
+            }
+        }
+        super.onTaskRemoved(rootIntent)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         val elapsed = System.currentTimeMillis() - startedAt
@@ -240,5 +273,8 @@ class AppLockMonitorService : Service() {
 
         private const val POLL_INTERVAL_ON = 600L
         private const val POLL_INTERVAL_OFF = 2_000L
+
+        private const val RESTART_REQUEST_CODE = 4203
+        private const val RESTART_DELAY_MILLIS = 1_000L
     }
 }

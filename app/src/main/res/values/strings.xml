@@ -795,6 +795,9 @@
     <string name="tools_optimize_title">Keep Your Device Optimized</string>
     <string name="tools_optimize_desc">Regular cleanup and scans help keep your device fast, secure and private</string>
     <string name="tools_run_smart_scan">Run Smart Scan</string>
+    <string name="tools_section_storage">Private Storage</string>
+    <string name="tools_private_notes_desc">Secure private notes</string>
+    <string name="tools_private_documents_desc">IDs, cards &amp; files</string>
     <string name="settings_open_unavailable">This screen isn\'t available on your device</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>

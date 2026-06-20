@@ -55,14 +55,6 @@ class AppLockNotificationHelper @Inject constructor(
             Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
             pendingIntentFlags()
         )
-        val stopIntent = PendingIntent.getService(
-            context,
-            1,
-            Intent(context, app.lock.photo.valut.core.applock.service.AppLockMonitorService::class.java).apply {
-                action = app.lock.photo.valut.core.applock.service.AppLockMonitorService.ACTION_STOP
-            },
-            pendingIntentFlags()
-        )
         val text = if (lockedCount > 0) {
             context.resources.getQuantityString(
                 R.plurals.applock_notification_count, lockedCount, lockedCount
@@ -80,8 +72,9 @@ class AppLockNotificationHelper @Inject constructor(
             .setPriority(NotificationCompat.PRIORITY_MIN)
             .setSilent(true)
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
+            // No "Stop" action: protection can only be turned off from inside the app, so a
+            // swipe in the shade can't disable App Lock.
             .addAction(0, context.getString(R.string.applock_notification_open), openIntent)
-            .addAction(0, context.getString(R.string.applock_notification_stop), stopIntent)
             .build()
     }
 
