@@ -10,6 +10,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -60,7 +61,12 @@ class MainActivity : BaseActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        applyWindowInsets()
+        enableEdgeToEdge()
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         binding.navHome.setOnClickListener { selectTab(Tab.HOME) }
         binding.navVault.setOnClickListener { selectTab(Tab.VAULT) }
@@ -157,8 +163,6 @@ class MainActivity : BaseActivity() {
             val bars = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
             )
-            binding.fragmentContainer.updatePadding(top = bars.top, left = bars.left, right = bars.right)
-            binding.bottomNav.updatePadding(bottom = bars.bottom, left = bars.left, right = bars.right)
             insets
         }
     }

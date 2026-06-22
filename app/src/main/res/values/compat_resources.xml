@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Placeholder resources for the ported ad + onboarding layouts so the project builds.
+  Colors/strings/styles can be tuned later; onboarding copy is generic placeholder text.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- Colors referenced by ported layouts -->
+    <color name="black">#FF000000</color>
+    <color name="blue">#FF2962FF</color>
+    <color name="btn_col">#FF6C5CE7</color>
+    <color name="lightTransparent">#22000000</color>
+    <color name="textCol">#FF1A1A1A</color>
+    <color name="text_col">#FF1A1A1A</color>
+    <color name="textcol">#FF1A1A1A</color>
+    <color name="textsec">#FF6B6B72</color>
+
+    <!-- Onboarding copy (placeholder — edit to taste) -->
+    <string name="add_single_sticker">Add</string>
+    <string name="say_it_without_words">Lock what matters</string>
+    <string name="express_love_instantly">Private &amp; secure</string>
+    <string name="real_moments_real_feelings">Your vault, your rules</string>
+    <string name="turn_everyday_conversations_into_nromantic_moments">Keep your photos, videos and apps protected behind a lock only you control.</string>
+    <string name="high_quality_love_stickers_designed_to_make_chats_unforgettable">Everything in your vault is encrypted on this device and never leaves it.</string>
+    <string name="let_your_stickers_speak_love_passion_nand_affection">Set a PIN, pattern or biometric and you are good to go.</string>
+
+    <!-- Ad attribution "Ad" badge styles -->
+    <style name="AdAttributionRounded">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">Ad</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:background">@drawable/cta2</item>
+    </style>
+
+    <style name="AdAttributionCallRound1" parent="AdAttributionRounded" />
+
+</resources>

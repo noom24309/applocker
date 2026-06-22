@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
     <!-- Brand — aligned to the HomeFragment palette (home_primary) so every screen and
          Material widget uses the exact same purple as the home dashboard. -->
     <color name="primary">#5F57D5</color>
     <color name="primary_dark">#5F57D5</color>
-    <color name="primary_light">#8E83F5</color>
     <color name="primary_container">#EEEFFF</color>
 
     <!-- Accents -->
@@ -34,27 +32,10 @@
     <color name="text_on_primary">#FFFFFFFF</color>
 
     <!-- Explicit per-mode palette (kept for reference / direct use). -->
-    <color name="text_primary_light">#0F172A</color>
-    <color name="text_secondary_light">#64748B</color>
-    <color name="text_tertiary_light">#94A3B8</color>
-    <color name="text_inverse_light">#FFFFFF</color>
-    <color name="text_error_light">#EF4444</color>
-    <color name="text_success_light">#22C55E</color>
-    <color name="text_warning_light">#F59E0B</color>
-
-    <color name="text_primary_dark">#F8FAFC</color>
-    <color name="text_secondary_dark">#CBD5E1</color>
-    <color name="text_tertiary_dark">#94A3B8</color>
-    <color name="text_inverse_dark">#0F172A</color>
-    <color name="text_error_dark">#F87171</color>
-    <color name="text_success_dark">#4ADE80</color>
-    <color name="text_warning_dark">#FBBF24</color>
 
     <!-- Pin / misc -->
     <color name="pin_dot_empty">#D8DAE8</color>
-    <color name="keypad_pressed">#ECEAFE</color>
     <color name="divider">#EEF0F6</color>
-    <color name="status_bar">#5B4DF0</color>
 
     <!-- App Lock overlay themes (Phase 6) -->
     <color name="overlay_dark_bg">#0E1016</color>
@@ -75,23 +56,12 @@
     <!-- Home dashboard (screenshot redesign) -->
     <color name="hero_gradient_start">#4361F5</color>
     <color name="hero_gradient_end">#6A4DF0</color>
-    <color name="premium_gradient_start">#7E5BF0</color>
-    <color name="premium_gradient_end">#A855F7</color>
     <color name="hero_pill_bg">#26FFFFFF</color>
     <color name="hero_text_muted">#D7DBFB</color>
 
     <color name="tile_blue_bg">#EAF0FF</color>
-    <color name="tile_green_bg">#E7F8EF</color>
-    <color name="tile_pink_bg">#FDEBEF</color>
     <color name="tile_purple_bg">#F0EBFE</color>
     <color name="tile_gray_bg">#F6F8F5</color>
-    <color name="chip_soft_bg">#EEEEEE</color>
-    <color name="switch_track_off">#E7E9F2</color>
-    <color name="switch_thumb_off">#FFFFFFFF</color>
-    <color name="switch_thumb_off_stroke">#CBD5E1</color>
-
-    <color name="alert_badge_bg">#FDE7E7</color>
-    <color name="storage_track">#E7E9F2</color>
 
     <!-- Splash screen (branded) -->
     <color name="splash_grad_top">#5A63F0</color>
@@ -107,7 +77,6 @@
     <!-- Home screen (Lock & Vault redesign) -->
     <color name="home_bg">#FBFBFE</color>
     <color name="home_primary">#5F57D5</color>
-    <color name="home_primary_dark">#4036D9</color>
     <color name="home_primary_light">#EEEFFF</color>
     <color name="home_card">#FFFFFF</color>
     <color name="home_title">#071333</color>

@@ -7,6 +7,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -43,6 +45,11 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
     /** When true this is the pre-home gate; otherwise a sub-screen that returns RESULT_OK. */
     private var gateMode = false
 
+    // Usage-access and overlay grants happen in system Settings with no callback. While the user
+    // is over there we poll for the grant and pull our task back to the front the moment it flips.
+    private val pollHandler = Handler(Looper.getMainLooper())
+    private var pollRunnable: Runnable? = null
+
     private val notificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { viewModel.refresh() }
@@ -52,8 +59,11 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
         gateMode = intent.getBooleanExtra(EXTRA_GATE_MODE, false)
 
         if (gateMode) {
-            // Decide before drawing: if protection is already set up, skip straight to home.
+            // Reaching the gate means onboarding is finished — persist it so relaunches route
+            // straight back here instead of repeating onboarding.
             lifecycleScope.launch {
+                viewModel.markOnboardingComplete()
+                // Decide before drawing: if protection is already set up, skip straight to home.
                 if (viewModel.isProtectionActive()) {
                     goToHome()
                 } else {
@@ -104,8 +114,15 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
 
     override fun onResume() {
         super.onResume()
+        // Back in the foreground (auto-returned or the user came back) — stop polling and re-read.
+        stopWatchingForGrant()
         // No binding yet while the gate is still deciding whether to pass through.
         if (::binding.isInitialized) viewModel.refresh()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopWatchingForGrant()
     }
 
     private fun observeState() {
@@ -135,6 +152,7 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
     private fun openUsageAccessSettings() {
         runCatching {
             startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+            watchForGrant { viewModel.hasUsageAccess() }
         }
     }
 
@@ -145,6 +163,39 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
         )
         runCatching { startActivity(intent) }
             .onFailure { runCatching { startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)) } }
+            .onSuccess { watchForGrant { viewModel.hasOverlayPermission() } }
+    }
+
+    /**
+     * Polls [granted] while the user is in system Settings; once it returns true, pulls this
+     * activity's task back to the front so the user lands straight back in the app. The poll keeps
+     * running while the activity is in the background (it stops in [onResume]/[onDestroy]).
+     */
+    private fun watchForGrant(granted: () -> Boolean) {
+        stopWatchingForGrant()
+        pollRunnable = object : Runnable {
+            override fun run() {
+                if (granted()) {
+                    bringTaskToFront()
+                } else {
+                    pollHandler.postDelayed(this, POLL_INTERVAL_MS)
+                }
+            }
+        }.also { pollHandler.postDelayed(it, POLL_INTERVAL_MS) }
+    }
+
+    private fun stopWatchingForGrant() {
+        pollRunnable?.let { pollHandler.removeCallbacks(it) }
+        pollRunnable = null
+    }
+
+    private fun bringTaskToFront() {
+        stopWatchingForGrant()
+        startActivity(
+            Intent(this, AppLockPermissionActivity::class.java)
+                .putExtra(EXTRA_GATE_MODE, gateMode)
+                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        )
     }
 
     private fun requestNotificationPermission() {
@@ -163,6 +214,7 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
 
     companion object {
         private const val EXTRA_GATE_MODE = "extra_gate_mode"
+        private const val POLL_INTERVAL_MS = 500L
 
         /**
          * Intent for the pre-home gate shown after unlock/first-run. The gate passes

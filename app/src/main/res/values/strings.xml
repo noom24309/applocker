@@ -7,7 +7,6 @@
     <string name="skip">Skip</string>
     <string name="get_started">Get Started</string>
     <string name="continue_label">Continue</string>
-    <string name="enable">Enable</string>
     <string name="cancel">Cancel</string>
     <string name="coming_next_phase">Coming in next phase</string>
 
@@ -91,8 +90,6 @@
     <string name="pin_length_4">4 digits</string>
     <string name="pin_length_6">6 digits</string>
     <string name="pin_mismatch">PINs don\'t match. Try again.</string>
-    <string name="pin_too_short">Enter your full PIN.</string>
-    <string name="delete">Delete</string>
 
     <!-- Biometric setup -->
     <string name="biometric_title">Enable Biometric Unlock</string>
@@ -109,87 +106,21 @@
     <string name="unlock_wrong_pin">Wrong PIN. Attempt %1$d.</string>
 
     <!-- Home -->
-    <string name="home_greeting">Your vault is protected</string>
-    <string name="home_security_status">Security Status</string>
-    <string name="home_security_active">Protection Active</string>
-    <string name="home_security_desc">App lock and vault are ready.</string>
-    <string name="home_locked_apps">Locked Apps</string>
     <string name="home_photos">Private Photos</string>
     <string name="home_videos">Private Videos</string>
-    <string name="home_quick_actions">Quick Actions</string>
-    <string name="home_action_lock_app">Lock an App</string>
-    <string name="home_action_add_photo">Add Photo</string>
 
     <!-- Navigation -->
-    <string name="nav_home">Home</string>
-    <string name="nav_app_lock">App Lock</string>
-    <string name="nav_vault">Vault</string>
-    <string name="nav_tools">Tools</string>
     <string name="nav_settings">Settings</string>
 
     <!-- Home dashboard (redesign) -->
-    <string name="home_good_morning">Good morning</string>
-    <string name="home_hero_title">You\'re Secure</string>
-    <string name="home_active_protection">Active Protection</string>
-    <string name="home_hero_subtitle">%1$d apps locked · Last scan: Just now</string>
-    <string name="home_hero_apps_locked">Apps Locked</string>
-    <string name="home_hero_photos_safe">Photos Safe</string>
-    <string name="home_hero_alerts">Alerts</string>
-    <string name="home_vault_overview">Vault Overview</string>
-    <string name="home_see_all">See all</string>
-    <string name="home_view_all">View all</string>
-    <string name="home_manage">Manage</string>
-    <string name="home_analyze">Analyze</string>
-    <string name="home_items_secured">items secured</string>
-    <string name="home_documents">Documents</string>
-    <string name="home_qa_lock_apps">Lock Apps</string>
-    <string name="home_qa_import_photos">Import Photos</string>
-    <string name="home_qa_private_camera">Private Camera</string>
-    <string name="home_qa_view_alerts">View Alerts</string>
-    <string name="home_applock_protected">%1$d Apps Protected</string>
-    <string name="home_applock_active_desc">Protection is active</string>
-    <string name="home_active">Active</string>
-    <string name="home_app_whatsapp">WhatsApp</string>
-    <string name="home_app_instagram">Instagram</string>
-    <string name="home_app_gmail">Gmail</string>
-    <string name="home_app_photos">Photos</string>
-    <string name="home_app_more">+8 more</string>
-    <string name="home_recent_alerts">Recent Alerts</string>
-    <string name="home_alert_instagram">Instagram</string>
-    <string name="home_alert_instagram_desc">App Lock · 2 min ago</string>
-    <string name="home_alert_vault">Photo Vault</string>
-    <string name="home_alert_vault_desc">Vault · 1 hr ago</string>
-    <string name="home_storage">Storage</string>
-    <string name="home_vault_storage">Vault Storage</string>
-    <string name="home_storage_used">%1$s of %2$s used</string>
-    <string name="home_storage_percent">%1$d%%</string>
-    <string name="home_legend_photos">Photos</string>
-    <string name="home_legend_videos">Videos</string>
-    <string name="home_legend_docs">Docs</string>
-    <string name="home_upgrade_title">Upgrade to Premium</string>
-    <string name="home_upgrade_desc">Unlock all features</string>
-    <string name="home_upgrade_button">Upgrade</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
     <string name="settings_security">Security</string>
     <string name="settings_change_pin">Change PIN</string>
-    <string name="settings_change_pin_desc">Update your vault PIN</string>
-    <string name="settings_biometric">Biometric Lock</string>
-    <string name="settings_biometric_desc">Unlock using fingerprint or face</string>
     <string name="settings_auto_lock">Auto Lock</string>
-    <string name="settings_auto_lock_desc">Lock automatically when app goes to background</string>
-    <string name="settings_appearance_section">Appearance</string>
-    <string name="settings_appearance">Appearance</string>
-    <string name="settings_appearance_desc">Light, dark or system default</string>
-    <string name="appearance_picker_title">Appearance</string>
-    <string name="appearance_light">Light</string>
-    <string name="appearance_dark">Dark</string>
-    <string name="appearance_system">System Default</string>
-    <string name="settings_about">About</string>
     <string name="settings_privacy_policy">Privacy Policy</string>
     <string name="settings_privacy_policy_desc">Read our privacy policy</string>
-    <string name="settings_app_version">App Version</string>
 
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Manage security, privacy and app preferences.</string>
@@ -210,7 +141,6 @@
     <string name="settings_lock_overlay">Lock Screen Overlay</string>
     <string name="settings_lock_overlay_desc">Configure lock screen and behavior</string>
     <string name="settings_section_preferences">Preferences</string>
-    <string name="settings_appearance_desc_alt">Light, dark or system theme</string>
     <string name="settings_notifications">Notifications</string>
     <string name="settings_notifications_desc">Manage app notifications</string>
     <string name="settings_language">Language</string>
@@ -228,7 +158,6 @@
     <string name="auto_lock_1m_short">1 minute</string>
     <string name="auto_lock_5m_short">5 minutes</string>
     <string name="auto_lock_never_short">Never</string>
-    <string name="appearance_system_short">System</string>
 
     <!-- Weak credential -->
     <string name="pin_weak_warning">That PIN is too easy to guess. Choose another.</string>
@@ -251,7 +180,6 @@
 
     <!-- Lockout / attempts -->
     <string name="lockout_try_again">Too many attempts. Try again in %1$s.</string>
-    <string name="attempts_warning">Careful — %1$d failed attempts.</string>
 
     <!-- Change PIN -->
     <string name="change_pin_verify_title">Enter current PIN</string>
@@ -273,7 +201,6 @@
     <string name="pattern_too_short">Connect at least 4 dots.</string>
     <string name="pattern_mismatch">Patterns don\'t match. Try again.</string>
     <string name="pattern_unlock_title">Draw your pattern</string>
-    <string name="pattern_unlock_subtitle">Unlock to access your vault.</string>
     <string name="pattern_saved">Pattern saved.</string>
     <string name="pattern_wrong">Wrong pattern. Attempt %1$d.</string>
     <string name="cd_pattern">Pattern drawing area</string>
@@ -285,13 +212,8 @@
     <string name="verify_wrong">Incorrect. Try again.</string>
 
     <!-- Security settings -->
-    <string name="settings_change_unlock_method">Change Unlock Method</string>
-    <string name="settings_change_unlock_method_desc">PIN or Pattern</string>
     <string name="settings_wrong_attempt">Wrong Attempt Protection</string>
-    <string name="settings_wrong_attempt_desc">Locks after repeated wrong attempts</string>
     <string name="settings_wrong_attempt_info">After 5 wrong attempts the app locks for 30 seconds; after 10, for 5 minutes. Always on.</string>
-    <string name="settings_lock_now">Lock App Now</string>
-    <string name="settings_lock_now_desc">Lock and require authentication</string>
 
     <!-- Auto-lock options -->
     <string name="auto_lock_picker_title">Auto Lock</string>
@@ -303,12 +225,10 @@
     <string name="auto_lock_never">Never while in memory</string>
 
     <!-- Unlock method options -->
-    <string name="unlock_method_picker_title">Unlock Method</string>
     <string name="unlock_method_pin">PIN</string>
     <string name="unlock_method_pattern">Pattern</string>
 
     <!-- Home -->
-    <string name="home_action_lock_now">Lock App Now</string>
 
     <!-- Keypad digits -->
     <string name="key_0">0</string>
@@ -323,29 +243,12 @@
     <string name="key_9">9</string>
 
     <!-- Vault home -->
-    <string name="vault_title">Vault</string>
-    <string name="vault_dashboard_subtitle">Protect your privacy security</string>
     <string name="vault_cat_pictures">Pictures</string>
     <string name="vault_cat_videos">Videos</string>
-    <string name="vault_cat_apps">Apps</string>
-    <string name="vault_cat_documents">Documents</string>
-    <string name="vault_photos">Private Photos</string>
-    <string name="vault_videos">Private Videos</string>
     <string name="vault_albums">Albums</string>
-    <string name="vault_favorites">Favorites</string>
-    <string name="vault_recent">Recently Imported</string>
-    <string name="vault_recycle_bin">Recycle Bin</string>
-    <string name="vault_folders">Folders</string>
-    <string name="vault_add">Add</string>
     <string name="vault_add_photo">Add photo / video</string>
     <string name="vault_create_folder">Create folder</string>
-    <string name="vault_import_photos">Import Photos</string>
-    <string name="vault_import_videos">Import Videos</string>
-    <string name="vault_import_media">Import Media</string>
     <string name="vault_create_album">Create Album</string>
-    <string name="vault_open_vault">Open Vault</string>
-    <string name="vault_storage_used">%1$s used</string>
-    <string name="vault_encrypted_status">Vault encrypted</string>
     <string name="items_count">%1$d items</string>
 
     <!-- Empty states -->
@@ -355,15 +258,10 @@
     <string name="empty_recent">Nothing imported recently.</string>
     <string name="empty_recycle_bin">Recycle bin is empty.</string>
     <string name="empty_album">This album is empty.</string>
-    <string name="empty_albums">No albums yet. Create one to organize your media.</string>
     <string name="empty_pictures">No pictures</string>
     <string name="empty_videos_short">No videos</string>
 
     <!-- Import -->
-    <string name="import_title">Import Media</string>
-    <string name="import_option_photos">Import Photos</string>
-    <string name="import_option_videos">Import Videos</string>
-    <string name="import_option_both">Import Photos &amp; Videos</string>
     <string name="import_progress_title">Importing…</string>
     <string name="import_progress_count">%1$d of %2$d</string>
     <string name="import_complete">Import Complete</string>
@@ -372,12 +270,8 @@
     <string name="import_summary_failed">%1$d failed</string>
     <string name="import_view_vault">View Vault</string>
     <string name="import_cancel">Cancel</string>
-    <string name="import_some_failed">Import failed for some files</string>
 
     <!-- Delete originals -->
-    <string name="delete_originals_title">Remove originals?</string>
-    <string name="delete_originals_message">Do you want to remove the original files from your gallery?</string>
-    <string name="delete_originals_manual">Imported successfully. You can delete originals from your gallery manually.</string>
 
     <!-- Sort -->
     <string name="sort_title">Sort by</string>
@@ -412,7 +306,6 @@
     <string name="album_rename_title">Rename Album</string>
     <string name="album_delete_title">Delete album?</string>
     <string name="album_delete_message">The album will be deleted. Your media stays safe in the main vault.</string>
-    <string name="album_options_title">Album options</string>
     <string name="create">Create</string>
     <string name="rename">Rename</string>
     <string name="delete_label">Delete</string>
@@ -439,7 +332,6 @@
     <string name="details_resolution">Resolution</string>
     <string name="details_duration">Duration</string>
     <string name="details_imported">Imported</string>
-    <string name="details_album">Album</string>
     <string name="details_favorite">Favorite</string>
     <string name="details_protection">Protection</string>
     <string name="details_protection_encrypted">Encrypted</string>
@@ -465,9 +357,7 @@
     <!-- Toasts / errors -->
     <string name="toast_deleted">Moved to recycle bin</string>
     <string name="toast_restored">Restored</string>
-    <string name="toast_album_created">Album created</string>
     <string name="error_video_playback">Video cannot be played</string>
-    <string name="error_file_missing">This file cannot be opened</string>
 
     <!-- Content descriptions -->
     <string name="cd_thumbnail">Media thumbnail</string>
@@ -490,7 +380,6 @@
     <string name="applock_channel_desc">Keeps App Lock running while enabled.</string>
     <string name="applock_notification_title">App Lock is active</string>
     <string name="applock_notification_text">Protected apps are being monitored on this device.</string>
-    <string name="applock_notification_stop">Stop</string>
 
     <!-- Overlay lock screen -->
     <string name="applock_overlay_title">App Locked</string>
@@ -508,17 +397,9 @@
     <string name="applock_perm_privacy_note">These permissions are used only for app protection on your device.</string>
 
     <!-- Permission setup -->
-    <string name="applock_permission_title">App Lock setup</string>
-    <string name="applock_permission_subtitle">App Lock needs a few permissions to protect your apps. You stay in control — grant them from system Settings.</string>
     <string name="applock_perm_usage_title">Usage Access</string>
-    <string name="applock_perm_usage_desc">Required to detect when a protected app is opened.</string>
-    <string name="applock_perm_usage_button">Enable Usage Access</string>
     <string name="applock_perm_overlay_title">Display Over Other Apps</string>
-    <string name="applock_perm_overlay_desc">Required to show the lock screen when protected apps are opened.</string>
-    <string name="applock_perm_overlay_button">Enable Overlay Permission</string>
     <string name="applock_perm_notification_title">Notification Permission</string>
-    <string name="applock_perm_notification_desc">Required to keep App Lock protection running.</string>
-    <string name="applock_perm_notification_button">Enable Notification</string>
     <string name="applock_perm_granted">Granted</string>
     <string name="applock_perm_check_again">Check again</string>
     <string name="applock_usage_privacy">Usage Access helps App Lock detect when a protected app is opened. This information stays on your device and is never uploaded, sold, or shared.</string>
@@ -563,8 +444,6 @@
     <string name="applock_setting_app_switch_desc">Lock again when you leave a protected app</string>
     <string name="applock_setting_lock_new">Lock new apps automatically</string>
     <string name="applock_setting_lock_new_desc">Automatically lock newly installed apps</string>
-    <string name="applock_setting_notification">Show protection notification</string>
-    <string name="applock_setting_notification_desc">Display the ongoing App Lock notification</string>
     <string name="applock_setting_unlock_method">Unlock method</string>
     <string name="applock_setting_unlock_method_desc">Managed in Security settings</string>
 
@@ -710,62 +589,12 @@
     <string name="privacy_policy_body">Usage Access Permission\nThis app uses Usage Access only to detect when apps selected by the user are opened, so the app can show the lock screen. Usage data is processed locally on the device and is not uploaded, sold, shared, or used for advertising.\n\nDisplay Over Other Apps\nThis app uses Display Over Other Apps only to show the lock screen over protected apps.\n\nForeground Service\nThis app uses a foreground service to keep App Lock protection active while enabled by the user.\n\nPremium Tools\nPremium cleanup tools such as duplicate finder, large file finder, and storage analyzer process vault files locally on the device. No photos, videos, documents, notes, file names, or analysis results are uploaded or shared.\n\nPrivate Notes and Private Documents are stored locally in encrypted form. The app does not upload or share this content.\n\nHidden and locked albums are privacy features controlled by the user and stored locally on the device.</string>
 
     <!-- Phase 9: Private Camera -->
-    <string name="camera_title">Private Camera</string>
-    <string name="camera_permission_rationale">Camera permission is used to capture private photos and videos directly into your encrypted vault.</string>
-    <string name="camera_audio_permission_rationale">Microphone permission is used only when you record private videos with sound.</string>
-    <string name="camera_grant_permission">Grant permission</string>
-    <string name="camera_flash">Flash</string>
-    <string name="camera_switch">Switch camera</string>
-    <string name="camera_audio">Audio</string>
-    <string name="camera_capture">Capture</string>
-    <string name="camera_mode_photo">Photo</string>
-    <string name="camera_mode_video">Video</string>
-    <string name="camera_album_main_vault">Main Vault</string>
-    <string name="camera_save_to">Save to</string>
-    <string name="camera_save_to_chip">Save to: %s</string>
-    <string name="camera_create_folder">Create new folder</string>
-    <string name="camera_create_folder_title">New folder</string>
-    <string name="camera_folder_name_hint">Folder name</string>
-    <string name="camera_securing">Securing private media…</string>
-    <string name="camera_saved_to_vault">Saved to vault</string>
-    <string name="camera_saved_to_album">Saved to %s</string>
-    <string name="camera_action_view">View</string>
-    <string name="camera_action_again">Again</string>
-    <string name="camera_action_move">Move</string>
-    <string name="camera_action_delete">Delete</string>
-    <string name="camera_action_done">Done</string>
 
     <!-- Settings -->
-    <string name="camera_settings_title">Camera settings</string>
-    <string name="camera_setting_default_facing">Default camera: %s</string>
-    <string name="camera_setting_default_mode">Default mode: %s</string>
-    <string name="camera_setting_video_quality">Video quality: %s</string>
-    <string name="camera_setting_photo_quality">Photo quality: %s</string>
-    <string name="camera_setting_record_audio">Record video with sound</string>
-    <string name="camera_setting_keep_awake">Keep screen awake while camera open</string>
-    <string name="camera_setting_show_preview">Show capture preview</string>
-    <string name="camera_facing_back">Back</string>
-    <string name="camera_facing_front">Front</string>
-    <string name="camera_quality_storage_saver">Storage Saver</string>
-    <string name="camera_quality_standard">Standard</string>
-    <string name="camera_quality_high">High</string>
 
     <!-- Errors -->
-    <string name="camera_error_capture">Could not capture photo</string>
-    <string name="camera_error_record">Could not record video</string>
-    <string name="camera_error_secure">Could not secure this file</string>
-    <string name="camera_error_no_camera">Camera is not available</string>
-    <string name="camera_error_in_use">Camera is already in use</string>
-    <string name="camera_error_permission">Camera permission is required</string>
-    <string name="camera_error_storage">Not enough storage to save private media</string>
-    <string name="camera_audio_denied_muted">Audio permission denied. Recording muted video.</string>
-    <string name="camera_quality_unsupported">Selected quality is not supported on this device</string>
 
     <!-- Entry points -->
-    <string name="home_private_camera">Private Camera</string>
-    <string name="home_private_camera_desc">Capture secure photos and videos directly into your vault.</string>
-    <string name="camera_capture_photo">Capture Photo</string>
-    <string name="camera_record_video">Record Video</string>
 
     <!-- Media details source label -->
     <string name="details_source">Source</string>
@@ -792,9 +621,6 @@
     <string name="tools_vault_health">Vault Health</string>
     <string name="tools_vault_health_desc">Scan encryption status and security</string>
     <string name="tools_status_secure">Secure</string>
-    <string name="tools_optimize_title">Keep Your Device Optimized</string>
-    <string name="tools_optimize_desc">Regular cleanup and scans help keep your device fast, secure and private</string>
-    <string name="tools_run_smart_scan">Run Smart Scan</string>
     <string name="tools_section_storage">Private Storage</string>
     <string name="tools_private_notes_desc">Secure private notes</string>
     <string name="tools_private_documents_desc">IDs, cards &amp; files</string>
@@ -805,25 +631,16 @@
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Close</string>
-    <string name="premium_tools_title">Premium Tools</string>
-    <string name="premium_section_private_tools">Private tools</string>
-    <string name="premium_badge">PREMIUM</string>
-    <string name="premium_more_tools_note">More premium tools are on the way. Everything is processed locally on your device — nothing is uploaded.</string>
-    <string name="home_premium_tools">Premium Tools</string>
-    <string name="home_premium_tools_desc">Private notes, documents and vault tools.</string>
 
     <!-- Notes -->
     <string name="notes_title">Private Notes</string>
-    <string name="notes_subtitle">Encrypted notes stored only on this device</string>
     <string name="notes_search_hint">Search notes</string>
     <string name="notes_empty">No notes yet. Tap + to create one.</string>
     <string name="notes_new">New note</string>
-    <string name="notes_editor_title">Note</string>
     <string name="notes_title_hint">Title</string>
     <string name="notes_body_hint">Write something private…</string>
     <string name="notes_encrypted_badge">End-to-end encrypted</string>
     <string name="notes_meta_count">%1$d words · %2$d characters</string>
-    <string name="notes_export">Export as text</string>
     <string name="notes_save_failed">Could not save note</string>
     <string name="notes_export_done">Note exported</string>
     <string name="notes_export_failed">Could not export note</string>
@@ -832,10 +649,8 @@
 
     <!-- Documents -->
     <string name="documents_title">Private Documents</string>
-    <string name="documents_subtitle">Securely store your personal cards and files</string>
     <string name="documents_search_hint">Search documents</string>
     <string name="documents_empty">No documents yet. Tap + to import.</string>
-    <string name="documents_import">Import documents</string>
     <string name="documents_meta">%1$s · %2$s · %3$s</string>
     <string name="documents_open_text">Open as text</string>
     <string name="documents_export">Export</string>
@@ -849,7 +664,6 @@
     <string name="docs_open_failed">Could not open this document</string>
 
     <!-- Document cards (wallet-style) -->
-    <string name="documents_tools_summary">%1$d cards · %2$d files</string>
     <string name="documents_tab_cards">Cards</string>
     <string name="documents_tab_files">Files</string>
     <string name="documents_header_subtitle">Securely store your personal cards and files</string>
@@ -901,7 +715,6 @@
     <string name="card_field_nationality">Nationality</string>
     <string name="card_field_expiry">Expiry date</string>
     <string name="card_field_notes">Notes</string>
-    <string name="card_field_optional">Optional</string>
 
     <!-- Add / edit card -->
     <string name="card_add_title">Add Card</string>
@@ -909,20 +722,14 @@
     <string name="card_section_images">Card images</string>
     <string name="card_section_details">Details</string>
     <string name="card_section_color">Card color</string>
-    <string name="card_front_image">Front image</string>
-    <string name="card_back_image">Back image</string>
     <string name="card_add_front">Add front image</string>
     <string name="card_add_back">Add back image</string>
     <string name="card_replace_image">Replace</string>
     <string name="card_remove_image">Remove</string>
-    <string name="card_expiry_set">Set expiry date</string>
-    <string name="card_expiry_clear">Clear</string>
     <string name="card_save">Save card</string>
-    <string name="card_saving">Saving…</string>
     <string name="card_error_need_something">Add a name, number or image first</string>
     <string name="card_error_save_failed">Could not save card</string>
     <string name="card_error_image_failed">Image cannot be opened</string>
-    <string name="card_error_add_failed">Could not add this document</string>
     <string name="card_error_no_storage">Not enough storage</string>
     <string name="card_saved">Card saved</string>
 
@@ -946,25 +753,18 @@
     <string name="card_restore">Restore</string>
     <string name="card_delete_forever">Delete forever</string>
     <string name="card_delete_forever_message">This card and its images will be permanently removed.</string>
-    <string name="card_restored">Card restored</string>
     <string name="cd_card_front">Card front image</string>
     <string name="cd_card_back">Card back image</string>
     <string name="cd_card_color">Card color option</string>
 
     <!-- Premium cleanup / storage / health -->
-    <string name="premium_section_cleanup">Cleanup</string>
-    <string name="premium_section_health">Vault health</string>
     <string name="duplicates_title">Duplicate Finder</string>
-    <string name="duplicates_subtitle">Find and remove duplicate files</string>
     <string name="large_files_title">Large Files</string>
-    <string name="large_files_subtitle">Find files taking the most space</string>
     <string name="cleanup_title">Clear Temporary Cache</string>
-    <string name="cleanup_subtitle">Free up space used by temporary files</string>
     <string name="cleanup_clear_temp">Clear cache</string>
     <string name="cleanup_temp_cleared">Temporary cache cleared</string>
 
     <string name="storage_analyzer_title">Storage Analyzer</string>
-    <string name="storage_analyzer_subtitle">See what\'s using your vault space</string>
     <string name="storage_total_label">Total vault storage</string>
     <string name="storage_private_camera">Private Camera</string>
     <string name="storage_thumbnails">Thumbnails</string>
@@ -972,7 +772,6 @@
     <string name="storage_temp_cache">Temporary cache</string>
 
     <string name="health_title">Vault Health</string>
-    <string name="health_subtitle">Check encryption and fix issues</string>
     <string name="health_score_label">Health score</string>
     <string name="health_scan_now">Scan now</string>
     <string name="health_open_app_lock">Open App Lock</string>
@@ -989,7 +788,6 @@
 
     <!-- Cleanup: shared selection / actions -->
     <string name="cleanup_selected_summary">%1$d selected · %2$s</string>
-    <string name="cleanup_none_selected">Nothing selected</string>
     <string name="cleanup_delete_selected">Move to Recycle Bin</string>
     <string name="cleanup_select_first">Select items to remove first</string>
     <string name="cleanup_moved_to_bin">%1$d item(s) moved to Recycle Bin</string>

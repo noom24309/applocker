@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "501387031",
+    "project_id": "applock-86329",
+    "storage_bucket": "applock-86329.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501387031:android:0ee0c5fda87aff95a47152",
+        "android_client_info": {
+          "package_name": "com.privatelock.vault.applock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmsr9GUFCQ1faa8YeG5Hs-45CNtNyJiAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

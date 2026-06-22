@@ -17,7 +17,6 @@
     <dimen name="radius_l">16dp</dimen>
 
     <!-- Card -->
-    <dimen name="card_elevation">0dp</dimen>
     <dimen name="card_stroke_width">1dp</dimen>
 
     <!-- Text -->
@@ -34,7 +33,6 @@
     <dimen name="keypad_button_size">72dp</dimen>
     <dimen name="keypad_text_size">26sp</dimen>
     <dimen name="card_icon_size">44dp</dimen>
-    <dimen name="logo_size">96dp</dimen>
 
     <!-- Document cards (wallet) -->
     <dimen name="card_wallet_radius">20dp</dimen>
@@ -46,7 +44,6 @@
 
     <!-- Vault grid -->
     <dimen name="grid_spacing">3dp</dimen>
-    <dimen name="thumb_corner">10dp</dimen>
     <dimen name="badge_text">11sp</dimen>
     <dimen name="empty_icon_size">72dp</dimen>
     <dimen name="viewer_action_size">48dp</dimen>

@@ -51,8 +51,6 @@ class ToolsFragment : Fragment() {
         // Private storage.
         binding.cardPrivateNotes.setOnClickListener { startActivity(PrivateNotesActivity.intent(requireContext())) }
         binding.cardPrivateDocuments.setOnClickListener { startActivity(PrivateDocumentsActivity.intent(requireContext())) }
-
-        binding.btnRunScan.setOnClickListener { startActivity(SmartCleanupActivity.intent(requireContext())) }
     }
 
     override fun onDestroyView() {

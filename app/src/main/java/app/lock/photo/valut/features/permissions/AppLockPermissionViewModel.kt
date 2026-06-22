@@ -21,6 +21,10 @@ class AppLockPermissionViewModel @Inject constructor(
     private val _state = MutableStateFlow(AppLockPermissionUiState())
     val state: StateFlow<AppLockPermissionUiState> = _state.asStateFlow()
 
+    /** Live single-permission checks, used to poll for a grant while the user is in Settings. */
+    fun hasUsageAccess(): Boolean = permissionChecker.hasUsageAccess()
+    fun hasOverlayPermission(): Boolean = permissionChecker.hasOverlayPermission()
+
     /** Re-reads the live permission state (call on resume + "Check again"). */
     fun refresh() {
         _state.value = AppLockPermissionUiState(
@@ -39,6 +43,14 @@ class AppLockPermissionViewModel @Inject constructor(
     suspend fun isProtectionActive(): Boolean =
         permissionChecker.hasAllRequiredAppLockPermissions() &&
             dataStore.appLockFeatureEnabled.first()
+
+    /**
+     * Persists that onboarding is finished. Called when the gate is first reached at the end of
+     * the onboarding flow, so subsequent launches route straight back here (not into onboarding).
+     */
+    suspend fun markOnboardingComplete() {
+        dataStore.setOnboardingCompleted(true)
+    }
 
     /**
      * Turns App Lock on and starts the monitor service when it can run (≥1 locked app).

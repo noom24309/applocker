@@ -204,11 +204,14 @@
 
                     <TextView
                         style="@style/ToolTileDesc"
+                        android:visibility="gone"
                         android:text="@string/tools_duplicate_desc" />
 
                     <TextView
                         android:id="@+id/tvDuplicatesValue"
                         style="@style/ToolTileValue"
+                        android:visibility="gone"
+
                         android:text="@string/tools_sample_dup_size"
                         android:textColor="@color/home_primary" />
                 </LinearLayout>
@@ -237,11 +240,15 @@
 
                     <TextView
                         style="@style/ToolTileDesc"
+                        android:visibility="gone"
+
                         android:text="@string/tools_large_files_desc" />
 
                     <TextView
                         android:id="@+id/tvLargeFilesValue"
                         style="@style/ToolTileValue"
+                        android:visibility="gone"
+
                         android:text="@string/tools_sample_large_size"
                         android:textColor="@color/accent_blue" />
                 </LinearLayout>
@@ -278,11 +285,15 @@
 
                     <TextView
                         style="@style/ToolTileDesc"
+                        android:visibility="gone"
+
                         android:text="@string/tools_smart_cleanup_desc" />
 
                     <TextView
                         android:id="@+id/tvSmartCleanupValue"
                         style="@style/ToolTileValue"
+                        android:visibility="gone"
+
                         android:text="@string/tools_sample_cleanup_size"
                         android:textColor="@color/accent_amber" />
                 </LinearLayout>
@@ -311,11 +322,15 @@
 
                     <TextView
                         style="@style/ToolTileDesc"
+                        android:visibility="gone"
+
                         android:text="@string/tools_storage_analyzer_desc" />
 
                     <TextView
                         style="@style/ToolTileValue"
                         android:text="@string/tools_view_details"
+                        android:visibility="gone"
+
                         android:textColor="@color/home_teal" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -361,6 +376,8 @@
 
                     <TextView
                         style="@style/ToolTileDesc"
+                        android:visibility="gone"
+
                         android:text="@string/tools_vault_health_desc" />
 
                     <TextView
@@ -417,6 +434,8 @@
 
                     <TextView
                         style="@style/ToolTileDesc"
+                        android:visibility="gone"
+
                         android:text="@string/tools_private_notes_desc" />
 
                     <TextView
@@ -449,6 +468,8 @@
 
                     <TextView
                         style="@style/ToolTileDesc"
+                        android:visibility="gone"
+
                         android:text="@string/tools_private_documents_desc" />
 
                     <TextView
@@ -459,77 +480,6 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <!-- ===== Optimize card ===== -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_premium_card"
-            android:orientation="vertical"
-            android:padding="18dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="54dp"
-                    android:layout_height="54dp"
-                    android:background="@drawable/bg_hero_pill">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_vault"
-                        app:tint="@color/white" />
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tools_optimize_title"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        style="@style/TextAppearance.App.Medium"
-                        android:text="@string/tools_optimize_desc"
-                        android:textColor="@color/hero_text_muted"
-                        android:textSize="12.5sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRunScan"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:layout_marginTop="16dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingStart="22dp"
-                android:paddingEnd="22dp"
-                android:text="@string/tools_run_smart_scan"
-                android:textAllCaps="false"
-                android:textColor="@color/home_primary"
-                android:textSize="14sp"
-                app:backgroundTint="@color/white"
-                app:cornerRadius="14dp" />
-        </LinearLayout>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

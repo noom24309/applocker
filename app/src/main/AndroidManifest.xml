@@ -50,8 +50,19 @@
             </intent-filter>
         </activity>
 
+
+        <!-- Ported language + onboarding flow -->
         <activity
-            android:name=".features.onboarding.OnboardingActivity"
+            android:name=".features.ob.OnBoardingActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.wastickers.romantic.stickers.loveromance.ui.language.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.wastickers.romantic.stickers.loveromance.ui.language.EnglishActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.wastickers.romantic.stickers.loveromance.ui.language.HindiActivity"
             android:exported="false" />
 
         <activity
@@ -211,7 +222,8 @@
 
         <activity
             android:name=".features.permissions.AppLockPermissionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".features.applock.overlay.AppLockOverlayActivity"

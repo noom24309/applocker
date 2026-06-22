@@ -85,6 +85,9 @@ class VaultHomeFragment : Fragment() {
 
     private fun setupClicks() {
         binding.btnBell.setOnClickListener { toast(getString(R.string.lv_vault_protected_title)) }
+        binding.btnSettings.setOnClickListener {
+            startActivity(app.lock.photo.valut.features.settings.SettingsActivity.intent(requireContext()))
+        }
         binding.vaultSafeCard.setOnClickListener { openHealth() }
         binding.learnMore.setOnClickListener { openHealth() }
         binding.bannerCheckHealth.setOnClickListener { openHealth() }
