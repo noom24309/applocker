@@ -1,9 +1,9 @@
-package app.lock.photo.valut.features.auth
+package app.lock.photo.valut.features.auth.unlock
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.lock.photo.valut.core.lock.AppLockStateManager
-import app.lock.photo.valut.core.security.PatternSecurityManager
+import app.lock.photo.valut.core.security.PinSecurityManager
 import app.lock.photo.valut.core.security.WrongAttemptManager
 import app.lock.photo.valut.domain.repository.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,9 +19,16 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+data class UnlockUiState(
+    val pinLength: Int = 4,
+    val lockedOut: Boolean = false,
+    val remainingMillis: Long = 0L,
+    val attemptCount: Int = 0
+)
+
 @HiltViewModel
-class PatternUnlockViewModel @Inject constructor(
-    private val patternSecurityManager: PatternSecurityManager,
+class UnlockViewModel @Inject constructor(
+    private val pinSecurityManager: PinSecurityManager,
     private val wrongAttemptManager: WrongAttemptManager,
     private val appLockStateManager: AppLockStateManager,
     private val settingsRepository: SettingsRepository
@@ -40,18 +47,19 @@ class PatternUnlockViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            _state.update { it.copy(pinLength = settingsRepository.pinLength.first()) }
             refreshLockout()
             startCountdown()
         }
     }
 
-    fun verifyPattern(nodes: List<Int>) {
+    fun verifyPin(pin: String) {
         viewModelScope.launch {
             if (wrongAttemptManager.isLockedOut()) {
                 refreshLockout()
                 return@launch
             }
-            if (patternSecurityManager.verifyPattern(nodes)) {
+            if (pinSecurityManager.verifyPin(pin)) {
                 onAuthenticated()
             } else {
                 val status = wrongAttemptManager.recordWrongAttempt()
@@ -67,6 +75,7 @@ class PatternUnlockViewModel @Inject constructor(
         }
     }
 
+    /** Biometric success never affects the wrong-PIN counter. */
     fun onBiometricSuccess() {
         viewModelScope.launch { onAuthenticated() }
     }

@@ -24,7 +24,7 @@ import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivitySplashBinding
 import app.lock.photo.valut.domain.model.StartDestination
-import app.lock.photo.valut.features.auth.ChooseUnlockMethodActivity
+import app.lock.photo.valut.features.auth.unlock.ChooseUnlockMethodActivity
 import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
 import com.wastickers.romantic.stickers.loveromance.ui.language.LanguageActivity
 import com.wastickers.romantic.stickers.loveromance.ads.AdsConsentManager
@@ -198,7 +198,7 @@ class SplashActivity : BaseActivity(), LockExempt {
             // showLoading = true: hold a full-screen cover while the ad loads so it always shows,
             // then navigate ONLY after the user closes the ad (dismiss callback). With false the
             // ad could be deferred/skipped when the splash lacks window focus.
-            interAd.loadAndShowAd(this, showLoading = true) {
+            interAd.loadAndShowAd(this, showLoading = false) {
                 isAdShowing = false
                 currentInterstitialAd = null
                 proceedToNavigation()

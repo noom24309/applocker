@@ -1,4 +1,5 @@
-package app.lock.photo.valut.features.auth
+package app.lock.photo.valut.features.auth.pin
+import app.lock.photo.valut.features.auth.recovery.RecoveryKeyActivity
 
 import android.content.Intent
 import androidx.activity.viewModels

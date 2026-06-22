@@ -1,4 +1,5 @@
-package app.lock.photo.valut.features.auth
+package app.lock.photo.valut.features.auth.verify
+import app.lock.photo.valut.features.auth.pin.BasePinActivity
 
 import android.view.View
 import android.view.animation.AnimationUtils

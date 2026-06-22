@@ -45,7 +45,6 @@ class OnboardingFragment1 : BaseFragment() {
         Log.e("Native_onboarding", "onViewCreated: " + remoteConfig["nativeOnboard2"].asBoolean())
 
             binding.ivChecked.beVisible()
-            binding.progressId.beInvisible()
 
 
         showNativeOnBoardOne()

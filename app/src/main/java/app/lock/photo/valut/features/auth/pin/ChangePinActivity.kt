@@ -1,4 +1,4 @@
-package app.lock.photo.valut.features.auth
+package app.lock.photo.valut.features.auth.pin
 
 import android.view.View
 import android.widget.Toast

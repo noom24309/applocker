@@ -1,4 +1,5 @@
-package app.lock.photo.valut.features.auth
+package app.lock.photo.valut.features.auth.recovery
+import app.lock.photo.valut.features.auth.pin.ChangePinActivity
 
 import app.lock.photo.valut.core.ui.BaseActivity
 

@@ -30,7 +30,7 @@ class OnBoardingActivity : BaseClass(){
         setLocale(baseConfig.selectedLanguage!!)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-
+hideNavigationBar()
         gotoFullScreenView()
         adapter = OnBoardingPagerAdapter(this)
         binding?.viewPager?.adapter = adapter

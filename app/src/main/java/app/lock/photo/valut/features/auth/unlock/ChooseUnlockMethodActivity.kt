@@ -1,4 +1,7 @@
-package app.lock.photo.valut.features.auth
+package app.lock.photo.valut.features.auth.unlock
+import app.lock.photo.valut.features.auth.biometric.BiometricSetupActivity
+import app.lock.photo.valut.features.auth.pin.CreatePinActivity
+import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
 
 import app.lock.photo.valut.core.ui.BaseActivity
 

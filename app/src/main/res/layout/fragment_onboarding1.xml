@@ -65,6 +65,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
             android:includeFontPadding="false"
+            style="@style/TextAppearance.App.Bold"
             android:text="Lock Any App"
             android:textColor="@color/primary"
             android:textSize="@dimen/_18sdp"

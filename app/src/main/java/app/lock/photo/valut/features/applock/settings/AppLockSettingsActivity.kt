@@ -19,7 +19,7 @@ import app.lock.photo.valut.features.applock.AppLockLabels
 import app.lock.photo.valut.features.applock.model.AppLockSettingsUiState
 import app.lock.photo.valut.features.applock.theme.LockThemePickerActivity
 import app.lock.photo.valut.features.applock.troubleshooting.AppLockTroubleshootingActivity
-import app.lock.photo.valut.features.auth.VerifyMasterActivity
+import app.lock.photo.valut.features.auth.verify.VerifyMasterActivity
 import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint

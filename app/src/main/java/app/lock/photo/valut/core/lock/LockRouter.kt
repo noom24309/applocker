@@ -3,8 +3,8 @@ package app.lock.photo.valut.core.lock
 import android.content.Context
 import android.content.Intent
 import app.lock.photo.valut.domain.model.UnlockMethod
-import app.lock.photo.valut.features.auth.PatternUnlockActivity
-import app.lock.photo.valut.features.auth.UnlockActivity
+import app.lock.photo.valut.features.auth.pattern.PatternUnlockActivity
+import app.lock.photo.valut.features.auth.unlock.UnlockActivity
 
 /** Chooses the correct unlock screen for the active [UnlockMethod]. */
 object LockRouter {

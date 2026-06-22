@@ -67,6 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/applock_setup_title"
+                style="@style/TextAppearance.App.Bold"
                 android:textColor="@color/home_title"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -111,7 +112,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/applock_perm_usage_title"
-                            android:textColor="@color/home_title"
+                            style="@style/TextAppearance.App.SemiBold"
                             android:textSize="15.5sp"
                             android:fontFamily="@font/inter_semi" />
 
@@ -121,7 +122,6 @@
                             android:layout_marginTop="3dp"
                             style="@style/TextAppearance.App.Medium"
                             android:text="@string/applock_perm_usage_desc_alt"
-                            android:textColor="@color/home_subtitle"
                             android:textSize="12.5sp" />
                     </LinearLayout>
 
@@ -189,7 +189,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/applock_perm_overlay_title_alt"
-                            android:textColor="@color/home_title"
+                            style="@style/TextAppearance.App.SemiBold"
+
                             android:textSize="15.5sp"
                             android:fontFamily="@font/inter_semi" />
 
@@ -199,7 +200,6 @@
                             android:layout_marginTop="3dp"
                             style="@style/TextAppearance.App.Medium"
                             android:text="@string/applock_perm_overlay_desc_alt"
-                            android:textColor="@color/home_subtitle"
                             android:textSize="12.5sp" />
                     </LinearLayout>
 
@@ -267,9 +267,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/applock_perm_notification_title_alt"
-                            android:textColor="@color/home_title"
-                            android:textSize="15.5sp"
-                            android:fontFamily="@font/inter_semi" />
+                            style="@style/TextAppearance.App.SemiBold"
+                            android:textSize="15.5sp" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -277,7 +276,6 @@
                             android:layout_marginTop="3dp"
                             style="@style/TextAppearance.App.Medium"
                             android:text="@string/applock_perm_notification_desc_alt"
-                            android:textColor="@color/home_subtitle"
                             android:textSize="12.5sp" />
                     </LinearLayout>
 
@@ -338,7 +336,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_weight="1"
-                    style="@style/TextAppearance.App.Medium"
+                    style="@style/TextAppearance.App.Regular"
                     android:text="@string/applock_perm_privacy_note"
                     android:textColor="@color/home_subtitle"
                     android:textSize="12.5sp" />

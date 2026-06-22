@@ -15,7 +15,7 @@ import com.wastickers.romantic.stickers.loveromance.ads.nativeAds.showLoadedNati
 import app.lock.photo.valut.databinding.FragmentOnboarding4Binding
 import com.wastickers.romantic.stickers.loveromance.helper.baseConfig
 import com.wastickers.romantic.stickers.loveromance.ui.dialogs.BlockingProgressDialog
-import app.lock.photo.valut.features.auth.ChooseUnlockMethodActivity
+import app.lock.photo.valut.features.auth.unlock.ChooseUnlockMethodActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.jvm.java
 

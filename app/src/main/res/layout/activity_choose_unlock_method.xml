@@ -4,22 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:orientation="vertical"
-    android:paddingStart="@dimen/screen_padding"
-    android:paddingEnd="@dimen/screen_padding"
-    android:paddingBottom="@dimen/screen_padding">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_xl"
+        style="@style/TextAppearance.App.Bold"
+        android:layout_marginHorizontal="@dimen/_8sdp"
         android:text="@string/choose_method_title"
         android:textAppearance="@style/TextAppearance.App.Title" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/TextAppearance.App.Medium"
         android:layout_marginTop="@dimen/space_m"
+        android:layout_marginHorizontal="@dimen/_8sdp"
         android:lineSpacingExtra="4dp"
         android:text="@string/choose_method_subtitle"
         android:textAppearance="@style/TextAppearance.App.Body" />
@@ -30,6 +31,7 @@
         style="@style/Widget.App.Card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8sdp"
         android:layout_marginTop="@dimen/space_l"
         android:clickable="true"
         android:focusable="true">
@@ -66,6 +68,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/choose_method_pattern_title"
                         android:textColor="@color/text_primary"
+                        style="@style/TextAppearance.App.Bold"
                         android:textSize="@dimen/text_body"
                         android:textStyle="bold" />
 
@@ -87,6 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    style="@style/TextAppearance.App.Medium"
                     android:text="@string/choose_method_pattern_desc"
                     android:textAppearance="@style/TextAppearance.App.Body" />
             </LinearLayout>
@@ -108,6 +112,7 @@
         style="@style/Widget.App.Card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8sdp"
         android:layout_marginTop="@dimen/space_m"
         android:clickable="true"
         android:focusable="true">
@@ -137,6 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/choose_method_pin_title"
+                    style="@style/TextAppearance.App.Bold"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_body"
                     android:textStyle="bold" />
@@ -145,6 +151,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    style="@style/TextAppearance.App.Medium"
                     android:text="@string/choose_method_pin_desc"
                     android:textAppearance="@style/TextAppearance.App.Body" />
             </LinearLayout>
@@ -169,6 +176,8 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnContinue"
         style="@style/Widget.App.Button.Primary"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/continue_label" />

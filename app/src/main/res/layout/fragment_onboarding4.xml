@@ -68,6 +68,7 @@
             android:includeFontPadding="false"
             android:text="Everything Stays Protected"
             android:textColor="@color/primary"
+            style="@style/TextAppearance.App.Bold"
             android:textSize="@dimen/_18sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

@@ -14,6 +14,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/cd_card_icon"
         android:padding="9dp"
@@ -51,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            style="@style/TextAppearance.App.Bold"
             android:gravity="center"
             android:text="@string/pattern_setup_title"
             android:textColor="@color/home_title"
@@ -106,7 +108,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.App.Medium"
+                style="@style/TextAppearance.App.Regular"
                 android:text="@string/pattern_hint_note"
                 android:textColor="@color/home_subtitle"
                 android:textSize="12.5sp" />

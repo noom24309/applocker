@@ -1,4 +1,4 @@
-package app.lock.photo.valut.features.auth
+package app.lock.photo.valut.features.auth.biometric
 
 import app.lock.photo.valut.core.ui.BaseActivity
 

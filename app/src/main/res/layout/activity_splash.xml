@@ -4,94 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_splash_gradient">
+    android:layoutDirection="ltr"
+    android:background="@color/background"
+    >
 
-    <!-- Decorative blobs (bleed off the edges) -->
-    <View
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="@drawable/bg_splash_blob"
-        android:translationX="120dp"
-        android:translationY="-130dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="280dp"
-        android:layout_height="280dp"
-        android:background="@drawable/bg_splash_blob"
-        android:translationX="-110dp"
-        android:translationY="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Dotted accents -->
-    <ImageView
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="90dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_splash_dots"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="120dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_splash_dots"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Center cluster: emblem + wordmark + tagline -->
     <FrameLayout
         android:id="@+id/logoContainer"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:background="@drawable/bg_splash_halo"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/app_icon"
+        android:layout_marginBottom="@dimen/_16sdp"
         app:layout_constraintBottom_toTopOf="@id/wordmark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.40"
-        app:layout_constraintVertical_chainStyle="packed">
-
-        <View
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:background="@drawable/bg_splash_glass" />
-
-        <ImageView
-            android:layout_width="112dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/cd_app_logo"
-            android:src="@drawable/ic_splash_emblem" />
-    </FrameLayout>
+        app:layout_constraintVertical_chainStyle="packed"></FrameLayout>
 
     <LinearLayout
         android:id="@+id/wordmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:orientation="horizontal"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@id/tagline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoContainer">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:letterSpacing="0.01"
             android:text="@string/splash_brand_lock"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textSize="34sp"
-            android:textStyle="bold"
-            android:letterSpacing="0.01" />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -106,25 +54,36 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:letterSpacing="0.01"
             android:text="@string/splash_brand_vault"
-            android:textColor="@color/white"
+            android:textColor="@color/primary"
             android:textSize="34sp"
-            android:textStyle="bold"
-            android:letterSpacing="0.01" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tagline"
+        style="@style/TextAppearance.App.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/splash_tagline"
-        android:textColor="@color/splash_subtitle"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:textColor="@color/text_secondary"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/flAdNative"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/wordmark" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    <!-- Splash native-ad container (populated after UMP consent, hidden if ads are off). -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_220sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:layout_marginHorizontal="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/loading" />
 
     <!-- Loading indicator -->
     <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -132,7 +91,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        app:indicatorColor="@color/white"
+        app:indicatorColor="@color/primary"
+        android:layout_marginBottom="@dimen/_4sdp"
         app:indicatorSize="34dp"
         app:trackThickness="3dp"
         app:layout_constraintBottom_toTopOf="@id/securingText"
@@ -143,26 +103,15 @@
         android:id="@+id/securingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="20dp"
         android:alpha="0.85"
-        android:text="@string/splash_securing"
-        android:textColor="@color/splash_subtitle"
+        android:text="This action may contain ads"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:textColor="@color/text_secondary"
         android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@id/flAdNative"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="SmallSp" />
 
-    <!-- Splash native-ad container (populated after UMP consent, hidden if ads are off). -->
-    <FrameLayout
-        android:id="@+id/flAdNative"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

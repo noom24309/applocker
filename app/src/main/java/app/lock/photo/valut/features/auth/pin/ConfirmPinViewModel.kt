@@ -1,4 +1,4 @@
-package app.lock.photo.valut.features.auth
+package app.lock.photo.valut.features.auth.pin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -67,6 +67,7 @@
             android:fontFamily="@font/inter_bold"
             android:includeFontPadding="false"
             android:text="You’re in Control"
+            style="@style/TextAppearance.App.Bold"
             android:textColor="@color/primary"
             android:textSize="@dimen/_18sdp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -25,7 +25,7 @@ import app.lock.photo.valut.domain.model.DocumentCardColors
 import app.lock.photo.valut.domain.model.DocumentCardDetail
 import app.lock.photo.valut.domain.model.DocumentNumberMasker
 import app.lock.photo.valut.domain.repository.CardImageSide
-import app.lock.photo.valut.features.auth.VerifyMasterActivity
+import app.lock.photo.valut.features.auth.verify.VerifyMasterActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
