@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
@@ -24,6 +23,8 @@ import app.lock.photo.valut.features.auth.pin.ChangePinActivity
 import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
 import app.lock.photo.valut.features.auth.verify.VerifyMasterActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.wastickers.romantic.stickers.loveromance.ui.language.LanguageActivity
+import com.wastickers.romantic.stickers.loveromance.ui.settings.SettingActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -71,7 +72,7 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun setupActions() {
-        binding.cardSecurityStatus.setOnClickListener { showSecurityStatusInfo() }
+        binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.rowChangePin.setOnClickListener { requireVerification { openChangePin() } }
         binding.rowChangePattern.setOnClickListener { requireVerification { openPatternSetup() } }
         binding.rowBiometric.setOnClickListener { toggleBiometric() }
@@ -83,6 +84,9 @@ class SettingsActivity : BaseActivity() {
         binding.rowLanguage.setOnClickListener { openLanguageSettings() }
         binding.rowPrivacy.setOnClickListener { showPrivacyPolicy() }
         binding.rowAbout.setOnClickListener { showAbout() }
+        binding.rowRate.setOnClickListener { openPlayStoreListing() }
+        binding.rowShare.setOnClickListener { shareApp() }
+        binding.rowMoreApps.setOnClickListener { openMoreApps() }
     }
 
     private fun observeState() {
@@ -150,18 +154,10 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun openLanguageSettings() {
-        val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            Intent(
-                Settings.ACTION_APP_LOCALE_SETTINGS,
-                Uri.fromParts("package", packageName, null)
-            )
-        } else {
-            Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.fromParts("package", packageName, null)
-            )
-        }
-        startSystemSettings(intent)
+        // Came from in-app settings: after the user picks a language the ported
+        // language flow routes back to MainActivity (home) instead of onboarding.
+        SettingActivity.comeFromLangauge = true
+        startActivity(Intent(this, LanguageActivity::class.java))
     }
 
     /** Launches a system settings screen, falling back to a toast if unavailable. */
@@ -174,11 +170,13 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun showPrivacyPolicy() {
-        MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.privacy_policy_title)
-            .setMessage(R.string.privacy_policy_body)
-            .setPositiveButton(android.R.string.ok, null)
-            .show()
+        startActivity(
+            WebViewActivity.intent(
+                this,
+                PRIVACY_POLICY_URL,
+                getString(R.string.privacy_policy_title)
+            )
+        )
     }
 
     private fun showAbout() {
@@ -187,6 +185,45 @@ class SettingsActivity : BaseActivity() {
             .setMessage(getString(R.string.settings_about_message, appVersion))
             .setPositiveButton(android.R.string.ok, null)
             .show()
+    }
+
+    /** Opens this app's Play Store listing (falls back to the web URL if Play isn't installed). */
+    private fun openPlayStoreListing() {
+        openExternal(
+            Uri.parse("market://details?id=$packageName"),
+            Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+        )
+    }
+
+    /** Shares the Play Store link via the system share sheet. */
+    private fun shareApp() {
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_subject))
+            putExtra(Intent.EXTRA_TEXT, getString(R.string.settings_share_text, packageName))
+        }
+        runCatching { startActivity(Intent.createChooser(intent, null)) }
+            .onFailure { toastOpenUnavailable() }
+    }
+
+    /** Opens the developer's other apps on the Play Store. */
+    private fun openMoreApps() {
+        val publisher = Uri.encode(PLAY_DEVELOPER_NAME)
+        openExternal(
+            Uri.parse("market://search?q=pub:$publisher"),
+            Uri.parse("https://play.google.com/store/apps/developer?id=$publisher")
+        )
+    }
+
+    /** Launches [primary] (e.g. a market:// intent); on failure tries [fallback] (web), else toasts. */
+    private fun openExternal(primary: Uri, fallback: Uri) {
+        runCatching { startActivity(Intent(Intent.ACTION_VIEW, primary)) }
+            .recoverCatching { startActivity(Intent(Intent.ACTION_VIEW, fallback)) }
+            .onFailure { toastOpenUnavailable() }
+    }
+
+    private fun toastOpenUnavailable() {
+        Toast.makeText(this, R.string.settings_open_unavailable, Toast.LENGTH_SHORT).show()
     }
 
     private fun showSecurityStatusInfo() {
@@ -224,6 +261,12 @@ class SettingsActivity : BaseActivity() {
     }
 
     companion object {
+        private const val PRIVACY_POLICY_URL =
+            "https://sites.google.com/view/applock-privatevault/home"
+
+        /** Play Store publisher name used by the "More Apps" row. */
+        private const val PLAY_DEVELOPER_NAME = "A2ZTechnologies"
+
         fun intent(context: Context) = Intent(context, SettingsActivity::class.java)
     }
 }

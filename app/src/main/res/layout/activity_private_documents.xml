@@ -4,45 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/home_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="8dp">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="6dp"
-            android:padding="8dp"
-            android:contentDescription="@string/cd_card_icon"
-            android:src="@drawable/ic_arrow_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/TextAppearance.App.Bold"
-            android:layout_width="wrap_content"
+        <!-- ===== Toolbar ===== -->
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:gravity="center"
-            android:text="@string/documents_title"
-            android:textColor="@color/text_primary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_back"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_card_icon"
+                android:padding="9dp"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/home_title" />
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/TextAppearance.App.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="@string/documents_title"
+                android:textColor="@color/home_title"
+                android:textSize="22sp" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -50,42 +51,68 @@
             android:layout_marginStart="@dimen/screen_padding"
             android:layout_marginEnd="@dimen/screen_padding"
             android:layout_marginBottom="@dimen/space_s"
+            style="@style/TextAppearance.App.Medium"
             android:text="@string/documents_header_subtitle"
-            android:textColor="@color/text_secondary"
-            android:textSize="@dimen/text_caption" />
+            android:textColor="@color/home_subtitle"
+            android:textSize="13sp" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/home_bg"
             app:tabGravity="fill"
-            app:tabMode="fixed" />
+            app:tabIndicatorColor="@color/home_primary"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/home_primary"
+            app:tabTextColor="@color/home_subtitle" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- ===== Search box (home style) ===== -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:layout_marginStart="@dimen/screen_padding"
-            android:layout_marginTop="@dimen/space_s"
+            android:layout_marginTop="@dimen/space_m"
             android:layout_marginEnd="@dimen/screen_padding"
-            android:layout_marginBottom="@dimen/space_s"
-            app:startIconDrawable="@drawable/ic_search"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+            android:background="@drawable/bg_lv_search"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="14dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_search"
+                app:tint="@color/home_hint" />
+
+            <EditText
                 android:id="@+id/searchInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:background="@null"
                 android:hint="@string/cards_search_hint"
                 android:imeOptions="actionSearch"
+                android:importantForAutofill="no"
                 android:inputType="text"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:maxLines="1"
+                style="@style/TextAppearance.App.Medium"
+                android:textColor="@color/home_title"
+                android:textColorHint="@color/home_hint"
+                android:textSize="15sp" />
+        </LinearLayout>
 
+        <!-- ===== Filter chips ===== -->
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/cardsFilterGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/screen_padding"
+            android:layout_marginTop="@dimen/space_m"
             android:layout_marginEnd="@dimen/screen_padding"
             android:layout_marginBottom="@dimen/space_s"
             app:selectionRequired="true"
@@ -93,7 +120,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipAll"
-                style="@style/Widget.App.Chip.SoftClose"
+                style="@style/Widget.App.Chip.DocFilter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -101,14 +128,14 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipFavorites"
-                style="@style/Widget.App.Chip.SoftClose"
+                style="@style/Widget.App.Chip.DocFilter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cards_filter_favorites" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDeleted"
-                style="@style/Widget.App.Chip.SoftClose"
+                style="@style/Widget.App.Chip.DocFilter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cards_filter_deleted" />
@@ -144,22 +171,30 @@
                     android:visibility="gone"
                     tools:visibility="visible">
 
-                    <ImageView
-                        android:layout_width="@dimen/empty_icon_size"
-                        android:layout_height="@dimen/empty_icon_size"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_shield"
-                        app:tint="@color/text_tertiary" />
+                    <FrameLayout
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
+                        android:background="@drawable/bg_lv_icon_tile"
+                        android:backgroundTint="@color/home_tile_purple">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_card_id"
+                            app:tint="@color/home_primary" />
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/cardsEmptyTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_l"
+                        style="@style/TextAppearance.App.Bold"
                         android:text="@string/cards_empty_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="@dimen/text_heading"
-                        android:textStyle="bold" />
+                        android:textColor="@color/home_title"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/cardsEmptySubtitle"
@@ -167,9 +202,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_s"
                         android:gravity="center"
+                        style="@style/TextAppearance.App.Medium"
                         android:text="@string/cards_empty_subtitle"
-                        android:textColor="@color/text_tertiary"
-                        android:textSize="@dimen/text_body" />
+                        android:textColor="@color/home_subtitle"
+                        android:textSize="13.5sp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnAddCard"
@@ -177,6 +213,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_l"
+                        app:backgroundTint="@color/home_primary"
                         android:text="@string/cards_add_button" />
 
                     <com.google.android.material.button.MaterialButton
@@ -185,6 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_xs"
+                        android:textColor="@color/home_primary"
                         android:text="@string/add_import_file" />
                 </LinearLayout>
             </FrameLayout>
@@ -210,8 +248,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    style="@style/TextAppearance.App.Medium"
                     android:text="@string/documents_empty"
-                    android:textColor="@color/text_tertiary"
+                    android:textColor="@color/home_subtitle"
                     android:visibility="gone"
                     tools:visibility="visible" />
             </FrameLayout>
@@ -225,6 +264,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:indeterminate="true"
+        android:indeterminateTint="@color/home_primary"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -235,6 +275,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/space_l"
         android:contentDescription="@string/cards_add_button"
+        app:backgroundTint="@color/home_primary"
         app:srcCompat="@drawable/ic_add"
         app:tint="@color/white" />
 

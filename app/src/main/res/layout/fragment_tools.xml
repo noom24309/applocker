@@ -181,9 +181,10 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardDuplicates"
                 style="@style/ToolTileCard"
+                android:background="@drawable/bg_back"
                 android:layout_marginEnd="6dp">
 
                 <LinearLayout style="@style/ToolTileContent">
@@ -215,11 +216,13 @@
                         android:text="@string/tools_sample_dup_size"
                         android:textColor="@color/home_primary" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardLargeFiles"
                 style="@style/ToolTileCard"
+                android:background="@drawable/bg_back"
+
                 android:layout_marginStart="6dp">
 
                 <LinearLayout style="@style/ToolTileContent">
@@ -252,7 +255,7 @@
                         android:text="@string/tools_sample_large_size"
                         android:textColor="@color/accent_blue" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -262,47 +265,11 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardSmartCleanup"
-                style="@style/ToolTileCard"
-                android:layout_marginEnd="6dp">
-
-                <LinearLayout style="@style/ToolTileContent">
-
-                    <FrameLayout
-                        style="@style/ToolTileIconBox"
-                        android:background="@drawable/bg_tile_amber">
-
-                        <ImageView
-                            style="@style/ToolTileIcon"
-                            android:src="@drawable/ic_sparkle"
-                            app:tint="@color/accent_amber" />
-                    </FrameLayout>
-
-                    <TextView
-                        style="@style/ToolTileTitle"
-                        android:text="@string/tools_smart_cleanup" />
-
-                    <TextView
-                        style="@style/ToolTileDesc"
-                        android:visibility="gone"
-
-                        android:text="@string/tools_smart_cleanup_desc" />
-
-                    <TextView
-                        android:id="@+id/tvSmartCleanupValue"
-                        style="@style/ToolTileValue"
-                        android:visibility="gone"
-
-                        android:text="@string/tools_sample_cleanup_size"
-                        android:textColor="@color/accent_amber" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardStorage"
-                style="@style/ToolTileCard"
-                android:layout_marginStart="6dp">
+                android:background="@drawable/bg_back"
+
+                style="@style/ToolTileCard">
 
                 <LinearLayout style="@style/ToolTileContent">
 
@@ -333,7 +300,7 @@
 
                         android:textColor="@color/home_teal" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
         <!-- ===== Security & Privacy ===== -->
@@ -353,9 +320,11 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardHealth"
                 style="@style/ToolTileCard"
+                android:background="@drawable/bg_back"
+
                 android:layout_marginEnd="6dp">
 
                 <LinearLayout style="@style/ToolTileContent">
@@ -385,7 +354,7 @@
                         android:text="@string/tools_status_secure"
                         android:textColor="@color/home_success" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Space
                 android:layout_width="0dp"
@@ -411,9 +380,11 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardPrivateNotes"
                 style="@style/ToolTileCard"
+                android:background="@drawable/bg_back"
+
                 android:layout_marginEnd="6dp">
 
                 <LinearLayout style="@style/ToolTileContent">
@@ -443,11 +414,13 @@
                         android:text="@string/tools_view_details"
                         android:textColor="@color/accent_amber" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardPrivateDocuments"
                 style="@style/ToolTileCard"
+                android:background="@drawable/bg_back"
+
                 android:layout_marginStart="6dp">
 
                 <LinearLayout style="@style/ToolTileContent">
@@ -477,7 +450,7 @@
                         android:text="@string/tools_view_details"
                         android:textColor="@color/accent_blue" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
 

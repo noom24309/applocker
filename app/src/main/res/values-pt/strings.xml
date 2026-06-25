@@ -1,0 +1,853 @@
+<resources>
+    <string name="app_name">Private Lock Vault</string>
+
+    <!-- Common -->
+    <string name="next">Avançar</string>
+    <string name="back">Voltar</string>
+    <string name="skip">Pular</string>
+    <string name="get_started">Começar</string>
+    <string name="continue_label">Continuar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="coming_next_phase">Em breve na próxima fase</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Privado. Seguro. Seu.</string>
+    <string name="splash_brand_lock">App Lock</string>
+    <string name="splash_brand_amp">&amp;</string>
+    <string name="splash_brand_vault">Private Vault</string>
+    <string name="splash_securing">Protegendo seu cofre…</string>
+
+    <!-- Home screen (Lock & Vault redesign) -->
+    <string name="lv_brand_a">Lock &amp;</string>
+    <string name="lv_brand_b">Vault</string>
+    <string name="lv_subtitle">Proteja seus apps. Proteja sua privacidade.</string>
+    <string name="lv_search_hint">Buscar apps...</string>
+    <string name="lv_chip_all">Todos</string>
+    <string name="lv_chip_locked">Bloqueados</string>
+    <string name="lv_chip_unlocked">Desbloqueados</string>
+    <string name="lv_chip_system">Sistema</string>
+    <string name="lv_stat_locked_apps">Apps bloqueados</string>
+    <string name="lv_stat_protection">Proteção</string>
+    <string name="lv_stat_protection_value">Ativa</string>
+    <string name="lv_stat_protection_off">Desativada</string>
+    <string name="lv_stat_blocked">Bloqueados hoje</string>
+    <string name="lv_stat_time">Tempo de proteção</string>
+    <string name="lv_installed_apps">Apps instalados</string>
+    <string name="lv_app_count">(%1$d)</string>
+    <string name="lv_sort_az">Ordenar: A-Z</string>
+    <string name="lv_sort_za">Ordenar: Z-A</string>
+    <string name="lv_complete_setup">Concluir configuração</string>
+    <string name="lv_complete_setup_sub">Conceda as permissões restantes para garantir proteção completa.</string>
+    <string name="lv_finish_setup">Finalizar configuração</string>
+    <string name="lv_nav_home">Início</string>
+    <string name="lv_nav_vault">Cofre</string>
+    <string name="lv_nav_tools">Ferramentas</string>
+
+    <!-- Vault home (Lock & Vault redesign) -->
+    <string name="lv_vault_subtitle">Suas fotos e vídeos privados, protegidos.</string>
+    <string name="lv_vault_safe_title">O cofre está seguro</string>
+    <string name="lv_vault_safe_sub">Todos os seus arquivos estão criptografados e armazenados com segurança.</string>
+    <string name="lv_vault_unsafe_title">Concluir criptografia</string>
+    <string name="lv_vault_unsafe_sub">Alguns arquivos ainda não estão criptografados. Toque para protegê-los.</string>
+    <string name="lv_vault_learn_more">Saiba mais</string>
+    <string name="lv_vault_used">Usado</string>
+    <string name="lv_vault_percent">%1$d%%</string>
+    <string name="lv_vault_import_photos">Importar fotos</string>
+    <string name="lv_vault_import_videos">Importar vídeos</string>
+    <string name="lv_vault_new_album">Novo álbum</string>
+    <string name="lv_vault_settings">Configurações do cofre</string>
+    <string name="lv_vault_albums">Álbuns</string>
+    <string name="lv_vault_recent">Mídia recente</string>
+    <string name="lv_view_all">Ver tudo</string>
+    <string name="lv_vault_all_photos">Todas as fotos</string>
+    <string name="lv_vault_protected_title">Seu cofre está protegido</string>
+    <string name="lv_vault_protected_sub">A criptografia AES-256 mantém suas memórias totalmente privadas.</string>
+    <string name="lv_vault_check_health">Verificar estado</string>
+    <string name="lv_vault_recent_empty">Ainda não há mídia. Importe fotos ou vídeos para começar.</string>
+
+    <!-- Ported onboarding (4-page flow) -->
+    <string name="ob_title_1">Bloqueie qualquer app</string>
+    <string name="ob_subtitle_1">Proteja seus apps privados com um PIN, padrão ou bloqueio biométrico seguro</string>
+    <string name="ob_title_2">Cofre privado de fotos e vídeos</string>
+    <string name="ob_subtitle_2">Oculte e proteja suas fotos e vídeos pessoais dentro de um cofre privado seguro</string>
+    <string name="ob_title_3">Você está no controle</string>
+    <string name="ob_subtitle_3">Escolha o que bloquear e gerencie sua privacidade exatamente como quiser</string>
+    <string name="ob_title_4">Tudo permanece protegido</string>
+    <string name="ob_subtitle_4">Mantenha seus apps, mídia, arquivos e dados privados criptografados e seguros no seu dispositivo.</string>
+
+    <!-- Language screens (ported flow) -->
+    <string name="language_screen_subtitle">Escolha seu idioma preferido para o Lock &amp; Vault.</string>
+    <string name="select_language_prompt">Selecione um idioma</string>
+
+    <!-- Note editor -->
+    <string name="note_editor_title">Escrever notas</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Proteção de bloqueio de apps</string>
+    <string name="onboarding_subtitle_1">Bloqueie seus apps privados com PIN, padrão ou impressão digital.</string>
+    <string name="onboarding_title_2">Cofre privado de fotos</string>
+    <string name="onboarding_subtitle_2">Oculte suas fotos e vídeos pessoais com segurança.</string>
+    <string name="onboarding_title_3">Mantenha-se privado</string>
+    <string name="onboarding_subtitle_3">Suas fotos e arquivos permanecem criptografados no seu dispositivo.</string>
+
+    <!-- Choose unlock method -->
+    <string name="choose_method_title">Escolha como desbloquear</string>
+    <string name="choose_method_subtitle">Escolha o bloqueio que você usará para abrir o app. Você pode adicionar o desbloqueio por impressão digital nas próximas etapas.</string>
+    <string name="choose_method_pattern_title">Padrão</string>
+    <string name="choose_method_pattern_desc">Desenhe um padrão para desbloquear — rápido e fácil.</string>
+    <string name="choose_method_pin_title">PIN</string>
+    <string name="choose_method_pin_desc">Use um PIN numérico de 4 ou 6 dígitos.</string>
+    <string name="choose_method_recommended">Recomendado</string>
+
+    <!-- PIN -->
+    <string name="create_pin_title">Crie seu PIN</string>
+    <string name="create_pin_subtitle">Este PIN mantém seu cofre seguro.</string>
+    <string name="confirm_pin_title">Confirme seu PIN</string>
+    <string name="confirm_pin_subtitle">Digite seu PIN novamente para continuar.</string>
+    <string name="pin_length_4">4 dígitos</string>
+    <string name="pin_length_6">6 dígitos</string>
+    <string name="pin_mismatch">Os PINs não coincidem. Tente novamente.</string>
+
+    <!-- Biometric setup -->
+    <string name="biometric_title">Ativar desbloqueio biométrico</string>
+    <string name="biometric_subtitle">Use sua impressão digital ou rosto para desbloquear instantaneamente.</string>
+    <string name="biometric_enable">Ativar biometria</string>
+    <string name="biometric_unavailable_subtitle">O desbloqueio biométrico não está disponível neste dispositivo. Você ainda pode usar seu PIN.</string>
+    <string name="biometric_prompt_title">Desbloquear Private Lock Vault</string>
+    <string name="biometric_prompt_subtitle">Confirme sua identidade para continuar</string>
+    <string name="biometric_use">Usar biometria</string>
+
+    <!-- Unlock -->
+    <string name="unlock_title">Digite seu PIN</string>
+    <string name="unlock_subtitle">Desbloqueie para acessar seu cofre.</string>
+    <string name="unlock_wrong_pin">PIN incorreto. Tentativa %1$d.</string>
+
+    <!-- Home -->
+    <string name="home_photos">Fotos privadas</string>
+    <string name="home_videos">Vídeos privados</string>
+
+    <!-- Navigation -->
+    <string name="nav_settings">Configurações</string>
+
+    <!-- Home dashboard (redesign) -->
+
+    <!-- Settings -->
+    <string name="settings_title">Configurações</string>
+    <string name="settings_security">Segurança</string>
+    <string name="settings_change_pin">Alterar PIN</string>
+    <string name="settings_auto_lock">Bloqueio automático</string>
+    <string name="settings_privacy_policy">Política de privacidade</string>
+    <string name="settings_privacy_policy_desc">Leia nossa política de privacidade</string>
+
+    <!-- Settings redesign (screenshot match) -->
+    <string name="settings_subtitle">Gerencie segurança, privacidade e preferências do app.</string>
+    <string name="settings_security_status">Status de segurança</string>
+    <string name="settings_security_status_desc">Seu dispositivo e dados estão protegidos.</string>
+    <string name="settings_security_status_active">Todos os recursos de segurança estão ativos</string>
+    <string name="settings_change_pin_desc_alt">Altere o PIN de desbloqueio do app</string>
+    <string name="settings_change_pattern">Alterar padrão</string>
+    <string name="settings_change_pattern_desc">Altere seu padrão de desbloqueio</string>
+    <string name="settings_biometric_alt">Desbloqueio biométrico</string>
+    <string name="settings_biometric_desc_alt">Desbloqueie com o app</string>
+    <string name="settings_auto_lock_desc_alt">Bloquear o app automaticamente</string>
+    <string name="settings_wrong_attempt_desc_alt">Bloquear o app após várias tentativas malsucedidas</string>
+    <string name="settings_attempts_value">%1$d tentativas</string>
+    <string name="settings_section_app_lock">Bloqueio de apps</string>
+    <string name="settings_app_lock_settings">Configurações de bloqueio de apps</string>
+    <string name="settings_app_lock_settings_desc">Gerencie as preferências existentes</string>
+    <string name="settings_lock_overlay">Sobreposição da tela de bloqueio</string>
+    <string name="settings_lock_overlay_desc">Configure a tela de bloqueio e o comportamento</string>
+    <string name="settings_section_preferences">Preferências</string>
+    <string name="settings_notifications">Notificações</string>
+    <string name="settings_notifications_desc">Gerencie as notificações do app</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_language_desc">Idioma do app</string>
+    <string name="settings_language_default">English</string>
+    <string name="settings_section_more">Mais</string>
+    <string name="settings_about_app">Sobre o Lock &amp; Vault</string>
+    <string name="settings_about_app_desc">Versão, licenças e mais</string>
+    <string name="settings_about_message">Lock &amp; Vault\nVersão %1$s\n\nTodos os seus dados são criptografados e processados localmente neste dispositivo.</string>
+    <string name="settings_rate">Avalie-nos</string>
+    <string name="settings_rate_desc">Avalie o app no Google Play</string>
+    <string name="settings_share">Compartilhar app</string>
+    <string name="settings_share_desc">Conte aos seus amigos sobre nós</string>
+    <string name="settings_more_apps">Mais apps</string>
+    <string name="settings_more_apps_desc">Explore nossos outros apps</string>
+    <string name="settings_share_subject">Private Lock Vault</string>
+    <string name="settings_share_text">Proteja seus apps e fotos privadas com o Private Lock Vault!\n\nhttps://play.google.com/store/apps/details?id=%1$s</string>
+
+    <!-- Short value labels for settings rows -->
+    <string name="auto_lock_immediate_short">Imediatamente</string>
+    <string name="auto_lock_15s_short">15 segundos</string>
+    <string name="auto_lock_30s_short">30 segundos</string>
+    <string name="auto_lock_1m_short">1 minuto</string>
+    <string name="auto_lock_5m_short">5 minutos</string>
+    <string name="auto_lock_never_short">Nunca</string>
+
+    <!-- Weak credential -->
+    <string name="pin_weak_warning">Esse PIN é fácil demais de adivinhar. Escolha outro.</string>
+
+    <!-- Recovery key -->
+    <string name="recovery_title">Sua chave de recuperação</string>
+    <string name="recovery_subtitle">Guarde esta chave em um lugar seguro. É a única forma de redefinir seu PIN se você o esquecer.</string>
+    <string name="recovery_warning">Você não poderá ver esta chave novamente. Se for perdida, seu cofre não poderá ser recuperado em futuras fases criptografadas.</string>
+    <string name="recovery_saved_confirm">Salvei minha chave</string>
+    <string name="recovery_copy">Copiar chave</string>
+    <string name="recovery_copied">Chave de recuperação copiada</string>
+
+    <!-- Forgot PIN / recovery -->
+    <string name="forgot_pin">Esqueceu o PIN?</string>
+    <string name="forgot_pin_title">Redefinir com a chave de recuperação</string>
+    <string name="forgot_pin_subtitle">Digite sua chave de recuperação para definir um novo PIN.</string>
+    <string name="forgot_pin_hint">Chave de recuperação</string>
+    <string name="forgot_pin_verify">Verificar chave</string>
+    <string name="forgot_pin_wrong">A chave de recuperação está incorreta.</string>
+
+    <!-- Lockout / attempts -->
+    <string name="lockout_try_again">Muitas tentativas. Tente novamente em %1$s.</string>
+
+    <!-- Change PIN -->
+    <string name="change_pin_verify_title">Digite o PIN atual</string>
+    <string name="change_pin_verify_subtitle">Verifique que é você antes de alterar seu PIN.</string>
+    <string name="change_pin_new_title">Defina um novo PIN</string>
+    <string name="change_pin_new_subtitle">Escolha um novo PIN.</string>
+    <string name="change_pin_confirm_title">Confirme o novo PIN</string>
+    <string name="change_pin_confirm_subtitle">Digite seu novo PIN novamente.</string>
+    <string name="change_pin_same">O novo PIN deve ser diferente do atual.</string>
+    <string name="change_pin_success">PIN atualizado.</string>
+
+    <!-- Pattern -->
+    <string name="pattern_setup_title">Defina seu padrão</string>
+    <string name="pattern_setup_subtitle">Desenhe um padrão para desbloquear o app. Conecte pelo menos 4 pontos.</string>
+    <string name="pattern_clear">Limpar padrão</string>
+    <string name="pattern_hint_note">Faça-o fácil de lembrar, mas difícil de adivinhar para os outros.</string>
+    <string name="pattern_confirm_title">Confirmar padrão</string>
+    <string name="pattern_confirm_subtitle">Desenhe o mesmo padrão novamente.</string>
+    <string name="pattern_too_short">Conecte pelo menos 4 pontos.</string>
+    <string name="pattern_mismatch">Os padrões não coincidem. Tente novamente.</string>
+    <string name="pattern_unlock_title">Desenhe seu padrão</string>
+    <string name="pattern_saved">Padrão salvo.</string>
+    <string name="pattern_wrong">Padrão incorreto. Tentativa %1$d.</string>
+    <string name="cd_pattern">Área de desenho do padrão</string>
+
+    <!-- Verify master -->
+    <string name="verify_title">Verifique que é você</string>
+    <string name="verify_subtitle_pin">Confirme seu PIN para alterar as configurações de segurança.</string>
+    <string name="verify_subtitle_pattern">Confirme seu padrão para alterar as configurações de segurança.</string>
+    <string name="verify_wrong">Incorreto. Tente novamente.</string>
+
+    <!-- Security settings -->
+    <string name="settings_wrong_attempt">Proteção contra tentativas erradas</string>
+    <string name="settings_wrong_attempt_info">Após 5 tentativas erradas, o app bloqueia por 30 segundos; após 10, por 5 minutos. Sempre ativo.</string>
+
+    <!-- Auto-lock options -->
+    <string name="auto_lock_picker_title">Bloqueio automático</string>
+    <string name="auto_lock_immediate">Imediatamente</string>
+    <string name="auto_lock_15s">Após 15 segundos</string>
+    <string name="auto_lock_30s">Após 30 segundos</string>
+    <string name="auto_lock_1m">Após 1 minuto</string>
+    <string name="auto_lock_5m">Após 5 minutos</string>
+    <string name="auto_lock_never">Nunca enquanto estiver na memória</string>
+
+    <!-- Unlock method options -->
+    <string name="unlock_method_pin">PIN</string>
+    <string name="unlock_method_pattern">Padrão</string>
+
+    <!-- Home -->
+
+    <!-- Keypad digits -->
+    <string name="key_0">0</string>
+    <string name="key_1">1</string>
+    <string name="key_2">2</string>
+    <string name="key_3">3</string>
+    <string name="key_4">4</string>
+    <string name="key_5">5</string>
+    <string name="key_6">6</string>
+    <string name="key_7">7</string>
+    <string name="key_8">8</string>
+    <string name="key_9">9</string>
+
+    <!-- Vault home -->
+    <string name="vault_cat_pictures">Imagens</string>
+    <string name="vault_cat_videos">Vídeos</string>
+    <string name="vault_albums">Álbuns</string>
+    <string name="vault_add_photo">Adicionar foto / vídeo</string>
+    <string name="vault_create_folder">Criar pasta</string>
+    <string name="vault_create_album">Criar álbum</string>
+    <string name="items_count">%1$d itens</string>
+
+    <!-- Empty states -->
+    <string name="empty_photos">Ainda não há fotos privadas. Importe algumas para começar.</string>
+    <string name="empty_videos">Ainda não há vídeos privados. Importe alguns para começar.</string>
+    <string name="empty_favorites">Ainda não há favoritos.</string>
+    <string name="empty_recent">Nada importado recentemente.</string>
+    <string name="empty_recycle_bin">A lixeira está vazia.</string>
+    <string name="empty_album">Este álbum está vazio.</string>
+    <string name="empty_pictures">Sem imagens</string>
+    <string name="empty_videos_short">Sem vídeos</string>
+
+    <!-- Import -->
+    <string name="import_progress_title">Importando…</string>
+    <string name="import_progress_count">%1$d de %2$d</string>
+    <string name="import_complete">Importação concluída</string>
+    <string name="import_summary_photos">%1$d fotos</string>
+    <string name="import_summary_videos">%1$d vídeos</string>
+    <string name="import_summary_failed">%1$d com falha</string>
+    <string name="import_view_vault">Ver cofre</string>
+    <string name="import_cancel">Cancelar</string>
+
+    <!-- Delete originals -->
+
+    <!-- Sort -->
+    <string name="sort_title">Ordenar por</string>
+    <string name="sort_newest">Mais recentes primeiro</string>
+    <string name="sort_oldest">Mais antigos primeiro</string>
+    <string name="sort_name">Nome</string>
+    <string name="sort_size">Tamanho</string>
+
+    <!-- Selection actions -->
+    <string name="action_select_all">Selecionar tudo</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_move">Mover para o álbum</string>
+    <string name="action_favorite">Favorito</string>
+    <string name="action_export">Exportar</string>
+    <string name="action_restore">Restaurar</string>
+    <string name="action_permanent_delete">Excluir para sempre</string>
+    <string name="action_empty_bin">Esvaziar lixeira</string>
+    <string name="action_details">Detalhes</string>
+    <string name="selection_count">%1$d selecionados</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_delete_title">Mover para a lixeira?</string>
+    <string name="confirm_delete_message">Os itens selecionados serão movidos para a lixeira.</string>
+    <string name="confirm_permanent_title">Excluir para sempre?</string>
+    <string name="confirm_permanent_message">Isso exclui permanentemente os arquivos selecionados. Não pode ser desfeito.</string>
+    <string name="confirm_empty_bin_title">Esvaziar a lixeira?</string>
+    <string name="confirm_empty_bin_message">Todos os itens da lixeira serão excluídos permanentemente.</string>
+
+    <!-- Albums -->
+    <string name="album_create_title">Novo álbum</string>
+    <string name="album_name_hint">Nome do álbum</string>
+    <string name="album_rename_title">Renomear álbum</string>
+    <string name="album_delete_title">Excluir álbum?</string>
+    <string name="album_delete_message">O álbum será excluído. Sua mídia permanece segura no cofre principal.</string>
+    <string name="create">Criar</string>
+    <string name="rename">Renomear</string>
+    <string name="delete_label">Excluir</string>
+    <string name="move_main_vault">Cofre principal (sem álbum)</string>
+    <string name="move_to_album_title">Mover para o álbum</string>
+
+    <!-- Export -->
+    <string name="export_title">Exportar para a galeria</string>
+    <string name="export_copy_only">Exportar apenas uma cópia</string>
+    <string name="export_and_remove">Exportar e remover do cofre</string>
+    <string name="export_done">%1$d exportados para a galeria</string>
+    <string name="export_failed">Falha na exportação</string>
+    <string name="export_unsupported">A exportação requer Android 10 ou mais recente</string>
+    <string name="export_some_failed">Alguns arquivos não puderam ser exportados</string>
+    <string name="restore_to_gallery">Mover de volta para a galeria (reexibir)</string>
+    <string name="restore_done">Movido de volta para a galeria</string>
+    <string name="restore_failed">Não foi possível mover de volta para a galeria</string>
+
+    <!-- Details -->
+    <string name="details_title">Detalhes</string>
+    <string name="details_name">Nome</string>
+    <string name="details_type">Tipo</string>
+    <string name="details_size">Tamanho</string>
+    <string name="details_resolution">Resolução</string>
+    <string name="details_duration">Duração</string>
+    <string name="details_imported">Importado</string>
+    <string name="details_favorite">Favorito</string>
+    <string name="details_protection">Proteção</string>
+    <string name="details_protection_encrypted">Criptografado</string>
+    <string name="details_protection_none">Não criptografado</string>
+    <string name="details_none">—</string>
+    <string name="save">Salvar</string>
+    <string name="type_photo">Foto</string>
+    <string name="type_video">Vídeo</string>
+    <string name="yes_label">Sim</string>
+    <string name="no_label">Não</string>
+
+    <!-- Encryption migration -->
+    <string name="migration_title">Protegendo seu cofre</string>
+    <string name="migration_message">Criptografando suas fotos e vídeos existentes. Mantenha o app aberto.</string>
+    <string name="migration_progress">%1$d de %2$d</string>
+    <string name="migration_complete">Cofre criptografado</string>
+    <string name="migration_partial">Quase pronto</string>
+    <string name="migration_summary_ok">%1$d itens criptografados</string>
+    <string name="migration_summary_failed">%1$d criptografados, %2$d precisam de outra tentativa</string>
+    <string name="migration_retry">Tentar itens com falha novamente</string>
+    <string name="migration_open_vault">Abrir cofre</string>
+
+    <!-- Toasts / errors -->
+    <string name="toast_deleted">Movido para a lixeira</string>
+    <string name="toast_restored">Restaurado</string>
+    <string name="error_video_playback">Não é possível reproduzir o vídeo</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_thumbnail">Miniatura de mídia</string>
+    <string name="cd_play_video">Reproduzir vídeo</string>
+    <string name="cd_favorite">Favorito</string>
+    <string name="cd_close">Fechar</string>
+    <string name="cd_more_options">Mais opções</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_app_logo">Logo do app</string>
+    <string name="cd_back">Voltar</string>
+    <string name="cd_backspace">Backspace</string>
+    <string name="cd_biometric">Desbloqueio biométrico</string>
+    <string name="cd_card_icon">Ícone do cartão</string>
+
+    <!-- ===== Phase 5: App Lock ===== -->
+    <string name="applock_title">Bloqueio de apps</string>
+
+    <!-- Foreground service notification -->
+    <string name="applock_channel_name">Proteção de bloqueio de apps</string>
+    <string name="applock_channel_desc">Mantém o bloqueio de apps em execução enquanto ativado.</string>
+    <string name="applock_notification_title">O bloqueio de apps está ativo</string>
+    <string name="applock_notification_text">Os apps protegidos estão sendo monitorados neste dispositivo.</string>
+
+    <!-- Overlay lock screen -->
+    <string name="applock_overlay_title">App bloqueado</string>
+    <string name="applock_wrong_credential">Incorreto. Tente novamente.</string>
+
+    <!-- Permission setup (screenshot redesign) -->
+    <string name="applock_setup_title">Configurar bloqueio de apps</string>
+    <string name="applock_setup_subtitle">Conceda as permissões necessárias para ativar a proteção.</string>
+    <string name="applock_perm_usage_desc_alt">Necessário para detectar quando os apps selecionados são abertos</string>
+    <string name="applock_perm_overlay_title_alt">Exibir sobre outros apps</string>
+    <string name="applock_perm_overlay_desc_alt">Necessário para exibir a tela de bloqueio sobre os apps protegidos</string>
+    <string name="applock_perm_notification_title_alt">Notificações</string>
+    <string name="applock_perm_notification_desc_alt">Necessário para manter a proteção em execução de forma confiável e exibir alertas importantes</string>
+    <string name="applock_perm_grant">Conceder</string>
+    <string name="applock_perm_privacy_note">Essas permissões são usadas apenas para a proteção de apps no seu dispositivo.</string>
+
+    <!-- Permission setup -->
+    <string name="applock_perm_usage_title">Acesso de uso</string>
+    <string name="applock_perm_overlay_title">Exibir sobre outros apps</string>
+    <string name="applock_perm_notification_title">Permissão de notificação</string>
+    <string name="applock_perm_granted">Concedido</string>
+    <string name="applock_perm_check_again">Verificar novamente</string>
+    <string name="applock_usage_privacy">O acesso de uso ajuda o bloqueio de apps a detectar quando um app protegido é aberto. Essa informação permanece no seu dispositivo e nunca é enviada, vendida ou compartilhada.</string>
+
+    <!-- Dashboard -->
+    <string name="applock_complete_setup">Concluir configuração</string>
+    <string name="applock_start_protection">Iniciar proteção</string>
+    <string name="applock_stop_protection">Parar proteção</string>
+    <string name="applock_manage_apps">Gerenciar apps bloqueados</string>
+    <string name="applock_settings_title">Configurações de bloqueio de apps</string>
+    <string name="applock_settings_desc">Atraso de bloqueio, regras de rebloqueio e mais</string>
+    <string name="applock_status_setup_required">Configuração necessária</string>
+    <string name="applock_status_setup_desc">Conceda permissões para começar a proteger apps.</string>
+    <string name="applock_status_active">Proteção ativa</string>
+    <string name="applock_status_inactive">Proteção inativa</string>
+    <string name="applock_setup_first">Conclua primeiro a configuração de permissões</string>
+    <string name="applock_setup_done_lock_apps">Configuração concluída — agora escolha apps para bloquear</string>
+    <string name="applock_setup_skip">Pular por enquanto</string>
+    <string name="applock_activate_protection">Ativar proteção</string>
+
+    <plurals name="applock_locked_count">
+        <item quantity="one">%d app bloqueado</item>
+        <item quantity="other">%d apps bloqueados</item>
+    </plurals>
+
+    <!-- Installed apps list -->
+    <string name="applock_search_hint">Buscar apps</string>
+    <string name="applock_filter_all">Todos</string>
+    <string name="applock_filter_locked">Bloqueados</string>
+    <string name="applock_filter_unlocked">Desbloqueados</string>
+    <string name="applock_filter_system">Apps do sistema</string>
+    <string name="applock_no_apps">Nenhum app para mostrar.</string>
+
+    <!-- App Lock settings -->
+    <string name="applock_setting_master">Bloqueio de apps</string>
+    <string name="applock_setting_master_desc">Proteja os apps selecionados com sua credencial mestra</string>
+    <string name="applock_setting_delay">Atraso de bloqueio</string>
+    <string name="applock_setting_delay_desc">Por quanto tempo um app permanece desbloqueado após o desbloqueio</string>
+    <string name="applock_setting_screen_off">Rebloquear após desligar a tela</string>
+    <string name="applock_setting_screen_off_desc">Bloquear novamente os apps protegidos quando a tela desligar</string>
+    <string name="applock_setting_app_switch">Rebloquear após trocar de app</string>
+    <string name="applock_setting_app_switch_desc">Bloquear novamente ao sair de um app protegido</string>
+    <string name="applock_setting_lock_new">Bloquear novos apps automaticamente</string>
+    <string name="applock_setting_lock_new_desc">Bloquear automaticamente os apps recém-instalados</string>
+    <string name="applock_setting_unlock_method">Método de desbloqueio</string>
+    <string name="applock_setting_unlock_method_desc">Gerenciado nas configurações de segurança</string>
+
+    <!-- ===== Phase 6: Advanced App Lock ===== -->
+    <!-- Notification additions -->
+    <string name="applock_notification_open">Abrir</string>
+    <plurals name="applock_notification_count">
+        <item quantity="one">Protegendo %d app</item>
+        <item quantity="other">Protegendo %d apps</item>
+    </plurals>
+    <string name="applock_new_app_locked_title">Novo app bloqueado</string>
+    <string name="applock_new_app_locked_text">%1$s foi adicionado aos seus apps bloqueados.</string>
+    <string name="applock_new_app_prompt_title">Novo app instalado</string>
+    <string name="applock_new_app_prompt_text">Toque para proteger %1$s com o bloqueio de apps.</string>
+
+    <!-- Delay modes -->
+    <string name="delay_5s">Após 5 segundos</string>
+    <string name="delay_until_screen_off">Até desligar a tela</string>
+    <string name="delay_until_app_switch">Até trocar de app</string>
+    <string name="delay_until_device_locked">Até bloquear o dispositivo</string>
+
+    <!-- Themes -->
+    <string name="theme_default">Segurança padrão</string>
+    <string name="theme_dark">Segurança escura</string>
+    <string name="theme_glass">Desfoque de vidro</string>
+    <string name="theme_minimal">Branco minimalista</string>
+    <string name="theme_calculator">Calculadora</string>
+    <string name="theme_fake_crash">Falha falsa</string>
+    <string name="theme_fake_loading">Carregamento falso</string>
+
+    <!-- Shared option labels -->
+    <string name="applock_use_global">Usar configuração global</string>
+    <string name="applock_use_default">Padrão</string>
+
+    <!-- Fake modes -->
+    <string name="fake_mode_none">Desativado</string>
+    <string name="fake_mode_crash">Falha falsa</string>
+    <string name="fake_mode_loading">Carregamento falso</string>
+    <string name="fake_mode_calculator">Calculadora</string>
+
+    <!-- Fake crash screen -->
+    <string name="fake_crash_title">O app parou</string>
+    <string name="fake_crash_message">Este app continua parando.</string>
+    <string name="fake_crash_report">Relatar</string>
+    <string name="fake_crash_open_again">Abrir novamente</string>
+    <string name="fake_crash_close">Fechar app</string>
+    <string name="fake_crash_reported">Relatório enviado</string>
+
+    <!-- Fake loading screen -->
+    <string name="fake_loading_text">Carregando…</string>
+
+    <!-- Calculator lock -->
+    <string name="calculator_zero">0</string>
+    <string name="calculator_clear">C</string>
+    <string name="calculator_backspace">⌫</string>
+    <string name="calculator_percent">%</string>
+    <string name="calculator_divide">÷</string>
+    <string name="calculator_multiply">×</string>
+    <string name="calculator_minus">−</string>
+    <string name="calculator_plus">+</string>
+    <string name="calculator_dot">.</string>
+    <string name="calculator_equals">=</string>
+
+    <!-- Settings sections + new rows -->
+    <string name="applock_section_protection">Proteção</string>
+    <string name="applock_section_unlock">Desbloqueio</string>
+    <string name="applock_section_disguise">Disfarce</string>
+    <string name="applock_section_privacy">Privacidade</string>
+    <string name="applock_section_stability">Estabilidade</string>
+    <string name="applock_setting_theme">Tema da tela de bloqueio</string>
+    <string name="applock_setting_theme_desc">Escolha a aparência da tela de bloqueio</string>
+    <string name="applock_setting_fake_mode">Modo falso padrão</string>
+    <string name="applock_setting_fake_mode_desc">Disfarce a tela de bloqueio</string>
+    <string name="applock_setting_hide_name">Ocultar nome do app ao bloquear</string>
+    <string name="applock_setting_hide_name_desc">Não mostrar o nome do app bloqueado</string>
+    <string name="applock_setting_device_lock">Rebloquear após bloquear o dispositivo</string>
+    <string name="applock_setting_device_lock_desc">Bloquear novamente quando o dispositivo for bloqueado</string>
+    <string name="applock_setting_hide_recent">Ocultar prévia de apps recentes</string>
+    <string name="applock_setting_hide_recent_desc">Mantenha telas sensíveis fora dos recentes</string>
+    <string name="applock_setting_local_stats">Apenas estatísticas locais</string>
+    <string name="applock_setting_local_stats_desc">Mantenha contadores simples neste dispositivo</string>
+    <string name="applock_setting_permissions">Status das permissões</string>
+    <string name="applock_setting_battery">Ajuda com configurações de bateria</string>
+    <string name="applock_setting_battery_desc">Mantenha a proteção em execução em segundo plano</string>
+    <string name="applock_setting_restart_boot">Reiniciar após a reinicialização</string>
+    <string name="applock_setting_restart_boot_desc">Retomar a proteção quando o dispositivo reiniciar</string>
+    <string name="applock_setting_troubleshoot">Solução de problemas</string>
+    <string name="applock_setting_troubleshoot_desc">Verifique a configuração e resolva problemas comuns</string>
+
+    <!-- Theme picker -->
+    <string name="applock_theme_title">Tema da tela de bloqueio</string>
+    <string name="applock_theme_subtitle">Este tema é usado quando um app protegido é aberto.</string>
+
+    <!-- Troubleshooting -->
+    <string name="applock_troubleshoot_title">Solução de problemas</string>
+    <string name="applock_troubleshoot_service">Serviço de proteção em execução</string>
+    <string name="applock_troubleshoot_apps">Apps selecionados para bloquear</string>
+    <string name="applock_troubleshoot_restart">Reiniciar proteção</string>
+    <string name="applock_troubleshoot_open_permissions">Abrir permissões</string>
+    <string name="applock_troubleshoot_last_check">Verificado agora mesmo</string>
+
+    <!-- Suggestions -->
+    <string name="applock_suggestions_button">Sugestões</string>
+    <string name="applock_suggestions_title">Apps sugeridos</string>
+    <string name="applock_suggestions_subtitle">Apps que frequentemente contêm conteúdo privado. Revise e bloqueie os que quiser.</string>
+    <string name="applock_suggestions_empty">Nenhuma sugestão no momento.</string>
+    <string name="applock_suggestions_lock_all">Bloquear selecionados</string>
+    <string name="applock_suggestions_locked">%1$d apps bloqueados</string>
+
+    <!-- Categories -->
+    <string name="category_social">Social</string>
+    <string name="category_messaging">Mensagens</string>
+    <string name="category_gallery">Galeria</string>
+    <string name="category_finance">Finanças</string>
+    <string name="category_shopping">Compras</string>
+    <string name="category_browser">Navegador</string>
+    <string name="category_settings">Sistema</string>
+    <string name="category_files">Arquivos</string>
+
+    <!-- Per-app settings -->
+    <string name="perapp_subtitle">Substitua as configurações globais para este app.</string>
+    <string name="perapp_use_custom">Usar configurações personalizadas</string>
+    <string name="perapp_use_custom_desc">Aplique regras por app em vez das globais</string>
+    <string name="perapp_unlock_method">Método de desbloqueio</string>
+    <string name="perapp_lock_delay">Atraso de bloqueio</string>
+    <string name="perapp_fake_mode">Modo falso</string>
+    <string name="perapp_biometric_only">Exigir apenas biometria</string>
+    <string name="perapp_method_biometric">Biometria</string>
+    <string name="perapp_saved">Configurações salvas</string>
+
+    <!-- Local stats -->
+    <string name="applock_stats_title">Hoje</string>
+    <string name="applock_stats_local_note">As estatísticas permanecem neste dispositivo e nunca são enviadas ou compartilhadas.</string>
+    <string name="applock_stat_unlocks">Desbloqueios hoje: %1$d</string>
+    <string name="applock_stat_failed">Tentativas malsucedidas: %1$d</string>
+    <string name="applock_stat_opens">Aberturas de apps bloqueados: %1$d</string>
+    <string name="applock_stat_protection">Proteção ativa: %1$s</string>
+    <string name="duration_hm">%1$dh %2$dm</string>
+    <string name="duration_m">%1$dm</string>
+
+    <!-- Privacy policy (App Lock sections) -->
+    <string name="privacy_policy_title">Política de privacidade</string>
+    <string name="privacy_policy_body">Permissão de acesso de uso\nEste app usa o acesso de uso apenas para detectar quando os apps selecionados pelo usuário são abertos, para que possa exibir a tela de bloqueio. Os dados de uso são processados localmente no dispositivo e não são enviados, vendidos, compartilhados ou usados para publicidade.\n\nExibir sobre outros apps\nEste app usa Exibir sobre outros apps apenas para exibir a tela de bloqueio sobre os apps protegidos.\n\nServiço em primeiro plano\nEste app usa um serviço em primeiro plano para manter a proteção do bloqueio de apps ativa enquanto habilitada pelo usuário.\n\nFerramentas premium\nFerramentas premium de limpeza, como o localizador de duplicatas, o localizador de arquivos grandes e o analisador de armazenamento, processam os arquivos do cofre localmente no dispositivo. Nenhuma foto, vídeo, documento, nota, nome de arquivo ou resultado de análise é enviado ou compartilhado.\n\nNotas privadas e documentos privados são armazenados localmente de forma criptografada. O app não envia nem compartilha esse conteúdo.\n\nÁlbuns ocultos e bloqueados são recursos de privacidade controlados pelo usuário e armazenados localmente no dispositivo.</string>
+
+    <!-- Phase 9: Private Camera -->
+
+    <!-- Settings -->
+
+    <!-- Errors -->
+
+    <!-- Entry points -->
+
+    <!-- Media details source label -->
+    <string name="details_source">Origem</string>
+    <string name="details_source_imported">Importado</string>
+    <string name="details_source_private_camera">Câmera privada</string>
+
+    <!-- Tools dashboard (screenshot redesign) -->
+    <string name="tools_header_subtitle">Ferramentas inteligentes para limpar, organizar e proteger seu dispositivo.</string>
+    <string name="tools_hero_title">O dispositivo está saudável</string>
+    <string name="tools_hero_desc">Seu dispositivo está limpo e protegido. Continue assim!</string>
+    <string name="tools_hero_protected">Protegido</string>
+    <string name="tools_hero_percent">92%</string>
+    <string name="tools_section_cleanup">Ferramentas de limpeza</string>
+    <string name="tools_section_security">Segurança e privacidade</string>
+    <string name="tools_duplicate_finder">Localizador de duplicatas</string>
+    <string name="tools_duplicate_desc">Encontre e remova fotos, vídeos e arquivos duplicados</string>
+    <string name="tools_large_files">Arquivos grandes</string>
+    <string name="tools_large_files_desc">Encontre arquivos grandes que ocupam armazenamento valioso</string>
+    <string name="tools_smart_cleanup">Limpeza inteligente</string>
+    <string name="tools_smart_cleanup_desc">Libere espaço, cache e dados desnecessários</string>
+    <string name="tools_storage_analyzer">Analisador de armazenamento</string>
+    <string name="tools_storage_analyzer_desc">Analise o armazenamento e gerencie seu espaço.</string>
+    <string name="tools_view_details">Ver detalhes</string>
+    <string name="tools_vault_health">Estado do cofre</string>
+    <string name="tools_vault_health_desc">Verifique o status da criptografia e a segurança</string>
+    <string name="tools_status_secure">Seguro</string>
+    <string name="tools_section_storage">Armazenamento privado</string>
+    <string name="tools_private_notes_desc">Notas privadas seguras</string>
+    <string name="tools_private_documents_desc">IDs, cartões e arquivos</string>
+    <string name="settings_open_unavailable">Esta tela não está disponível no seu dispositivo</string>
+    <string name="tools_sample_dup_size">1.26 GB</string>
+    <string name="tools_sample_large_size">2.34 GB</string>
+    <string name="tools_sample_cleanup_size">1.03 GB</string>
+
+    <!-- Phase 11: Premium Tools -->
+    <string name="close">Fechar</string>
+
+    <!-- Notes -->
+    <string name="notes_title">Notas privadas</string>
+    <string name="notes_search_hint">Buscar notas</string>
+    <string name="notes_empty">Ainda não há notas. Toque em + para criar uma.</string>
+    <string name="notes_empty_title">Ainda não há notas</string>
+    <string name="notes_empty_subtitle">Mantenha seus pensamentos, ideias e tarefas privadas seguros e criptografados. Toque no botão + para criar sua primeira nota.</string>
+    <string name="notes_new">Nova nota</string>
+    <string name="notes_title_hint">Título</string>
+    <string name="notes_body_hint">Escreva algo privado…</string>
+    <string name="notes_encrypted_badge">Criptografado de ponta a ponta</string>
+    <string name="notes_meta_count">%1$d palavras · %2$d caracteres</string>
+    <string name="notes_save_failed">Não foi possível salvar a nota</string>
+    <string name="notes_export_done">Nota exportada</string>
+    <string name="notes_export_failed">Não foi possível exportar a nota</string>
+    <string name="notes_delete_title">Excluir nota?</string>
+    <string name="notes_delete_message">Esta nota será removida.</string>
+
+    <!-- Documents -->
+    <string name="documents_title">Documentos privados</string>
+    <string name="documents_search_hint">Buscar documentos</string>
+    <string name="documents_empty">Ainda não há documentos. Toque em + para importar.</string>
+    <string name="documents_meta">%1$s · %2$s · %3$s</string>
+    <string name="documents_open_text">Abrir como texto</string>
+    <string name="documents_export">Exportar</string>
+    <string name="documents_export_warning">Uma cópia descriptografada será salva no local escolhido, fora do cofre criptografado. Continuar?</string>
+    <string name="documents_delete_title">Excluir documento?</string>
+    <string name="documents_delete_message">Este documento será removido.</string>
+    <string name="docs_import_done">Documentos importados</string>
+    <string name="docs_import_failed">Alguns documentos não puderam ser importados</string>
+    <string name="docs_export_done">Documento exportado</string>
+    <string name="docs_export_failed">Não foi possível exportar o documento</string>
+    <string name="docs_open_failed">Não foi possível abrir este documento</string>
+
+    <!-- Document cards (wallet-style) -->
+    <string name="documents_tab_cards">Cartões</string>
+    <string name="documents_tab_files">Arquivos</string>
+    <string name="documents_header_subtitle">Armazene seus cartões e arquivos pessoais com segurança</string>
+    <string name="cards_search_hint">Buscar cartões</string>
+    <string name="cards_filter_all">Todos</string>
+    <string name="cards_filter_favorites">Favoritos</string>
+    <string name="cards_filter_deleted">Excluídos</string>
+    <string name="cards_empty_title">Ainda não há cartões de documentos</string>
+    <string name="cards_empty_subtitle">Adicione carteiras de identidade, carteiras de habilitação, passaportes e documentos privados com segurança.</string>
+    <string name="cards_empty_favorites">Ainda não há cartões favoritos</string>
+    <string name="cards_empty_deleted">Nenhum cartão excluído</string>
+    <string name="cards_add_button">Adicionar cartão de documento</string>
+
+    <!-- Add sheet -->
+    <string name="add_sheet_title">Adicionar a Documentos privados</string>
+    <string name="add_sheet_subtitle">Escolha um tipo de cartão ou importe um arquivo</string>
+    <string name="add_import_file">Importar arquivo</string>
+
+    <!-- Card types -->
+    <string name="card_type_id">Carteira de identidade</string>
+    <string name="card_type_licence">Carteira de habilitação</string>
+    <string name="card_type_passport">Passaporte</string>
+    <string name="card_type_student">Carteira de estudante</string>
+    <string name="card_type_work">Cartão de trabalho</string>
+    <string name="card_type_vehicle">Registro de veículo</string>
+    <string name="card_type_insurance">Cartão de seguro</string>
+    <string name="card_type_other">Outro documento</string>
+
+    <!-- Card field labels -->
+    <string name="card_field_holder_name">Nome do titular</string>
+    <string name="card_field_student_name">Nome do estudante</string>
+    <string name="card_field_employee_name">Nome do funcionário</string>
+    <string name="card_field_owner_name">Nome do proprietário</string>
+    <string name="card_field_title">Título</string>
+    <string name="card_field_id_number">Número de identidade</string>
+    <string name="card_field_licence_number">Número da habilitação</string>
+    <string name="card_field_passport_number">Número do passaporte</string>
+    <string name="card_field_student_id">ID de estudante</string>
+    <string name="card_field_employee_id">ID de funcionário</string>
+    <string name="card_field_vehicle_number">Número do veículo</string>
+    <string name="card_field_policy_number">Número da apólice</string>
+    <string name="card_field_number">Número</string>
+    <string name="card_field_date_of_birth">Data de nascimento</string>
+    <string name="card_field_institute_name">Nome da instituição</string>
+    <string name="card_field_company_name">Nome da empresa</string>
+    <string name="card_field_registration_number">Número de registro</string>
+    <string name="card_field_provider_name">Nome do provedor</string>
+    <string name="card_field_country">País</string>
+    <string name="card_field_country_state">País / estado</string>
+    <string name="card_field_nationality">Nacionalidade</string>
+    <string name="card_field_expiry">Data de validade</string>
+    <string name="card_field_notes">Notas</string>
+
+    <!-- Add / edit card -->
+    <string name="card_add_title">Adicionar cartão</string>
+    <string name="card_edit_title">Editar cartão</string>
+    <string name="card_section_images">Imagens do cartão</string>
+    <string name="card_section_details">Detalhes</string>
+    <string name="card_section_color">Cor do cartão</string>
+    <string name="card_add_front">Adicionar imagem frontal</string>
+    <string name="card_add_back">Adicionar imagem traseira</string>
+    <string name="card_replace_image">Substituir</string>
+    <string name="card_remove_image">Remover</string>
+    <string name="card_save">Salvar cartão</string>
+    <string name="card_error_need_something">Adicione primeiro um nome, número ou imagem</string>
+    <string name="card_error_save_failed">Não foi possível salvar o cartão</string>
+    <string name="card_error_image_failed">Não é possível abrir a imagem</string>
+    <string name="card_error_no_storage">Armazenamento insuficiente</string>
+    <string name="card_saved">Cartão salvo</string>
+
+    <!-- Card detail -->
+    <string name="card_detail_title">Cartão</string>
+    <string name="card_show_number">Mostrar</string>
+    <string name="card_hide_number">Ocultar</string>
+    <string name="card_verify_to_show">Verifique para ver o número completo</string>
+    <string name="card_created_at">Adicionado %1$s</string>
+    <string name="card_updated_at">Atualizado %1$s</string>
+    <string name="card_action_edit">Editar</string>
+    <string name="card_action_export">Exportar</string>
+    <string name="card_export_front">Exportar imagem frontal</string>
+    <string name="card_export_back">Exportar imagem traseira</string>
+    <string name="card_export_warning">Isso criará uma cópia descriptografada fora do seu cofre. Continuar?</string>
+    <string name="card_export_done">Imagem exportada</string>
+    <string name="card_export_failed">Falha na exportação</string>
+    <string name="card_open_failed">Não foi possível abrir o documento</string>
+    <string name="card_delete_title">Excluir cartão?</string>
+    <string name="card_delete_message">Este cartão será movido para Excluídos.</string>
+    <string name="card_restore">Restaurar</string>
+    <string name="card_delete_forever">Excluir para sempre</string>
+    <string name="card_delete_forever_message">Este cartão e suas imagens serão removidos permanentemente.</string>
+    <string name="cd_card_front">Imagem frontal do cartão</string>
+    <string name="cd_card_back">Imagem traseira do cartão</string>
+    <string name="cd_card_color">Opção de cor do cartão</string>
+
+    <!-- Premium cleanup / storage / health -->
+    <string name="duplicates_title">Localizador de duplicatas</string>
+    <string name="large_files_title">Arquivos grandes</string>
+    <string name="cleanup_title">Limpar cache temporário</string>
+    <string name="cleanup_clear_temp">Limpar cache</string>
+    <string name="cleanup_temp_cleared">Cache temporário limpo</string>
+
+    <string name="storage_analyzer_title">Analisador de armazenamento</string>
+    <string name="storage_total_label">Armazenamento total do cofre</string>
+    <string name="storage_private_camera">Câmera privada</string>
+    <string name="storage_thumbnails">Miniaturas</string>
+    <string name="storage_recycle_bin">Lixeira</string>
+    <string name="storage_temp_cache">Cache temporário</string>
+
+    <string name="health_title">Estado do cofre</string>
+    <string name="health_score_label">Pontuação de estado</string>
+    <string name="health_scan_now">Verificar agora</string>
+    <string name="health_open_app_lock">Abrir bloqueio de apps</string>
+    <string name="health_last_scan">Última verificação: %1$s</string>
+    <string name="health_never">Nunca</string>
+    <string name="health_encryption">Criptografia</string>
+    <string name="health_active">Ativa</string>
+    <string name="health_inactive">Inativa</string>
+    <string name="health_app_lock">Bloqueio de apps</string>
+    <string name="health_ready">Pronto</string>
+    <string name="health_needs_setup">Precisa de configuração</string>
+    <string name="health_unencrypted">Itens não criptografados</string>
+    <string name="health_failed_repairs">Reparos com falha</string>
+
+    <!-- Cleanup: shared selection / actions -->
+    <string name="cleanup_selected_summary">%1$d selecionados · %2$s</string>
+    <string name="cleanup_delete_selected">Mover para a lixeira</string>
+    <string name="cleanup_select_first">Selecione primeiro os itens a remover</string>
+    <string name="cleanup_moved_to_bin">%1$d item(ns) movido(s) para a lixeira</string>
+    <string name="cleanup_confirm_title">Mover para a lixeira?</string>
+    <string name="cleanup_confirm_message">%1$d item(ns) (%2$s) serão movidos para a lixeira. Você pode restaurá-los mais tarde.</string>
+    <string name="cleanup_confirm_move">Mover</string>
+    <string name="cleanup_cancel">Cancelar</string>
+
+    <!-- Large Files screen -->
+    <string name="large_files_empty">Nenhum arquivo acima deste tamanho</string>
+    <string name="filter_all">Todos</string>
+    <string name="filter_photos">Fotos</string>
+    <string name="filter_videos">Vídeos</string>
+    <string name="sort_largest">Maiores</string>
+    <string name="large_files_min_size">Tamanho mínimo</string>
+    <string name="size_5mb">5 MB</string>
+    <string name="size_10mb">10 MB</string>
+    <string name="size_25mb">25 MB</string>
+    <string name="size_50mb">50 MB</string>
+    <string name="size_100mb">100 MB</string>
+
+    <!-- Duplicate Finder screen -->
+    <string name="duplicates_scan">Procurar duplicatas</string>
+    <string name="duplicates_rescan">Verificar novamente</string>
+    <string name="duplicates_scanning">Verificando… %1$d/%2$d</string>
+    <string name="duplicates_empty">Nenhuma foto duplicada encontrada</string>
+    <string name="duplicates_not_scanned">Toque em verificar para encontrar fotos idênticas byte a byte no seu cofre.</string>
+    <string name="duplicates_keep_newest">Manter a mais recente</string>
+    <string name="duplicates_keep_oldest">Manter a mais antiga</string>
+    <string name="duplicates_keep_best">Manter a melhor</string>
+    <string name="duplicates_group_header">%1$d cópias · %2$s recuperáveis</string>
+    <string name="duplicates_recommended">Recomendado manter</string>
+    <string name="cd_media_thumbnail">Miniatura de mídia</string>
+</resources>

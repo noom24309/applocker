@@ -57,7 +57,8 @@ class AddEditDocumentCardActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+        // TEMP: screenshots enabled for design capture — restore before release
+        // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityAddEditDocumentCardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -81,7 +82,7 @@ class AddEditDocumentCardActivity : BaseActivity() {
         binding.notesInput.doAfterTextChanged { viewModel.setNotes(it?.toString().orEmpty()) }
 
         binding.expiryInput.setOnClickListener { showExpiryPicker() }
-        binding.tilExpiry.setEndIconOnClickListener {
+        binding.expiryClear.setOnClickListener {
             binding.expiryInput.setText("")
             viewModel.setExpiry(null)
             refreshPreview()
@@ -121,12 +122,12 @@ class AddEditDocumentCardActivity : BaseActivity() {
         binding.title.text = getString(
             if (state.isEditing) R.string.card_edit_title else R.string.card_add_title
         )
-        binding.tilHolder.hint = getString(type.holderLabelRes)
-        binding.tilNumber.hint = getString(type.numberLabelRes)
+        binding.holderInput.hint = getString(type.holderLabelRes)
+        binding.numberInput.hint = getString(type.numberLabelRes)
 
-        type.secondaryLabelRes?.let { binding.tilSecondary.hint = getString(it) }
+        type.secondaryLabelRes?.let { binding.secondaryInput.hint = getString(it) }
         binding.tilSecondary.isVisible = type.secondaryLabelRes != null
-        type.issuerLabelRes?.let { binding.tilIssuer.hint = getString(it) }
+        type.issuerLabelRes?.let { binding.issuerInput.hint = getString(it) }
         binding.tilIssuer.isVisible = type.issuerLabelRes != null
         binding.backImageCard.isVisible = type.supportsBackImage
 

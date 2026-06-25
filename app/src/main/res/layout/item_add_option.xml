@@ -8,26 +8,42 @@
     android:clickable="true"
     android:focusable="true"
     android:gravity="center_vertical"
-    android:minHeight="56dp"
+    android:minHeight="62dp"
     android:orientation="horizontal"
     android:paddingStart="@dimen/screen_padding"
     android:paddingEnd="@dimen/screen_padding">
 
-    <ImageView
-        android:id="@+id/optionIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_card_id"
-        app:tint="@color/primary" />
+    <FrameLayout
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_lv_icon_tile"
+        android:backgroundTint="@color/home_tile_purple">
+
+        <ImageView
+            android:id="@+id/optionIcon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_card_id"
+            app:tint="@color/home_primary" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/optionTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_l"
+        android:layout_marginStart="14dp"
         android:layout_weight="1"
-        android:textColor="@color/text_primary"
-        android:textSize="@dimen/text_body"
+        style="@style/TextAppearance.App.SemiBold"
+        android:textColor="@color/home_title"
+        android:textSize="15sp"
         tools:text="Add ID Card" />
+
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_chevron_right"
+        app:tint="@color/home_hint" />
 </LinearLayout>

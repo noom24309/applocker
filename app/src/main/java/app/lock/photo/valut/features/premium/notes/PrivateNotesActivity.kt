@@ -29,7 +29,8 @@ class PrivateNotesActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+        // TEMP: screenshots enabled for design capture — restore before release
+        // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityPrivateNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -48,7 +49,7 @@ class PrivateNotesActivity : BaseActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
                     adapter.submitList(state.notes)
-                    binding.emptyText.isVisible = !state.isLoading && state.notes.isEmpty()
+                    binding.emptyState.isVisible = !state.isLoading && state.notes.isEmpty()
                 }
             }
         }

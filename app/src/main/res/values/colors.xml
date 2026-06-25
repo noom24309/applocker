@@ -75,7 +75,7 @@
     <color name="splash_subtitle">#CDD7FB</color>
 
     <!-- Home screen (Lock & Vault redesign) -->
-    <color name="home_bg">#FBFBFE</color>
+    <color name="home_bg">#ffffff</color>
     <color name="home_primary">#5F57D5</color>
     <color name="home_primary_light">#EEEFFF</color>
     <color name="home_card">#FFFFFF</color>
@@ -99,4 +99,5 @@
     <color name="home_tile_teal">#E2F8FB</color>
     <color name="home_tile_amber">#FFF1DD</color>
     <color name="home_tile_pink">#FDEBEF</color>
+    <color name="card_bg">#F6F8F5</color>
 </resources>

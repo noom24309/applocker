@@ -1,6 +1,5 @@
 package app.lock.photo.valut.core.applock.receiver
 
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import app.lock.photo.valut.core.applock.AppLockNotificationHelper
@@ -24,13 +23,14 @@ import javax.inject.Inject
  * debounce avoids duplicate prompts.
  */
 @AndroidEntryPoint
-class PackageChangeReceiver : BroadcastReceiver() {
+class PackageChangeReceiver : HiltBroadcastReceiver() {
 
     @Inject lateinit var repository: AppLockRepository
     @Inject lateinit var dataStore: AppSettingsDataStore
     @Inject lateinit var notificationHelper: AppLockNotificationHelper
 
     override fun onReceive(context: Context, intent: Intent) {
+        super.onReceive(context, intent) // triggers Hilt field injection
         val packageName = intent.data?.schemeSpecificPart ?: return
         if (packageName == context.packageName) return
         val replacing = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)

@@ -33,14 +33,20 @@ class PatternLockView @JvmOverloads constructor(
     private var errorState = false
     private var inputEnabled = true
 
-    private val accent = ContextCompat.getColor(context, R.color.primary)
-    private val idle = ContextCompat.getColor(context, R.color.pin_dot_empty)
+    // White nodes/line on a purple (primary) panel — matches the reference design.
+    private val panelColor = ContextCompat.getColor(context, R.color.white)
+    private val nodeColor = ContextCompat.getColor(context, R.color.primary)
     private val errorColor = ContextCompat.getColor(context, R.color.accent_red)
+    private val panelRadius = dp(24f)
 
+    private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.FILL
+        color = panelColor
+    }
     private val nodePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val ringPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
-        strokeWidth = dp(2f)
+        strokeWidth = dp(2.5f)
     }
     private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
@@ -143,7 +149,13 @@ class PatternLockView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val activeColor = if (errorState) errorColor else accent
+
+        // Purple panel background.
+        canvas.drawRoundRect(
+            0f, 0f, width.toFloat(), height.toFloat(), panelRadius, panelRadius, bgPaint
+        )
+
+        val activeColor = if (errorState) errorColor else nodeColor
 
         // Lines between selected nodes.
         linePaint.color = activeColor
@@ -156,14 +168,17 @@ class PatternLockView @JvmOverloads constructor(
             canvas.drawLine(nodeCx[a], nodeCy[a], currentX, currentY, linePaint)
         }
 
-        // Nodes.
+        // Nodes: idle = small solid dot; selected = filled centre inside a ring.
         for (index in nodeCx.indices) {
             val isOn = index in selected
-            ringPaint.color = if (isOn) activeColor else idle
-            canvas.drawCircle(nodeCx[index], nodeCy[index], nodeRadius * 1.7f, ringPaint)
             if (isOn) {
+                ringPaint.color = activeColor
+                canvas.drawCircle(nodeCx[index], nodeCy[index], nodeRadius * 1.7f, ringPaint)
                 nodePaint.color = activeColor
-                canvas.drawCircle(nodeCx[index], nodeCy[index], nodeRadius, nodePaint)
+                canvas.drawCircle(nodeCx[index], nodeCy[index], nodeRadius * 0.8f, nodePaint)
+            } else {
+                nodePaint.color = nodeColor
+                canvas.drawCircle(nodeCx[index], nodeCy[index], nodeRadius * 0.5f, nodePaint)
             }
         }
     }

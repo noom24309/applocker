@@ -12,9 +12,9 @@
 
     <!-- Splash -->
     <string name="splash_tagline">Private. Secure. Yours.</string>
-    <string name="splash_brand_lock">Lock</string>
+    <string name="splash_brand_lock">App Lock</string>
     <string name="splash_brand_amp">&amp;</string>
-    <string name="splash_brand_vault">Vault</string>
+    <string name="splash_brand_vault">Private Vault</string>
     <string name="splash_securing">Securing your vault…</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
@@ -64,6 +64,23 @@
     <string name="lv_vault_protected_sub">AES-256 encryption keeps your memories completely private.</string>
     <string name="lv_vault_check_health">Check Health</string>
     <string name="lv_vault_recent_empty">No media yet. Import photos or videos to get started.</string>
+
+    <!-- Ported onboarding (4-page flow) -->
+    <string name="ob_title_1">Lock Any App</string>
+    <string name="ob_subtitle_1">Protect your private apps with a secure PIN, pattern, or biometric lock</string>
+    <string name="ob_title_2">Private Photo &amp; Video Vault</string>
+    <string name="ob_subtitle_2">Hide and protect your personal photos and videos inside a secure private vault</string>
+    <string name="ob_title_3">You’re in Control</string>
+    <string name="ob_subtitle_3">Choose what to lock and manage your privacy exactly the way you want</string>
+    <string name="ob_title_4">Everything Stays Protected</string>
+    <string name="ob_subtitle_4">Keep your apps, media, files, and private data encrypted and secure on your device.</string>
+
+    <!-- Language screens (ported flow) -->
+    <string name="language_screen_subtitle">Choose your preferred language for Lock &amp; Vault.</string>
+    <string name="select_language_prompt">Please Select Language</string>
+
+    <!-- Note editor -->
+    <string name="note_editor_title">Enter Notes</string>
 
     <!-- Onboarding -->
     <string name="onboarding_title_1">App Lock Protection</string>
@@ -150,6 +167,14 @@
     <string name="settings_about_app">About Lock &amp; Vault</string>
     <string name="settings_about_app_desc">Version, licenses and more</string>
     <string name="settings_about_message">Lock &amp; Vault\nVersion %1$s\n\nAll your data is encrypted and processed locally on this device.</string>
+    <string name="settings_rate">Rate Us</string>
+    <string name="settings_rate_desc">Rate the app on Google Play</string>
+    <string name="settings_share">Share App</string>
+    <string name="settings_share_desc">Tell your friends about us</string>
+    <string name="settings_more_apps">More Apps</string>
+    <string name="settings_more_apps_desc">Explore our other apps</string>
+    <string name="settings_share_subject">Private Lock Vault</string>
+    <string name="settings_share_text">Secure your apps and private photos with Private Lock Vault!\n\nhttps://play.google.com/store/apps/details?id=%1$s</string>
 
     <!-- Short value labels for settings rows -->
     <string name="auto_lock_immediate_short">Immediately</string>
@@ -368,6 +393,7 @@
 
     <!-- Content descriptions -->
     <string name="cd_app_logo">App logo</string>
+    <string name="cd_back">Back</string>
     <string name="cd_backspace">Backspace</string>
     <string name="cd_biometric">Biometric unlock</string>
     <string name="cd_card_icon">Card icon</string>
@@ -636,6 +662,8 @@
     <string name="notes_title">Private Notes</string>
     <string name="notes_search_hint">Search notes</string>
     <string name="notes_empty">No notes yet. Tap + to create one.</string>
+    <string name="notes_empty_title">No notes yet</string>
+    <string name="notes_empty_subtitle">Keep your private thoughts, ideas and to-dos safe and encrypted. Tap the + button to create your first note.</string>
     <string name="notes_new">New note</string>
     <string name="notes_title_hint">Title</string>
     <string name="notes_body_hint">Write something private…</string>
@@ -679,6 +707,7 @@
 
     <!-- Add sheet -->
     <string name="add_sheet_title">Add to Private Documents</string>
+    <string name="add_sheet_subtitle">Choose a card type or import a file</string>
     <string name="add_import_file">Import File</string>
 
     <!-- Card types -->

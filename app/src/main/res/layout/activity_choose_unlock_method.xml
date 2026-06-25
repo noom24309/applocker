@@ -175,11 +175,19 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnContinue"
-        style="@style/Widget.App.Button.Primary"
-        android:layout_marginHorizontal="@dimen/_16sdp"
-        android:layout_marginBottom="@dimen/_16sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_primary"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:layout_margin="@dimen/_12sdp"
+        android:minHeight="@dimen/button_height"
+        style="@style/TextAppearance.App.SemiBold"
+        android:paddingVertical="12dp"
+        android:textAllCaps="false"
+        android:textColor="@color/text_on_primary"
+        android:letterSpacing="0.01"
+        android:textSize="16sp"
         android:text="@string/continue_label" />
 
 </LinearLayout>

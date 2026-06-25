@@ -14,6 +14,7 @@
     <TextView
         android:id="@+id/titlePin"
         android:layout_width="wrap_content"
+        style="@style/TextAppearance.App.Bold"
         android:layout_height="wrap_content"
         android:text="@string/create_pin_title"
         android:textAppearance="@style/TextAppearance.App.Title" />
@@ -22,6 +23,7 @@
         android:id="@+id/subtitlePin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TextAppearance.App.Medium"
         android:layout_marginTop="@dimen/space_s"
         android:text="@string/create_pin_subtitle"
         android:textAppearance="@style/TextAppearance.App.Body" />

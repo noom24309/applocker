@@ -31,7 +31,7 @@
     <dimen name="pin_dot_size">16dp</dimen>
     <dimen name="pin_dot_spacing">12dp</dimen>
     <dimen name="keypad_button_size">72dp</dimen>
-    <dimen name="keypad_text_size">26sp</dimen>
+    <dimen name="keypad_text_size">28sp</dimen>
     <dimen name="card_icon_size">44dp</dimen>
 
     <!-- Document cards (wallet) -->

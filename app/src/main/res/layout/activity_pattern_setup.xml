@@ -84,6 +84,7 @@
         <app.lock.photo.valut.core.ui.PatternLockView
             android:id="@+id/patternView"
             android:layout_width="match_parent"
+            android:background="@drawable/bg_back"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/space_l"
             android:layout_weight="1"
@@ -114,13 +115,21 @@
                 android:textSize="12.5sp" />
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <TextView
             android:id="@+id/btnContinue"
-            style="@style/Widget.App.Button.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_l"
-            android:enabled="false"
+            android:background="@drawable/bg_button_primary"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:minHeight="@dimen/button_height"
+            android:layout_marginTop="@dimen/_4sdp"
+            style="@style/TextAppearance.App.SemiBold"
+            android:paddingVertical="12dp"
+            android:textAllCaps="false"
+            android:textColor="@color/text_on_primary"
+            android:letterSpacing="0.01"
+            android:textSize="16sp"
             android:text="@string/continue_label" />
 
         <com.google.android.material.button.MaterialButton

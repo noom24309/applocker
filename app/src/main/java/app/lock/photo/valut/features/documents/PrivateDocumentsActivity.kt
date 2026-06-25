@@ -62,7 +62,8 @@ class PrivateDocumentsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+        // TEMP: screenshots enabled for design capture — restore before release
+        // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityPrivateDocumentsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -238,6 +239,10 @@ class PrivateDocumentsActivity : BaseActivity() {
             launchImport()
         })
         sheet.setContentView(view)
+        // Let the sheet's own rounded-top background show (the default container is opaque white).
+        sheet.setOnShowListener {
+            (view.parent as? View)?.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+        }
         sheet.show()
     }
 

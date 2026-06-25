@@ -1,0 +1,851 @@
+<resources>
+    <string name="app_name">Private Lock Vault</string>
+
+    <!-- Common -->
+    <string name="next">Berikutnya</string>
+    <string name="back">Kembali</string>
+    <string name="skip">Lewati</string>
+    <string name="get_started">Mulai</string>
+    <string name="continue_label">Lanjutkan</string>
+    <string name="cancel">Batal</string>
+    <string name="coming_next_phase">Segera hadir pada tahap berikutnya</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Pribadi. Aman. Milik Anda.</string>
+    <string name="splash_brand_lock">App Lock</string>
+    <string name="splash_brand_amp">&amp;</string>
+    <string name="splash_brand_vault">Private Vault</string>
+    <string name="splash_securing">Mengamankan brankas Anda…</string>
+
+    <!-- Home screen (Lock & Vault redesign) -->
+    <string name="lv_brand_a">Lock &amp;</string>
+    <string name="lv_brand_b">Vault</string>
+    <string name="lv_subtitle">Amankan aplikasi Anda. Lindungi privasi Anda.</string>
+    <string name="lv_search_hint">Cari aplikasi...</string>
+    <string name="lv_chip_all">Semua</string>
+    <string name="lv_chip_locked">Terkunci</string>
+    <string name="lv_chip_unlocked">Tidak terkunci</string>
+    <string name="lv_chip_system">Sistem</string>
+    <string name="lv_stat_locked_apps">Aplikasi terkunci</string>
+    <string name="lv_stat_protection">Perlindungan</string>
+    <string name="lv_stat_protection_value">Aktif</string>
+    <string name="lv_stat_protection_off">Nonaktif</string>
+    <string name="lv_stat_blocked">Diblokir hari ini</string>
+    <string name="lv_stat_time">Waktu perlindungan</string>
+    <string name="lv_installed_apps">Aplikasi terpasang</string>
+    <string name="lv_app_count">(%1$d)</string>
+    <string name="lv_sort_az">Urutkan: A-Z</string>
+    <string name="lv_sort_za">Urutkan: Z-A</string>
+    <string name="lv_complete_setup">Selesaikan pengaturan</string>
+    <string name="lv_complete_setup_sub">Berikan izin yang tersisa untuk memastikan perlindungan penuh.</string>
+    <string name="lv_finish_setup">Selesaikan pengaturan</string>
+    <string name="lv_nav_home">Beranda</string>
+    <string name="lv_nav_vault">Brankas</string>
+    <string name="lv_nav_tools">Alat</string>
+
+    <!-- Vault home (Lock & Vault redesign) -->
+    <string name="lv_vault_subtitle">Foto dan video pribadi Anda, aman.</string>
+    <string name="lv_vault_safe_title">Brankas aman</string>
+    <string name="lv_vault_safe_sub">Semua file Anda terenkripsi dan tersimpan dengan aman.</string>
+    <string name="lv_vault_unsafe_title">Selesaikan enkripsi</string>
+    <string name="lv_vault_unsafe_sub">Beberapa file belum terenkripsi. Ketuk untuk mengamankannya.</string>
+    <string name="lv_vault_learn_more">Pelajari lebih lanjut</string>
+    <string name="lv_vault_used">Terpakai</string>
+    <string name="lv_vault_percent">%1$d%%</string>
+    <string name="lv_vault_import_photos">Impor foto</string>
+    <string name="lv_vault_import_videos">Impor video</string>
+    <string name="lv_vault_new_album">Album baru</string>
+    <string name="lv_vault_settings">Pengaturan brankas</string>
+    <string name="lv_vault_albums">Album</string>
+    <string name="lv_vault_recent">Media terbaru</string>
+    <string name="lv_view_all">Lihat semua</string>
+    <string name="lv_vault_all_photos">Semua foto</string>
+    <string name="lv_vault_protected_title">Brankas Anda terlindungi</string>
+    <string name="lv_vault_protected_sub">Enkripsi AES-256 menjaga kenangan Anda tetap sepenuhnya pribadi.</string>
+    <string name="lv_vault_check_health">Periksa kesehatan</string>
+    <string name="lv_vault_recent_empty">Belum ada media. Impor foto atau video untuk memulai.</string>
+
+    <!-- Ported onboarding (4-page flow) -->
+    <string name="ob_title_1">Kunci aplikasi apa pun</string>
+    <string name="ob_subtitle_1">Lindungi aplikasi pribadi Anda dengan PIN, pola, atau kunci biometrik yang aman</string>
+    <string name="ob_title_2">Brankas foto &amp; video pribadi</string>
+    <string name="ob_subtitle_2">Sembunyikan dan lindungi foto serta video pribadi Anda di dalam brankas pribadi yang aman</string>
+    <string name="ob_title_3">Anda yang mengendalikan</string>
+    <string name="ob_subtitle_3">Pilih apa yang akan dikunci dan kelola privasi Anda persis seperti yang Anda inginkan</string>
+    <string name="ob_title_4">Semuanya tetap terlindungi</string>
+    <string name="ob_subtitle_4">Jaga aplikasi, media, file, dan data pribadi Anda tetap terenkripsi dan aman di perangkat Anda.</string>
+
+    <!-- Language screens (ported flow) -->
+    <string name="language_screen_subtitle">Pilih bahasa pilihan Anda untuk Lock &amp; Vault.</string>
+    <string name="select_language_prompt">Silakan pilih bahasa</string>
+
+    <!-- Note editor -->
+    <string name="note_editor_title">Tulis catatan</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Perlindungan kunci aplikasi</string>
+    <string name="onboarding_subtitle_1">Kunci aplikasi pribadi Anda dengan PIN, pola, atau sidik jari.</string>
+    <string name="onboarding_title_2">Brankas foto pribadi</string>
+    <string name="onboarding_subtitle_2">Sembunyikan foto dan video pribadi Anda dengan aman.</string>
+    <string name="onboarding_title_3">Tetap pribadi</string>
+    <string name="onboarding_subtitle_3">Foto dan file Anda tetap terenkripsi di perangkat Anda.</string>
+
+    <!-- Choose unlock method -->
+    <string name="choose_method_title">Pilih cara membuka kunci</string>
+    <string name="choose_method_subtitle">Pilih kunci yang akan Anda gunakan untuk membuka aplikasi. Anda dapat menambahkan buka kunci sidik jari pada langkah berikutnya.</string>
+    <string name="choose_method_pattern_title">Pola</string>
+    <string name="choose_method_pattern_desc">Gambar pola untuk membuka kunci — cepat dan mudah.</string>
+    <string name="choose_method_pin_title">PIN</string>
+    <string name="choose_method_pin_desc">Gunakan PIN numerik 4 atau 6 digit.</string>
+    <string name="choose_method_recommended">Disarankan</string>
+
+    <!-- PIN -->
+    <string name="create_pin_title">Buat PIN Anda</string>
+    <string name="create_pin_subtitle">PIN ini menjaga brankas Anda tetap aman.</string>
+    <string name="confirm_pin_title">Konfirmasi PIN Anda</string>
+    <string name="confirm_pin_subtitle">Masukkan kembali PIN Anda untuk melanjutkan.</string>
+    <string name="pin_length_4">4 digit</string>
+    <string name="pin_length_6">6 digit</string>
+    <string name="pin_mismatch">PIN tidak cocok. Coba lagi.</string>
+
+    <!-- Biometric setup -->
+    <string name="biometric_title">Aktifkan buka kunci biometrik</string>
+    <string name="biometric_subtitle">Gunakan sidik jari atau wajah Anda untuk membuka kunci secara instan.</string>
+    <string name="biometric_enable">Aktifkan biometrik</string>
+    <string name="biometric_unavailable_subtitle">Buka kunci biometrik tidak tersedia di perangkat ini. Anda masih dapat menggunakan PIN Anda.</string>
+    <string name="biometric_prompt_title">Buka kunci Private Lock Vault</string>
+    <string name="biometric_prompt_subtitle">Konfirmasi identitas Anda untuk melanjutkan</string>
+    <string name="biometric_use">Gunakan biometrik</string>
+
+    <!-- Unlock -->
+    <string name="unlock_title">Masukkan PIN Anda</string>
+    <string name="unlock_subtitle">Buka kunci untuk mengakses brankas Anda.</string>
+    <string name="unlock_wrong_pin">PIN salah. Percobaan %1$d.</string>
+
+    <!-- Home -->
+    <string name="home_photos">Foto pribadi</string>
+    <string name="home_videos">Video pribadi</string>
+
+    <!-- Navigation -->
+    <string name="nav_settings">Pengaturan</string>
+
+    <!-- Home dashboard (redesign) -->
+
+    <!-- Settings -->
+    <string name="settings_title">Pengaturan</string>
+    <string name="settings_security">Keamanan</string>
+    <string name="settings_change_pin">Ubah PIN</string>
+    <string name="settings_auto_lock">Kunci otomatis</string>
+    <string name="settings_privacy_policy">Kebijakan privasi</string>
+    <string name="settings_privacy_policy_desc">Baca kebijakan privasi kami</string>
+
+    <!-- Settings redesign (screenshot match) -->
+    <string name="settings_subtitle">Kelola keamanan, privasi, dan preferensi aplikasi.</string>
+    <string name="settings_security_status">Status keamanan</string>
+    <string name="settings_security_status_desc">Perangkat dan data Anda terlindungi.</string>
+    <string name="settings_security_status_active">Semua fitur keamanan aktif</string>
+    <string name="settings_change_pin_desc_alt">Ubah PIN buka kunci aplikasi Anda</string>
+    <string name="settings_change_pattern">Ubah pola</string>
+    <string name="settings_change_pattern_desc">Ubah pola buka kunci Anda</string>
+    <string name="settings_biometric_alt">Buka kunci biometrik</string>
+    <string name="settings_biometric_desc_alt">Buka kunci dengan aplikasi</string>
+    <string name="settings_auto_lock_desc_alt">Kunci aplikasi secara otomatis</string>
+    <string name="settings_wrong_attempt_desc_alt">Kunci aplikasi setelah beberapa percobaan gagal</string>
+    <string name="settings_attempts_value">%1$d percobaan</string>
+    <string name="settings_section_app_lock">Kunci Aplikasi</string>
+    <string name="settings_app_lock_settings">Pengaturan kunci aplikasi</string>
+    <string name="settings_app_lock_settings_desc">Kelola preferensi yang ada</string>
+    <string name="settings_lock_overlay">Overlay layar kunci</string>
+    <string name="settings_lock_overlay_desc">Konfigurasikan layar kunci dan perilaku</string>
+    <string name="settings_section_preferences">Preferensi</string>
+    <string name="settings_notifications">Notifikasi</string>
+    <string name="settings_notifications_desc">Kelola notifikasi aplikasi</string>
+    <string name="settings_language">Bahasa</string>
+    <string name="settings_language_desc">Bahasa aplikasi</string>
+    <string name="settings_language_default">English</string>
+    <string name="settings_section_more">Lainnya</string>
+    <string name="settings_about_app">Tentang Lock &amp; Vault</string>
+    <string name="settings_about_app_desc">Versi, lisensi, dan lainnya</string>
+    <string name="settings_about_message">Lock &amp; Vault\nVersi %1$s\n\nSemua data Anda dienkripsi dan diproses secara lokal di perangkat ini.</string>
+    <string name="settings_rate">Beri kami nilai</string>
+    <string name="settings_rate_desc">Beri nilai aplikasi di Google Play</string>
+    <string name="settings_share">Bagikan aplikasi</string>
+    <string name="settings_share_desc">Beri tahu teman Anda tentang kami</string>
+    <string name="settings_more_apps">Aplikasi lainnya</string>
+    <string name="settings_more_apps_desc">Jelajahi aplikasi kami yang lain</string>
+    <string name="settings_share_subject">Private Lock Vault</string>
+    <string name="settings_share_text">Amankan aplikasi dan foto pribadi Anda dengan Private Lock Vault!\n\nhttps://play.google.com/store/apps/details?id=%1$s</string>
+
+    <!-- Short value labels for settings rows -->
+    <string name="auto_lock_immediate_short">Segera</string>
+    <string name="auto_lock_15s_short">15 detik</string>
+    <string name="auto_lock_30s_short">30 detik</string>
+    <string name="auto_lock_1m_short">1 menit</string>
+    <string name="auto_lock_5m_short">5 menit</string>
+    <string name="auto_lock_never_short">Tidak pernah</string>
+
+    <!-- Weak credential -->
+    <string name="pin_weak_warning">PIN itu terlalu mudah ditebak. Pilih yang lain.</string>
+
+    <!-- Recovery key -->
+    <string name="recovery_title">Kunci pemulihan Anda</string>
+    <string name="recovery_subtitle">Simpan kunci ini di tempat yang aman. Ini satu-satunya cara untuk mengatur ulang PIN Anda jika Anda lupa.</string>
+    <string name="recovery_warning">Anda tidak akan dapat melihat kunci ini lagi. Jika hilang, brankas Anda tidak dapat dipulihkan pada tahap terenkripsi di masa mendatang.</string>
+    <string name="recovery_saved_confirm">Saya sudah menyimpan kunci saya</string>
+    <string name="recovery_copy">Salin kunci</string>
+    <string name="recovery_copied">Kunci pemulihan disalin</string>
+
+    <!-- Forgot PIN / recovery -->
+    <string name="forgot_pin">Lupa PIN?</string>
+    <string name="forgot_pin_title">Atur ulang dengan kunci pemulihan</string>
+    <string name="forgot_pin_subtitle">Masukkan kunci pemulihan Anda untuk mengatur PIN baru.</string>
+    <string name="forgot_pin_hint">Kunci pemulihan</string>
+    <string name="forgot_pin_verify">Verifikasi kunci</string>
+    <string name="forgot_pin_wrong">Kunci pemulihan salah.</string>
+
+    <!-- Lockout / attempts -->
+    <string name="lockout_try_again">Terlalu banyak percobaan. Coba lagi dalam %1$s.</string>
+
+    <!-- Change PIN -->
+    <string name="change_pin_verify_title">Masukkan PIN saat ini</string>
+    <string name="change_pin_verify_subtitle">Verifikasi bahwa ini Anda sebelum mengubah PIN Anda.</string>
+    <string name="change_pin_new_title">Atur PIN baru</string>
+    <string name="change_pin_new_subtitle">Pilih PIN baru.</string>
+    <string name="change_pin_confirm_title">Konfirmasi PIN baru</string>
+    <string name="change_pin_confirm_subtitle">Masukkan kembali PIN baru Anda.</string>
+    <string name="change_pin_same">PIN baru harus berbeda dari yang sekarang.</string>
+    <string name="change_pin_success">PIN diperbarui.</string>
+
+    <!-- Pattern -->
+    <string name="pattern_setup_title">Atur pola Anda</string>
+    <string name="pattern_setup_subtitle">Gambar pola untuk membuka kunci aplikasi. Hubungkan setidaknya 4 titik.</string>
+    <string name="pattern_clear">Hapus pola</string>
+    <string name="pattern_hint_note">Buat mudah diingat tetapi sulit ditebak orang lain.</string>
+    <string name="pattern_confirm_title">Konfirmasi pola</string>
+    <string name="pattern_confirm_subtitle">Gambar pola yang sama lagi.</string>
+    <string name="pattern_too_short">Hubungkan setidaknya 4 titik.</string>
+    <string name="pattern_mismatch">Pola tidak cocok. Coba lagi.</string>
+    <string name="pattern_unlock_title">Gambar pola Anda</string>
+    <string name="pattern_saved">Pola disimpan.</string>
+    <string name="pattern_wrong">Pola salah. Percobaan %1$d.</string>
+    <string name="cd_pattern">Area menggambar pola</string>
+
+    <!-- Verify master -->
+    <string name="verify_title">Verifikasi bahwa ini Anda</string>
+    <string name="verify_subtitle_pin">Konfirmasi PIN Anda untuk mengubah pengaturan keamanan.</string>
+    <string name="verify_subtitle_pattern">Konfirmasi pola Anda untuk mengubah pengaturan keamanan.</string>
+    <string name="verify_wrong">Salah. Coba lagi.</string>
+
+    <!-- Security settings -->
+    <string name="settings_wrong_attempt">Perlindungan percobaan salah</string>
+    <string name="settings_wrong_attempt_info">Setelah 5 percobaan salah, aplikasi terkunci selama 30 detik; setelah 10, selama 5 menit. Selalu aktif.</string>
+
+    <!-- Auto-lock options -->
+    <string name="auto_lock_picker_title">Kunci otomatis</string>
+    <string name="auto_lock_immediate">Segera</string>
+    <string name="auto_lock_15s">Setelah 15 detik</string>
+    <string name="auto_lock_30s">Setelah 30 detik</string>
+    <string name="auto_lock_1m">Setelah 1 menit</string>
+    <string name="auto_lock_5m">Setelah 5 menit</string>
+    <string name="auto_lock_never">Tidak pernah saat di memori</string>
+
+    <!-- Unlock method options -->
+    <string name="unlock_method_pin">PIN</string>
+    <string name="unlock_method_pattern">Pola</string>
+
+    <!-- Home -->
+
+    <!-- Keypad digits -->
+    <string name="key_0">0</string>
+    <string name="key_1">1</string>
+    <string name="key_2">2</string>
+    <string name="key_3">3</string>
+    <string name="key_4">4</string>
+    <string name="key_5">5</string>
+    <string name="key_6">6</string>
+    <string name="key_7">7</string>
+    <string name="key_8">8</string>
+    <string name="key_9">9</string>
+
+    <!-- Vault home -->
+    <string name="vault_cat_pictures">Gambar</string>
+    <string name="vault_cat_videos">Video</string>
+    <string name="vault_albums">Album</string>
+    <string name="vault_add_photo">Tambahkan foto / video</string>
+    <string name="vault_create_folder">Buat folder</string>
+    <string name="vault_create_album">Buat album</string>
+    <string name="items_count">%1$d item</string>
+
+    <!-- Empty states -->
+    <string name="empty_photos">Belum ada foto pribadi. Impor beberapa untuk memulai.</string>
+    <string name="empty_videos">Belum ada video pribadi. Impor beberapa untuk memulai.</string>
+    <string name="empty_favorites">Belum ada favorit.</string>
+    <string name="empty_recent">Tidak ada yang diimpor baru-baru ini.</string>
+    <string name="empty_recycle_bin">Keranjang sampah kosong.</string>
+    <string name="empty_album">Album ini kosong.</string>
+    <string name="empty_pictures">Tidak ada gambar</string>
+    <string name="empty_videos_short">Tidak ada video</string>
+
+    <!-- Import -->
+    <string name="import_progress_title">Mengimpor…</string>
+    <string name="import_progress_count">%1$d dari %2$d</string>
+    <string name="import_complete">Impor selesai</string>
+    <string name="import_summary_photos">%1$d foto</string>
+    <string name="import_summary_videos">%1$d video</string>
+    <string name="import_summary_failed">%1$d gagal</string>
+    <string name="import_view_vault">Lihat brankas</string>
+    <string name="import_cancel">Batal</string>
+
+    <!-- Delete originals -->
+
+    <!-- Sort -->
+    <string name="sort_title">Urutkan berdasarkan</string>
+    <string name="sort_newest">Terbaru lebih dulu</string>
+    <string name="sort_oldest">Terlama lebih dulu</string>
+    <string name="sort_name">Nama</string>
+    <string name="sort_size">Ukuran</string>
+
+    <!-- Selection actions -->
+    <string name="action_select_all">Pilih semua</string>
+    <string name="action_delete">Hapus</string>
+    <string name="action_move">Pindahkan ke album</string>
+    <string name="action_favorite">Favorit</string>
+    <string name="action_export">Ekspor</string>
+    <string name="action_restore">Pulihkan</string>
+    <string name="action_permanent_delete">Hapus selamanya</string>
+    <string name="action_empty_bin">Kosongkan keranjang</string>
+    <string name="action_details">Detail</string>
+    <string name="selection_count">%1$d dipilih</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_delete_title">Pindahkan ke keranjang sampah?</string>
+    <string name="confirm_delete_message">Item yang dipilih akan dipindahkan ke keranjang sampah.</string>
+    <string name="confirm_permanent_title">Hapus selamanya?</string>
+    <string name="confirm_permanent_message">Ini menghapus file yang dipilih secara permanen. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="confirm_empty_bin_title">Kosongkan keranjang sampah?</string>
+    <string name="confirm_empty_bin_message">Semua item di keranjang sampah akan dihapus secara permanen.</string>
+
+    <!-- Albums -->
+    <string name="album_create_title">Album baru</string>
+    <string name="album_name_hint">Nama album</string>
+    <string name="album_rename_title">Ganti nama album</string>
+    <string name="album_delete_title">Hapus album?</string>
+    <string name="album_delete_message">Album akan dihapus. Media Anda tetap aman di brankas utama.</string>
+    <string name="create">Buat</string>
+    <string name="rename">Ganti nama</string>
+    <string name="delete_label">Hapus</string>
+    <string name="move_main_vault">Brankas utama (tanpa album)</string>
+    <string name="move_to_album_title">Pindahkan ke album</string>
+
+    <!-- Export -->
+    <string name="export_title">Ekspor ke galeri</string>
+    <string name="export_copy_only">Ekspor salinan saja</string>
+    <string name="export_and_remove">Ekspor dan hapus dari brankas</string>
+    <string name="export_done">%1$d diekspor ke galeri</string>
+    <string name="export_failed">Ekspor gagal</string>
+    <string name="export_unsupported">Ekspor memerlukan Android 10 atau lebih baru</string>
+    <string name="export_some_failed">Beberapa file tidak dapat diekspor</string>
+    <string name="restore_to_gallery">Pindahkan kembali ke galeri (tampilkan)</string>
+    <string name="restore_done">Dipindahkan kembali ke galeri</string>
+    <string name="restore_failed">Tidak dapat memindahkan kembali ke galeri</string>
+
+    <!-- Details -->
+    <string name="details_title">Detail</string>
+    <string name="details_name">Nama</string>
+    <string name="details_type">Tipe</string>
+    <string name="details_size">Ukuran</string>
+    <string name="details_resolution">Resolusi</string>
+    <string name="details_duration">Durasi</string>
+    <string name="details_imported">Diimpor</string>
+    <string name="details_favorite">Favorit</string>
+    <string name="details_protection">Perlindungan</string>
+    <string name="details_protection_encrypted">Terenkripsi</string>
+    <string name="details_protection_none">Tidak terenkripsi</string>
+    <string name="details_none">—</string>
+    <string name="save">Simpan</string>
+    <string name="type_photo">Foto</string>
+    <string name="type_video">Video</string>
+    <string name="yes_label">Ya</string>
+    <string name="no_label">Tidak</string>
+
+    <!-- Encryption migration -->
+    <string name="migration_title">Mengamankan brankas Anda</string>
+    <string name="migration_message">Mengenkripsi foto dan video Anda yang ada. Harap biarkan aplikasi tetap terbuka.</string>
+    <string name="migration_progress">%1$d dari %2$d</string>
+    <string name="migration_complete">Brankas terenkripsi</string>
+    <string name="migration_partial">Hampir selesai</string>
+    <string name="migration_summary_ok">%1$d item terenkripsi</string>
+    <string name="migration_summary_failed">%1$d terenkripsi, %2$d perlu dicoba lagi</string>
+    <string name="migration_retry">Coba lagi item yang gagal</string>
+    <string name="migration_open_vault">Buka brankas</string>
+
+    <!-- Toasts / errors -->
+    <string name="toast_deleted">Dipindahkan ke keranjang sampah</string>
+    <string name="toast_restored">Dipulihkan</string>
+    <string name="error_video_playback">Video tidak dapat diputar</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_thumbnail">Thumbnail media</string>
+    <string name="cd_play_video">Putar video</string>
+    <string name="cd_favorite">Favorit</string>
+    <string name="cd_close">Tutup</string>
+    <string name="cd_more_options">Opsi lainnya</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_app_logo">Logo aplikasi</string>
+    <string name="cd_back">Kembali</string>
+    <string name="cd_backspace">Backspace</string>
+    <string name="cd_biometric">Buka kunci biometrik</string>
+    <string name="cd_card_icon">Ikon kartu</string>
+
+    <!-- ===== Phase 5: App Lock ===== -->
+    <string name="applock_title">Kunci Aplikasi</string>
+
+    <!-- Foreground service notification -->
+    <string name="applock_channel_name">Perlindungan kunci aplikasi</string>
+    <string name="applock_channel_desc">Menjaga kunci aplikasi tetap berjalan saat diaktifkan.</string>
+    <string name="applock_notification_title">Kunci aplikasi aktif</string>
+    <string name="applock_notification_text">Aplikasi terlindungi sedang dipantau di perangkat ini.</string>
+
+    <!-- Overlay lock screen -->
+    <string name="applock_overlay_title">Aplikasi terkunci</string>
+    <string name="applock_wrong_credential">Salah. Coba lagi.</string>
+
+    <!-- Permission setup (screenshot redesign) -->
+    <string name="applock_setup_title">Siapkan kunci aplikasi</string>
+    <string name="applock_setup_subtitle">Berikan izin yang diperlukan untuk mengaktifkan perlindungan.</string>
+    <string name="applock_perm_usage_desc_alt">Diperlukan untuk mendeteksi kapan aplikasi yang dipilih dibuka</string>
+    <string name="applock_perm_overlay_title_alt">Tampilkan di atas aplikasi lain</string>
+    <string name="applock_perm_overlay_desc_alt">Diperlukan untuk menampilkan layar kunci di atas aplikasi terlindungi</string>
+    <string name="applock_perm_notification_title_alt">Notifikasi</string>
+    <string name="applock_perm_notification_desc_alt">Diperlukan untuk menjaga perlindungan berjalan dengan andal dan menampilkan peringatan penting</string>
+    <string name="applock_perm_grant">Berikan</string>
+    <string name="applock_perm_privacy_note">Izin ini hanya digunakan untuk perlindungan aplikasi di perangkat Anda.</string>
+
+    <!-- Permission setup -->
+    <string name="applock_perm_usage_title">Akses Penggunaan</string>
+    <string name="applock_perm_overlay_title">Tampilkan di Atas Aplikasi Lain</string>
+    <string name="applock_perm_notification_title">Izin Notifikasi</string>
+    <string name="applock_perm_granted">Diberikan</string>
+    <string name="applock_perm_check_again">Periksa lagi</string>
+    <string name="applock_usage_privacy">Akses Penggunaan membantu Kunci Aplikasi mendeteksi kapan aplikasi terlindungi dibuka. Informasi ini tetap di perangkat Anda dan tidak pernah diunggah, dijual, atau dibagikan.</string>
+
+    <!-- Dashboard -->
+    <string name="applock_complete_setup">Selesaikan pengaturan</string>
+    <string name="applock_start_protection">Mulai perlindungan</string>
+    <string name="applock_stop_protection">Hentikan perlindungan</string>
+    <string name="applock_manage_apps">Kelola aplikasi terkunci</string>
+    <string name="applock_settings_title">Pengaturan kunci aplikasi</string>
+    <string name="applock_settings_desc">Penundaan kunci, aturan kunci ulang, dan lainnya</string>
+    <string name="applock_status_setup_required">Pengaturan diperlukan</string>
+    <string name="applock_status_setup_desc">Berikan izin untuk mulai melindungi aplikasi.</string>
+    <string name="applock_status_active">Perlindungan aktif</string>
+    <string name="applock_status_inactive">Perlindungan tidak aktif</string>
+    <string name="applock_setup_first">Selesaikan dulu pengaturan izin</string>
+    <string name="applock_setup_done_lock_apps">Pengaturan selesai — sekarang pilih aplikasi untuk dikunci</string>
+    <string name="applock_setup_skip">Lewati untuk saat ini</string>
+    <string name="applock_activate_protection">Aktifkan perlindungan</string>
+
+    <plurals name="applock_locked_count">
+        <item quantity="other">%d aplikasi terkunci</item>
+    </plurals>
+
+    <!-- Installed apps list -->
+    <string name="applock_search_hint">Cari aplikasi</string>
+    <string name="applock_filter_all">Semua</string>
+    <string name="applock_filter_locked">Terkunci</string>
+    <string name="applock_filter_unlocked">Tidak terkunci</string>
+    <string name="applock_filter_system">Aplikasi sistem</string>
+    <string name="applock_no_apps">Tidak ada aplikasi untuk ditampilkan.</string>
+
+    <!-- App Lock settings -->
+    <string name="applock_setting_master">Kunci Aplikasi</string>
+    <string name="applock_setting_master_desc">Lindungi aplikasi yang dipilih dengan kredensial master Anda</string>
+    <string name="applock_setting_delay">Penundaan kunci</string>
+    <string name="applock_setting_delay_desc">Berapa lama aplikasi tetap tidak terkunci setelah dibuka</string>
+    <string name="applock_setting_screen_off">Kunci ulang setelah layar mati</string>
+    <string name="applock_setting_screen_off_desc">Kunci kembali aplikasi terlindungi saat layar mati</string>
+    <string name="applock_setting_app_switch">Kunci ulang setelah berpindah aplikasi</string>
+    <string name="applock_setting_app_switch_desc">Kunci kembali saat Anda meninggalkan aplikasi terlindungi</string>
+    <string name="applock_setting_lock_new">Kunci aplikasi baru secara otomatis</string>
+    <string name="applock_setting_lock_new_desc">Kunci aplikasi yang baru dipasang secara otomatis</string>
+    <string name="applock_setting_unlock_method">Metode buka kunci</string>
+    <string name="applock_setting_unlock_method_desc">Dikelola di pengaturan keamanan</string>
+
+    <!-- ===== Phase 6: Advanced App Lock ===== -->
+    <!-- Notification additions -->
+    <string name="applock_notification_open">Buka</string>
+    <plurals name="applock_notification_count">
+        <item quantity="other">Melindungi %d aplikasi</item>
+    </plurals>
+    <string name="applock_new_app_locked_title">Aplikasi baru terkunci</string>
+    <string name="applock_new_app_locked_text">%1$s ditambahkan ke aplikasi terkunci Anda.</string>
+    <string name="applock_new_app_prompt_title">Aplikasi baru terpasang</string>
+    <string name="applock_new_app_prompt_text">Ketuk untuk melindungi %1$s dengan Kunci Aplikasi.</string>
+
+    <!-- Delay modes -->
+    <string name="delay_5s">Setelah 5 detik</string>
+    <string name="delay_until_screen_off">Sampai layar mati</string>
+    <string name="delay_until_app_switch">Sampai berpindah aplikasi</string>
+    <string name="delay_until_device_locked">Sampai perangkat terkunci</string>
+
+    <!-- Themes -->
+    <string name="theme_default">Keamanan default</string>
+    <string name="theme_dark">Keamanan gelap</string>
+    <string name="theme_glass">Buram kaca</string>
+    <string name="theme_minimal">Putih minimalis</string>
+    <string name="theme_calculator">Kalkulator</string>
+    <string name="theme_fake_crash">Crash palsu</string>
+    <string name="theme_fake_loading">Pemuatan palsu</string>
+
+    <!-- Shared option labels -->
+    <string name="applock_use_global">Gunakan pengaturan global</string>
+    <string name="applock_use_default">Default</string>
+
+    <!-- Fake modes -->
+    <string name="fake_mode_none">Nonaktif</string>
+    <string name="fake_mode_crash">Crash palsu</string>
+    <string name="fake_mode_loading">Pemuatan palsu</string>
+    <string name="fake_mode_calculator">Kalkulator</string>
+
+    <!-- Fake crash screen -->
+    <string name="fake_crash_title">Aplikasi telah berhenti</string>
+    <string name="fake_crash_message">Aplikasi ini terus berhenti.</string>
+    <string name="fake_crash_report">Laporkan</string>
+    <string name="fake_crash_open_again">Buka lagi</string>
+    <string name="fake_crash_close">Tutup aplikasi</string>
+    <string name="fake_crash_reported">Laporan terkirim</string>
+
+    <!-- Fake loading screen -->
+    <string name="fake_loading_text">Memuat…</string>
+
+    <!-- Calculator lock -->
+    <string name="calculator_zero">0</string>
+    <string name="calculator_clear">C</string>
+    <string name="calculator_backspace">⌫</string>
+    <string name="calculator_percent">%</string>
+    <string name="calculator_divide">÷</string>
+    <string name="calculator_multiply">×</string>
+    <string name="calculator_minus">−</string>
+    <string name="calculator_plus">+</string>
+    <string name="calculator_dot">.</string>
+    <string name="calculator_equals">=</string>
+
+    <!-- Settings sections + new rows -->
+    <string name="applock_section_protection">Perlindungan</string>
+    <string name="applock_section_unlock">Buka kunci</string>
+    <string name="applock_section_disguise">Penyamaran</string>
+    <string name="applock_section_privacy">Privasi</string>
+    <string name="applock_section_stability">Stabilitas</string>
+    <string name="applock_setting_theme">Tema layar kunci</string>
+    <string name="applock_setting_theme_desc">Pilih tampilan layar kunci</string>
+    <string name="applock_setting_fake_mode">Mode palsu default</string>
+    <string name="applock_setting_fake_mode_desc">Samarkan layar kunci</string>
+    <string name="applock_setting_hide_name">Sembunyikan nama aplikasi saat dikunci</string>
+    <string name="applock_setting_hide_name_desc">Jangan tampilkan nama aplikasi yang terkunci</string>
+    <string name="applock_setting_device_lock">Kunci ulang setelah perangkat dikunci</string>
+    <string name="applock_setting_device_lock_desc">Kunci kembali saat perangkat dikunci</string>
+    <string name="applock_setting_hide_recent">Sembunyikan pratinjau aplikasi terbaru</string>
+    <string name="applock_setting_hide_recent_desc">Jaga layar sensitif tetap di luar aplikasi terbaru</string>
+    <string name="applock_setting_local_stats">Hanya statistik lokal</string>
+    <string name="applock_setting_local_stats_desc">Simpan penghitung sederhana di perangkat ini</string>
+    <string name="applock_setting_permissions">Status izin</string>
+    <string name="applock_setting_battery">Bantuan pengaturan baterai</string>
+    <string name="applock_setting_battery_desc">Jaga perlindungan tetap berjalan di latar belakang</string>
+    <string name="applock_setting_restart_boot">Mulai ulang setelah boot ulang</string>
+    <string name="applock_setting_restart_boot_desc">Lanjutkan perlindungan saat perangkat dimulai ulang</string>
+    <string name="applock_setting_troubleshoot">Pemecahan masalah</string>
+    <string name="applock_setting_troubleshoot_desc">Periksa pengaturan dan perbaiki masalah umum</string>
+
+    <!-- Theme picker -->
+    <string name="applock_theme_title">Tema layar kunci</string>
+    <string name="applock_theme_subtitle">Tema ini digunakan saat aplikasi terlindungi dibuka.</string>
+
+    <!-- Troubleshooting -->
+    <string name="applock_troubleshoot_title">Pemecahan masalah</string>
+    <string name="applock_troubleshoot_service">Layanan perlindungan berjalan</string>
+    <string name="applock_troubleshoot_apps">Aplikasi yang dipilih untuk dikunci</string>
+    <string name="applock_troubleshoot_restart">Mulai ulang perlindungan</string>
+    <string name="applock_troubleshoot_open_permissions">Buka izin</string>
+    <string name="applock_troubleshoot_last_check">Baru saja diperiksa</string>
+
+    <!-- Suggestions -->
+    <string name="applock_suggestions_button">Saran</string>
+    <string name="applock_suggestions_title">Aplikasi yang disarankan</string>
+    <string name="applock_suggestions_subtitle">Aplikasi yang sering berisi konten pribadi. Tinjau dan kunci yang Anda inginkan.</string>
+    <string name="applock_suggestions_empty">Tidak ada saran saat ini.</string>
+    <string name="applock_suggestions_lock_all">Kunci yang dipilih</string>
+    <string name="applock_suggestions_locked">%1$d aplikasi terkunci</string>
+
+    <!-- Categories -->
+    <string name="category_social">Sosial</string>
+    <string name="category_messaging">Pesan</string>
+    <string name="category_gallery">Galeri</string>
+    <string name="category_finance">Keuangan</string>
+    <string name="category_shopping">Belanja</string>
+    <string name="category_browser">Peramban</string>
+    <string name="category_settings">Sistem</string>
+    <string name="category_files">File</string>
+
+    <!-- Per-app settings -->
+    <string name="perapp_subtitle">Ganti pengaturan global untuk aplikasi ini.</string>
+    <string name="perapp_use_custom">Gunakan pengaturan kustom</string>
+    <string name="perapp_use_custom_desc">Terapkan aturan per aplikasi alih-alih global</string>
+    <string name="perapp_unlock_method">Metode buka kunci</string>
+    <string name="perapp_lock_delay">Penundaan kunci</string>
+    <string name="perapp_fake_mode">Mode palsu</string>
+    <string name="perapp_biometric_only">Wajibkan hanya biometrik</string>
+    <string name="perapp_method_biometric">Biometrik</string>
+    <string name="perapp_saved">Pengaturan disimpan</string>
+
+    <!-- Local stats -->
+    <string name="applock_stats_title">Hari ini</string>
+    <string name="applock_stats_local_note">Statistik tetap di perangkat ini dan tidak pernah diunggah atau dibagikan.</string>
+    <string name="applock_stat_unlocks">Buka kunci hari ini: %1$d</string>
+    <string name="applock_stat_failed">Percobaan gagal: %1$d</string>
+    <string name="applock_stat_opens">Pembukaan aplikasi terkunci: %1$d</string>
+    <string name="applock_stat_protection">Perlindungan aktif: %1$s</string>
+    <string name="duration_hm">%1$dh %2$dm</string>
+    <string name="duration_m">%1$dm</string>
+
+    <!-- Privacy policy (App Lock sections) -->
+    <string name="privacy_policy_title">Kebijakan privasi</string>
+    <string name="privacy_policy_body">Izin Akses Penggunaan\nAplikasi ini menggunakan Akses Penggunaan hanya untuk mendeteksi kapan aplikasi yang dipilih pengguna dibuka, sehingga aplikasi dapat menampilkan layar kunci. Data penggunaan diproses secara lokal di perangkat dan tidak diunggah, dijual, dibagikan, atau digunakan untuk iklan.\n\nTampilkan di Atas Aplikasi Lain\nAplikasi ini menggunakan Tampilkan di Atas Aplikasi Lain hanya untuk menampilkan layar kunci di atas aplikasi terlindungi.\n\nLayanan Latar Depan\nAplikasi ini menggunakan layanan latar depan untuk menjaga perlindungan Kunci Aplikasi tetap aktif saat diaktifkan oleh pengguna.\n\nAlat Premium\nAlat pembersih premium seperti pencari duplikat, pencari file besar, dan penganalisis penyimpanan memproses file brankas secara lokal di perangkat. Tidak ada foto, video, dokumen, catatan, nama file, atau hasil analisis yang diunggah atau dibagikan.\n\nCatatan Pribadi dan Dokumen Pribadi disimpan secara lokal dalam bentuk terenkripsi. Aplikasi tidak mengunggah atau membagikan konten ini.\n\nAlbum tersembunyi dan terkunci adalah fitur privasi yang dikendalikan pengguna dan disimpan secara lokal di perangkat.</string>
+
+    <!-- Phase 9: Private Camera -->
+
+    <!-- Settings -->
+
+    <!-- Errors -->
+
+    <!-- Entry points -->
+
+    <!-- Media details source label -->
+    <string name="details_source">Sumber</string>
+    <string name="details_source_imported">Diimpor</string>
+    <string name="details_source_private_camera">Kamera Pribadi</string>
+
+    <!-- Tools dashboard (screenshot redesign) -->
+    <string name="tools_header_subtitle">Alat cerdas untuk membersihkan, mengatur &amp; mengamankan perangkat Anda.</string>
+    <string name="tools_hero_title">Perangkat sehat</string>
+    <string name="tools_hero_desc">Perangkat Anda bersih dan terlindungi. Pertahankan!</string>
+    <string name="tools_hero_protected">Terlindungi</string>
+    <string name="tools_hero_percent">92%</string>
+    <string name="tools_section_cleanup">Alat pembersih</string>
+    <string name="tools_section_security">Keamanan &amp; Privasi</string>
+    <string name="tools_duplicate_finder">Pencari duplikat</string>
+    <string name="tools_duplicate_desc">Temukan dan hapus foto, video, dan file duplikat</string>
+    <string name="tools_large_files">File besar</string>
+    <string name="tools_large_files_desc">Temukan file besar yang memakan penyimpanan berharga</string>
+    <string name="tools_smart_cleanup">Pembersihan cerdas</string>
+    <string name="tools_smart_cleanup_desc">Bebaskan ruang, cache, dan data yang tidak perlu</string>
+    <string name="tools_storage_analyzer">Penganalisis penyimpanan</string>
+    <string name="tools_storage_analyzer_desc">Analisis penyimpanan dan kelola ruang Anda.</string>
+    <string name="tools_view_details">Lihat detail</string>
+    <string name="tools_vault_health">Kesehatan brankas</string>
+    <string name="tools_vault_health_desc">Pindai status enkripsi dan keamanan</string>
+    <string name="tools_status_secure">Aman</string>
+    <string name="tools_section_storage">Penyimpanan pribadi</string>
+    <string name="tools_private_notes_desc">Catatan pribadi yang aman</string>
+    <string name="tools_private_documents_desc">ID, kartu &amp; file</string>
+    <string name="settings_open_unavailable">Layar ini tidak tersedia di perangkat Anda</string>
+    <string name="tools_sample_dup_size">1.26 GB</string>
+    <string name="tools_sample_large_size">2.34 GB</string>
+    <string name="tools_sample_cleanup_size">1.03 GB</string>
+
+    <!-- Phase 11: Premium Tools -->
+    <string name="close">Tutup</string>
+
+    <!-- Notes -->
+    <string name="notes_title">Catatan pribadi</string>
+    <string name="notes_search_hint">Cari catatan</string>
+    <string name="notes_empty">Belum ada catatan. Ketuk + untuk membuat.</string>
+    <string name="notes_empty_title">Belum ada catatan</string>
+    <string name="notes_empty_subtitle">Jaga pemikiran, ide, dan tugas pribadi Anda tetap aman dan terenkripsi. Ketuk tombol + untuk membuat catatan pertama Anda.</string>
+    <string name="notes_new">Catatan baru</string>
+    <string name="notes_title_hint">Judul</string>
+    <string name="notes_body_hint">Tulis sesuatu yang pribadi…</string>
+    <string name="notes_encrypted_badge">Terenkripsi ujung ke ujung</string>
+    <string name="notes_meta_count">%1$d kata · %2$d karakter</string>
+    <string name="notes_save_failed">Tidak dapat menyimpan catatan</string>
+    <string name="notes_export_done">Catatan diekspor</string>
+    <string name="notes_export_failed">Tidak dapat mengekspor catatan</string>
+    <string name="notes_delete_title">Hapus catatan?</string>
+    <string name="notes_delete_message">Catatan ini akan dihapus.</string>
+
+    <!-- Documents -->
+    <string name="documents_title">Dokumen pribadi</string>
+    <string name="documents_search_hint">Cari dokumen</string>
+    <string name="documents_empty">Belum ada dokumen. Ketuk + untuk mengimpor.</string>
+    <string name="documents_meta">%1$s · %2$s · %3$s</string>
+    <string name="documents_open_text">Buka sebagai teks</string>
+    <string name="documents_export">Ekspor</string>
+    <string name="documents_export_warning">Salinan yang didekripsi akan disimpan ke lokasi yang Anda pilih, di luar brankas terenkripsi. Lanjutkan?</string>
+    <string name="documents_delete_title">Hapus dokumen?</string>
+    <string name="documents_delete_message">Dokumen ini akan dihapus.</string>
+    <string name="docs_import_done">Dokumen diimpor</string>
+    <string name="docs_import_failed">Beberapa dokumen tidak dapat diimpor</string>
+    <string name="docs_export_done">Dokumen diekspor</string>
+    <string name="docs_export_failed">Tidak dapat mengekspor dokumen</string>
+    <string name="docs_open_failed">Tidak dapat membuka dokumen ini</string>
+
+    <!-- Document cards (wallet-style) -->
+    <string name="documents_tab_cards">Kartu</string>
+    <string name="documents_tab_files">File</string>
+    <string name="documents_header_subtitle">Simpan kartu dan file pribadi Anda dengan aman</string>
+    <string name="cards_search_hint">Cari kartu</string>
+    <string name="cards_filter_all">Semua</string>
+    <string name="cards_filter_favorites">Favorit</string>
+    <string name="cards_filter_deleted">Dihapus</string>
+    <string name="cards_empty_title">Belum ada kartu dokumen</string>
+    <string name="cards_empty_subtitle">Tambahkan kartu identitas, SIM, paspor, dan dokumen pribadi dengan aman.</string>
+    <string name="cards_empty_favorites">Belum ada kartu favorit</string>
+    <string name="cards_empty_deleted">Tidak ada kartu yang dihapus</string>
+    <string name="cards_add_button">Tambah kartu dokumen</string>
+
+    <!-- Add sheet -->
+    <string name="add_sheet_title">Tambahkan ke Dokumen Pribadi</string>
+    <string name="add_sheet_subtitle">Pilih jenis kartu atau impor file</string>
+    <string name="add_import_file">Impor file</string>
+
+    <!-- Card types -->
+    <string name="card_type_id">Kartu identitas</string>
+    <string name="card_type_licence">SIM</string>
+    <string name="card_type_passport">Paspor</string>
+    <string name="card_type_student">Kartu pelajar</string>
+    <string name="card_type_work">Kartu kerja</string>
+    <string name="card_type_vehicle">Registrasi kendaraan</string>
+    <string name="card_type_insurance">Kartu asuransi</string>
+    <string name="card_type_other">Dokumen lain</string>
+
+    <!-- Card field labels -->
+    <string name="card_field_holder_name">Nama pemegang</string>
+    <string name="card_field_student_name">Nama pelajar</string>
+    <string name="card_field_employee_name">Nama karyawan</string>
+    <string name="card_field_owner_name">Nama pemilik</string>
+    <string name="card_field_title">Judul</string>
+    <string name="card_field_id_number">Nomor identitas</string>
+    <string name="card_field_licence_number">Nomor SIM</string>
+    <string name="card_field_passport_number">Nomor paspor</string>
+    <string name="card_field_student_id">ID pelajar</string>
+    <string name="card_field_employee_id">ID karyawan</string>
+    <string name="card_field_vehicle_number">Nomor kendaraan</string>
+    <string name="card_field_policy_number">Nomor polis</string>
+    <string name="card_field_number">Nomor</string>
+    <string name="card_field_date_of_birth">Tanggal lahir</string>
+    <string name="card_field_institute_name">Nama institusi</string>
+    <string name="card_field_company_name">Nama perusahaan</string>
+    <string name="card_field_registration_number">Nomor registrasi</string>
+    <string name="card_field_provider_name">Nama penyedia</string>
+    <string name="card_field_country">Negara</string>
+    <string name="card_field_country_state">Negara / negara bagian</string>
+    <string name="card_field_nationality">Kewarganegaraan</string>
+    <string name="card_field_expiry">Tanggal kedaluwarsa</string>
+    <string name="card_field_notes">Catatan</string>
+
+    <!-- Add / edit card -->
+    <string name="card_add_title">Tambah kartu</string>
+    <string name="card_edit_title">Edit kartu</string>
+    <string name="card_section_images">Gambar kartu</string>
+    <string name="card_section_details">Detail</string>
+    <string name="card_section_color">Warna kartu</string>
+    <string name="card_add_front">Tambahkan gambar depan</string>
+    <string name="card_add_back">Tambahkan gambar belakang</string>
+    <string name="card_replace_image">Ganti</string>
+    <string name="card_remove_image">Hapus</string>
+    <string name="card_save">Simpan kartu</string>
+    <string name="card_error_need_something">Tambahkan nama, nomor, atau gambar terlebih dahulu</string>
+    <string name="card_error_save_failed">Tidak dapat menyimpan kartu</string>
+    <string name="card_error_image_failed">Gambar tidak dapat dibuka</string>
+    <string name="card_error_no_storage">Penyimpanan tidak cukup</string>
+    <string name="card_saved">Kartu disimpan</string>
+
+    <!-- Card detail -->
+    <string name="card_detail_title">Kartu</string>
+    <string name="card_show_number">Tampilkan</string>
+    <string name="card_hide_number">Sembunyikan</string>
+    <string name="card_verify_to_show">Harap verifikasi untuk melihat nomor lengkap</string>
+    <string name="card_created_at">Ditambahkan %1$s</string>
+    <string name="card_updated_at">Diperbarui %1$s</string>
+    <string name="card_action_edit">Edit</string>
+    <string name="card_action_export">Ekspor</string>
+    <string name="card_export_front">Ekspor gambar depan</string>
+    <string name="card_export_back">Ekspor gambar belakang</string>
+    <string name="card_export_warning">Ini akan membuat salinan yang didekripsi di luar brankas Anda. Lanjutkan?</string>
+    <string name="card_export_done">Gambar diekspor</string>
+    <string name="card_export_failed">Ekspor gagal</string>
+    <string name="card_open_failed">Tidak dapat membuka dokumen</string>
+    <string name="card_delete_title">Hapus kartu?</string>
+    <string name="card_delete_message">Kartu ini akan dipindahkan ke Dihapus.</string>
+    <string name="card_restore">Pulihkan</string>
+    <string name="card_delete_forever">Hapus selamanya</string>
+    <string name="card_delete_forever_message">Kartu ini dan gambarnya akan dihapus secara permanen.</string>
+    <string name="cd_card_front">Gambar depan kartu</string>
+    <string name="cd_card_back">Gambar belakang kartu</string>
+    <string name="cd_card_color">Opsi warna kartu</string>
+
+    <!-- Premium cleanup / storage / health -->
+    <string name="duplicates_title">Pencari duplikat</string>
+    <string name="large_files_title">File besar</string>
+    <string name="cleanup_title">Bersihkan cache sementara</string>
+    <string name="cleanup_clear_temp">Bersihkan cache</string>
+    <string name="cleanup_temp_cleared">Cache sementara dibersihkan</string>
+
+    <string name="storage_analyzer_title">Penganalisis penyimpanan</string>
+    <string name="storage_total_label">Total penyimpanan brankas</string>
+    <string name="storage_private_camera">Kamera Pribadi</string>
+    <string name="storage_thumbnails">Thumbnail</string>
+    <string name="storage_recycle_bin">Keranjang sampah</string>
+    <string name="storage_temp_cache">Cache sementara</string>
+
+    <string name="health_title">Kesehatan brankas</string>
+    <string name="health_score_label">Skor kesehatan</string>
+    <string name="health_scan_now">Pindai sekarang</string>
+    <string name="health_open_app_lock">Buka Kunci Aplikasi</string>
+    <string name="health_last_scan">Pemindaian terakhir: %1$s</string>
+    <string name="health_never">Tidak pernah</string>
+    <string name="health_encryption">Enkripsi</string>
+    <string name="health_active">Aktif</string>
+    <string name="health_inactive">Tidak aktif</string>
+    <string name="health_app_lock">Kunci Aplikasi</string>
+    <string name="health_ready">Siap</string>
+    <string name="health_needs_setup">Perlu pengaturan</string>
+    <string name="health_unencrypted">Item tidak terenkripsi</string>
+    <string name="health_failed_repairs">Perbaikan gagal</string>
+
+    <!-- Cleanup: shared selection / actions -->
+    <string name="cleanup_selected_summary">%1$d dipilih · %2$s</string>
+    <string name="cleanup_delete_selected">Pindahkan ke Keranjang Sampah</string>
+    <string name="cleanup_select_first">Pilih item yang akan dihapus terlebih dahulu</string>
+    <string name="cleanup_moved_to_bin">%1$d item dipindahkan ke Keranjang Sampah</string>
+    <string name="cleanup_confirm_title">Pindahkan ke Keranjang Sampah?</string>
+    <string name="cleanup_confirm_message">%1$d item (%2$s) akan dipindahkan ke Keranjang Sampah. Anda dapat memulihkannya nanti.</string>
+    <string name="cleanup_confirm_move">Pindahkan</string>
+    <string name="cleanup_cancel">Batal</string>
+
+    <!-- Large Files screen -->
+    <string name="large_files_empty">Tidak ada file di atas ukuran ini</string>
+    <string name="filter_all">Semua</string>
+    <string name="filter_photos">Foto</string>
+    <string name="filter_videos">Video</string>
+    <string name="sort_largest">Terbesar</string>
+    <string name="large_files_min_size">Ukuran minimum</string>
+    <string name="size_5mb">5 MB</string>
+    <string name="size_10mb">10 MB</string>
+    <string name="size_25mb">25 MB</string>
+    <string name="size_50mb">50 MB</string>
+    <string name="size_100mb">100 MB</string>
+
+    <!-- Duplicate Finder screen -->
+    <string name="duplicates_scan">Pindai duplikat</string>
+    <string name="duplicates_rescan">Pindai lagi</string>
+    <string name="duplicates_scanning">Memindai… %1$d/%2$d</string>
+    <string name="duplicates_empty">Tidak ada foto duplikat ditemukan</string>
+    <string name="duplicates_not_scanned">Ketuk pindai untuk menemukan foto yang identik byte demi byte di brankas Anda.</string>
+    <string name="duplicates_keep_newest">Simpan yang terbaru</string>
+    <string name="duplicates_keep_oldest">Simpan yang terlama</string>
+    <string name="duplicates_keep_best">Simpan yang terbaik</string>
+    <string name="duplicates_group_header">%1$d salinan · %2$s dapat dipulihkan</string>
+    <string name="duplicates_recommended">Disarankan untuk disimpan</string>
+    <string name="cd_media_thumbnail">Thumbnail media</string>
+</resources>

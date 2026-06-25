@@ -2,6 +2,7 @@ package app.lock.photo.valut.features.permissions
 
 import app.lock.photo.valut.core.ui.BaseActivity
 
+import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -23,19 +24,6 @@ import app.lock.photo.valut.features.home.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-/**
- * Explains and routes the user to grant the three App Lock permissions. Nothing is
- * forced — each card shows status and a single action; Continue unlocks once granted.
- *
- * In **gate mode** ([EXTRA_GATE_MODE], used as the pre-home step after unlock/first-run)
- * the screen shows before the home dashboard until App Lock protection is active: the
- * user can either activate protection (Continue, once permissions are granted) or skip
- * for now. Once protection is active the gate passes straight through to home.
- *
- * It is [LockExempt] because it is part of the unlock/setup flow — granting the usage
- * and overlay permissions sends the user out to system Settings, and returning must not
- * trigger the app's own auto-lock over this screen.
- */
 @AndroidEntryPoint
 class AppLockPermissionActivity : BaseActivity(), LockExempt {
 
@@ -191,11 +179,21 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
 
     private fun bringTaskToFront() {
         stopWatchingForGrant()
-        startActivity(
-            Intent(this, AppLockPermissionActivity::class.java)
-                .putExtra(EXTRA_GATE_MODE, gateMode)
-                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        )
+        // The app is in the background (user is in system Settings). Use BOTH mechanisms because
+        // each covers a different permission:
+        //  - moveToFront(): pulls our own task back for the usage-access grant, where the app has no
+        //    background-activity-launch exemption (plain startActivity is blocked on Android 10+).
+        //  - startActivity(REORDER_TO_FRONT): works once the overlay (SYSTEM_ALERT_WINDOW) permission
+        //    is granted, which exempts us from the background-launch restriction.
+        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+        runCatching { activityManager?.appTasks?.firstOrNull()?.moveToFront() }
+        runCatching {
+            startActivity(
+                Intent(this, AppLockPermissionActivity::class.java)
+                    .putExtra(EXTRA_GATE_MODE, gateMode)
+                    .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            )
+        }
     }
 
     private fun requestNotificationPermission() {

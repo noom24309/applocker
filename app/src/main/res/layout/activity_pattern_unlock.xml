@@ -32,6 +32,7 @@
         android:id="@+id/titlePattern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TextAppearance.App.Bold"
         android:layout_marginTop="@dimen/space_l"
         android:text="@string/pattern_unlock_title"
         android:textAppearance="@style/TextAppearance.App.Title" />

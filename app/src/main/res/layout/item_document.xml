@@ -9,7 +9,12 @@
     android:layout_marginTop="@dimen/space_s"
     android:layout_marginEnd="@dimen/screen_padding"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardBackgroundColor="@color/home_card"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/home_border"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,17 +23,25 @@
         android:orientation="horizontal"
         android:padding="@dimen/space_m">
 
-        <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_document"
-            app:tint="@color/primary" />
+        <FrameLayout
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_lv_icon_tile"
+            android:backgroundTint="@color/home_tile_purple">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_document"
+                app:tint="@color/home_primary" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_m"
+            android:layout_marginStart="14dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -38,9 +51,9 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="middle"
                 android:maxLines="1"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_body"
-                android:textStyle="bold"
+                style="@style/TextAppearance.App.SemiBold"
+                android:textColor="@color/home_title"
+                android:textSize="15sp"
                 tools:text="Passport_scan.pdf" />
 
             <TextView
@@ -48,8 +61,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/text_tertiary"
-                android:textSize="@dimen/text_caption"
+                style="@style/TextAppearance.App.Medium"
+                android:textColor="@color/home_subtitle"
+                android:textSize="12.5sp"
                 tools:text="PDF · 2.4 MB · Today" />
         </LinearLayout>
 
@@ -61,6 +75,6 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/action_favorite"
             android:src="@drawable/ic_favorite_border"
-            app:tint="@color/primary" />
+            app:tint="@color/home_primary" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

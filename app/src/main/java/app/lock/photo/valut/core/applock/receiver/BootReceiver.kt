@@ -1,6 +1,5 @@
 package app.lock.photo.valut.core.applock.receiver
 
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import app.lock.photo.valut.core.applock.AppLockPermissionChecker
@@ -19,13 +18,14 @@ import javax.inject.Inject
  * the required permissions are still granted. Never starts silently otherwise.
  */
 @AndroidEntryPoint
-class BootReceiver : BroadcastReceiver() {
+class BootReceiver : HiltBroadcastReceiver() {
 
     @Inject lateinit var dataStore: AppSettingsDataStore
     @Inject lateinit var permissionChecker: AppLockPermissionChecker
     @Inject lateinit var serviceManager: AppLockServiceManager
 
     override fun onReceive(context: Context, intent: Intent) {
+        super.onReceive(context, intent) // triggers Hilt field injection
         if (intent.action != Intent.ACTION_BOOT_COMPLETED &&
             intent.action != Intent.ACTION_LOCKED_BOOT_COMPLETED
         ) return

@@ -46,8 +46,9 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_bold"
                             android:text="@string/lv_brand_a"
+                            style="@style/TextAppearance.App.Bold"
                             android:textColor="@color/home_title"
-                            android:textSize="26sp"
+                            android:textSize="30sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -56,8 +57,10 @@
                             android:layout_marginStart="7dp"
                             android:fontFamily="@font/inter_bold"
                             android:text="@string/lv_brand_b"
+                            style="@style/TextAppearance.App.Bold"
+
                             android:textColor="@color/home_primary"
-                            android:textSize="26sp"
+                            android:textSize="30sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -66,6 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/inter_medium"
+                        style="@style/TextAppearance.App.Medium"
                         android:text="@string/lv_vault_subtitle"
                         android:textColor="@color/home_subtitle"
                         android:textSize="13sp" />
@@ -160,6 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/inter_medium"
+                        style="@style/TextAppearance.App.Medium"
                         android:text="@string/lv_vault_safe_sub"
                         android:textColor="@color/home_subtitle"
                         android:textSize="12sp" />
@@ -170,6 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:fontFamily="@font/inter_semi"
+                        style="@style/TextAppearance.App.SemiBold"
                         android:text="@string/lv_vault_learn_more"
                         android:textColor="@color/home_primary"
                         android:textSize="12.5sp"
@@ -210,6 +216,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_bold"
                             android:textColor="@color/home_title"
+                            style="@style/TextAppearance.App.SemiBold"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             tools:text="78%" />
@@ -218,6 +225,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_medium"
+                            style="@style/TextAppearance.App.Medium"
                             android:text="@string/lv_vault_used"
                             android:textColor="@color/home_subtitle"
                             android:textSize="9sp" />

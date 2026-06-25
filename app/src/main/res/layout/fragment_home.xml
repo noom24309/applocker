@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_bg"
+    android:background="@color/white"
     android:clipToPadding="false"
     android:scrollbars="none">
 
@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="24dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="24dp">
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
 
         <!-- ===== Header ===== -->
         <LinearLayout
@@ -39,6 +39,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/lv_brand_a"
+                        style="@style/TextAppearance.App.Bold"
                         android:textColor="@color/home_title"
                         android:textSize="30sp"
                         android:textStyle="bold" />
@@ -48,6 +49,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@string/lv_brand_b"
+                        style="@style/TextAppearance.App.Bold"
+
                         android:textColor="@color/home_primary"
                         android:textSize="30sp"
                         android:textStyle="bold" />
@@ -270,7 +273,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            app:cardBackgroundColor="@color/home_card"
+            app:cardBackgroundColor="@color/card_bg"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
             app:strokeColor="@color/home_border"
@@ -298,7 +301,7 @@
                     <TextView
                         android:id="@+id/tvStatLocked"
                         style="@style/LvStatValue"
-                        android:text="28" />
+                        tools:text="28" />
 
                     <TextView
                         style="@style/LvStatLabel"
@@ -346,7 +349,7 @@
                     <TextView
                         android:id="@+id/tvStatBlocked"
                         style="@style/LvStatValue"
-                        android:text="0" />
+                        tools:text="0" />
 
                     <TextView
                         style="@style/LvStatLabel"
@@ -370,7 +373,7 @@
                     <TextView
                         android:id="@+id/tvStatTime"
                         style="@style/LvStatValue"
-                        android:text="0m" />
+                        tools:text="0m" />
 
                     <TextView
                         style="@style/LvStatLabel"
@@ -429,7 +432,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lv_sort_az"
                     android:textColor="@color/text_secondary"
-                    style="@style/TextAppearance.App.Regular"
+                    style="@style/TextAppearance.App.Medium"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -465,6 +468,8 @@
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
+                    android:background="@drawable/bg_back"
+
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     tools:itemCount="4"
@@ -475,6 +480,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:indeterminateTint="@color/home_primary"
                     android:layout_margin="24dp" />
 
                 <TextView
@@ -530,6 +536,7 @@
                     android:text="@string/lv_complete_setup"
                     android:textColor="@color/home_primary"
                     android:fontFamily="@font/inter_semi"
+                    style="@style/TextAppearance.App.SemiBold"
                     android:textSize="15sp" />
 
                 <TextView

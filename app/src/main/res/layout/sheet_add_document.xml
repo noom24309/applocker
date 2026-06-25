@@ -2,26 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/surface"
+    android:background="@drawable/bg_sheet_top"
     android:orientation="vertical"
-    android:paddingTop="@dimen/space_m"
     android:paddingBottom="@dimen/space_l">
+
+    <!-- Drag handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_lv_handle" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_m"
         android:paddingStart="@dimen/screen_padding"
-        android:paddingTop="@dimen/space_s"
         android:paddingEnd="@dimen/screen_padding"
-        android:paddingBottom="@dimen/space_s"
+        style="@style/TextAppearance.App.Bold"
         android:text="@string/add_sheet_title"
-        android:textColor="@color/text_primary"
-        android:textSize="@dimen/text_heading"
-        android:textStyle="bold" />
+        android:textColor="@color/home_title"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingEnd="@dimen/screen_padding"
+        style="@style/TextAppearance.App.Medium"
+        android:text="@string/add_sheet_subtitle"
+        android:textColor="@color/home_subtitle"
+        android:textSize="13sp" />
 
     <LinearLayout
         android:id="@+id/optionsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_m"
         android:orientation="vertical" />
 </LinearLayout>

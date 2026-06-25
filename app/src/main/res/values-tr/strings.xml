@@ -1,0 +1,853 @@
+<resources>
+    <string name="app_name">Private Lock Vault</string>
+
+    <!-- Common -->
+    <string name="next">İleri</string>
+    <string name="back">Geri</string>
+    <string name="skip">Atla</string>
+    <string name="get_started">Başla</string>
+    <string name="continue_label">Devam et</string>
+    <string name="cancel">İptal</string>
+    <string name="coming_next_phase">Sonraki aşamada geliyor</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Özel. Güvenli. Sizin.</string>
+    <string name="splash_brand_lock">App Lock</string>
+    <string name="splash_brand_amp">&amp;</string>
+    <string name="splash_brand_vault">Private Vault</string>
+    <string name="splash_securing">Kasanız güvenceye alınıyor…</string>
+
+    <!-- Home screen (Lock & Vault redesign) -->
+    <string name="lv_brand_a">Lock &amp;</string>
+    <string name="lv_brand_b">Vault</string>
+    <string name="lv_subtitle">Uygulamalarınızı güvenceye alın. Gizliliğinizi koruyun.</string>
+    <string name="lv_search_hint">Uygulama ara...</string>
+    <string name="lv_chip_all">Tümü</string>
+    <string name="lv_chip_locked">Kilitli</string>
+    <string name="lv_chip_unlocked">Kilitsiz</string>
+    <string name="lv_chip_system">Sistem</string>
+    <string name="lv_stat_locked_apps">Kilitli uygulamalar</string>
+    <string name="lv_stat_protection">Koruma</string>
+    <string name="lv_stat_protection_value">Etkin</string>
+    <string name="lv_stat_protection_off">Kapalı</string>
+    <string name="lv_stat_blocked">Bugün engellenen</string>
+    <string name="lv_stat_time">Koruma süresi</string>
+    <string name="lv_installed_apps">Yüklü uygulamalar</string>
+    <string name="lv_app_count">(%1$d)</string>
+    <string name="lv_sort_az">Sırala: A-Z</string>
+    <string name="lv_sort_za">Sırala: Z-A</string>
+    <string name="lv_complete_setup">Kurulumu tamamla</string>
+    <string name="lv_complete_setup_sub">Tam koruma sağlamak için kalan izinleri verin.</string>
+    <string name="lv_finish_setup">Kurulumu bitir</string>
+    <string name="lv_nav_home">Ana sayfa</string>
+    <string name="lv_nav_vault">Kasa</string>
+    <string name="lv_nav_tools">Araçlar</string>
+
+    <!-- Vault home (Lock & Vault redesign) -->
+    <string name="lv_vault_subtitle">Özel fotoğraf ve videolarınız, güvende.</string>
+    <string name="lv_vault_safe_title">Kasa güvenli</string>
+    <string name="lv_vault_safe_sub">Tüm dosyalarınız şifrelenmiş ve güvenli bir şekilde saklanıyor.</string>
+    <string name="lv_vault_unsafe_title">Şifrelemeyi tamamla</string>
+    <string name="lv_vault_unsafe_sub">Bazı dosyalar henüz şifrelenmedi. Güvenceye almak için dokunun.</string>
+    <string name="lv_vault_learn_more">Daha fazla bilgi</string>
+    <string name="lv_vault_used">Kullanılan</string>
+    <string name="lv_vault_percent">%1$d%%</string>
+    <string name="lv_vault_import_photos">Fotoğraf içe aktar</string>
+    <string name="lv_vault_import_videos">Video içe aktar</string>
+    <string name="lv_vault_new_album">Yeni albüm</string>
+    <string name="lv_vault_settings">Kasa ayarları</string>
+    <string name="lv_vault_albums">Albümler</string>
+    <string name="lv_vault_recent">Son medya</string>
+    <string name="lv_view_all">Tümünü gör</string>
+    <string name="lv_vault_all_photos">Tüm fotoğraflar</string>
+    <string name="lv_vault_protected_title">Kasanız korunuyor</string>
+    <string name="lv_vault_protected_sub">AES-256 şifreleme anılarınızı tamamen özel tutar.</string>
+    <string name="lv_vault_check_health">Durumu kontrol et</string>
+    <string name="lv_vault_recent_empty">Henüz medya yok. Başlamak için fotoğraf veya video içe aktarın.</string>
+
+    <!-- Ported onboarding (4-page flow) -->
+    <string name="ob_title_1">Herhangi bir uygulamayı kilitleyin</string>
+    <string name="ob_subtitle_1">Özel uygulamalarınızı güvenli bir PIN, desen veya biyometrik kilitle koruyun</string>
+    <string name="ob_title_2">Özel fotoğraf ve video kasası</string>
+    <string name="ob_subtitle_2">Kişisel fotoğraf ve videolarınızı güvenli bir özel kasada gizleyin ve koruyun</string>
+    <string name="ob_title_3">Kontrol sizde</string>
+    <string name="ob_subtitle_3">Neyin kilitleneceğini seçin ve gizliliğinizi tam istediğiniz gibi yönetin</string>
+    <string name="ob_title_4">Her şey korunmaya devam eder</string>
+    <string name="ob_subtitle_4">Uygulamalarınızı, medyanızı, dosyalarınızı ve özel verilerinizi cihazınızda şifreli ve güvende tutun.</string>
+
+    <!-- Language screens (ported flow) -->
+    <string name="language_screen_subtitle">Lock &amp; Vault için tercih ettiğiniz dili seçin.</string>
+    <string name="select_language_prompt">Lütfen bir dil seçin</string>
+
+    <!-- Note editor -->
+    <string name="note_editor_title">Not yazın</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Uygulama kilidi koruması</string>
+    <string name="onboarding_subtitle_1">Özel uygulamalarınızı PIN, desen veya parmak iziyle kilitleyin.</string>
+    <string name="onboarding_title_2">Özel fotoğraf kasası</string>
+    <string name="onboarding_subtitle_2">Kişisel fotoğraf ve videolarınızı güvenli bir şekilde gizleyin.</string>
+    <string name="onboarding_title_3">Özel kalın</string>
+    <string name="onboarding_subtitle_3">Fotoğraf ve dosyalarınız cihazınızda şifreli kalır.</string>
+
+    <!-- Choose unlock method -->
+    <string name="choose_method_title">Kilit açma yöntemini seçin</string>
+    <string name="choose_method_subtitle">Uygulamayı açmak için kullanacağınız kilidi seçin. Sonraki adımlarda parmak izi ile kilit açma ekleyebilirsiniz.</string>
+    <string name="choose_method_pattern_title">Desen</string>
+    <string name="choose_method_pattern_desc">Kilidi açmak için bir desen çizin — hızlı ve kolay.</string>
+    <string name="choose_method_pin_title">PIN</string>
+    <string name="choose_method_pin_desc">4 veya 6 haneli sayısal bir PIN kullanın.</string>
+    <string name="choose_method_recommended">Önerilen</string>
+
+    <!-- PIN -->
+    <string name="create_pin_title">PIN\'inizi oluşturun</string>
+    <string name="create_pin_subtitle">Bu PIN kasanızı güvende tutar.</string>
+    <string name="confirm_pin_title">PIN\'inizi onaylayın</string>
+    <string name="confirm_pin_subtitle">Devam etmek için PIN\'inizi tekrar girin.</string>
+    <string name="pin_length_4">4 hane</string>
+    <string name="pin_length_6">6 hane</string>
+    <string name="pin_mismatch">PIN\'ler eşleşmiyor. Tekrar deneyin.</string>
+
+    <!-- Biometric setup -->
+    <string name="biometric_title">Biyometrik kilit açmayı etkinleştir</string>
+    <string name="biometric_subtitle">Anında kilit açmak için parmak izinizi veya yüzünüzü kullanın.</string>
+    <string name="biometric_enable">Biyometriği etkinleştir</string>
+    <string name="biometric_unavailable_subtitle">Bu cihazda biyometrik kilit açma kullanılamıyor. Yine de PIN\'inizi kullanabilirsiniz.</string>
+    <string name="biometric_prompt_title">Private Lock Vault kilidini aç</string>
+    <string name="biometric_prompt_subtitle">Devam etmek için kimliğinizi doğrulayın</string>
+    <string name="biometric_use">Biyometrik kullan</string>
+
+    <!-- Unlock -->
+    <string name="unlock_title">PIN\'inizi girin</string>
+    <string name="unlock_subtitle">Kasanıza erişmek için kilidi açın.</string>
+    <string name="unlock_wrong_pin">Yanlış PIN. Deneme %1$d.</string>
+
+    <!-- Home -->
+    <string name="home_photos">Özel fotoğraflar</string>
+    <string name="home_videos">Özel videolar</string>
+
+    <!-- Navigation -->
+    <string name="nav_settings">Ayarlar</string>
+
+    <!-- Home dashboard (redesign) -->
+
+    <!-- Settings -->
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_security">Güvenlik</string>
+    <string name="settings_change_pin">PIN değiştir</string>
+    <string name="settings_auto_lock">Otomatik kilit</string>
+    <string name="settings_privacy_policy">Gizlilik politikası</string>
+    <string name="settings_privacy_policy_desc">Gizlilik politikamızı okuyun</string>
+
+    <!-- Settings redesign (screenshot match) -->
+    <string name="settings_subtitle">Güvenlik, gizlilik ve uygulama tercihlerini yönetin.</string>
+    <string name="settings_security_status">Güvenlik durumu</string>
+    <string name="settings_security_status_desc">Cihazınız ve verileriniz korunuyor.</string>
+    <string name="settings_security_status_active">Tüm güvenlik özellikleri etkin</string>
+    <string name="settings_change_pin_desc_alt">Uygulama kilit açma PIN\'inizi değiştirin</string>
+    <string name="settings_change_pattern">Deseni değiştir</string>
+    <string name="settings_change_pattern_desc">Kilit açma deseninizi değiştirin</string>
+    <string name="settings_biometric_alt">Biyometrik kilit açma</string>
+    <string name="settings_biometric_desc_alt">Uygulamayla kilidi açın</string>
+    <string name="settings_auto_lock_desc_alt">Uygulamayı otomatik olarak kilitle</string>
+    <string name="settings_wrong_attempt_desc_alt">Birden fazla başarısız denemeden sonra uygulamayı kilitle</string>
+    <string name="settings_attempts_value">%1$d deneme</string>
+    <string name="settings_section_app_lock">Uygulama Kilidi</string>
+    <string name="settings_app_lock_settings">Uygulama kilidi ayarları</string>
+    <string name="settings_app_lock_settings_desc">Mevcut tercihleri yönetin</string>
+    <string name="settings_lock_overlay">Kilit ekranı yer paylaşımı</string>
+    <string name="settings_lock_overlay_desc">Kilit ekranını ve davranışı yapılandırın</string>
+    <string name="settings_section_preferences">Tercihler</string>
+    <string name="settings_notifications">Bildirimler</string>
+    <string name="settings_notifications_desc">Uygulama bildirimlerini yönetin</string>
+    <string name="settings_language">Dil</string>
+    <string name="settings_language_desc">Uygulama dili</string>
+    <string name="settings_language_default">English</string>
+    <string name="settings_section_more">Daha fazla</string>
+    <string name="settings_about_app">Lock &amp; Vault hakkında</string>
+    <string name="settings_about_app_desc">Sürüm, lisanslar ve daha fazlası</string>
+    <string name="settings_about_message">Lock &amp; Vault\nSürüm %1$s\n\nTüm verileriniz bu cihazda yerel olarak şifrelenir ve işlenir.</string>
+    <string name="settings_rate">Bizi değerlendirin</string>
+    <string name="settings_rate_desc">Uygulamayı Google Play\'de değerlendirin</string>
+    <string name="settings_share">Uygulamayı paylaş</string>
+    <string name="settings_share_desc">Arkadaşlarınıza bizden bahsedin</string>
+    <string name="settings_more_apps">Daha fazla uygulama</string>
+    <string name="settings_more_apps_desc">Diğer uygulamalarımızı keşfedin</string>
+    <string name="settings_share_subject">Private Lock Vault</string>
+    <string name="settings_share_text">Uygulamalarınızı ve özel fotoğraflarınızı Private Lock Vault ile güvenceye alın!\n\nhttps://play.google.com/store/apps/details?id=%1$s</string>
+
+    <!-- Short value labels for settings rows -->
+    <string name="auto_lock_immediate_short">Hemen</string>
+    <string name="auto_lock_15s_short">15 saniye</string>
+    <string name="auto_lock_30s_short">30 saniye</string>
+    <string name="auto_lock_1m_short">1 dakika</string>
+    <string name="auto_lock_5m_short">5 dakika</string>
+    <string name="auto_lock_never_short">Asla</string>
+
+    <!-- Weak credential -->
+    <string name="pin_weak_warning">Bu PIN tahmin edilmesi çok kolay. Başka bir tane seçin.</string>
+
+    <!-- Recovery key -->
+    <string name="recovery_title">Kurtarma anahtarınız</string>
+    <string name="recovery_subtitle">Bu anahtarı güvenli bir yerde saklayın. PIN\'inizi unutursanız sıfırlamanın tek yolu budur.</string>
+    <string name="recovery_warning">Bu anahtarı tekrar göremeyeceksiniz. Kaybolursa, kasanız gelecekteki şifreli aşamalarda kurtarılamaz.</string>
+    <string name="recovery_saved_confirm">Anahtarımı kaydettim</string>
+    <string name="recovery_copy">Anahtarı kopyala</string>
+    <string name="recovery_copied">Kurtarma anahtarı kopyalandı</string>
+
+    <!-- Forgot PIN / recovery -->
+    <string name="forgot_pin">PIN\'i mi unuttunuz?</string>
+    <string name="forgot_pin_title">Kurtarma anahtarıyla sıfırla</string>
+    <string name="forgot_pin_subtitle">Yeni bir PIN ayarlamak için kurtarma anahtarınızı girin.</string>
+    <string name="forgot_pin_hint">Kurtarma anahtarı</string>
+    <string name="forgot_pin_verify">Anahtarı doğrula</string>
+    <string name="forgot_pin_wrong">Kurtarma anahtarı yanlış.</string>
+
+    <!-- Lockout / attempts -->
+    <string name="lockout_try_again">Çok fazla deneme. %1$s sonra tekrar deneyin.</string>
+
+    <!-- Change PIN -->
+    <string name="change_pin_verify_title">Mevcut PIN\'i girin</string>
+    <string name="change_pin_verify_subtitle">PIN\'inizi değiştirmeden önce sizin olduğunuzu doğrulayın.</string>
+    <string name="change_pin_new_title">Yeni bir PIN ayarlayın</string>
+    <string name="change_pin_new_subtitle">Yeni bir PIN seçin.</string>
+    <string name="change_pin_confirm_title">Yeni PIN\'i onaylayın</string>
+    <string name="change_pin_confirm_subtitle">Yeni PIN\'inizi tekrar girin.</string>
+    <string name="change_pin_same">Yeni PIN mevcut olandan farklı olmalıdır.</string>
+    <string name="change_pin_success">PIN güncellendi.</string>
+
+    <!-- Pattern -->
+    <string name="pattern_setup_title">Deseninizi ayarlayın</string>
+    <string name="pattern_setup_subtitle">Uygulamanın kilidini açmak için bir desen çizin. En az 4 nokta bağlayın.</string>
+    <string name="pattern_clear">Deseni temizle</string>
+    <string name="pattern_hint_note">Hatırlanması kolay ama başkalarının tahmin etmesi zor olsun.</string>
+    <string name="pattern_confirm_title">Deseni onayla</string>
+    <string name="pattern_confirm_subtitle">Aynı deseni tekrar çizin.</string>
+    <string name="pattern_too_short">En az 4 nokta bağlayın.</string>
+    <string name="pattern_mismatch">Desenler eşleşmiyor. Tekrar deneyin.</string>
+    <string name="pattern_unlock_title">Deseninizi çizin</string>
+    <string name="pattern_saved">Desen kaydedildi.</string>
+    <string name="pattern_wrong">Yanlış desen. Deneme %1$d.</string>
+    <string name="cd_pattern">Desen çizim alanı</string>
+
+    <!-- Verify master -->
+    <string name="verify_title">Sizin olduğunuzu doğrulayın</string>
+    <string name="verify_subtitle_pin">Güvenlik ayarlarını değiştirmek için PIN\'inizi onaylayın.</string>
+    <string name="verify_subtitle_pattern">Güvenlik ayarlarını değiştirmek için deseninizi onaylayın.</string>
+    <string name="verify_wrong">Yanlış. Tekrar deneyin.</string>
+
+    <!-- Security settings -->
+    <string name="settings_wrong_attempt">Yanlış deneme koruması</string>
+    <string name="settings_wrong_attempt_info">5 yanlış denemeden sonra uygulama 30 saniye kilitlenir; 10\'dan sonra 5 dakika. Her zaman açık.</string>
+
+    <!-- Auto-lock options -->
+    <string name="auto_lock_picker_title">Otomatik kilit</string>
+    <string name="auto_lock_immediate">Hemen</string>
+    <string name="auto_lock_15s">15 saniye sonra</string>
+    <string name="auto_lock_30s">30 saniye sonra</string>
+    <string name="auto_lock_1m">1 dakika sonra</string>
+    <string name="auto_lock_5m">5 dakika sonra</string>
+    <string name="auto_lock_never">Bellekteyken asla</string>
+
+    <!-- Unlock method options -->
+    <string name="unlock_method_pin">PIN</string>
+    <string name="unlock_method_pattern">Desen</string>
+
+    <!-- Home -->
+
+    <!-- Keypad digits -->
+    <string name="key_0">0</string>
+    <string name="key_1">1</string>
+    <string name="key_2">2</string>
+    <string name="key_3">3</string>
+    <string name="key_4">4</string>
+    <string name="key_5">5</string>
+    <string name="key_6">6</string>
+    <string name="key_7">7</string>
+    <string name="key_8">8</string>
+    <string name="key_9">9</string>
+
+    <!-- Vault home -->
+    <string name="vault_cat_pictures">Resimler</string>
+    <string name="vault_cat_videos">Videolar</string>
+    <string name="vault_albums">Albümler</string>
+    <string name="vault_add_photo">Fotoğraf / video ekle</string>
+    <string name="vault_create_folder">Klasör oluştur</string>
+    <string name="vault_create_album">Albüm oluştur</string>
+    <string name="items_count">%1$d öğe</string>
+
+    <!-- Empty states -->
+    <string name="empty_photos">Henüz özel fotoğraf yok. Başlamak için birkaç tane içe aktarın.</string>
+    <string name="empty_videos">Henüz özel video yok. Başlamak için birkaç tane içe aktarın.</string>
+    <string name="empty_favorites">Henüz favori yok.</string>
+    <string name="empty_recent">Son zamanlarda hiçbir şey içe aktarılmadı.</string>
+    <string name="empty_recycle_bin">Geri dönüşüm kutusu boş.</string>
+    <string name="empty_album">Bu albüm boş.</string>
+    <string name="empty_pictures">Resim yok</string>
+    <string name="empty_videos_short">Video yok</string>
+
+    <!-- Import -->
+    <string name="import_progress_title">İçe aktarılıyor…</string>
+    <string name="import_progress_count">%2$d / %1$d</string>
+    <string name="import_complete">İçe aktarma tamamlandı</string>
+    <string name="import_summary_photos">%1$d fotoğraf</string>
+    <string name="import_summary_videos">%1$d video</string>
+    <string name="import_summary_failed">%1$d başarısız</string>
+    <string name="import_view_vault">Kasayı görüntüle</string>
+    <string name="import_cancel">İptal</string>
+
+    <!-- Delete originals -->
+
+    <!-- Sort -->
+    <string name="sort_title">Şuna göre sırala</string>
+    <string name="sort_newest">Önce en yeni</string>
+    <string name="sort_oldest">Önce en eski</string>
+    <string name="sort_name">Ad</string>
+    <string name="sort_size">Boyut</string>
+
+    <!-- Selection actions -->
+    <string name="action_select_all">Tümünü seç</string>
+    <string name="action_delete">Sil</string>
+    <string name="action_move">Albüme taşı</string>
+    <string name="action_favorite">Favori</string>
+    <string name="action_export">Dışa aktar</string>
+    <string name="action_restore">Geri yükle</string>
+    <string name="action_permanent_delete">Kalıcı olarak sil</string>
+    <string name="action_empty_bin">Kutuyu boşalt</string>
+    <string name="action_details">Ayrıntılar</string>
+    <string name="selection_count">%1$d seçildi</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_delete_title">Geri dönüşüm kutusuna taşınsın mı?</string>
+    <string name="confirm_delete_message">Seçili öğeler geri dönüşüm kutusuna taşınacak.</string>
+    <string name="confirm_permanent_title">Kalıcı olarak silinsin mi?</string>
+    <string name="confirm_permanent_message">Bu, seçili dosyaları kalıcı olarak siler. Bu işlem geri alınamaz.</string>
+    <string name="confirm_empty_bin_title">Geri dönüşüm kutusu boşaltılsın mı?</string>
+    <string name="confirm_empty_bin_message">Geri dönüşüm kutusundaki tüm öğeler kalıcı olarak silinecek.</string>
+
+    <!-- Albums -->
+    <string name="album_create_title">Yeni albüm</string>
+    <string name="album_name_hint">Albüm adı</string>
+    <string name="album_rename_title">Albümü yeniden adlandır</string>
+    <string name="album_delete_title">Albüm silinsin mi?</string>
+    <string name="album_delete_message">Albüm silinecek. Medyanız ana kasada güvende kalır.</string>
+    <string name="create">Oluştur</string>
+    <string name="rename">Yeniden adlandır</string>
+    <string name="delete_label">Sil</string>
+    <string name="move_main_vault">Ana kasa (albüm yok)</string>
+    <string name="move_to_album_title">Albüme taşı</string>
+
+    <!-- Export -->
+    <string name="export_title">Galeriye dışa aktar</string>
+    <string name="export_copy_only">Yalnızca kopyayı dışa aktar</string>
+    <string name="export_and_remove">Dışa aktar ve kasadan kaldır</string>
+    <string name="export_done">%1$d galeriye dışa aktarıldı</string>
+    <string name="export_failed">Dışa aktarma başarısız</string>
+    <string name="export_unsupported">Dışa aktarma Android 10 veya üstünü gerektirir</string>
+    <string name="export_some_failed">Bazı dosyalar dışa aktarılamadı</string>
+    <string name="restore_to_gallery">Galeriye geri taşı (gizlemeyi kaldır)</string>
+    <string name="restore_done">Galeriye geri taşındı</string>
+    <string name="restore_failed">Galeriye geri taşınamadı</string>
+
+    <!-- Details -->
+    <string name="details_title">Ayrıntılar</string>
+    <string name="details_name">Ad</string>
+    <string name="details_type">Tür</string>
+    <string name="details_size">Boyut</string>
+    <string name="details_resolution">Çözünürlük</string>
+    <string name="details_duration">Süre</string>
+    <string name="details_imported">İçe aktarıldı</string>
+    <string name="details_favorite">Favori</string>
+    <string name="details_protection">Koruma</string>
+    <string name="details_protection_encrypted">Şifreli</string>
+    <string name="details_protection_none">Şifreli değil</string>
+    <string name="details_none">—</string>
+    <string name="save">Kaydet</string>
+    <string name="type_photo">Fotoğraf</string>
+    <string name="type_video">Video</string>
+    <string name="yes_label">Evet</string>
+    <string name="no_label">Hayır</string>
+
+    <!-- Encryption migration -->
+    <string name="migration_title">Kasanız güvenceye alınıyor</string>
+    <string name="migration_message">Mevcut fotoğraf ve videolarınız şifreleniyor. Lütfen uygulamayı açık tutun.</string>
+    <string name="migration_progress">%2$d / %1$d</string>
+    <string name="migration_complete">Kasa şifrelendi</string>
+    <string name="migration_partial">Neredeyse bitti</string>
+    <string name="migration_summary_ok">%1$d öğe şifrelendi</string>
+    <string name="migration_summary_failed">%1$d şifrelendi, %2$d için başka bir deneme gerekiyor</string>
+    <string name="migration_retry">Başarısız öğeleri tekrar dene</string>
+    <string name="migration_open_vault">Kasayı aç</string>
+
+    <!-- Toasts / errors -->
+    <string name="toast_deleted">Geri dönüşüm kutusuna taşındı</string>
+    <string name="toast_restored">Geri yüklendi</string>
+    <string name="error_video_playback">Video oynatılamıyor</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_thumbnail">Medya küçük resmi</string>
+    <string name="cd_play_video">Videoyu oynat</string>
+    <string name="cd_favorite">Favori</string>
+    <string name="cd_close">Kapat</string>
+    <string name="cd_more_options">Diğer seçenekler</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_app_logo">Uygulama logosu</string>
+    <string name="cd_back">Geri</string>
+    <string name="cd_backspace">Geri sil</string>
+    <string name="cd_biometric">Biyometrik kilit açma</string>
+    <string name="cd_card_icon">Kart simgesi</string>
+
+    <!-- ===== Phase 5: App Lock ===== -->
+    <string name="applock_title">Uygulama Kilidi</string>
+
+    <!-- Foreground service notification -->
+    <string name="applock_channel_name">Uygulama kilidi koruması</string>
+    <string name="applock_channel_desc">Etkinken Uygulama Kilidini çalışır durumda tutar.</string>
+    <string name="applock_notification_title">Uygulama Kilidi etkin</string>
+    <string name="applock_notification_text">Bu cihazda korunan uygulamalar izleniyor.</string>
+
+    <!-- Overlay lock screen -->
+    <string name="applock_overlay_title">Uygulama kilitli</string>
+    <string name="applock_wrong_credential">Yanlış. Tekrar deneyin.</string>
+
+    <!-- Permission setup (screenshot redesign) -->
+    <string name="applock_setup_title">Uygulama Kilidini kur</string>
+    <string name="applock_setup_subtitle">Korumayı etkinleştirmek için gerekli izinleri verin.</string>
+    <string name="applock_perm_usage_desc_alt">Seçilen uygulamaların ne zaman açıldığını algılamak için gereklidir</string>
+    <string name="applock_perm_overlay_title_alt">Diğer uygulamaların üzerinde göster</string>
+    <string name="applock_perm_overlay_desc_alt">Kilit ekranını korunan uygulamaların üzerinde göstermek için gereklidir</string>
+    <string name="applock_perm_notification_title_alt">Bildirimler</string>
+    <string name="applock_perm_notification_desc_alt">Korumayı güvenilir bir şekilde çalışır tutmak ve önemli uyarıları göstermek için gereklidir</string>
+    <string name="applock_perm_grant">Ver</string>
+    <string name="applock_perm_privacy_note">Bu izinler yalnızca cihazınızdaki uygulama koruması için kullanılır.</string>
+
+    <!-- Permission setup -->
+    <string name="applock_perm_usage_title">Kullanım Erişimi</string>
+    <string name="applock_perm_overlay_title">Diğer Uygulamaların Üzerinde Görüntüle</string>
+    <string name="applock_perm_notification_title">Bildirim İzni</string>
+    <string name="applock_perm_granted">Verildi</string>
+    <string name="applock_perm_check_again">Tekrar kontrol et</string>
+    <string name="applock_usage_privacy">Kullanım Erişimi, Uygulama Kilidinin korunan bir uygulamanın ne zaman açıldığını algılamasına yardımcı olur. Bu bilgi cihazınızda kalır ve asla yüklenmez, satılmaz veya paylaşılmaz.</string>
+
+    <!-- Dashboard -->
+    <string name="applock_complete_setup">Kurulumu tamamla</string>
+    <string name="applock_start_protection">Korumayı başlat</string>
+    <string name="applock_stop_protection">Korumayı durdur</string>
+    <string name="applock_manage_apps">Kilitli uygulamaları yönet</string>
+    <string name="applock_settings_title">Uygulama kilidi ayarları</string>
+    <string name="applock_settings_desc">Kilit gecikmesi, yeniden kilitleme kuralları ve daha fazlası</string>
+    <string name="applock_status_setup_required">Kurulum gerekli</string>
+    <string name="applock_status_setup_desc">Uygulamaları korumaya başlamak için izin verin.</string>
+    <string name="applock_status_active">Koruma etkin</string>
+    <string name="applock_status_inactive">Koruma etkin değil</string>
+    <string name="applock_setup_first">Önce izin kurulumunu tamamlayın</string>
+    <string name="applock_setup_done_lock_apps">Kurulum tamamlandı — şimdi kilitlenecek uygulamaları seçin</string>
+    <string name="applock_setup_skip">Şimdilik atla</string>
+    <string name="applock_activate_protection">Korumayı etkinleştir</string>
+
+    <plurals name="applock_locked_count">
+        <item quantity="one">%d uygulama kilitli</item>
+        <item quantity="other">%d uygulama kilitli</item>
+    </plurals>
+
+    <!-- Installed apps list -->
+    <string name="applock_search_hint">Uygulama ara</string>
+    <string name="applock_filter_all">Tümü</string>
+    <string name="applock_filter_locked">Kilitli</string>
+    <string name="applock_filter_unlocked">Kilitsiz</string>
+    <string name="applock_filter_system">Sistem uygulamaları</string>
+    <string name="applock_no_apps">Gösterilecek uygulama yok.</string>
+
+    <!-- App Lock settings -->
+    <string name="applock_setting_master">Uygulama Kilidi</string>
+    <string name="applock_setting_master_desc">Seçili uygulamaları ana kimlik bilgilerinizle koruyun</string>
+    <string name="applock_setting_delay">Kilit gecikmesi</string>
+    <string name="applock_setting_delay_desc">Bir uygulamanın kilidi açıldıktan sonra ne kadar süre kilitsiz kaldığı</string>
+    <string name="applock_setting_screen_off">Ekran kapandıktan sonra yeniden kilitle</string>
+    <string name="applock_setting_screen_off_desc">Ekran kapandığında korunan uygulamaları tekrar kilitle</string>
+    <string name="applock_setting_app_switch">Uygulama değiştirdikten sonra yeniden kilitle</string>
+    <string name="applock_setting_app_switch_desc">Korunan bir uygulamadan çıktığınızda tekrar kilitle</string>
+    <string name="applock_setting_lock_new">Yeni uygulamaları otomatik kilitle</string>
+    <string name="applock_setting_lock_new_desc">Yeni yüklenen uygulamaları otomatik olarak kilitle</string>
+    <string name="applock_setting_unlock_method">Kilit açma yöntemi</string>
+    <string name="applock_setting_unlock_method_desc">Güvenlik ayarlarında yönetilir</string>
+
+    <!-- ===== Phase 6: Advanced App Lock ===== -->
+    <!-- Notification additions -->
+    <string name="applock_notification_open">Aç</string>
+    <plurals name="applock_notification_count">
+        <item quantity="one">%d uygulama korunuyor</item>
+        <item quantity="other">%d uygulama korunuyor</item>
+    </plurals>
+    <string name="applock_new_app_locked_title">Yeni uygulama kilitlendi</string>
+    <string name="applock_new_app_locked_text">%1$s kilitli uygulamalarınıza eklendi.</string>
+    <string name="applock_new_app_prompt_title">Yeni uygulama yüklendi</string>
+    <string name="applock_new_app_prompt_text">%1$s uygulamasını Uygulama Kilidi ile korumak için dokunun.</string>
+
+    <!-- Delay modes -->
+    <string name="delay_5s">5 saniye sonra</string>
+    <string name="delay_until_screen_off">Ekran kapanana kadar</string>
+    <string name="delay_until_app_switch">Uygulama değişene kadar</string>
+    <string name="delay_until_device_locked">Cihaz kilitlenene kadar</string>
+
+    <!-- Themes -->
+    <string name="theme_default">Varsayılan güvenlik</string>
+    <string name="theme_dark">Koyu güvenlik</string>
+    <string name="theme_glass">Cam bulanıklığı</string>
+    <string name="theme_minimal">Minimal beyaz</string>
+    <string name="theme_calculator">Hesap makinesi</string>
+    <string name="theme_fake_crash">Sahte çökme</string>
+    <string name="theme_fake_loading">Sahte yükleme</string>
+
+    <!-- Shared option labels -->
+    <string name="applock_use_global">Genel ayarı kullan</string>
+    <string name="applock_use_default">Varsayılan</string>
+
+    <!-- Fake modes -->
+    <string name="fake_mode_none">Kapalı</string>
+    <string name="fake_mode_crash">Sahte çökme</string>
+    <string name="fake_mode_loading">Sahte yükleme</string>
+    <string name="fake_mode_calculator">Hesap makinesi</string>
+
+    <!-- Fake crash screen -->
+    <string name="fake_crash_title">Uygulama durdu</string>
+    <string name="fake_crash_message">Bu uygulama sürekli duruyor.</string>
+    <string name="fake_crash_report">Bildir</string>
+    <string name="fake_crash_open_again">Tekrar aç</string>
+    <string name="fake_crash_close">Uygulamayı kapat</string>
+    <string name="fake_crash_reported">Rapor gönderildi</string>
+
+    <!-- Fake loading screen -->
+    <string name="fake_loading_text">Yükleniyor…</string>
+
+    <!-- Calculator lock -->
+    <string name="calculator_zero">0</string>
+    <string name="calculator_clear">C</string>
+    <string name="calculator_backspace">⌫</string>
+    <string name="calculator_percent">%</string>
+    <string name="calculator_divide">÷</string>
+    <string name="calculator_multiply">×</string>
+    <string name="calculator_minus">−</string>
+    <string name="calculator_plus">+</string>
+    <string name="calculator_dot">.</string>
+    <string name="calculator_equals">=</string>
+
+    <!-- Settings sections + new rows -->
+    <string name="applock_section_protection">Koruma</string>
+    <string name="applock_section_unlock">Kilit açma</string>
+    <string name="applock_section_disguise">Gizleme</string>
+    <string name="applock_section_privacy">Gizlilik</string>
+    <string name="applock_section_stability">Kararlılık</string>
+    <string name="applock_setting_theme">Kilit ekranı teması</string>
+    <string name="applock_setting_theme_desc">Kilit ekranının nasıl görüneceğini seçin</string>
+    <string name="applock_setting_fake_mode">Varsayılan sahte mod</string>
+    <string name="applock_setting_fake_mode_desc">Kilit ekranını gizleyin</string>
+    <string name="applock_setting_hide_name">Kilitlendiğinde uygulama adını gizle</string>
+    <string name="applock_setting_hide_name_desc">Kilitli uygulamanın adını gösterme</string>
+    <string name="applock_setting_device_lock">Cihaz kilidinden sonra yeniden kilitle</string>
+    <string name="applock_setting_device_lock_desc">Cihaz kilitlendiğinde tekrar kilitle</string>
+    <string name="applock_setting_hide_recent">Son uygulama önizlemesini gizle</string>
+    <string name="applock_setting_hide_recent_desc">Hassas ekranları son uygulamalardan uzak tutun</string>
+    <string name="applock_setting_local_stats">Yalnızca yerel istatistikler</string>
+    <string name="applock_setting_local_stats_desc">Bu cihazda basit sayaçlar tutun</string>
+    <string name="applock_setting_permissions">İzin durumu</string>
+    <string name="applock_setting_battery">Pil ayarları yardımı</string>
+    <string name="applock_setting_battery_desc">Korumayı arka planda çalışır tutun</string>
+    <string name="applock_setting_restart_boot">Yeniden başlatmadan sonra başlat</string>
+    <string name="applock_setting_restart_boot_desc">Cihaz yeniden başladığında korumayı sürdür</string>
+    <string name="applock_setting_troubleshoot">Sorun giderme</string>
+    <string name="applock_setting_troubleshoot_desc">Kurulumu kontrol edin ve yaygın sorunları çözün</string>
+
+    <!-- Theme picker -->
+    <string name="applock_theme_title">Kilit ekranı teması</string>
+    <string name="applock_theme_subtitle">Bu tema, korunan bir uygulama açıldığında kullanılır.</string>
+
+    <!-- Troubleshooting -->
+    <string name="applock_troubleshoot_title">Sorun giderme</string>
+    <string name="applock_troubleshoot_service">Koruma hizmeti çalışıyor</string>
+    <string name="applock_troubleshoot_apps">Kilitlenmek üzere seçilen uygulamalar</string>
+    <string name="applock_troubleshoot_restart">Korumayı yeniden başlat</string>
+    <string name="applock_troubleshoot_open_permissions">İzinleri aç</string>
+    <string name="applock_troubleshoot_last_check">Az önce kontrol edildi</string>
+
+    <!-- Suggestions -->
+    <string name="applock_suggestions_button">Öneriler</string>
+    <string name="applock_suggestions_title">Önerilen uygulamalar</string>
+    <string name="applock_suggestions_subtitle">Genellikle özel içerik barındıran uygulamalar. İnceleyin ve istediklerinizi kilitleyin.</string>
+    <string name="applock_suggestions_empty">Şu anda öneri yok.</string>
+    <string name="applock_suggestions_lock_all">Seçilenleri kilitle</string>
+    <string name="applock_suggestions_locked">%1$d uygulama kilitlendi</string>
+
+    <!-- Categories -->
+    <string name="category_social">Sosyal</string>
+    <string name="category_messaging">Mesajlaşma</string>
+    <string name="category_gallery">Galeri</string>
+    <string name="category_finance">Finans</string>
+    <string name="category_shopping">Alışveriş</string>
+    <string name="category_browser">Tarayıcı</string>
+    <string name="category_settings">Sistem</string>
+    <string name="category_files">Dosyalar</string>
+
+    <!-- Per-app settings -->
+    <string name="perapp_subtitle">Bu uygulama için genel ayarları geçersiz kılın.</string>
+    <string name="perapp_use_custom">Özel ayarları kullan</string>
+    <string name="perapp_use_custom_desc">Genel yerine uygulama başına kurallar uygulayın</string>
+    <string name="perapp_unlock_method">Kilit açma yöntemi</string>
+    <string name="perapp_lock_delay">Kilit gecikmesi</string>
+    <string name="perapp_fake_mode">Sahte mod</string>
+    <string name="perapp_biometric_only">Yalnızca biyometrik iste</string>
+    <string name="perapp_method_biometric">Biyometrik</string>
+    <string name="perapp_saved">Ayarlar kaydedildi</string>
+
+    <!-- Local stats -->
+    <string name="applock_stats_title">Bugün</string>
+    <string name="applock_stats_local_note">İstatistikler bu cihazda kalır ve asla yüklenmez veya paylaşılmaz.</string>
+    <string name="applock_stat_unlocks">Bugünkü kilit açmalar: %1$d</string>
+    <string name="applock_stat_failed">Başarısız denemeler: %1$d</string>
+    <string name="applock_stat_opens">Kilitli uygulama açılışları: %1$d</string>
+    <string name="applock_stat_protection">Koruma etkin: %1$s</string>
+    <string name="duration_hm">%1$dh %2$dm</string>
+    <string name="duration_m">%1$dm</string>
+
+    <!-- Privacy policy (App Lock sections) -->
+    <string name="privacy_policy_title">Gizlilik politikası</string>
+    <string name="privacy_policy_body">Kullanım Erişimi İzni\nBu uygulama, Kullanım Erişimini yalnızca kullanıcının seçtiği uygulamaların ne zaman açıldığını algılamak için kullanır, böylece kilit ekranını gösterebilir. Kullanım verileri cihazda yerel olarak işlenir ve yüklenmez, satılmaz, paylaşılmaz veya reklam için kullanılmaz.\n\nDiğer Uygulamaların Üzerinde Görüntüle\nBu uygulama, Diğer Uygulamaların Üzerinde Görüntüleme özelliğini yalnızca kilit ekranını korunan uygulamaların üzerinde göstermek için kullanır.\n\nÖn Plan Hizmeti\nBu uygulama, kullanıcı tarafından etkinleştirildiğinde Uygulama Kilidi korumasını etkin tutmak için bir ön plan hizmeti kullanır.\n\nPremium Araçlar\nYinelenen bulucu, büyük dosya bulucu ve depolama çözümleyici gibi premium temizleme araçları, kasa dosyalarını cihazda yerel olarak işler. Hiçbir fotoğraf, video, belge, not, dosya adı veya analiz sonucu yüklenmez veya paylaşılmaz.\n\nÖzel Notlar ve Özel Belgeler şifreli biçimde yerel olarak saklanır. Uygulama bu içeriği yüklemez veya paylaşmaz.\n\nGizli ve kilitli albümler, kullanıcı tarafından kontrol edilen gizlilik özellikleridir ve cihazda yerel olarak saklanır.</string>
+
+    <!-- Phase 9: Private Camera -->
+
+    <!-- Settings -->
+
+    <!-- Errors -->
+
+    <!-- Entry points -->
+
+    <!-- Media details source label -->
+    <string name="details_source">Kaynak</string>
+    <string name="details_source_imported">İçe aktarıldı</string>
+    <string name="details_source_private_camera">Özel Kamera</string>
+
+    <!-- Tools dashboard (screenshot redesign) -->
+    <string name="tools_header_subtitle">Cihazınızı temizlemek, düzenlemek ve güvenceye almak için akıllı araçlar.</string>
+    <string name="tools_hero_title">Cihaz sağlıklı</string>
+    <string name="tools_hero_desc">Cihazınız temiz ve korunuyor. Böyle devam edin!</string>
+    <string name="tools_hero_protected">Korunuyor</string>
+    <string name="tools_hero_percent">92%</string>
+    <string name="tools_section_cleanup">Temizleme araçları</string>
+    <string name="tools_section_security">Güvenlik ve Gizlilik</string>
+    <string name="tools_duplicate_finder">Yinelenen bulucu</string>
+    <string name="tools_duplicate_desc">Yinelenen fotoğraf, video ve dosyaları bulun ve kaldırın</string>
+    <string name="tools_large_files">Büyük dosyalar</string>
+    <string name="tools_large_files_desc">Değerli depolama alanı kaplayan büyük dosyaları bulun</string>
+    <string name="tools_smart_cleanup">Akıllı temizleme</string>
+    <string name="tools_smart_cleanup_desc">Alan, önbellek ve gereksiz verileri serbest bırakın</string>
+    <string name="tools_storage_analyzer">Depolama çözümleyici</string>
+    <string name="tools_storage_analyzer_desc">Depolamayı analiz edin ve alanınızı yönetin.</string>
+    <string name="tools_view_details">Ayrıntıları gör</string>
+    <string name="tools_vault_health">Kasa durumu</string>
+    <string name="tools_vault_health_desc">Şifreleme durumunu ve güvenliği tarayın</string>
+    <string name="tools_status_secure">Güvenli</string>
+    <string name="tools_section_storage">Özel depolama</string>
+    <string name="tools_private_notes_desc">Güvenli özel notlar</string>
+    <string name="tools_private_documents_desc">Kimlikler, kartlar ve dosyalar</string>
+    <string name="settings_open_unavailable">Bu ekran cihazınızda kullanılamıyor</string>
+    <string name="tools_sample_dup_size">1.26 GB</string>
+    <string name="tools_sample_large_size">2.34 GB</string>
+    <string name="tools_sample_cleanup_size">1.03 GB</string>
+
+    <!-- Phase 11: Premium Tools -->
+    <string name="close">Kapat</string>
+
+    <!-- Notes -->
+    <string name="notes_title">Özel notlar</string>
+    <string name="notes_search_hint">Notlarda ara</string>
+    <string name="notes_empty">Henüz not yok. Bir tane oluşturmak için + simgesine dokunun.</string>
+    <string name="notes_empty_title">Henüz not yok</string>
+    <string name="notes_empty_subtitle">Özel düşüncelerinizi, fikirlerinizi ve yapılacaklarınızı güvende ve şifreli tutun. İlk notunuzu oluşturmak için + düğmesine dokunun.</string>
+    <string name="notes_new">Yeni not</string>
+    <string name="notes_title_hint">Başlık</string>
+    <string name="notes_body_hint">Özel bir şey yazın…</string>
+    <string name="notes_encrypted_badge">Uçtan uca şifreli</string>
+    <string name="notes_meta_count">%1$d kelime · %2$d karakter</string>
+    <string name="notes_save_failed">Not kaydedilemedi</string>
+    <string name="notes_export_done">Not dışa aktarıldı</string>
+    <string name="notes_export_failed">Not dışa aktarılamadı</string>
+    <string name="notes_delete_title">Not silinsin mi?</string>
+    <string name="notes_delete_message">Bu not kaldırılacak.</string>
+
+    <!-- Documents -->
+    <string name="documents_title">Özel belgeler</string>
+    <string name="documents_search_hint">Belgelerde ara</string>
+    <string name="documents_empty">Henüz belge yok. İçe aktarmak için + simgesine dokunun.</string>
+    <string name="documents_meta">%1$s · %2$s · %3$s</string>
+    <string name="documents_open_text">Metin olarak aç</string>
+    <string name="documents_export">Dışa aktar</string>
+    <string name="documents_export_warning">Seçtiğiniz konuma, şifreli kasanın dışında, şifresi çözülmüş bir kopya kaydedilecek. Devam edilsin mi?</string>
+    <string name="documents_delete_title">Belge silinsin mi?</string>
+    <string name="documents_delete_message">Bu belge kaldırılacak.</string>
+    <string name="docs_import_done">Belgeler içe aktarıldı</string>
+    <string name="docs_import_failed">Bazı belgeler içe aktarılamadı</string>
+    <string name="docs_export_done">Belge dışa aktarıldı</string>
+    <string name="docs_export_failed">Belge dışa aktarılamadı</string>
+    <string name="docs_open_failed">Bu belge açılamadı</string>
+
+    <!-- Document cards (wallet-style) -->
+    <string name="documents_tab_cards">Kartlar</string>
+    <string name="documents_tab_files">Dosyalar</string>
+    <string name="documents_header_subtitle">Kişisel kartlarınızı ve dosyalarınızı güvenle saklayın</string>
+    <string name="cards_search_hint">Kart ara</string>
+    <string name="cards_filter_all">Tümü</string>
+    <string name="cards_filter_favorites">Favoriler</string>
+    <string name="cards_filter_deleted">Silinenler</string>
+    <string name="cards_empty_title">Henüz belge kartı yok</string>
+    <string name="cards_empty_subtitle">Kimlik kartları, ehliyetler, pasaportlar ve özel belgeleri güvenle ekleyin.</string>
+    <string name="cards_empty_favorites">Henüz favori kart yok</string>
+    <string name="cards_empty_deleted">Silinmiş kart yok</string>
+    <string name="cards_add_button">Belge kartı ekle</string>
+
+    <!-- Add sheet -->
+    <string name="add_sheet_title">Özel Belgelere ekle</string>
+    <string name="add_sheet_subtitle">Bir kart türü seçin veya bir dosya içe aktarın</string>
+    <string name="add_import_file">Dosya içe aktar</string>
+
+    <!-- Card types -->
+    <string name="card_type_id">Kimlik kartı</string>
+    <string name="card_type_licence">Sürücü ehliyeti</string>
+    <string name="card_type_passport">Pasaport</string>
+    <string name="card_type_student">Öğrenci kartı</string>
+    <string name="card_type_work">İş kartı</string>
+    <string name="card_type_vehicle">Araç ruhsatı</string>
+    <string name="card_type_insurance">Sigorta kartı</string>
+    <string name="card_type_other">Diğer belge</string>
+
+    <!-- Card field labels -->
+    <string name="card_field_holder_name">Sahip adı</string>
+    <string name="card_field_student_name">Öğrenci adı</string>
+    <string name="card_field_employee_name">Çalışan adı</string>
+    <string name="card_field_owner_name">Sahip adı</string>
+    <string name="card_field_title">Başlık</string>
+    <string name="card_field_id_number">Kimlik numarası</string>
+    <string name="card_field_licence_number">Ehliyet numarası</string>
+    <string name="card_field_passport_number">Pasaport numarası</string>
+    <string name="card_field_student_id">Öğrenci numarası</string>
+    <string name="card_field_employee_id">Çalışan numarası</string>
+    <string name="card_field_vehicle_number">Araç numarası</string>
+    <string name="card_field_policy_number">Poliçe numarası</string>
+    <string name="card_field_number">Numara</string>
+    <string name="card_field_date_of_birth">Doğum tarihi</string>
+    <string name="card_field_institute_name">Kurum adı</string>
+    <string name="card_field_company_name">Şirket adı</string>
+    <string name="card_field_registration_number">Kayıt numarası</string>
+    <string name="card_field_provider_name">Sağlayıcı adı</string>
+    <string name="card_field_country">Ülke</string>
+    <string name="card_field_country_state">Ülke / eyalet</string>
+    <string name="card_field_nationality">Uyruk</string>
+    <string name="card_field_expiry">Son kullanma tarihi</string>
+    <string name="card_field_notes">Notlar</string>
+
+    <!-- Add / edit card -->
+    <string name="card_add_title">Kart ekle</string>
+    <string name="card_edit_title">Kartı düzenle</string>
+    <string name="card_section_images">Kart görüntüleri</string>
+    <string name="card_section_details">Ayrıntılar</string>
+    <string name="card_section_color">Kart rengi</string>
+    <string name="card_add_front">Ön görüntü ekle</string>
+    <string name="card_add_back">Arka görüntü ekle</string>
+    <string name="card_replace_image">Değiştir</string>
+    <string name="card_remove_image">Kaldır</string>
+    <string name="card_save">Kartı kaydet</string>
+    <string name="card_error_need_something">Önce bir ad, numara veya görüntü ekleyin</string>
+    <string name="card_error_save_failed">Kart kaydedilemedi</string>
+    <string name="card_error_image_failed">Görüntü açılamıyor</string>
+    <string name="card_error_no_storage">Yeterli depolama alanı yok</string>
+    <string name="card_saved">Kart kaydedildi</string>
+
+    <!-- Card detail -->
+    <string name="card_detail_title">Kart</string>
+    <string name="card_show_number">Göster</string>
+    <string name="card_hide_number">Gizle</string>
+    <string name="card_verify_to_show">Tam numarayı görmek için lütfen doğrulayın</string>
+    <string name="card_created_at">%1$s eklendi</string>
+    <string name="card_updated_at">%1$s güncellendi</string>
+    <string name="card_action_edit">Düzenle</string>
+    <string name="card_action_export">Dışa aktar</string>
+    <string name="card_export_front">Ön görüntüyü dışa aktar</string>
+    <string name="card_export_back">Arka görüntüyü dışa aktar</string>
+    <string name="card_export_warning">Bu, kasanızın dışında şifresi çözülmüş bir kopya oluşturur. Devam edilsin mi?</string>
+    <string name="card_export_done">Görüntü dışa aktarıldı</string>
+    <string name="card_export_failed">Dışa aktarma başarısız</string>
+    <string name="card_open_failed">Belge açılamadı</string>
+    <string name="card_delete_title">Kart silinsin mi?</string>
+    <string name="card_delete_message">Bu kart Silinenler\'e taşınacak.</string>
+    <string name="card_restore">Geri yükle</string>
+    <string name="card_delete_forever">Kalıcı olarak sil</string>
+    <string name="card_delete_forever_message">Bu kart ve görüntüleri kalıcı olarak kaldırılacak.</string>
+    <string name="cd_card_front">Kart ön görüntüsü</string>
+    <string name="cd_card_back">Kart arka görüntüsü</string>
+    <string name="cd_card_color">Kart rengi seçeneği</string>
+
+    <!-- Premium cleanup / storage / health -->
+    <string name="duplicates_title">Yinelenen bulucu</string>
+    <string name="large_files_title">Büyük dosyalar</string>
+    <string name="cleanup_title">Geçici önbelleği temizle</string>
+    <string name="cleanup_clear_temp">Önbelleği temizle</string>
+    <string name="cleanup_temp_cleared">Geçici önbellek temizlendi</string>
+
+    <string name="storage_analyzer_title">Depolama çözümleyici</string>
+    <string name="storage_total_label">Toplam kasa depolaması</string>
+    <string name="storage_private_camera">Özel Kamera</string>
+    <string name="storage_thumbnails">Küçük resimler</string>
+    <string name="storage_recycle_bin">Geri dönüşüm kutusu</string>
+    <string name="storage_temp_cache">Geçici önbellek</string>
+
+    <string name="health_title">Kasa durumu</string>
+    <string name="health_score_label">Durum puanı</string>
+    <string name="health_scan_now">Şimdi tara</string>
+    <string name="health_open_app_lock">Uygulama Kilidini aç</string>
+    <string name="health_last_scan">Son tarama: %1$s</string>
+    <string name="health_never">Asla</string>
+    <string name="health_encryption">Şifreleme</string>
+    <string name="health_active">Etkin</string>
+    <string name="health_inactive">Etkin değil</string>
+    <string name="health_app_lock">Uygulama Kilidi</string>
+    <string name="health_ready">Hazır</string>
+    <string name="health_needs_setup">Kurulum gerekli</string>
+    <string name="health_unencrypted">Şifrelenmemiş öğeler</string>
+    <string name="health_failed_repairs">Başarısız onarımlar</string>
+
+    <!-- Cleanup: shared selection / actions -->
+    <string name="cleanup_selected_summary">%1$d seçildi · %2$s</string>
+    <string name="cleanup_delete_selected">Geri Dönüşüm Kutusuna Taşı</string>
+    <string name="cleanup_select_first">Önce kaldırılacak öğeleri seçin</string>
+    <string name="cleanup_moved_to_bin">%1$d öğe Geri Dönüşüm Kutusuna taşındı</string>
+    <string name="cleanup_confirm_title">Geri Dönüşüm Kutusuna Taşınsın mı?</string>
+    <string name="cleanup_confirm_message">%1$d öğe (%2$s) Geri Dönüşüm Kutusuna taşınacak. Daha sonra geri yükleyebilirsiniz.</string>
+    <string name="cleanup_confirm_move">Taşı</string>
+    <string name="cleanup_cancel">İptal</string>
+
+    <!-- Large Files screen -->
+    <string name="large_files_empty">Bu boyutun üzerinde dosya yok</string>
+    <string name="filter_all">Tümü</string>
+    <string name="filter_photos">Fotoğraflar</string>
+    <string name="filter_videos">Videolar</string>
+    <string name="sort_largest">En büyük</string>
+    <string name="large_files_min_size">Minimum boyut</string>
+    <string name="size_5mb">5 MB</string>
+    <string name="size_10mb">10 MB</string>
+    <string name="size_25mb">25 MB</string>
+    <string name="size_50mb">50 MB</string>
+    <string name="size_100mb">100 MB</string>
+
+    <!-- Duplicate Finder screen -->
+    <string name="duplicates_scan">Yinelenenleri tara</string>
+    <string name="duplicates_rescan">Tekrar tara</string>
+    <string name="duplicates_scanning">Taranıyor… %1$d/%2$d</string>
+    <string name="duplicates_empty">Yinelenen fotoğraf bulunamadı</string>
+    <string name="duplicates_not_scanned">Kasanızda bayt bayt aynı olan fotoğrafları bulmak için taraya dokunun.</string>
+    <string name="duplicates_keep_newest">En yeniyi tut</string>
+    <string name="duplicates_keep_oldest">En eskiyi tut</string>
+    <string name="duplicates_keep_best">En iyisini tut</string>
+    <string name="duplicates_group_header">%1$d kopya · %2$s kurtarılabilir</string>
+    <string name="duplicates_recommended">Tutulması önerilir</string>
+    <string name="cd_media_thumbnail">Medya küçük resmi</string>
+</resources>

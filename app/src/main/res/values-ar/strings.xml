@@ -1,0 +1,861 @@
+<resources>
+    <string name="app_name">Private Lock Vault</string>
+
+    <!-- Common -->
+    <string name="next">التالي</string>
+    <string name="back">رجوع</string>
+    <string name="skip">تخطّي</string>
+    <string name="get_started">ابدأ</string>
+    <string name="continue_label">متابعة</string>
+    <string name="cancel">إلغاء</string>
+    <string name="coming_next_phase">قادم في المرحلة التالية</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">خاص. آمن. لك.</string>
+    <string name="splash_brand_lock">App Lock</string>
+    <string name="splash_brand_amp">&amp;</string>
+    <string name="splash_brand_vault">Private Vault</string>
+    <string name="splash_securing">جارٍ تأمين خزنتك…</string>
+
+    <!-- Home screen (Lock & Vault redesign) -->
+    <string name="lv_brand_a">Lock &amp;</string>
+    <string name="lv_brand_b">Vault</string>
+    <string name="lv_subtitle">أمّن تطبيقاتك. احمِ خصوصيتك.</string>
+    <string name="lv_search_hint">ابحث عن التطبيقات...</string>
+    <string name="lv_chip_all">الكل</string>
+    <string name="lv_chip_locked">مقفلة</string>
+    <string name="lv_chip_unlocked">غير مقفلة</string>
+    <string name="lv_chip_system">النظام</string>
+    <string name="lv_stat_locked_apps">التطبيقات المقفلة</string>
+    <string name="lv_stat_protection">الحماية</string>
+    <string name="lv_stat_protection_value">مفعّلة</string>
+    <string name="lv_stat_protection_off">متوقفة</string>
+    <string name="lv_stat_blocked">المحظورة اليوم</string>
+    <string name="lv_stat_time">وقت الحماية</string>
+    <string name="lv_installed_apps">التطبيقات المثبّتة</string>
+    <string name="lv_app_count">(%1$d)</string>
+    <string name="lv_sort_az">الترتيب: A-Z</string>
+    <string name="lv_sort_za">الترتيب: Z-A</string>
+    <string name="lv_complete_setup">إكمال الإعداد</string>
+    <string name="lv_complete_setup_sub">امنح الأذونات المتبقية لضمان حماية كاملة.</string>
+    <string name="lv_finish_setup">إنهاء الإعداد</string>
+    <string name="lv_nav_home">الرئيسية</string>
+    <string name="lv_nav_vault">الخزنة</string>
+    <string name="lv_nav_tools">الأدوات</string>
+
+    <!-- Vault home (Lock & Vault redesign) -->
+    <string name="lv_vault_subtitle">صورك ومقاطع الفيديو الخاصة، آمنة.</string>
+    <string name="lv_vault_safe_title">الخزنة آمنة</string>
+    <string name="lv_vault_safe_sub">جميع ملفاتك مشفّرة ومخزّنة بأمان.</string>
+    <string name="lv_vault_unsafe_title">إكمال التشفير</string>
+    <string name="lv_vault_unsafe_sub">بعض الملفات غير مشفّرة بعد. اضغط لتأمينها.</string>
+    <string name="lv_vault_learn_more">معرفة المزيد</string>
+    <string name="lv_vault_used">المستخدَم</string>
+    <string name="lv_vault_percent">%1$d%%</string>
+    <string name="lv_vault_import_photos">استيراد الصور</string>
+    <string name="lv_vault_import_videos">استيراد الفيديو</string>
+    <string name="lv_vault_new_album">ألبوم جديد</string>
+    <string name="lv_vault_settings">إعدادات الخزنة</string>
+    <string name="lv_vault_albums">الألبومات</string>
+    <string name="lv_vault_recent">الوسائط الأخيرة</string>
+    <string name="lv_view_all">عرض الكل</string>
+    <string name="lv_vault_all_photos">جميع الصور</string>
+    <string name="lv_vault_protected_title">خزنتك محمية</string>
+    <string name="lv_vault_protected_sub">يحافظ تشفير AES-256 على خصوصية ذكرياتك تمامًا.</string>
+    <string name="lv_vault_check_health">فحص الحالة</string>
+    <string name="lv_vault_recent_empty">لا توجد وسائط بعد. استورد صورًا أو مقاطع فيديو للبدء.</string>
+
+    <!-- Ported onboarding (4-page flow) -->
+    <string name="ob_title_1">اقفل أي تطبيق</string>
+    <string name="ob_subtitle_1">احمِ تطبيقاتك الخاصة برمز PIN أو نمط أو قفل بيومتري آمن</string>
+    <string name="ob_title_2">خزنة الصور والفيديو الخاصة</string>
+    <string name="ob_subtitle_2">أخفِ واحمِ صورك ومقاطع الفيديو الشخصية داخل خزنة خاصة آمنة</string>
+    <string name="ob_title_3">أنت المتحكّم</string>
+    <string name="ob_subtitle_3">اختر ما تريد قفله وأدر خصوصيتك تمامًا كما تريد</string>
+    <string name="ob_title_4">كل شيء يبقى محميًا</string>
+    <string name="ob_subtitle_4">حافظ على تطبيقاتك ووسائطك وملفاتك وبياناتك الخاصة مشفّرة وآمنة على جهازك.</string>
+
+    <!-- Language screens (ported flow) -->
+    <string name="language_screen_subtitle">اختر لغتك المفضلة لـ Lock &amp; Vault.</string>
+    <string name="select_language_prompt">يرجى اختيار اللغة</string>
+
+    <!-- Note editor -->
+    <string name="note_editor_title">أدخل الملاحظات</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">حماية قفل التطبيقات</string>
+    <string name="onboarding_subtitle_1">اقفل تطبيقاتك الخاصة برمز PIN أو نمط أو بصمة.</string>
+    <string name="onboarding_title_2">خزنة الصور الخاصة</string>
+    <string name="onboarding_subtitle_2">أخفِ صورك ومقاطع الفيديو الشخصية بأمان.</string>
+    <string name="onboarding_title_3">ابقَ خاصًا</string>
+    <string name="onboarding_subtitle_3">تبقى صورك وملفاتك مشفّرة على جهازك.</string>
+
+    <!-- Choose unlock method -->
+    <string name="choose_method_title">اختر طريقة إلغاء القفل</string>
+    <string name="choose_method_subtitle">اختر القفل الذي ستستخدمه لفتح التطبيق. يمكنك إضافة إلغاء القفل بالبصمة في الخطوات التالية.</string>
+    <string name="choose_method_pattern_title">النمط</string>
+    <string name="choose_method_pattern_desc">ارسم نمطًا لإلغاء القفل — سريع وسهل.</string>
+    <string name="choose_method_pin_title">PIN</string>
+    <string name="choose_method_pin_desc">استخدم رمز PIN رقميًا من 4 أو 6 أرقام.</string>
+    <string name="choose_method_recommended">موصى به</string>
+
+    <!-- PIN -->
+    <string name="create_pin_title">أنشئ رمز PIN</string>
+    <string name="create_pin_subtitle">يحافظ رمز PIN هذا على أمان خزنتك.</string>
+    <string name="confirm_pin_title">أكّد رمز PIN</string>
+    <string name="confirm_pin_subtitle">أعد إدخال رمز PIN للمتابعة.</string>
+    <string name="pin_length_4">4 أرقام</string>
+    <string name="pin_length_6">6 أرقام</string>
+    <string name="pin_mismatch">رمزا PIN غير متطابقين. حاول مرة أخرى.</string>
+
+    <!-- Biometric setup -->
+    <string name="biometric_title">تفعيل إلغاء القفل البيومتري</string>
+    <string name="biometric_subtitle">استخدم بصمتك أو وجهك لإلغاء القفل فورًا.</string>
+    <string name="biometric_enable">تفعيل البيومتري</string>
+    <string name="biometric_unavailable_subtitle">إلغاء القفل البيومتري غير متاح على هذا الجهاز. لا يزال بإمكانك استخدام رمز PIN.</string>
+    <string name="biometric_prompt_title">إلغاء قفل Private Lock Vault</string>
+    <string name="biometric_prompt_subtitle">أكّد هويتك للمتابعة</string>
+    <string name="biometric_use">استخدام البيومتري</string>
+
+    <!-- Unlock -->
+    <string name="unlock_title">أدخل رمز PIN</string>
+    <string name="unlock_subtitle">ألغِ القفل للوصول إلى خزنتك.</string>
+    <string name="unlock_wrong_pin">رمز PIN خاطئ. المحاولة %1$d.</string>
+
+    <!-- Home -->
+    <string name="home_photos">الصور الخاصة</string>
+    <string name="home_videos">الفيديو الخاص</string>
+
+    <!-- Navigation -->
+    <string name="nav_settings">الإعدادات</string>
+
+    <!-- Home dashboard (redesign) -->
+
+    <!-- Settings -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_security">الأمان</string>
+    <string name="settings_change_pin">تغيير رمز PIN</string>
+    <string name="settings_auto_lock">القفل التلقائي</string>
+    <string name="settings_privacy_policy">سياسة الخصوصية</string>
+    <string name="settings_privacy_policy_desc">اقرأ سياسة الخصوصية الخاصة بنا</string>
+
+    <!-- Settings redesign (screenshot match) -->
+    <string name="settings_subtitle">إدارة الأمان والخصوصية وتفضيلات التطبيق.</string>
+    <string name="settings_security_status">حالة الأمان</string>
+    <string name="settings_security_status_desc">جهازك وبياناتك محمية.</string>
+    <string name="settings_security_status_active">جميع ميزات الأمان مفعّلة</string>
+    <string name="settings_change_pin_desc_alt">غيّر رمز PIN لإلغاء قفل التطبيق</string>
+    <string name="settings_change_pattern">تغيير النمط</string>
+    <string name="settings_change_pattern_desc">غيّر نمط إلغاء القفل</string>
+    <string name="settings_biometric_alt">إلغاء القفل البيومتري</string>
+    <string name="settings_biometric_desc_alt">ألغِ القفل باستخدام التطبيق</string>
+    <string name="settings_auto_lock_desc_alt">قفل التطبيق تلقائيًا</string>
+    <string name="settings_wrong_attempt_desc_alt">قفل التطبيق بعد عدة محاولات فاشلة</string>
+    <string name="settings_attempts_value">%1$d محاولات</string>
+    <string name="settings_section_app_lock">قفل التطبيقات</string>
+    <string name="settings_app_lock_settings">إعدادات قفل التطبيقات</string>
+    <string name="settings_app_lock_settings_desc">إدارة التفضيلات الحالية</string>
+    <string name="settings_lock_overlay">تراكب شاشة القفل</string>
+    <string name="settings_lock_overlay_desc">تهيئة شاشة القفل والسلوك</string>
+    <string name="settings_section_preferences">التفضيلات</string>
+    <string name="settings_notifications">الإشعارات</string>
+    <string name="settings_notifications_desc">إدارة إشعارات التطبيق</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_language_desc">لغة التطبيق</string>
+    <string name="settings_language_default">English</string>
+    <string name="settings_section_more">المزيد</string>
+    <string name="settings_about_app">حول Lock &amp; Vault</string>
+    <string name="settings_about_app_desc">الإصدار والتراخيص والمزيد</string>
+    <string name="settings_about_message">Lock &amp; Vault\nالإصدار %1$s\n\nتُشفّر جميع بياناتك وتُعالَج محليًا على هذا الجهاز.</string>
+    <string name="settings_rate">قيّمنا</string>
+    <string name="settings_rate_desc">قيّم التطبيق على Google Play</string>
+    <string name="settings_share">مشاركة التطبيق</string>
+    <string name="settings_share_desc">أخبر أصدقاءك عنا</string>
+    <string name="settings_more_apps">المزيد من التطبيقات</string>
+    <string name="settings_more_apps_desc">استكشف تطبيقاتنا الأخرى</string>
+    <string name="settings_share_subject">Private Lock Vault</string>
+    <string name="settings_share_text">أمّن تطبيقاتك وصورك الخاصة مع Private Lock Vault!\n\nhttps://play.google.com/store/apps/details?id=%1$s</string>
+
+    <!-- Short value labels for settings rows -->
+    <string name="auto_lock_immediate_short">فورًا</string>
+    <string name="auto_lock_15s_short">15 ثانية</string>
+    <string name="auto_lock_30s_short">30 ثانية</string>
+    <string name="auto_lock_1m_short">دقيقة واحدة</string>
+    <string name="auto_lock_5m_short">5 دقائق</string>
+    <string name="auto_lock_never_short">أبدًا</string>
+
+    <!-- Weak credential -->
+    <string name="pin_weak_warning">رمز PIN هذا سهل التخمين جدًا. اختر رمزًا آخر.</string>
+
+    <!-- Recovery key -->
+    <string name="recovery_title">مفتاح الاسترداد الخاص بك</string>
+    <string name="recovery_subtitle">احفظ هذا المفتاح في مكان آمن. إنه الطريقة الوحيدة لإعادة تعيين رمز PIN إذا نسيته.</string>
+    <string name="recovery_warning">لن تتمكن من رؤية هذا المفتاح مرة أخرى. إذا فُقد، فلن يمكن استرداد خزنتك في المراحل المشفّرة المستقبلية.</string>
+    <string name="recovery_saved_confirm">لقد حفظت مفتاحي</string>
+    <string name="recovery_copy">نسخ المفتاح</string>
+    <string name="recovery_copied">تم نسخ مفتاح الاسترداد</string>
+
+    <!-- Forgot PIN / recovery -->
+    <string name="forgot_pin">نسيت رمز PIN؟</string>
+    <string name="forgot_pin_title">إعادة التعيين بمفتاح الاسترداد</string>
+    <string name="forgot_pin_subtitle">أدخل مفتاح الاسترداد لتعيين رمز PIN جديد.</string>
+    <string name="forgot_pin_hint">مفتاح الاسترداد</string>
+    <string name="forgot_pin_verify">تحقق من المفتاح</string>
+    <string name="forgot_pin_wrong">مفتاح الاسترداد غير صحيح.</string>
+
+    <!-- Lockout / attempts -->
+    <string name="lockout_try_again">محاولات كثيرة جدًا. حاول مرة أخرى خلال %1$s.</string>
+
+    <!-- Change PIN -->
+    <string name="change_pin_verify_title">أدخل رمز PIN الحالي</string>
+    <string name="change_pin_verify_subtitle">تحقق من أنك أنت قبل تغيير رمز PIN.</string>
+    <string name="change_pin_new_title">عيّن رمز PIN جديدًا</string>
+    <string name="change_pin_new_subtitle">اختر رمز PIN جديدًا.</string>
+    <string name="change_pin_confirm_title">أكّد رمز PIN الجديد</string>
+    <string name="change_pin_confirm_subtitle">أعد إدخال رمز PIN الجديد.</string>
+    <string name="change_pin_same">يجب أن يختلف رمز PIN الجديد عن الحالي.</string>
+    <string name="change_pin_success">تم تحديث رمز PIN.</string>
+
+    <!-- Pattern -->
+    <string name="pattern_setup_title">عيّن نمطك</string>
+    <string name="pattern_setup_subtitle">ارسم نمطًا لإلغاء قفل التطبيق. اربط 4 نقاط على الأقل.</string>
+    <string name="pattern_clear">مسح النمط</string>
+    <string name="pattern_hint_note">اجعله سهل التذكر لكن يصعب على الآخرين تخمينه.</string>
+    <string name="pattern_confirm_title">تأكيد النمط</string>
+    <string name="pattern_confirm_subtitle">ارسم النمط نفسه مرة أخرى.</string>
+    <string name="pattern_too_short">اربط 4 نقاط على الأقل.</string>
+    <string name="pattern_mismatch">النمطان غير متطابقين. حاول مرة أخرى.</string>
+    <string name="pattern_unlock_title">ارسم نمطك</string>
+    <string name="pattern_saved">تم حفظ النمط.</string>
+    <string name="pattern_wrong">نمط خاطئ. المحاولة %1$d.</string>
+    <string name="cd_pattern">منطقة رسم النمط</string>
+
+    <!-- Verify master -->
+    <string name="verify_title">تحقق من أنك أنت</string>
+    <string name="verify_subtitle_pin">أكّد رمز PIN لتغيير إعدادات الأمان.</string>
+    <string name="verify_subtitle_pattern">أكّد نمطك لتغيير إعدادات الأمان.</string>
+    <string name="verify_wrong">غير صحيح. حاول مرة أخرى.</string>
+
+    <!-- Security settings -->
+    <string name="settings_wrong_attempt">حماية المحاولات الخاطئة</string>
+    <string name="settings_wrong_attempt_info">بعد 5 محاولات خاطئة يُقفل التطبيق لمدة 30 ثانية؛ وبعد 10، لمدة 5 دقائق. مفعّل دائمًا.</string>
+
+    <!-- Auto-lock options -->
+    <string name="auto_lock_picker_title">القفل التلقائي</string>
+    <string name="auto_lock_immediate">فورًا</string>
+    <string name="auto_lock_15s">بعد 15 ثانية</string>
+    <string name="auto_lock_30s">بعد 30 ثانية</string>
+    <string name="auto_lock_1m">بعد دقيقة واحدة</string>
+    <string name="auto_lock_5m">بعد 5 دقائق</string>
+    <string name="auto_lock_never">أبدًا أثناء وجوده في الذاكرة</string>
+
+    <!-- Unlock method options -->
+    <string name="unlock_method_pin">PIN</string>
+    <string name="unlock_method_pattern">النمط</string>
+
+    <!-- Home -->
+
+    <!-- Keypad digits -->
+    <string name="key_0">0</string>
+    <string name="key_1">1</string>
+    <string name="key_2">2</string>
+    <string name="key_3">3</string>
+    <string name="key_4">4</string>
+    <string name="key_5">5</string>
+    <string name="key_6">6</string>
+    <string name="key_7">7</string>
+    <string name="key_8">8</string>
+    <string name="key_9">9</string>
+
+    <!-- Vault home -->
+    <string name="vault_cat_pictures">الصور</string>
+    <string name="vault_cat_videos">الفيديو</string>
+    <string name="vault_albums">الألبومات</string>
+    <string name="vault_add_photo">إضافة صورة / فيديو</string>
+    <string name="vault_create_folder">إنشاء مجلد</string>
+    <string name="vault_create_album">إنشاء ألبوم</string>
+    <string name="items_count">%1$d عنصر</string>
+
+    <!-- Empty states -->
+    <string name="empty_photos">لا توجد صور خاصة بعد. استورد بعضها للبدء.</string>
+    <string name="empty_videos">لا توجد مقاطع فيديو خاصة بعد. استورد بعضها للبدء.</string>
+    <string name="empty_favorites">لا توجد مفضلات بعد.</string>
+    <string name="empty_recent">لم يُستورد شيء مؤخرًا.</string>
+    <string name="empty_recycle_bin">سلة المحذوفات فارغة.</string>
+    <string name="empty_album">هذا الألبوم فارغ.</string>
+    <string name="empty_pictures">لا توجد صور</string>
+    <string name="empty_videos_short">لا يوجد فيديو</string>
+
+    <!-- Import -->
+    <string name="import_progress_title">جارٍ الاستيراد…</string>
+    <string name="import_progress_count">%1$d من %2$d</string>
+    <string name="import_complete">اكتمل الاستيراد</string>
+    <string name="import_summary_photos">%1$d صورة</string>
+    <string name="import_summary_videos">%1$d فيديو</string>
+    <string name="import_summary_failed">%1$d فشل</string>
+    <string name="import_view_vault">عرض الخزنة</string>
+    <string name="import_cancel">إلغاء</string>
+
+    <!-- Delete originals -->
+
+    <!-- Sort -->
+    <string name="sort_title">ترتيب حسب</string>
+    <string name="sort_newest">الأحدث أولًا</string>
+    <string name="sort_oldest">الأقدم أولًا</string>
+    <string name="sort_name">الاسم</string>
+    <string name="sort_size">الحجم</string>
+
+    <!-- Selection actions -->
+    <string name="action_select_all">تحديد الكل</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_move">نقل إلى الألبوم</string>
+    <string name="action_favorite">مفضّل</string>
+    <string name="action_export">تصدير</string>
+    <string name="action_restore">استعادة</string>
+    <string name="action_permanent_delete">حذف نهائي</string>
+    <string name="action_empty_bin">إفراغ السلة</string>
+    <string name="action_details">التفاصيل</string>
+    <string name="selection_count">%1$d محدد</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_delete_title">نقل إلى سلة المحذوفات؟</string>
+    <string name="confirm_delete_message">سيتم نقل العناصر المحددة إلى سلة المحذوفات.</string>
+    <string name="confirm_permanent_title">حذف نهائي؟</string>
+    <string name="confirm_permanent_message">يؤدي هذا إلى حذف الملفات المحددة نهائيًا. لا يمكن التراجع عن ذلك.</string>
+    <string name="confirm_empty_bin_title">إفراغ سلة المحذوفات؟</string>
+    <string name="confirm_empty_bin_message">سيتم حذف جميع العناصر في سلة المحذوفات نهائيًا.</string>
+
+    <!-- Albums -->
+    <string name="album_create_title">ألبوم جديد</string>
+    <string name="album_name_hint">اسم الألبوم</string>
+    <string name="album_rename_title">إعادة تسمية الألبوم</string>
+    <string name="album_delete_title">حذف الألبوم؟</string>
+    <string name="album_delete_message">سيتم حذف الألبوم. تبقى وسائطك آمنة في الخزنة الرئيسية.</string>
+    <string name="create">إنشاء</string>
+    <string name="rename">إعادة تسمية</string>
+    <string name="delete_label">حذف</string>
+    <string name="move_main_vault">الخزنة الرئيسية (بدون ألبوم)</string>
+    <string name="move_to_album_title">نقل إلى الألبوم</string>
+
+    <!-- Export -->
+    <string name="export_title">تصدير إلى المعرض</string>
+    <string name="export_copy_only">تصدير نسخة فقط</string>
+    <string name="export_and_remove">تصدير وإزالة من الخزنة</string>
+    <string name="export_done">تم تصدير %1$d إلى المعرض</string>
+    <string name="export_failed">فشل التصدير</string>
+    <string name="export_unsupported">يتطلب التصدير Android 10 أو أحدث</string>
+    <string name="export_some_failed">تعذّر تصدير بعض الملفات</string>
+    <string name="restore_to_gallery">إعادة إلى المعرض (إظهار)</string>
+    <string name="restore_done">تمت الإعادة إلى المعرض</string>
+    <string name="restore_failed">تعذّرت الإعادة إلى المعرض</string>
+
+    <!-- Details -->
+    <string name="details_title">التفاصيل</string>
+    <string name="details_name">الاسم</string>
+    <string name="details_type">النوع</string>
+    <string name="details_size">الحجم</string>
+    <string name="details_resolution">الدقة</string>
+    <string name="details_duration">المدة</string>
+    <string name="details_imported">مستورَد</string>
+    <string name="details_favorite">مفضّل</string>
+    <string name="details_protection">الحماية</string>
+    <string name="details_protection_encrypted">مشفّر</string>
+    <string name="details_protection_none">غير مشفّر</string>
+    <string name="details_none">—</string>
+    <string name="save">حفظ</string>
+    <string name="type_photo">صورة</string>
+    <string name="type_video">فيديو</string>
+    <string name="yes_label">نعم</string>
+    <string name="no_label">لا</string>
+
+    <!-- Encryption migration -->
+    <string name="migration_title">جارٍ تأمين خزنتك</string>
+    <string name="migration_message">جارٍ تشفير صورك ومقاطع الفيديو الحالية. يرجى إبقاء التطبيق مفتوحًا.</string>
+    <string name="migration_progress">%1$d من %2$d</string>
+    <string name="migration_complete">تم تشفير الخزنة</string>
+    <string name="migration_partial">على وشك الانتهاء</string>
+    <string name="migration_summary_ok">تم تشفير %1$d عنصر</string>
+    <string name="migration_summary_failed">تم تشفير %1$d، ويحتاج %2$d إلى محاولة أخرى</string>
+    <string name="migration_retry">إعادة محاولة العناصر الفاشلة</string>
+    <string name="migration_open_vault">فتح الخزنة</string>
+
+    <!-- Toasts / errors -->
+    <string name="toast_deleted">تم النقل إلى سلة المحذوفات</string>
+    <string name="toast_restored">تمت الاستعادة</string>
+    <string name="error_video_playback">تعذّر تشغيل الفيديو</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_thumbnail">صورة مصغّرة للوسائط</string>
+    <string name="cd_play_video">تشغيل الفيديو</string>
+    <string name="cd_favorite">مفضّل</string>
+    <string name="cd_close">إغلاق</string>
+    <string name="cd_more_options">المزيد من الخيارات</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_app_logo">شعار التطبيق</string>
+    <string name="cd_back">رجوع</string>
+    <string name="cd_backspace">مسافة للخلف</string>
+    <string name="cd_biometric">إلغاء القفل البيومتري</string>
+    <string name="cd_card_icon">أيقونة البطاقة</string>
+
+    <!-- ===== Phase 5: App Lock ===== -->
+    <string name="applock_title">قفل التطبيقات</string>
+
+    <!-- Foreground service notification -->
+    <string name="applock_channel_name">حماية قفل التطبيقات</string>
+    <string name="applock_channel_desc">يبقي قفل التطبيقات قيد التشغيل أثناء تفعيله.</string>
+    <string name="applock_notification_title">قفل التطبيقات مفعّل</string>
+    <string name="applock_notification_text">تتم مراقبة التطبيقات المحمية على هذا الجهاز.</string>
+
+    <!-- Overlay lock screen -->
+    <string name="applock_overlay_title">التطبيق مقفل</string>
+    <string name="applock_wrong_credential">غير صحيح. حاول مرة أخرى.</string>
+
+    <!-- Permission setup (screenshot redesign) -->
+    <string name="applock_setup_title">إعداد قفل التطبيقات</string>
+    <string name="applock_setup_subtitle">امنح الأذونات المطلوبة لتفعيل الحماية.</string>
+    <string name="applock_perm_usage_desc_alt">مطلوب لاكتشاف وقت فتح التطبيقات المحددة</string>
+    <string name="applock_perm_overlay_title_alt">العرض فوق التطبيقات الأخرى</string>
+    <string name="applock_perm_overlay_desc_alt">مطلوب لعرض شاشة القفل فوق التطبيقات المحمية</string>
+    <string name="applock_perm_notification_title_alt">الإشعارات</string>
+    <string name="applock_perm_notification_desc_alt">مطلوب لإبقاء الحماية تعمل بشكل موثوق وعرض التنبيهات المهمة</string>
+    <string name="applock_perm_grant">منح</string>
+    <string name="applock_perm_privacy_note">تُستخدم هذه الأذونات فقط لحماية التطبيقات على جهازك.</string>
+
+    <!-- Permission setup -->
+    <string name="applock_perm_usage_title">الوصول إلى الاستخدام</string>
+    <string name="applock_perm_overlay_title">العرض فوق التطبيقات الأخرى</string>
+    <string name="applock_perm_notification_title">إذن الإشعارات</string>
+    <string name="applock_perm_granted">ممنوح</string>
+    <string name="applock_perm_check_again">تحقق مرة أخرى</string>
+    <string name="applock_usage_privacy">يساعد الوصول إلى الاستخدام قفل التطبيقات على اكتشاف وقت فتح تطبيق محمي. تبقى هذه المعلومات على جهازك ولا تُرفع أو تُباع أو تُشارك أبدًا.</string>
+
+    <!-- Dashboard -->
+    <string name="applock_complete_setup">إكمال الإعداد</string>
+    <string name="applock_start_protection">بدء الحماية</string>
+    <string name="applock_stop_protection">إيقاف الحماية</string>
+    <string name="applock_manage_apps">إدارة التطبيقات المقفلة</string>
+    <string name="applock_settings_title">إعدادات قفل التطبيقات</string>
+    <string name="applock_settings_desc">تأخير القفل وقواعد إعادة القفل والمزيد</string>
+    <string name="applock_status_setup_required">الإعداد مطلوب</string>
+    <string name="applock_status_setup_desc">امنح الأذونات لبدء حماية التطبيقات.</string>
+    <string name="applock_status_active">الحماية مفعّلة</string>
+    <string name="applock_status_inactive">الحماية غير مفعّلة</string>
+    <string name="applock_setup_first">أكمل إعداد الأذونات أولًا</string>
+    <string name="applock_setup_done_lock_apps">اكتمل الإعداد — اختر الآن التطبيقات لقفلها</string>
+    <string name="applock_setup_skip">تخطّي الآن</string>
+    <string name="applock_activate_protection">تفعيل الحماية</string>
+
+    <plurals name="applock_locked_count">
+        <item quantity="zero">%d تطبيق مقفل</item>
+        <item quantity="one">تطبيق واحد مقفل</item>
+        <item quantity="two">تطبيقان مقفلان</item>
+        <item quantity="few">%d تطبيقات مقفلة</item>
+        <item quantity="many">%d تطبيقًا مقفلًا</item>
+        <item quantity="other">%d تطبيق مقفل</item>
+    </plurals>
+
+    <!-- Installed apps list -->
+    <string name="applock_search_hint">ابحث عن التطبيقات</string>
+    <string name="applock_filter_all">الكل</string>
+    <string name="applock_filter_locked">مقفلة</string>
+    <string name="applock_filter_unlocked">غير مقفلة</string>
+    <string name="applock_filter_system">تطبيقات النظام</string>
+    <string name="applock_no_apps">لا توجد تطبيقات لعرضها.</string>
+
+    <!-- App Lock settings -->
+    <string name="applock_setting_master">قفل التطبيقات</string>
+    <string name="applock_setting_master_desc">احمِ التطبيقات المحددة ببيانات الاعتماد الرئيسية</string>
+    <string name="applock_setting_delay">تأخير القفل</string>
+    <string name="applock_setting_delay_desc">كم تبقى التطبيق غير مقفل بعد إلغاء القفل</string>
+    <string name="applock_setting_screen_off">إعادة القفل بعد إطفاء الشاشة</string>
+    <string name="applock_setting_screen_off_desc">قفل التطبيقات المحمية مجددًا عند إطفاء الشاشة</string>
+    <string name="applock_setting_app_switch">إعادة القفل بعد تبديل التطبيق</string>
+    <string name="applock_setting_app_switch_desc">القفل مجددًا عند مغادرة تطبيق محمي</string>
+    <string name="applock_setting_lock_new">قفل التطبيقات الجديدة تلقائيًا</string>
+    <string name="applock_setting_lock_new_desc">قفل التطبيقات المثبّتة حديثًا تلقائيًا</string>
+    <string name="applock_setting_unlock_method">طريقة إلغاء القفل</string>
+    <string name="applock_setting_unlock_method_desc">تُدار في إعدادات الأمان</string>
+
+    <!-- ===== Phase 6: Advanced App Lock ===== -->
+    <!-- Notification additions -->
+    <string name="applock_notification_open">فتح</string>
+    <plurals name="applock_notification_count">
+        <item quantity="zero">حماية %d تطبيق</item>
+        <item quantity="one">حماية تطبيق واحد</item>
+        <item quantity="two">حماية تطبيقين</item>
+        <item quantity="few">حماية %d تطبيقات</item>
+        <item quantity="many">حماية %d تطبيقًا</item>
+        <item quantity="other">حماية %d تطبيق</item>
+    </plurals>
+    <string name="applock_new_app_locked_title">تم قفل تطبيق جديد</string>
+    <string name="applock_new_app_locked_text">تمت إضافة %1$s إلى تطبيقاتك المقفلة.</string>
+    <string name="applock_new_app_prompt_title">تم تثبيت تطبيق جديد</string>
+    <string name="applock_new_app_prompt_text">اضغط لحماية %1$s بقفل التطبيقات.</string>
+
+    <!-- Delay modes -->
+    <string name="delay_5s">بعد 5 ثوانٍ</string>
+    <string name="delay_until_screen_off">حتى إطفاء الشاشة</string>
+    <string name="delay_until_app_switch">حتى تبديل التطبيق</string>
+    <string name="delay_until_device_locked">حتى قفل الجهاز</string>
+
+    <!-- Themes -->
+    <string name="theme_default">الأمان الافتراضي</string>
+    <string name="theme_dark">الأمان الداكن</string>
+    <string name="theme_glass">ضبابية زجاجية</string>
+    <string name="theme_minimal">أبيض بسيط</string>
+    <string name="theme_calculator">الآلة الحاسبة</string>
+    <string name="theme_fake_crash">تعطّل وهمي</string>
+    <string name="theme_fake_loading">تحميل وهمي</string>
+
+    <!-- Shared option labels -->
+    <string name="applock_use_global">استخدام الإعداد العام</string>
+    <string name="applock_use_default">افتراضي</string>
+
+    <!-- Fake modes -->
+    <string name="fake_mode_none">متوقف</string>
+    <string name="fake_mode_crash">تعطّل وهمي</string>
+    <string name="fake_mode_loading">تحميل وهمي</string>
+    <string name="fake_mode_calculator">الآلة الحاسبة</string>
+
+    <!-- Fake crash screen -->
+    <string name="fake_crash_title">توقّف التطبيق</string>
+    <string name="fake_crash_message">يستمر هذا التطبيق في التوقف.</string>
+    <string name="fake_crash_report">إبلاغ</string>
+    <string name="fake_crash_open_again">فتح مرة أخرى</string>
+    <string name="fake_crash_close">إغلاق التطبيق</string>
+    <string name="fake_crash_reported">تم إرسال البلاغ</string>
+
+    <!-- Fake loading screen -->
+    <string name="fake_loading_text">جارٍ التحميل…</string>
+
+    <!-- Calculator lock -->
+    <string name="calculator_zero">0</string>
+    <string name="calculator_clear">C</string>
+    <string name="calculator_backspace">⌫</string>
+    <string name="calculator_percent">%</string>
+    <string name="calculator_divide">÷</string>
+    <string name="calculator_multiply">×</string>
+    <string name="calculator_minus">−</string>
+    <string name="calculator_plus">+</string>
+    <string name="calculator_dot">.</string>
+    <string name="calculator_equals">=</string>
+
+    <!-- Settings sections + new rows -->
+    <string name="applock_section_protection">الحماية</string>
+    <string name="applock_section_unlock">إلغاء القفل</string>
+    <string name="applock_section_disguise">التمويه</string>
+    <string name="applock_section_privacy">الخصوصية</string>
+    <string name="applock_section_stability">الاستقرار</string>
+    <string name="applock_setting_theme">سمة شاشة القفل</string>
+    <string name="applock_setting_theme_desc">اختر شكل شاشة القفل</string>
+    <string name="applock_setting_fake_mode">الوضع الوهمي الافتراضي</string>
+    <string name="applock_setting_fake_mode_desc">موّه شاشة القفل</string>
+    <string name="applock_setting_hide_name">إخفاء اسم التطبيق عند القفل</string>
+    <string name="applock_setting_hide_name_desc">عدم إظهار اسم التطبيق المقفل</string>
+    <string name="applock_setting_device_lock">إعادة القفل بعد قفل الجهاز</string>
+    <string name="applock_setting_device_lock_desc">القفل مجددًا عند قفل الجهاز</string>
+    <string name="applock_setting_hide_recent">إخفاء معاينة التطبيقات الأخيرة</string>
+    <string name="applock_setting_hide_recent_desc">إبقاء الشاشات الحساسة خارج التطبيقات الأخيرة</string>
+    <string name="applock_setting_local_stats">إحصائيات محلية فقط</string>
+    <string name="applock_setting_local_stats_desc">احتفظ بعدّادات بسيطة على هذا الجهاز</string>
+    <string name="applock_setting_permissions">حالة الأذونات</string>
+    <string name="applock_setting_battery">مساعدة إعدادات البطارية</string>
+    <string name="applock_setting_battery_desc">إبقاء الحماية تعمل في الخلفية</string>
+    <string name="applock_setting_restart_boot">إعادة التشغيل بعد إعادة الإقلاع</string>
+    <string name="applock_setting_restart_boot_desc">استئناف الحماية عند إعادة تشغيل الجهاز</string>
+    <string name="applock_setting_troubleshoot">استكشاف الأخطاء وإصلاحها</string>
+    <string name="applock_setting_troubleshoot_desc">تحقق من الإعداد وأصلح المشكلات الشائعة</string>
+
+    <!-- Theme picker -->
+    <string name="applock_theme_title">سمة شاشة القفل</string>
+    <string name="applock_theme_subtitle">تُستخدم هذه السمة عند فتح تطبيق محمي.</string>
+
+    <!-- Troubleshooting -->
+    <string name="applock_troubleshoot_title">استكشاف الأخطاء وإصلاحها</string>
+    <string name="applock_troubleshoot_service">خدمة الحماية قيد التشغيل</string>
+    <string name="applock_troubleshoot_apps">التطبيقات المحددة للقفل</string>
+    <string name="applock_troubleshoot_restart">إعادة تشغيل الحماية</string>
+    <string name="applock_troubleshoot_open_permissions">فتح الأذونات</string>
+    <string name="applock_troubleshoot_last_check">تم التحقق للتو</string>
+
+    <!-- Suggestions -->
+    <string name="applock_suggestions_button">الاقتراحات</string>
+    <string name="applock_suggestions_title">التطبيقات المقترحة</string>
+    <string name="applock_suggestions_subtitle">تطبيقات غالبًا ما تحتوي على محتوى خاص. راجِعها واقفل ما تريد.</string>
+    <string name="applock_suggestions_empty">لا توجد اقتراحات الآن.</string>
+    <string name="applock_suggestions_lock_all">قفل المحدد</string>
+    <string name="applock_suggestions_locked">تم قفل %1$d تطبيق</string>
+
+    <!-- Categories -->
+    <string name="category_social">التواصل الاجتماعي</string>
+    <string name="category_messaging">المراسلة</string>
+    <string name="category_gallery">المعرض</string>
+    <string name="category_finance">المالية</string>
+    <string name="category_shopping">التسوّق</string>
+    <string name="category_browser">المتصفح</string>
+    <string name="category_settings">النظام</string>
+    <string name="category_files">الملفات</string>
+
+    <!-- Per-app settings -->
+    <string name="perapp_subtitle">تجاوز الإعدادات العامة لهذا التطبيق.</string>
+    <string name="perapp_use_custom">استخدام إعدادات مخصصة</string>
+    <string name="perapp_use_custom_desc">طبّق قواعد لكل تطبيق بدلًا من العامة</string>
+    <string name="perapp_unlock_method">طريقة إلغاء القفل</string>
+    <string name="perapp_lock_delay">تأخير القفل</string>
+    <string name="perapp_fake_mode">الوضع الوهمي</string>
+    <string name="perapp_biometric_only">طلب البيومتري فقط</string>
+    <string name="perapp_method_biometric">البيومتري</string>
+    <string name="perapp_saved">تم حفظ الإعدادات</string>
+
+    <!-- Local stats -->
+    <string name="applock_stats_title">اليوم</string>
+    <string name="applock_stats_local_note">تبقى الإحصائيات على هذا الجهاز ولا تُرفع أو تُشارك أبدًا.</string>
+    <string name="applock_stat_unlocks">عمليات إلغاء القفل اليوم: %1$d</string>
+    <string name="applock_stat_failed">المحاولات الفاشلة: %1$d</string>
+    <string name="applock_stat_opens">فتح التطبيقات المقفلة: %1$d</string>
+    <string name="applock_stat_protection">الحماية مفعّلة: %1$s</string>
+    <string name="duration_hm">%1$dh %2$dm</string>
+    <string name="duration_m">%1$dm</string>
+
+    <!-- Privacy policy (App Lock sections) -->
+    <string name="privacy_policy_title">سياسة الخصوصية</string>
+    <string name="privacy_policy_body">إذن الوصول إلى الاستخدام\nيستخدم هذا التطبيق الوصول إلى الاستخدام فقط لاكتشاف وقت فتح التطبيقات التي يحددها المستخدم، حتى يتمكن من عرض شاشة القفل. تُعالَج بيانات الاستخدام محليًا على الجهاز ولا تُرفع أو تُباع أو تُشارك أو تُستخدم للإعلانات.\n\nالعرض فوق التطبيقات الأخرى\nيستخدم هذا التطبيق العرض فوق التطبيقات الأخرى فقط لعرض شاشة القفل فوق التطبيقات المحمية.\n\nخدمة الواجهة الأمامية\nيستخدم هذا التطبيق خدمة الواجهة الأمامية لإبقاء حماية قفل التطبيقات مفعّلة أثناء تمكينها من قبل المستخدم.\n\nالأدوات المميزة\nتعالج أدوات التنظيف المميزة مثل باحث التكرارات وباحث الملفات الكبيرة ومحلل التخزين ملفات الخزنة محليًا على الجهاز. لا تُرفع أو تُشارك أي صور أو مقاطع فيديو أو مستندات أو ملاحظات أو أسماء ملفات أو نتائج تحليل.\n\nتُخزَّن الملاحظات الخاصة والمستندات الخاصة محليًا بشكل مشفّر. لا يرفع التطبيق هذا المحتوى أو يشاركه.\n\nالألبومات المخفية والمقفلة هي ميزات خصوصية يتحكم بها المستخدم وتُخزَّن محليًا على الجهاز.</string>
+
+    <!-- Phase 9: Private Camera -->
+
+    <!-- Settings -->
+
+    <!-- Errors -->
+
+    <!-- Entry points -->
+
+    <!-- Media details source label -->
+    <string name="details_source">المصدر</string>
+    <string name="details_source_imported">مستورَد</string>
+    <string name="details_source_private_camera">الكاميرا الخاصة</string>
+
+    <!-- Tools dashboard (screenshot redesign) -->
+    <string name="tools_header_subtitle">أدوات ذكية لتنظيف جهازك وتنظيمه وتأمينه.</string>
+    <string name="tools_hero_title">الجهاز سليم</string>
+    <string name="tools_hero_desc">جهازك نظيف ومحمي. استمر هكذا!</string>
+    <string name="tools_hero_protected">محمي</string>
+    <string name="tools_hero_percent">92%</string>
+    <string name="tools_section_cleanup">أدوات التنظيف</string>
+    <string name="tools_section_security">الأمان والخصوصية</string>
+    <string name="tools_duplicate_finder">باحث التكرارات</string>
+    <string name="tools_duplicate_desc">ابحث عن الصور ومقاطع الفيديو والملفات المكررة واحذفها</string>
+    <string name="tools_large_files">الملفات الكبيرة</string>
+    <string name="tools_large_files_desc">ابحث عن الملفات الكبيرة التي تشغل مساحة تخزين ثمينة</string>
+    <string name="tools_smart_cleanup">التنظيف الذكي</string>
+    <string name="tools_smart_cleanup_desc">حرّر المساحة والذاكرة المؤقتة والبيانات غير الضرورية</string>
+    <string name="tools_storage_analyzer">محلل التخزين</string>
+    <string name="tools_storage_analyzer_desc">حلّل التخزين وأدر مساحتك.</string>
+    <string name="tools_view_details">عرض التفاصيل</string>
+    <string name="tools_vault_health">حالة الخزنة</string>
+    <string name="tools_vault_health_desc">افحص حالة التشفير والأمان</string>
+    <string name="tools_status_secure">آمن</string>
+    <string name="tools_section_storage">التخزين الخاص</string>
+    <string name="tools_private_notes_desc">ملاحظات خاصة آمنة</string>
+    <string name="tools_private_documents_desc">الهويات والبطاقات والملفات</string>
+    <string name="settings_open_unavailable">هذه الشاشة غير متاحة على جهازك</string>
+    <string name="tools_sample_dup_size">1.26 GB</string>
+    <string name="tools_sample_large_size">2.34 GB</string>
+    <string name="tools_sample_cleanup_size">1.03 GB</string>
+
+    <!-- Phase 11: Premium Tools -->
+    <string name="close">إغلاق</string>
+
+    <!-- Notes -->
+    <string name="notes_title">الملاحظات الخاصة</string>
+    <string name="notes_search_hint">ابحث في الملاحظات</string>
+    <string name="notes_empty">لا توجد ملاحظات بعد. اضغط + لإنشاء واحدة.</string>
+    <string name="notes_empty_title">لا توجد ملاحظات بعد</string>
+    <string name="notes_empty_subtitle">احتفظ بأفكارك وتدويناتك ومهامك الخاصة آمنة ومشفّرة. اضغط زر + لإنشاء أول ملاحظة.</string>
+    <string name="notes_new">ملاحظة جديدة</string>
+    <string name="notes_title_hint">العنوان</string>
+    <string name="notes_body_hint">اكتب شيئًا خاصًا…</string>
+    <string name="notes_encrypted_badge">مشفّر من طرف إلى طرف</string>
+    <string name="notes_meta_count">%1$d كلمة · %2$d حرف</string>
+    <string name="notes_save_failed">تعذّر حفظ الملاحظة</string>
+    <string name="notes_export_done">تم تصدير الملاحظة</string>
+    <string name="notes_export_failed">تعذّر تصدير الملاحظة</string>
+    <string name="notes_delete_title">حذف الملاحظة؟</string>
+    <string name="notes_delete_message">ستتم إزالة هذه الملاحظة.</string>
+
+    <!-- Documents -->
+    <string name="documents_title">المستندات الخاصة</string>
+    <string name="documents_search_hint">ابحث في المستندات</string>
+    <string name="documents_empty">لا توجد مستندات بعد. اضغط + للاستيراد.</string>
+    <string name="documents_meta">%1$s · %2$s · %3$s</string>
+    <string name="documents_open_text">فتح كنص</string>
+    <string name="documents_export">تصدير</string>
+    <string name="documents_export_warning">سيتم حفظ نسخة غير مشفّرة في الموقع الذي تختاره، خارج الخزنة المشفّرة. هل تريد المتابعة؟</string>
+    <string name="documents_delete_title">حذف المستند؟</string>
+    <string name="documents_delete_message">ستتم إزالة هذا المستند.</string>
+    <string name="docs_import_done">تم استيراد المستندات</string>
+    <string name="docs_import_failed">تعذّر استيراد بعض المستندات</string>
+    <string name="docs_export_done">تم تصدير المستند</string>
+    <string name="docs_export_failed">تعذّر تصدير المستند</string>
+    <string name="docs_open_failed">تعذّر فتح هذا المستند</string>
+
+    <!-- Document cards (wallet-style) -->
+    <string name="documents_tab_cards">البطاقات</string>
+    <string name="documents_tab_files">الملفات</string>
+    <string name="documents_header_subtitle">خزّن بطاقاتك وملفاتك الشخصية بأمان</string>
+    <string name="cards_search_hint">ابحث في البطاقات</string>
+    <string name="cards_filter_all">الكل</string>
+    <string name="cards_filter_favorites">المفضلة</string>
+    <string name="cards_filter_deleted">المحذوفة</string>
+    <string name="cards_empty_title">لا توجد بطاقات مستندات بعد</string>
+    <string name="cards_empty_subtitle">أضف بطاقات الهوية والرخص وجوازات السفر والمستندات الخاصة بأمان.</string>
+    <string name="cards_empty_favorites">لا توجد بطاقات مفضلة بعد</string>
+    <string name="cards_empty_deleted">لا توجد بطاقات محذوفة</string>
+    <string name="cards_add_button">إضافة بطاقة مستند</string>
+
+    <!-- Add sheet -->
+    <string name="add_sheet_title">إضافة إلى المستندات الخاصة</string>
+    <string name="add_sheet_subtitle">اختر نوع بطاقة أو استورد ملفًا</string>
+    <string name="add_import_file">استيراد ملف</string>
+
+    <!-- Card types -->
+    <string name="card_type_id">بطاقة هوية</string>
+    <string name="card_type_licence">رخصة قيادة</string>
+    <string name="card_type_passport">جواز سفر</string>
+    <string name="card_type_student">بطاقة طالب</string>
+    <string name="card_type_work">بطاقة عمل</string>
+    <string name="card_type_vehicle">تسجيل مركبة</string>
+    <string name="card_type_insurance">بطاقة تأمين</string>
+    <string name="card_type_other">مستند آخر</string>
+
+    <!-- Card field labels -->
+    <string name="card_field_holder_name">اسم حامل البطاقة</string>
+    <string name="card_field_student_name">اسم الطالب</string>
+    <string name="card_field_employee_name">اسم الموظف</string>
+    <string name="card_field_owner_name">اسم المالك</string>
+    <string name="card_field_title">العنوان</string>
+    <string name="card_field_id_number">رقم الهوية</string>
+    <string name="card_field_licence_number">رقم الرخصة</string>
+    <string name="card_field_passport_number">رقم جواز السفر</string>
+    <string name="card_field_student_id">رقم الطالب</string>
+    <string name="card_field_employee_id">رقم الموظف</string>
+    <string name="card_field_vehicle_number">رقم المركبة</string>
+    <string name="card_field_policy_number">رقم الوثيقة</string>
+    <string name="card_field_number">الرقم</string>
+    <string name="card_field_date_of_birth">تاريخ الميلاد</string>
+    <string name="card_field_institute_name">اسم المعهد</string>
+    <string name="card_field_company_name">اسم الشركة</string>
+    <string name="card_field_registration_number">رقم التسجيل</string>
+    <string name="card_field_provider_name">اسم المزوّد</string>
+    <string name="card_field_country">الدولة</string>
+    <string name="card_field_country_state">الدولة / الولاية</string>
+    <string name="card_field_nationality">الجنسية</string>
+    <string name="card_field_expiry">تاريخ الانتهاء</string>
+    <string name="card_field_notes">ملاحظات</string>
+
+    <!-- Add / edit card -->
+    <string name="card_add_title">إضافة بطاقة</string>
+    <string name="card_edit_title">تعديل البطاقة</string>
+    <string name="card_section_images">صور البطاقة</string>
+    <string name="card_section_details">التفاصيل</string>
+    <string name="card_section_color">لون البطاقة</string>
+    <string name="card_add_front">إضافة صورة أمامية</string>
+    <string name="card_add_back">إضافة صورة خلفية</string>
+    <string name="card_replace_image">استبدال</string>
+    <string name="card_remove_image">إزالة</string>
+    <string name="card_save">حفظ البطاقة</string>
+    <string name="card_error_need_something">أضف اسمًا أو رقمًا أو صورة أولًا</string>
+    <string name="card_error_save_failed">تعذّر حفظ البطاقة</string>
+    <string name="card_error_image_failed">تعذّر فتح الصورة</string>
+    <string name="card_error_no_storage">لا توجد مساحة تخزين كافية</string>
+    <string name="card_saved">تم حفظ البطاقة</string>
+
+    <!-- Card detail -->
+    <string name="card_detail_title">البطاقة</string>
+    <string name="card_show_number">إظهار</string>
+    <string name="card_hide_number">إخفاء</string>
+    <string name="card_verify_to_show">يرجى التحقق لعرض الرقم الكامل</string>
+    <string name="card_created_at">أُضيفت %1$s</string>
+    <string name="card_updated_at">حُدّثت %1$s</string>
+    <string name="card_action_edit">تعديل</string>
+    <string name="card_action_export">تصدير</string>
+    <string name="card_export_front">تصدير الصورة الأمامية</string>
+    <string name="card_export_back">تصدير الصورة الخلفية</string>
+    <string name="card_export_warning">سيؤدي هذا إلى إنشاء نسخة غير مشفّرة خارج خزنتك. هل تريد المتابعة؟</string>
+    <string name="card_export_done">تم تصدير الصورة</string>
+    <string name="card_export_failed">فشل التصدير</string>
+    <string name="card_open_failed">تعذّر فتح المستند</string>
+    <string name="card_delete_title">حذف البطاقة؟</string>
+    <string name="card_delete_message">سيتم نقل هذه البطاقة إلى المحذوفة.</string>
+    <string name="card_restore">استعادة</string>
+    <string name="card_delete_forever">حذف نهائي</string>
+    <string name="card_delete_forever_message">ستتم إزالة هذه البطاقة وصورها نهائيًا.</string>
+    <string name="cd_card_front">الصورة الأمامية للبطاقة</string>
+    <string name="cd_card_back">الصورة الخلفية للبطاقة</string>
+    <string name="cd_card_color">خيار لون البطاقة</string>
+
+    <!-- Premium cleanup / storage / health -->
+    <string name="duplicates_title">باحث التكرارات</string>
+    <string name="large_files_title">الملفات الكبيرة</string>
+    <string name="cleanup_title">مسح الذاكرة المؤقتة</string>
+    <string name="cleanup_clear_temp">مسح الذاكرة المؤقتة</string>
+    <string name="cleanup_temp_cleared">تم مسح الذاكرة المؤقتة</string>
+
+    <string name="storage_analyzer_title">محلل التخزين</string>
+    <string name="storage_total_label">إجمالي تخزين الخزنة</string>
+    <string name="storage_private_camera">الكاميرا الخاصة</string>
+    <string name="storage_thumbnails">الصور المصغّرة</string>
+    <string name="storage_recycle_bin">سلة المحذوفات</string>
+    <string name="storage_temp_cache">الذاكرة المؤقتة</string>
+
+    <string name="health_title">حالة الخزنة</string>
+    <string name="health_score_label">درجة الحالة</string>
+    <string name="health_scan_now">افحص الآن</string>
+    <string name="health_open_app_lock">فتح قفل التطبيقات</string>
+    <string name="health_last_scan">آخر فحص: %1$s</string>
+    <string name="health_never">أبدًا</string>
+    <string name="health_encryption">التشفير</string>
+    <string name="health_active">مفعّل</string>
+    <string name="health_inactive">غير مفعّل</string>
+    <string name="health_app_lock">قفل التطبيقات</string>
+    <string name="health_ready">جاهز</string>
+    <string name="health_needs_setup">يحتاج إلى إعداد</string>
+    <string name="health_unencrypted">عناصر غير مشفّرة</string>
+    <string name="health_failed_repairs">إصلاحات فاشلة</string>
+
+    <!-- Cleanup: shared selection / actions -->
+    <string name="cleanup_selected_summary">%1$d محدد · %2$s</string>
+    <string name="cleanup_delete_selected">نقل إلى سلة المحذوفات</string>
+    <string name="cleanup_select_first">حدد العناصر المراد إزالتها أولًا</string>
+    <string name="cleanup_moved_to_bin">تم نقل %1$d عنصر إلى سلة المحذوفات</string>
+    <string name="cleanup_confirm_title">نقل إلى سلة المحذوفات؟</string>
+    <string name="cleanup_confirm_message">سيتم نقل %1$d عنصر (%2$s) إلى سلة المحذوفات. يمكنك استعادتها لاحقًا.</string>
+    <string name="cleanup_confirm_move">نقل</string>
+    <string name="cleanup_cancel">إلغاء</string>
+
+    <!-- Large Files screen -->
+    <string name="large_files_empty">لا توجد ملفات أكبر من هذا الحجم</string>
+    <string name="filter_all">الكل</string>
+    <string name="filter_photos">الصور</string>
+    <string name="filter_videos">الفيديو</string>
+    <string name="sort_largest">الأكبر</string>
+    <string name="large_files_min_size">الحد الأدنى للحجم</string>
+    <string name="size_5mb">5 MB</string>
+    <string name="size_10mb">10 MB</string>
+    <string name="size_25mb">25 MB</string>
+    <string name="size_50mb">50 MB</string>
+    <string name="size_100mb">100 MB</string>
+
+    <!-- Duplicate Finder screen -->
+    <string name="duplicates_scan">البحث عن التكرارات</string>
+    <string name="duplicates_rescan">إعادة الفحص</string>
+    <string name="duplicates_scanning">جارٍ الفحص… %1$d/%2$d</string>
+    <string name="duplicates_empty">لم يُعثر على صور مكررة</string>
+    <string name="duplicates_not_scanned">اضغط فحص للعثور على صور متطابقة بايت ببايت في خزنتك.</string>
+    <string name="duplicates_keep_newest">الاحتفاظ بالأحدث</string>
+    <string name="duplicates_keep_oldest">الاحتفاظ بالأقدم</string>
+    <string name="duplicates_keep_best">الاحتفاظ بالأفضل</string>
+    <string name="duplicates_group_header">%1$d نسخة · %2$s قابلة للاسترداد</string>
+    <string name="duplicates_recommended">يُوصى بالاحتفاظ</string>
+    <string name="cd_media_thumbnail">صورة مصغّرة للوسائط</string>
+</resources>

@@ -9,7 +9,6 @@ import app.lock.photo.valut.databinding.FragmentToolsBinding
 import app.lock.photo.valut.features.cleanup.duplicates.DuplicateFinderActivity
 import app.lock.photo.valut.features.cleanup.health.VaultHealthActivity
 import app.lock.photo.valut.features.cleanup.largefiles.LargeFilesActivity
-import app.lock.photo.valut.features.cleanup.smartcleanup.SmartCleanupActivity
 import app.lock.photo.valut.features.cleanup.storage.StorageAnalyzerActivity
 import app.lock.photo.valut.features.documents.PrivateDocumentsActivity
 import app.lock.photo.valut.features.premium.notes.PrivateNotesActivity
@@ -42,7 +41,6 @@ class ToolsFragment : Fragment() {
         // Cleanup tools.
         binding.cardDuplicates.setOnClickListener { startActivity(DuplicateFinderActivity.intent(requireContext())) }
         binding.cardLargeFiles.setOnClickListener { startActivity(LargeFilesActivity.intent(requireContext())) }
-        binding.cardSmartCleanup.setOnClickListener { startActivity(SmartCleanupActivity.intent(requireContext())) }
         binding.cardStorage.setOnClickListener { startActivity(StorageAnalyzerActivity.intent(requireContext())) }
 
         // Security & privacy.

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/home_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/text_primary" />
+            app:tint="@color/home_title" />
 
         <TextView
             android:id="@+id/title"
@@ -38,50 +38,112 @@
             android:layout_marginStart="8dp"
             android:gravity="center"
             android:text="@string/notes_title"
-            android:textColor="@color/text_primary"
+            android:textColor="@color/home_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_back"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- ===== Search box (home style) ===== -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginStart="@dimen/screen_padding"
             android:layout_marginEnd="@dimen/screen_padding"
             android:layout_marginBottom="@dimen/space_s"
-            app:startIconDrawable="@drawable/ic_search"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+            android:background="@drawable/bg_lv_search"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="14dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_search"
+                app:tint="@color/home_hint" />
+
+            <EditText
                 android:id="@+id/searchInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:background="@null"
                 android:hint="@string/notes_search_hint"
                 android:imeOptions="actionSearch"
+                android:importantForAutofill="no"
                 android:inputType="text"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:maxLines="1"
+                style="@style/TextAppearance.App.Medium"
+                android:textColor="@color/home_title"
+                android:textColorHint="@color/home_hint"
+                android:textSize="15sp" />
+        </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notesRecycler"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:clipToPadding="false"
-            android:paddingBottom="96dp"
-            tools:listitem="@layout/item_note" />
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/emptyText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xl"
-            android:gravity="center"
-            android:text="@string/notes_empty"
-            android:textColor="@color/text_tertiary"
-            android:visibility="gone"
-            tools:visibility="visible" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notesRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/bg_back"
+                android:clipToPadding="false"
+                android:paddingBottom="96dp"
+                tools:listitem="@layout/item_note" />
+
+            <LinearLayout
+                android:id="@+id/emptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/screen_padding"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:background="@drawable/bg_lv_icon_tile"
+                    android:backgroundTint="@color/home_tile_blue">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_note"
+                        app:tint="@color/home_info" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_l"
+                    style="@style/TextAppearance.App.Bold"
+                    android:text="@string/notes_empty_title"
+                    android:textColor="@color/home_title"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_s"
+                    android:gravity="center"
+                    style="@style/TextAppearance.App.Medium"
+                    android:text="@string/notes_empty_subtitle"
+                    android:textColor="@color/home_subtitle"
+                    android:textSize="13.5sp" />
+            </LinearLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -92,6 +154,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/space_l"
         android:contentDescription="@string/notes_new"
+        app:backgroundTint="@color/home_info"
         app:srcCompat="@drawable/ic_add"
         app:tint="@color/white" />
 

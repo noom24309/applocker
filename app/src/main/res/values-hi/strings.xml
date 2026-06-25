@@ -1,0 +1,853 @@
+<resources>
+    <string name="app_name">Private Lock Vault</string>
+
+    <!-- Common -->
+    <string name="next">आगे</string>
+    <string name="back">वापस</string>
+    <string name="skip">छोड़ें</string>
+    <string name="get_started">शुरू करें</string>
+    <string name="continue_label">जारी रखें</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="coming_next_phase">अगले चरण में आ रहा है</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">निजी. सुरक्षित. आपका.</string>
+    <string name="splash_brand_lock">App Lock</string>
+    <string name="splash_brand_amp">&amp;</string>
+    <string name="splash_brand_vault">Private Vault</string>
+    <string name="splash_securing">आपका वॉल्ट सुरक्षित किया जा रहा है…</string>
+
+    <!-- Home screen (Lock & Vault redesign) -->
+    <string name="lv_brand_a">Lock &amp;</string>
+    <string name="lv_brand_b">Vault</string>
+    <string name="lv_subtitle">अपने ऐप्स सुरक्षित करें. अपनी निजता की रक्षा करें.</string>
+    <string name="lv_search_hint">ऐप्स खोजें...</string>
+    <string name="lv_chip_all">सभी</string>
+    <string name="lv_chip_locked">लॉक</string>
+    <string name="lv_chip_unlocked">अनलॉक</string>
+    <string name="lv_chip_system">सिस्टम</string>
+    <string name="lv_stat_locked_apps">लॉक किए ऐप्स</string>
+    <string name="lv_stat_protection">सुरक्षा</string>
+    <string name="lv_stat_protection_value">सक्रिय</string>
+    <string name="lv_stat_protection_off">बंद</string>
+    <string name="lv_stat_blocked">आज ब्लॉक किए</string>
+    <string name="lv_stat_time">सुरक्षा समय</string>
+    <string name="lv_installed_apps">इंस्टॉल किए ऐप्स</string>
+    <string name="lv_app_count">(%1$d)</string>
+    <string name="lv_sort_az">क्रम: A-Z</string>
+    <string name="lv_sort_za">क्रम: Z-A</string>
+    <string name="lv_complete_setup">सेटअप पूरा करें</string>
+    <string name="lv_complete_setup_sub">पूरी सुरक्षा सुनिश्चित करने के लिए शेष अनुमतियाँ दें.</string>
+    <string name="lv_finish_setup">सेटअप समाप्त करें</string>
+    <string name="lv_nav_home">होम</string>
+    <string name="lv_nav_vault">वॉल्ट</string>
+    <string name="lv_nav_tools">टूल्स</string>
+
+    <!-- Vault home (Lock & Vault redesign) -->
+    <string name="lv_vault_subtitle">आपके निजी फ़ोटो और वीडियो, सुरक्षित.</string>
+    <string name="lv_vault_safe_title">वॉल्ट सुरक्षित है</string>
+    <string name="lv_vault_safe_sub">आपकी सभी फ़ाइलें एन्क्रिप्ट और सुरक्षित रूप से संग्रहीत हैं.</string>
+    <string name="lv_vault_unsafe_title">एन्क्रिप्शन पूरा करें</string>
+    <string name="lv_vault_unsafe_sub">कुछ फ़ाइलें अभी एन्क्रिप्ट नहीं हुई हैं. सुरक्षित करने के लिए टैप करें.</string>
+    <string name="lv_vault_learn_more">और जानें</string>
+    <string name="lv_vault_used">उपयोग किया</string>
+    <string name="lv_vault_percent">%1$d%%</string>
+    <string name="lv_vault_import_photos">फ़ोटो आयात करें</string>
+    <string name="lv_vault_import_videos">वीडियो आयात करें</string>
+    <string name="lv_vault_new_album">नया एल्बम</string>
+    <string name="lv_vault_settings">वॉल्ट सेटिंग्स</string>
+    <string name="lv_vault_albums">एल्बम</string>
+    <string name="lv_vault_recent">हाल का मीडिया</string>
+    <string name="lv_view_all">सभी देखें</string>
+    <string name="lv_vault_all_photos">सभी फ़ोटो</string>
+    <string name="lv_vault_protected_title">आपका वॉल्ट सुरक्षित है</string>
+    <string name="lv_vault_protected_sub">AES-256 एन्क्रिप्शन आपकी यादों को पूरी तरह निजी रखता है.</string>
+    <string name="lv_vault_check_health">स्वास्थ्य जाँचें</string>
+    <string name="lv_vault_recent_empty">अभी कोई मीडिया नहीं. शुरू करने के लिए फ़ोटो या वीडियो आयात करें.</string>
+
+    <!-- Ported onboarding (4-page flow) -->
+    <string name="ob_title_1">किसी भी ऐप को लॉक करें</string>
+    <string name="ob_subtitle_1">अपने निजी ऐप्स को सुरक्षित PIN, पैटर्न या बायोमेट्रिक लॉक से सुरक्षित करें</string>
+    <string name="ob_title_2">निजी फ़ोटो और वीडियो वॉल्ट</string>
+    <string name="ob_subtitle_2">अपने निजी फ़ोटो और वीडियो को सुरक्षित निजी वॉल्ट में छिपाएँ और सुरक्षित रखें</string>
+    <string name="ob_title_3">नियंत्रण आपके हाथ में</string>
+    <string name="ob_subtitle_3">चुनें कि क्या लॉक करना है और अपनी निजता को बिल्कुल अपनी मर्ज़ी से प्रबंधित करें</string>
+    <string name="ob_title_4">सब कुछ सुरक्षित रहता है</string>
+    <string name="ob_subtitle_4">अपने ऐप्स, मीडिया, फ़ाइलें और निजी डेटा को अपने डिवाइस पर एन्क्रिप्टेड और सुरक्षित रखें.</string>
+
+    <!-- Language screens (ported flow) -->
+    <string name="language_screen_subtitle">Lock &amp; Vault के लिए अपनी पसंदीदा भाषा चुनें.</string>
+    <string name="select_language_prompt">कृपया भाषा चुनें</string>
+
+    <!-- Note editor -->
+    <string name="note_editor_title">नोट्स दर्ज करें</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">ऐप लॉक सुरक्षा</string>
+    <string name="onboarding_subtitle_1">अपने निजी ऐप्स को PIN, पैटर्न या फ़िंगरप्रिंट से लॉक करें.</string>
+    <string name="onboarding_title_2">निजी फ़ोटो वॉल्ट</string>
+    <string name="onboarding_subtitle_2">अपने निजी फ़ोटो और वीडियो को सुरक्षित रूप से छिपाएँ.</string>
+    <string name="onboarding_title_3">निजी रहें</string>
+    <string name="onboarding_subtitle_3">आपके फ़ोटो और फ़ाइलें आपके डिवाइस पर एन्क्रिप्टेड रहती हैं.</string>
+
+    <!-- Choose unlock method -->
+    <string name="choose_method_title">अनलॉक करने का तरीका चुनें</string>
+    <string name="choose_method_subtitle">वह लॉक चुनें जिससे आप ऐप खोलेंगे. आप अगले चरणों में फ़िंगरप्रिंट अनलॉक जोड़ सकते हैं.</string>
+    <string name="choose_method_pattern_title">पैटर्न</string>
+    <string name="choose_method_pattern_desc">अनलॉक करने के लिए पैटर्न बनाएँ — तेज़ और आसान.</string>
+    <string name="choose_method_pin_title">PIN</string>
+    <string name="choose_method_pin_desc">4 या 6 अंकों का संख्यात्मक PIN उपयोग करें.</string>
+    <string name="choose_method_recommended">अनुशंसित</string>
+
+    <!-- PIN -->
+    <string name="create_pin_title">अपना PIN बनाएँ</string>
+    <string name="create_pin_subtitle">यह PIN आपके वॉल्ट को सुरक्षित रखता है.</string>
+    <string name="confirm_pin_title">अपने PIN की पुष्टि करें</string>
+    <string name="confirm_pin_subtitle">जारी रखने के लिए अपना PIN फिर से दर्ज करें.</string>
+    <string name="pin_length_4">4 अंक</string>
+    <string name="pin_length_6">6 अंक</string>
+    <string name="pin_mismatch">PIN मेल नहीं खाते. फिर से प्रयास करें.</string>
+
+    <!-- Biometric setup -->
+    <string name="biometric_title">बायोमेट्रिक अनलॉक सक्षम करें</string>
+    <string name="biometric_subtitle">तुरंत अनलॉक करने के लिए अपने फ़िंगरप्रिंट या चेहरे का उपयोग करें.</string>
+    <string name="biometric_enable">बायोमेट्रिक सक्षम करें</string>
+    <string name="biometric_unavailable_subtitle">इस डिवाइस पर बायोमेट्रिक अनलॉक उपलब्ध नहीं है. आप फिर भी अपना PIN उपयोग कर सकते हैं.</string>
+    <string name="biometric_prompt_title">Private Lock Vault अनलॉक करें</string>
+    <string name="biometric_prompt_subtitle">जारी रखने के लिए अपनी पहचान की पुष्टि करें</string>
+    <string name="biometric_use">बायोमेट्रिक उपयोग करें</string>
+
+    <!-- Unlock -->
+    <string name="unlock_title">अपना PIN दर्ज करें</string>
+    <string name="unlock_subtitle">अपने वॉल्ट तक पहुँचने के लिए अनलॉक करें.</string>
+    <string name="unlock_wrong_pin">गलत PIN. प्रयास %1$d.</string>
+
+    <!-- Home -->
+    <string name="home_photos">निजी फ़ोटो</string>
+    <string name="home_videos">निजी वीडियो</string>
+
+    <!-- Navigation -->
+    <string name="nav_settings">सेटिंग्स</string>
+
+    <!-- Home dashboard (redesign) -->
+
+    <!-- Settings -->
+    <string name="settings_title">सेटिंग्स</string>
+    <string name="settings_security">सुरक्षा</string>
+    <string name="settings_change_pin">PIN बदलें</string>
+    <string name="settings_auto_lock">ऑटो लॉक</string>
+    <string name="settings_privacy_policy">गोपनीयता नीति</string>
+    <string name="settings_privacy_policy_desc">हमारी गोपनीयता नीति पढ़ें</string>
+
+    <!-- Settings redesign (screenshot match) -->
+    <string name="settings_subtitle">सुरक्षा, निजता और ऐप प्राथमिकताएँ प्रबंधित करें.</string>
+    <string name="settings_security_status">सुरक्षा स्थिति</string>
+    <string name="settings_security_status_desc">आपका डिवाइस और डेटा सुरक्षित है.</string>
+    <string name="settings_security_status_active">सभी सुरक्षा सुविधाएँ सक्रिय हैं</string>
+    <string name="settings_change_pin_desc_alt">अपना ऐप अनलॉक PIN बदलें</string>
+    <string name="settings_change_pattern">पैटर्न बदलें</string>
+    <string name="settings_change_pattern_desc">अपना अनलॉक पैटर्न बदलें</string>
+    <string name="settings_biometric_alt">बायोमेट्रिक अनलॉक</string>
+    <string name="settings_biometric_desc_alt">ऐप से अनलॉक करें</string>
+    <string name="settings_auto_lock_desc_alt">ऐप को स्वचालित रूप से लॉक करें</string>
+    <string name="settings_wrong_attempt_desc_alt">कई बार गलत प्रयास के बाद ऐप लॉक करें</string>
+    <string name="settings_attempts_value">%1$d प्रयास</string>
+    <string name="settings_section_app_lock">ऐप लॉक</string>
+    <string name="settings_app_lock_settings">ऐप लॉक सेटिंग्स</string>
+    <string name="settings_app_lock_settings_desc">मौजूदा प्राथमिकताएँ प्रबंधित करें</string>
+    <string name="settings_lock_overlay">लॉक स्क्रीन ओवरले</string>
+    <string name="settings_lock_overlay_desc">लॉक स्क्रीन और व्यवहार कॉन्फ़िगर करें</string>
+    <string name="settings_section_preferences">प्राथमिकताएँ</string>
+    <string name="settings_notifications">सूचनाएँ</string>
+    <string name="settings_notifications_desc">ऐप सूचनाएँ प्रबंधित करें</string>
+    <string name="settings_language">भाषा</string>
+    <string name="settings_language_desc">ऐप भाषा</string>
+    <string name="settings_language_default">English</string>
+    <string name="settings_section_more">अधिक</string>
+    <string name="settings_about_app">Lock &amp; Vault के बारे में</string>
+    <string name="settings_about_app_desc">संस्करण, लाइसेंस और अधिक</string>
+    <string name="settings_about_message">Lock &amp; Vault\nसंस्करण %1$s\n\nआपका सारा डेटा इस डिवाइस पर स्थानीय रूप से एन्क्रिप्ट और प्रोसेस किया जाता है.</string>
+    <string name="settings_rate">हमें रेट करें</string>
+    <string name="settings_rate_desc">Google Play पर ऐप को रेट करें</string>
+    <string name="settings_share">ऐप शेयर करें</string>
+    <string name="settings_share_desc">अपने दोस्तों को हमारे बारे में बताएँ</string>
+    <string name="settings_more_apps">और ऐप्स</string>
+    <string name="settings_more_apps_desc">हमारे अन्य ऐप्स देखें</string>
+    <string name="settings_share_subject">Private Lock Vault</string>
+    <string name="settings_share_text">Private Lock Vault से अपने ऐप्स और निजी फ़ोटो सुरक्षित करें!\n\nhttps://play.google.com/store/apps/details?id=%1$s</string>
+
+    <!-- Short value labels for settings rows -->
+    <string name="auto_lock_immediate_short">तुरंत</string>
+    <string name="auto_lock_15s_short">15 सेकंड</string>
+    <string name="auto_lock_30s_short">30 सेकंड</string>
+    <string name="auto_lock_1m_short">1 मिनट</string>
+    <string name="auto_lock_5m_short">5 मिनट</string>
+    <string name="auto_lock_never_short">कभी नहीं</string>
+
+    <!-- Weak credential -->
+    <string name="pin_weak_warning">यह PIN अनुमान लगाने में बहुत आसान है. कोई दूसरा चुनें.</string>
+
+    <!-- Recovery key -->
+    <string name="recovery_title">आपकी रिकवरी कुंजी</string>
+    <string name="recovery_subtitle">इस कुंजी को किसी सुरक्षित जगह सहेजें. यदि आप अपना PIN भूल जाते हैं तो उसे रीसेट करने का यही एकमात्र तरीका है.</string>
+    <string name="recovery_warning">आप यह कुंजी फिर से नहीं देख पाएँगे. यदि यह खो जाती है, तो भविष्य के एन्क्रिप्टेड चरणों में आपका वॉल्ट पुनर्प्राप्त नहीं किया जा सकता.</string>
+    <string name="recovery_saved_confirm">मैंने अपनी कुंजी सहेज ली है</string>
+    <string name="recovery_copy">कुंजी कॉपी करें</string>
+    <string name="recovery_copied">रिकवरी कुंजी कॉपी हुई</string>
+
+    <!-- Forgot PIN / recovery -->
+    <string name="forgot_pin">PIN भूल गए?</string>
+    <string name="forgot_pin_title">रिकवरी कुंजी से रीसेट करें</string>
+    <string name="forgot_pin_subtitle">नया PIN सेट करने के लिए अपनी रिकवरी कुंजी दर्ज करें.</string>
+    <string name="forgot_pin_hint">रिकवरी कुंजी</string>
+    <string name="forgot_pin_verify">कुंजी सत्यापित करें</string>
+    <string name="forgot_pin_wrong">रिकवरी कुंजी गलत है.</string>
+
+    <!-- Lockout / attempts -->
+    <string name="lockout_try_again">बहुत अधिक प्रयास. %1$s में फिर से प्रयास करें.</string>
+
+    <!-- Change PIN -->
+    <string name="change_pin_verify_title">वर्तमान PIN दर्ज करें</string>
+    <string name="change_pin_verify_subtitle">अपना PIN बदलने से पहले पुष्टि करें कि यह आप ही हैं.</string>
+    <string name="change_pin_new_title">नया PIN सेट करें</string>
+    <string name="change_pin_new_subtitle">नया PIN चुनें.</string>
+    <string name="change_pin_confirm_title">नए PIN की पुष्टि करें</string>
+    <string name="change_pin_confirm_subtitle">अपना नया PIN फिर से दर्ज करें.</string>
+    <string name="change_pin_same">नया PIN वर्तमान से अलग होना चाहिए.</string>
+    <string name="change_pin_success">PIN अपडेट हुआ.</string>
+
+    <!-- Pattern -->
+    <string name="pattern_setup_title">अपना पैटर्न सेट करें</string>
+    <string name="pattern_setup_subtitle">ऐप अनलॉक करने के लिए पैटर्न बनाएँ. कम से कम 4 बिंदु जोड़ें.</string>
+    <string name="pattern_clear">पैटर्न साफ़ करें</string>
+    <string name="pattern_hint_note">इसे याद रखने योग्य बनाएँ लेकिन दूसरों के लिए अनुमान लगाना कठिन.</string>
+    <string name="pattern_confirm_title">पैटर्न की पुष्टि करें</string>
+    <string name="pattern_confirm_subtitle">वही पैटर्न फिर से बनाएँ.</string>
+    <string name="pattern_too_short">कम से कम 4 बिंदु जोड़ें.</string>
+    <string name="pattern_mismatch">पैटर्न मेल नहीं खाते. फिर से प्रयास करें.</string>
+    <string name="pattern_unlock_title">अपना पैटर्न बनाएँ</string>
+    <string name="pattern_saved">पैटर्न सहेजा गया.</string>
+    <string name="pattern_wrong">गलत पैटर्न. प्रयास %1$d.</string>
+    <string name="cd_pattern">पैटर्न बनाने का क्षेत्र</string>
+
+    <!-- Verify master -->
+    <string name="verify_title">पुष्टि करें कि यह आप हैं</string>
+    <string name="verify_subtitle_pin">सुरक्षा सेटिंग्स बदलने के लिए अपने PIN की पुष्टि करें.</string>
+    <string name="verify_subtitle_pattern">सुरक्षा सेटिंग्स बदलने के लिए अपने पैटर्न की पुष्टि करें.</string>
+    <string name="verify_wrong">गलत. फिर से प्रयास करें.</string>
+
+    <!-- Security settings -->
+    <string name="settings_wrong_attempt">गलत प्रयास सुरक्षा</string>
+    <string name="settings_wrong_attempt_info">5 गलत प्रयासों के बाद ऐप 30 सेकंड के लिए लॉक हो जाता है; 10 के बाद, 5 मिनट के लिए. हमेशा चालू.</string>
+
+    <!-- Auto-lock options -->
+    <string name="auto_lock_picker_title">ऑटो लॉक</string>
+    <string name="auto_lock_immediate">तुरंत</string>
+    <string name="auto_lock_15s">15 सेकंड बाद</string>
+    <string name="auto_lock_30s">30 सेकंड बाद</string>
+    <string name="auto_lock_1m">1 मिनट बाद</string>
+    <string name="auto_lock_5m">5 मिनट बाद</string>
+    <string name="auto_lock_never">मेमोरी में रहते कभी नहीं</string>
+
+    <!-- Unlock method options -->
+    <string name="unlock_method_pin">PIN</string>
+    <string name="unlock_method_pattern">पैटर्न</string>
+
+    <!-- Home -->
+
+    <!-- Keypad digits -->
+    <string name="key_0">0</string>
+    <string name="key_1">1</string>
+    <string name="key_2">2</string>
+    <string name="key_3">3</string>
+    <string name="key_4">4</string>
+    <string name="key_5">5</string>
+    <string name="key_6">6</string>
+    <string name="key_7">7</string>
+    <string name="key_8">8</string>
+    <string name="key_9">9</string>
+
+    <!-- Vault home -->
+    <string name="vault_cat_pictures">तस्वीरें</string>
+    <string name="vault_cat_videos">वीडियो</string>
+    <string name="vault_albums">एल्बम</string>
+    <string name="vault_add_photo">फ़ोटो / वीडियो जोड़ें</string>
+    <string name="vault_create_folder">फ़ोल्डर बनाएँ</string>
+    <string name="vault_create_album">एल्बम बनाएँ</string>
+    <string name="items_count">%1$d आइटम</string>
+
+    <!-- Empty states -->
+    <string name="empty_photos">अभी कोई निजी फ़ोटो नहीं. शुरू करने के लिए कुछ आयात करें.</string>
+    <string name="empty_videos">अभी कोई निजी वीडियो नहीं. शुरू करने के लिए कुछ आयात करें.</string>
+    <string name="empty_favorites">अभी कोई पसंदीदा नहीं.</string>
+    <string name="empty_recent">हाल में कुछ आयात नहीं किया गया.</string>
+    <string name="empty_recycle_bin">रीसायकल बिन खाली है.</string>
+    <string name="empty_album">यह एल्बम खाली है.</string>
+    <string name="empty_pictures">कोई तस्वीर नहीं</string>
+    <string name="empty_videos_short">कोई वीडियो नहीं</string>
+
+    <!-- Import -->
+    <string name="import_progress_title">आयात हो रहा है…</string>
+    <string name="import_progress_count">%2$d में से %1$d</string>
+    <string name="import_complete">आयात पूर्ण</string>
+    <string name="import_summary_photos">%1$d फ़ोटो</string>
+    <string name="import_summary_videos">%1$d वीडियो</string>
+    <string name="import_summary_failed">%1$d विफल</string>
+    <string name="import_view_vault">वॉल्ट देखें</string>
+    <string name="import_cancel">रद्द करें</string>
+
+    <!-- Delete originals -->
+
+    <!-- Sort -->
+    <string name="sort_title">इसके अनुसार क्रमबद्ध करें</string>
+    <string name="sort_newest">नवीनतम पहले</string>
+    <string name="sort_oldest">पुराने पहले</string>
+    <string name="sort_name">नाम</string>
+    <string name="sort_size">आकार</string>
+
+    <!-- Selection actions -->
+    <string name="action_select_all">सभी चुनें</string>
+    <string name="action_delete">हटाएँ</string>
+    <string name="action_move">एल्बम में ले जाएँ</string>
+    <string name="action_favorite">पसंदीदा</string>
+    <string name="action_export">निर्यात</string>
+    <string name="action_restore">पुनर्स्थापित करें</string>
+    <string name="action_permanent_delete">हमेशा के लिए हटाएँ</string>
+    <string name="action_empty_bin">बिन खाली करें</string>
+    <string name="action_details">विवरण</string>
+    <string name="selection_count">%1$d चयनित</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_delete_title">रीसायकल बिन में ले जाएँ?</string>
+    <string name="confirm_delete_message">चयनित आइटम रीसायकल बिन में ले जाए जाएँगे.</string>
+    <string name="confirm_permanent_title">हमेशा के लिए हटाएँ?</string>
+    <string name="confirm_permanent_message">यह चयनित फ़ाइलें स्थायी रूप से हटा देता है. इसे पूर्ववत नहीं किया जा सकता.</string>
+    <string name="confirm_empty_bin_title">रीसायकल बिन खाली करें?</string>
+    <string name="confirm_empty_bin_message">रीसायकल बिन के सभी आइटम स्थायी रूप से हटा दिए जाएँगे.</string>
+
+    <!-- Albums -->
+    <string name="album_create_title">नया एल्बम</string>
+    <string name="album_name_hint">एल्बम नाम</string>
+    <string name="album_rename_title">एल्बम का नाम बदलें</string>
+    <string name="album_delete_title">एल्बम हटाएँ?</string>
+    <string name="album_delete_message">एल्बम हटा दिया जाएगा. आपका मीडिया मुख्य वॉल्ट में सुरक्षित रहता है.</string>
+    <string name="create">बनाएँ</string>
+    <string name="rename">नाम बदलें</string>
+    <string name="delete_label">हटाएँ</string>
+    <string name="move_main_vault">मुख्य वॉल्ट (कोई एल्बम नहीं)</string>
+    <string name="move_to_album_title">एल्बम में ले जाएँ</string>
+
+    <!-- Export -->
+    <string name="export_title">गैलरी में निर्यात करें</string>
+    <string name="export_copy_only">केवल प्रति निर्यात करें</string>
+    <string name="export_and_remove">निर्यात करें और वॉल्ट से हटाएँ</string>
+    <string name="export_done">%1$d गैलरी में निर्यात किए गए</string>
+    <string name="export_failed">निर्यात विफल</string>
+    <string name="export_unsupported">निर्यात के लिए Android 10 या नया चाहिए</string>
+    <string name="export_some_failed">कुछ फ़ाइलें निर्यात नहीं हो सकीं</string>
+    <string name="restore_to_gallery">गैलरी में वापस ले जाएँ (अनहाइड)</string>
+    <string name="restore_done">गैलरी में वापस ले जाया गया</string>
+    <string name="restore_failed">गैलरी में वापस नहीं ले जाया जा सका</string>
+
+    <!-- Details -->
+    <string name="details_title">विवरण</string>
+    <string name="details_name">नाम</string>
+    <string name="details_type">प्रकार</string>
+    <string name="details_size">आकार</string>
+    <string name="details_resolution">रिज़ॉल्यूशन</string>
+    <string name="details_duration">अवधि</string>
+    <string name="details_imported">आयातित</string>
+    <string name="details_favorite">पसंदीदा</string>
+    <string name="details_protection">सुरक्षा</string>
+    <string name="details_protection_encrypted">एन्क्रिप्टेड</string>
+    <string name="details_protection_none">एन्क्रिप्ट नहीं किया</string>
+    <string name="details_none">—</string>
+    <string name="save">सहेजें</string>
+    <string name="type_photo">फ़ोटो</string>
+    <string name="type_video">वीडियो</string>
+    <string name="yes_label">हाँ</string>
+    <string name="no_label">नहीं</string>
+
+    <!-- Encryption migration -->
+    <string name="migration_title">आपका वॉल्ट सुरक्षित किया जा रहा है</string>
+    <string name="migration_message">आपके मौजूदा फ़ोटो और वीडियो एन्क्रिप्ट किए जा रहे हैं. कृपया ऐप खुला रखें.</string>
+    <string name="migration_progress">%2$d में से %1$d</string>
+    <string name="migration_complete">वॉल्ट एन्क्रिप्ट हुआ</string>
+    <string name="migration_partial">लगभग हो गया</string>
+    <string name="migration_summary_ok">%1$d आइटम एन्क्रिप्ट हुए</string>
+    <string name="migration_summary_failed">%1$d एन्क्रिप्ट हुए, %2$d को फिर से प्रयास चाहिए</string>
+    <string name="migration_retry">विफल आइटम फिर से प्रयास करें</string>
+    <string name="migration_open_vault">वॉल्ट खोलें</string>
+
+    <!-- Toasts / errors -->
+    <string name="toast_deleted">रीसायकल बिन में ले जाया गया</string>
+    <string name="toast_restored">पुनर्स्थापित किया गया</string>
+    <string name="error_video_playback">वीडियो नहीं चलाया जा सकता</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_thumbnail">मीडिया थंबनेल</string>
+    <string name="cd_play_video">वीडियो चलाएँ</string>
+    <string name="cd_favorite">पसंदीदा</string>
+    <string name="cd_close">बंद करें</string>
+    <string name="cd_more_options">अधिक विकल्प</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_app_logo">ऐप लोगो</string>
+    <string name="cd_back">वापस</string>
+    <string name="cd_backspace">बैकस्पेस</string>
+    <string name="cd_biometric">बायोमेट्रिक अनलॉक</string>
+    <string name="cd_card_icon">कार्ड आइकन</string>
+
+    <!-- ===== Phase 5: App Lock ===== -->
+    <string name="applock_title">ऐप लॉक</string>
+
+    <!-- Foreground service notification -->
+    <string name="applock_channel_name">ऐप लॉक सुरक्षा</string>
+    <string name="applock_channel_desc">सक्षम रहते समय ऐप लॉक को चालू रखता है.</string>
+    <string name="applock_notification_title">ऐप लॉक सक्रिय है</string>
+    <string name="applock_notification_text">इस डिवाइस पर सुरक्षित ऐप्स की निगरानी की जा रही है.</string>
+
+    <!-- Overlay lock screen -->
+    <string name="applock_overlay_title">ऐप लॉक है</string>
+    <string name="applock_wrong_credential">गलत. फिर से प्रयास करें.</string>
+
+    <!-- Permission setup (screenshot redesign) -->
+    <string name="applock_setup_title">ऐप लॉक सेट करें</string>
+    <string name="applock_setup_subtitle">सुरक्षा सक्रिय करने के लिए आवश्यक अनुमतियाँ दें.</string>
+    <string name="applock_perm_usage_desc_alt">यह पता लगाने के लिए आवश्यक कि चयनित ऐप्स कब खोले जाते हैं</string>
+    <string name="applock_perm_overlay_title_alt">अन्य ऐप्स के ऊपर दिखाएँ</string>
+    <string name="applock_perm_overlay_desc_alt">सुरक्षित ऐप्स के ऊपर लॉक स्क्रीन दिखाने के लिए आवश्यक</string>
+    <string name="applock_perm_notification_title_alt">सूचनाएँ</string>
+    <string name="applock_perm_notification_desc_alt">सुरक्षा को विश्वसनीय रूप से चालू रखने और महत्वपूर्ण अलर्ट दिखाने के लिए आवश्यक</string>
+    <string name="applock_perm_grant">दें</string>
+    <string name="applock_perm_privacy_note">ये अनुमतियाँ केवल आपके डिवाइस पर ऐप सुरक्षा के लिए उपयोग की जाती हैं.</string>
+
+    <!-- Permission setup -->
+    <string name="applock_perm_usage_title">उपयोग पहुँच</string>
+    <string name="applock_perm_overlay_title">अन्य ऐप्स के ऊपर प्रदर्शन</string>
+    <string name="applock_perm_notification_title">सूचना अनुमति</string>
+    <string name="applock_perm_granted">दी गई</string>
+    <string name="applock_perm_check_again">फिर से जाँचें</string>
+    <string name="applock_usage_privacy">उपयोग पहुँच ऐप लॉक को यह पता लगाने में मदद करती है कि कोई सुरक्षित ऐप कब खोला जाता है. यह जानकारी आपके डिवाइस पर ही रहती है और कभी अपलोड, बेची या साझा नहीं की जाती.</string>
+
+    <!-- Dashboard -->
+    <string name="applock_complete_setup">सेटअप पूरा करें</string>
+    <string name="applock_start_protection">सुरक्षा शुरू करें</string>
+    <string name="applock_stop_protection">सुरक्षा रोकें</string>
+    <string name="applock_manage_apps">लॉक किए ऐप्स प्रबंधित करें</string>
+    <string name="applock_settings_title">ऐप लॉक सेटिंग्स</string>
+    <string name="applock_settings_desc">लॉक विलंब, री-लॉक नियम और अधिक</string>
+    <string name="applock_status_setup_required">सेटअप आवश्यक</string>
+    <string name="applock_status_setup_desc">ऐप्स की सुरक्षा शुरू करने के लिए अनुमतियाँ दें.</string>
+    <string name="applock_status_active">सुरक्षा सक्रिय</string>
+    <string name="applock_status_inactive">सुरक्षा निष्क्रिय</string>
+    <string name="applock_setup_first">पहले अनुमति सेटअप पूरा करें</string>
+    <string name="applock_setup_done_lock_apps">सेटअप पूर्ण — अब लॉक करने के लिए ऐप्स चुनें</string>
+    <string name="applock_setup_skip">अभी के लिए छोड़ें</string>
+    <string name="applock_activate_protection">सुरक्षा सक्रिय करें</string>
+
+    <plurals name="applock_locked_count">
+        <item quantity="one">%d ऐप लॉक</item>
+        <item quantity="other">%d ऐप्स लॉक</item>
+    </plurals>
+
+    <!-- Installed apps list -->
+    <string name="applock_search_hint">ऐप्स खोजें</string>
+    <string name="applock_filter_all">सभी</string>
+    <string name="applock_filter_locked">लॉक</string>
+    <string name="applock_filter_unlocked">अनलॉक</string>
+    <string name="applock_filter_system">सिस्टम ऐप्स</string>
+    <string name="applock_no_apps">दिखाने के लिए कोई ऐप नहीं.</string>
+
+    <!-- App Lock settings -->
+    <string name="applock_setting_master">ऐप लॉक</string>
+    <string name="applock_setting_master_desc">चयनित ऐप्स को अपनी मास्टर क्रेडेंशियल से सुरक्षित करें</string>
+    <string name="applock_setting_delay">लॉक विलंब</string>
+    <string name="applock_setting_delay_desc">अनलॉक करने के बाद ऐप कितनी देर अनलॉक रहता है</string>
+    <string name="applock_setting_screen_off">स्क्रीन बंद होने के बाद री-लॉक करें</string>
+    <string name="applock_setting_screen_off_desc">स्क्रीन बंद होने पर सुरक्षित ऐप्स फिर से लॉक करें</string>
+    <string name="applock_setting_app_switch">ऐप बदलने के बाद री-लॉक करें</string>
+    <string name="applock_setting_app_switch_desc">सुरक्षित ऐप छोड़ने पर फिर से लॉक करें</string>
+    <string name="applock_setting_lock_new">नए ऐप्स स्वतः लॉक करें</string>
+    <string name="applock_setting_lock_new_desc">नए इंस्टॉल किए ऐप्स को स्वचालित रूप से लॉक करें</string>
+    <string name="applock_setting_unlock_method">अनलॉक विधि</string>
+    <string name="applock_setting_unlock_method_desc">सुरक्षा सेटिंग्स में प्रबंधित</string>
+
+    <!-- ===== Phase 6: Advanced App Lock ===== -->
+    <!-- Notification additions -->
+    <string name="applock_notification_open">खोलें</string>
+    <plurals name="applock_notification_count">
+        <item quantity="one">%d ऐप की सुरक्षा</item>
+        <item quantity="other">%d ऐप्स की सुरक्षा</item>
+    </plurals>
+    <string name="applock_new_app_locked_title">नया ऐप लॉक हुआ</string>
+    <string name="applock_new_app_locked_text">%1$s को आपके लॉक किए ऐप्स में जोड़ा गया.</string>
+    <string name="applock_new_app_prompt_title">नया ऐप इंस्टॉल हुआ</string>
+    <string name="applock_new_app_prompt_text">%1$s को ऐप लॉक से सुरक्षित करने के लिए टैप करें.</string>
+
+    <!-- Delay modes -->
+    <string name="delay_5s">5 सेकंड बाद</string>
+    <string name="delay_until_screen_off">स्क्रीन बंद होने तक</string>
+    <string name="delay_until_app_switch">ऐप बदलने तक</string>
+    <string name="delay_until_device_locked">डिवाइस लॉक होने तक</string>
+
+    <!-- Themes -->
+    <string name="theme_default">डिफ़ॉल्ट सुरक्षा</string>
+    <string name="theme_dark">डार्क सुरक्षा</string>
+    <string name="theme_glass">ग्लास ब्लर</string>
+    <string name="theme_minimal">मिनिमल व्हाइट</string>
+    <string name="theme_calculator">कैलकुलेटर</string>
+    <string name="theme_fake_crash">नकली क्रैश</string>
+    <string name="theme_fake_loading">नकली लोडिंग</string>
+
+    <!-- Shared option labels -->
+    <string name="applock_use_global">ग्लोबल सेटिंग उपयोग करें</string>
+    <string name="applock_use_default">डिफ़ॉल्ट</string>
+
+    <!-- Fake modes -->
+    <string name="fake_mode_none">बंद</string>
+    <string name="fake_mode_crash">नकली क्रैश</string>
+    <string name="fake_mode_loading">नकली लोडिंग</string>
+    <string name="fake_mode_calculator">कैलकुलेटर</string>
+
+    <!-- Fake crash screen -->
+    <string name="fake_crash_title">ऐप बंद हो गया है</string>
+    <string name="fake_crash_message">यह ऐप बार-बार बंद हो रहा है.</string>
+    <string name="fake_crash_report">रिपोर्ट करें</string>
+    <string name="fake_crash_open_again">फिर से खोलें</string>
+    <string name="fake_crash_close">ऐप बंद करें</string>
+    <string name="fake_crash_reported">रिपोर्ट भेजी गई</string>
+
+    <!-- Fake loading screen -->
+    <string name="fake_loading_text">लोड हो रहा है…</string>
+
+    <!-- Calculator lock -->
+    <string name="calculator_zero">0</string>
+    <string name="calculator_clear">C</string>
+    <string name="calculator_backspace">⌫</string>
+    <string name="calculator_percent">%</string>
+    <string name="calculator_divide">÷</string>
+    <string name="calculator_multiply">×</string>
+    <string name="calculator_minus">−</string>
+    <string name="calculator_plus">+</string>
+    <string name="calculator_dot">.</string>
+    <string name="calculator_equals">=</string>
+
+    <!-- Settings sections + new rows -->
+    <string name="applock_section_protection">सुरक्षा</string>
+    <string name="applock_section_unlock">अनलॉक</string>
+    <string name="applock_section_disguise">छद्मवेश</string>
+    <string name="applock_section_privacy">निजता</string>
+    <string name="applock_section_stability">स्थिरता</string>
+    <string name="applock_setting_theme">लॉक स्क्रीन थीम</string>
+    <string name="applock_setting_theme_desc">लॉक स्क्रीन कैसी दिखे चुनें</string>
+    <string name="applock_setting_fake_mode">डिफ़ॉल्ट नकली मोड</string>
+    <string name="applock_setting_fake_mode_desc">लॉक स्क्रीन को छिपाएँ</string>
+    <string name="applock_setting_hide_name">लॉक पर ऐप नाम छिपाएँ</string>
+    <string name="applock_setting_hide_name_desc">लॉक किए ऐप का नाम न दिखाएँ</string>
+    <string name="applock_setting_device_lock">डिवाइस लॉक के बाद री-लॉक करें</string>
+    <string name="applock_setting_device_lock_desc">डिवाइस लॉक होने पर फिर से लॉक करें</string>
+    <string name="applock_setting_hide_recent">हाल के ऐप पूर्वावलोकन छिपाएँ</string>
+    <string name="applock_setting_hide_recent_desc">संवेदनशील स्क्रीन को रीसेंट से बाहर रखें</string>
+    <string name="applock_setting_local_stats">केवल स्थानीय आँकड़े</string>
+    <string name="applock_setting_local_stats_desc">इस डिवाइस पर सरल काउंटर रखें</string>
+    <string name="applock_setting_permissions">अनुमति स्थिति</string>
+    <string name="applock_setting_battery">बैटरी सेटिंग्स सहायता</string>
+    <string name="applock_setting_battery_desc">पृष्ठभूमि में सुरक्षा चालू रखें</string>
+    <string name="applock_setting_restart_boot">रीबूट के बाद पुनः आरंभ करें</string>
+    <string name="applock_setting_restart_boot_desc">डिवाइस पुनः आरंभ होने पर सुरक्षा फिर से शुरू करें</string>
+    <string name="applock_setting_troubleshoot">समस्या निवारण</string>
+    <string name="applock_setting_troubleshoot_desc">सेटअप जाँचें और सामान्य समस्याएँ ठीक करें</string>
+
+    <!-- Theme picker -->
+    <string name="applock_theme_title">लॉक स्क्रीन थीम</string>
+    <string name="applock_theme_subtitle">यह थीम तब उपयोग होती है जब कोई सुरक्षित ऐप खोला जाता है.</string>
+
+    <!-- Troubleshooting -->
+    <string name="applock_troubleshoot_title">समस्या निवारण</string>
+    <string name="applock_troubleshoot_service">सुरक्षा सेवा चल रही है</string>
+    <string name="applock_troubleshoot_apps">लॉक करने के लिए चयनित ऐप्स</string>
+    <string name="applock_troubleshoot_restart">सुरक्षा पुनः आरंभ करें</string>
+    <string name="applock_troubleshoot_open_permissions">अनुमतियाँ खोलें</string>
+    <string name="applock_troubleshoot_last_check">अभी-अभी जाँचा गया</string>
+
+    <!-- Suggestions -->
+    <string name="applock_suggestions_button">सुझाव</string>
+    <string name="applock_suggestions_title">सुझाए गए ऐप्स</string>
+    <string name="applock_suggestions_subtitle">वे ऐप्स जिनमें अक्सर निजी सामग्री होती है. समीक्षा करें और जिन्हें चाहें लॉक करें.</string>
+    <string name="applock_suggestions_empty">अभी कोई सुझाव नहीं.</string>
+    <string name="applock_suggestions_lock_all">चयनित लॉक करें</string>
+    <string name="applock_suggestions_locked">%1$d ऐप्स लॉक</string>
+
+    <!-- Categories -->
+    <string name="category_social">सोशल</string>
+    <string name="category_messaging">मैसेजिंग</string>
+    <string name="category_gallery">गैलरी</string>
+    <string name="category_finance">वित्त</string>
+    <string name="category_shopping">शॉपिंग</string>
+    <string name="category_browser">ब्राउज़र</string>
+    <string name="category_settings">सिस्टम</string>
+    <string name="category_files">फ़ाइलें</string>
+
+    <!-- Per-app settings -->
+    <string name="perapp_subtitle">इस ऐप के लिए ग्लोबल सेटिंग्स ओवरराइड करें.</string>
+    <string name="perapp_use_custom">कस्टम सेटिंग्स उपयोग करें</string>
+    <string name="perapp_use_custom_desc">ग्लोबल के बजाय प्रति-ऐप नियम लागू करें</string>
+    <string name="perapp_unlock_method">अनलॉक विधि</string>
+    <string name="perapp_lock_delay">लॉक विलंब</string>
+    <string name="perapp_fake_mode">नकली मोड</string>
+    <string name="perapp_biometric_only">केवल बायोमेट्रिक आवश्यक करें</string>
+    <string name="perapp_method_biometric">बायोमेट्रिक</string>
+    <string name="perapp_saved">सेटिंग्स सहेजी गईं</string>
+
+    <!-- Local stats -->
+    <string name="applock_stats_title">आज</string>
+    <string name="applock_stats_local_note">आँकड़े इस डिवाइस पर रहते हैं और कभी अपलोड या साझा नहीं किए जाते.</string>
+    <string name="applock_stat_unlocks">आज के अनलॉक: %1$d</string>
+    <string name="applock_stat_failed">विफल प्रयास: %1$d</string>
+    <string name="applock_stat_opens">लॉक किए ऐप खुले: %1$d</string>
+    <string name="applock_stat_protection">सुरक्षा सक्रिय: %1$s</string>
+    <string name="duration_hm">%1$dh %2$dm</string>
+    <string name="duration_m">%1$dm</string>
+
+    <!-- Privacy policy (App Lock sections) -->
+    <string name="privacy_policy_title">गोपनीयता नीति</string>
+    <string name="privacy_policy_body">उपयोग पहुँच अनुमति\nयह ऐप उपयोग पहुँच का उपयोग केवल यह पता लगाने के लिए करता है कि उपयोगकर्ता द्वारा चयनित ऐप्स कब खोले जाते हैं, ताकि ऐप लॉक स्क्रीन दिखा सके. उपयोग डेटा डिवाइस पर स्थानीय रूप से संसाधित किया जाता है और इसे अपलोड, बेचा, साझा या विज्ञापन के लिए उपयोग नहीं किया जाता.\n\nअन्य ऐप्स के ऊपर प्रदर्शन\nयह ऐप अन्य ऐप्स के ऊपर प्रदर्शन का उपयोग केवल सुरक्षित ऐप्स के ऊपर लॉक स्क्रीन दिखाने के लिए करता है.\n\nफ़ोरग्राउंड सेवा\nयह ऐप उपयोगकर्ता द्वारा सक्षम रहते समय ऐप लॉक सुरक्षा को सक्रिय रखने के लिए फ़ोरग्राउंड सेवा का उपयोग करता है.\n\nप्रीमियम टूल्स\nडुप्लिकेट फ़ाइंडर, बड़ी फ़ाइल फ़ाइंडर और स्टोरेज एनालाइज़र जैसे प्रीमियम क्लीनअप टूल वॉल्ट फ़ाइलों को डिवाइस पर स्थानीय रूप से संसाधित करते हैं. कोई फ़ोटो, वीडियो, दस्तावेज़, नोट्स, फ़ाइल नाम या विश्लेषण परिणाम अपलोड या साझा नहीं किए जाते.\n\nनिजी नोट्स और निजी दस्तावेज़ स्थानीय रूप से एन्क्रिप्टेड रूप में संग्रहीत किए जाते हैं. ऐप इस सामग्री को अपलोड या साझा नहीं करता.\n\nछिपे और लॉक किए एल्बम उपयोगकर्ता द्वारा नियंत्रित निजता सुविधाएँ हैं और डिवाइस पर स्थानीय रूप से संग्रहीत की जाती हैं.</string>
+
+    <!-- Phase 9: Private Camera -->
+
+    <!-- Settings -->
+
+    <!-- Errors -->
+
+    <!-- Entry points -->
+
+    <!-- Media details source label -->
+    <string name="details_source">स्रोत</string>
+    <string name="details_source_imported">आयातित</string>
+    <string name="details_source_private_camera">निजी कैमरा</string>
+
+    <!-- Tools dashboard (screenshot redesign) -->
+    <string name="tools_header_subtitle">आपके डिवाइस को साफ़, व्यवस्थित और सुरक्षित करने के लिए स्मार्ट टूल्स.</string>
+    <string name="tools_hero_title">डिवाइस स्वस्थ है</string>
+    <string name="tools_hero_desc">आपका डिवाइस साफ़ और सुरक्षित है. ऐसे ही बनाए रखें!</string>
+    <string name="tools_hero_protected">सुरक्षित</string>
+    <string name="tools_hero_percent">92%</string>
+    <string name="tools_section_cleanup">क्लीनअप टूल्स</string>
+    <string name="tools_section_security">सुरक्षा और निजता</string>
+    <string name="tools_duplicate_finder">डुप्लिकेट फ़ाइंडर</string>
+    <string name="tools_duplicate_desc">डुप्लिकेट फ़ोटो, वीडियो और फ़ाइलें खोजें और हटाएँ</string>
+    <string name="tools_large_files">बड़ी फ़ाइलें</string>
+    <string name="tools_large_files_desc">मूल्यवान स्टोरेज लेने वाली बड़ी फ़ाइलें खोजें</string>
+    <string name="tools_smart_cleanup">स्मार्ट क्लीनअप</string>
+    <string name="tools_smart_cleanup_desc">जगह, कैश और अनावश्यक डेटा खाली करें</string>
+    <string name="tools_storage_analyzer">स्टोरेज एनालाइज़र</string>
+    <string name="tools_storage_analyzer_desc">स्टोरेज का विश्लेषण करें और अपनी जगह प्रबंधित करें.</string>
+    <string name="tools_view_details">विवरण देखें</string>
+    <string name="tools_vault_health">वॉल्ट स्वास्थ्य</string>
+    <string name="tools_vault_health_desc">एन्क्रिप्शन स्थिति और सुरक्षा स्कैन करें</string>
+    <string name="tools_status_secure">सुरक्षित</string>
+    <string name="tools_section_storage">निजी स्टोरेज</string>
+    <string name="tools_private_notes_desc">सुरक्षित निजी नोट्स</string>
+    <string name="tools_private_documents_desc">ID, कार्ड और फ़ाइलें</string>
+    <string name="settings_open_unavailable">यह स्क्रीन आपके डिवाइस पर उपलब्ध नहीं है</string>
+    <string name="tools_sample_dup_size">1.26 GB</string>
+    <string name="tools_sample_large_size">2.34 GB</string>
+    <string name="tools_sample_cleanup_size">1.03 GB</string>
+
+    <!-- Phase 11: Premium Tools -->
+    <string name="close">बंद करें</string>
+
+    <!-- Notes -->
+    <string name="notes_title">निजी नोट्स</string>
+    <string name="notes_search_hint">नोट्स खोजें</string>
+    <string name="notes_empty">अभी कोई नोट नहीं. बनाने के लिए + टैप करें.</string>
+    <string name="notes_empty_title">अभी कोई नोट नहीं</string>
+    <string name="notes_empty_subtitle">अपने निजी विचार, आइडिया और कार्य सुरक्षित और एन्क्रिप्टेड रखें. अपना पहला नोट बनाने के लिए + बटन टैप करें.</string>
+    <string name="notes_new">नया नोट</string>
+    <string name="notes_title_hint">शीर्षक</string>
+    <string name="notes_body_hint">कुछ निजी लिखें…</string>
+    <string name="notes_encrypted_badge">एंड-टू-एंड एन्क्रिप्टेड</string>
+    <string name="notes_meta_count">%1$d शब्द · %2$d अक्षर</string>
+    <string name="notes_save_failed">नोट सहेजा नहीं जा सका</string>
+    <string name="notes_export_done">नोट निर्यात किया गया</string>
+    <string name="notes_export_failed">नोट निर्यात नहीं किया जा सका</string>
+    <string name="notes_delete_title">नोट हटाएँ?</string>
+    <string name="notes_delete_message">यह नोट हटा दिया जाएगा.</string>
+
+    <!-- Documents -->
+    <string name="documents_title">निजी दस्तावेज़</string>
+    <string name="documents_search_hint">दस्तावेज़ खोजें</string>
+    <string name="documents_empty">अभी कोई दस्तावेज़ नहीं. आयात करने के लिए + टैप करें.</string>
+    <string name="documents_meta">%1$s · %2$s · %3$s</string>
+    <string name="documents_open_text">टेक्स्ट के रूप में खोलें</string>
+    <string name="documents_export">निर्यात</string>
+    <string name="documents_export_warning">आपके चुने स्थान पर एक डिक्रिप्टेड प्रति सहेजी जाएगी, जो एन्क्रिप्टेड वॉल्ट से बाहर होगी. जारी रखें?</string>
+    <string name="documents_delete_title">दस्तावेज़ हटाएँ?</string>
+    <string name="documents_delete_message">यह दस्तावेज़ हटा दिया जाएगा.</string>
+    <string name="docs_import_done">दस्तावेज़ आयात किए गए</string>
+    <string name="docs_import_failed">कुछ दस्तावेज़ आयात नहीं किए जा सके</string>
+    <string name="docs_export_done">दस्तावेज़ निर्यात किया गया</string>
+    <string name="docs_export_failed">दस्तावेज़ निर्यात नहीं किया जा सका</string>
+    <string name="docs_open_failed">यह दस्तावेज़ नहीं खोला जा सका</string>
+
+    <!-- Document cards (wallet-style) -->
+    <string name="documents_tab_cards">कार्ड</string>
+    <string name="documents_tab_files">फ़ाइलें</string>
+    <string name="documents_header_subtitle">अपने निजी कार्ड और फ़ाइलें सुरक्षित रूप से संग्रहीत करें</string>
+    <string name="cards_search_hint">कार्ड खोजें</string>
+    <string name="cards_filter_all">सभी</string>
+    <string name="cards_filter_favorites">पसंदीदा</string>
+    <string name="cards_filter_deleted">हटाए गए</string>
+    <string name="cards_empty_title">अभी कोई दस्तावेज़ कार्ड नहीं</string>
+    <string name="cards_empty_subtitle">ID कार्ड, लाइसेंस, पासपोर्ट और निजी दस्तावेज़ सुरक्षित रूप से जोड़ें.</string>
+    <string name="cards_empty_favorites">अभी कोई पसंदीदा कार्ड नहीं</string>
+    <string name="cards_empty_deleted">कोई हटाया गया कार्ड नहीं</string>
+    <string name="cards_add_button">दस्तावेज़ कार्ड जोड़ें</string>
+
+    <!-- Add sheet -->
+    <string name="add_sheet_title">निजी दस्तावेज़ में जोड़ें</string>
+    <string name="add_sheet_subtitle">कार्ड प्रकार चुनें या फ़ाइल आयात करें</string>
+    <string name="add_import_file">फ़ाइल आयात करें</string>
+
+    <!-- Card types -->
+    <string name="card_type_id">ID कार्ड</string>
+    <string name="card_type_licence">ड्राइविंग लाइसेंस</string>
+    <string name="card_type_passport">पासपोर्ट</string>
+    <string name="card_type_student">छात्र कार्ड</string>
+    <string name="card_type_work">वर्क कार्ड</string>
+    <string name="card_type_vehicle">वाहन पंजीकरण</string>
+    <string name="card_type_insurance">बीमा कार्ड</string>
+    <string name="card_type_other">अन्य दस्तावेज़</string>
+
+    <!-- Card field labels -->
+    <string name="card_field_holder_name">धारक का नाम</string>
+    <string name="card_field_student_name">छात्र का नाम</string>
+    <string name="card_field_employee_name">कर्मचारी का नाम</string>
+    <string name="card_field_owner_name">मालिक का नाम</string>
+    <string name="card_field_title">शीर्षक</string>
+    <string name="card_field_id_number">ID नंबर</string>
+    <string name="card_field_licence_number">लाइसेंस नंबर</string>
+    <string name="card_field_passport_number">पासपोर्ट नंबर</string>
+    <string name="card_field_student_id">छात्र ID</string>
+    <string name="card_field_employee_id">कर्मचारी ID</string>
+    <string name="card_field_vehicle_number">वाहन नंबर</string>
+    <string name="card_field_policy_number">पॉलिसी नंबर</string>
+    <string name="card_field_number">नंबर</string>
+    <string name="card_field_date_of_birth">जन्म तिथि</string>
+    <string name="card_field_institute_name">संस्थान का नाम</string>
+    <string name="card_field_company_name">कंपनी का नाम</string>
+    <string name="card_field_registration_number">पंजीकरण नंबर</string>
+    <string name="card_field_provider_name">प्रदाता का नाम</string>
+    <string name="card_field_country">देश</string>
+    <string name="card_field_country_state">देश / राज्य</string>
+    <string name="card_field_nationality">राष्ट्रीयता</string>
+    <string name="card_field_expiry">समाप्ति तिथि</string>
+    <string name="card_field_notes">नोट्स</string>
+
+    <!-- Add / edit card -->
+    <string name="card_add_title">कार्ड जोड़ें</string>
+    <string name="card_edit_title">कार्ड संपादित करें</string>
+    <string name="card_section_images">कार्ड छवियाँ</string>
+    <string name="card_section_details">विवरण</string>
+    <string name="card_section_color">कार्ड रंग</string>
+    <string name="card_add_front">आगे की छवि जोड़ें</string>
+    <string name="card_add_back">पीछे की छवि जोड़ें</string>
+    <string name="card_replace_image">बदलें</string>
+    <string name="card_remove_image">हटाएँ</string>
+    <string name="card_save">कार्ड सहेजें</string>
+    <string name="card_error_need_something">पहले नाम, नंबर या छवि जोड़ें</string>
+    <string name="card_error_save_failed">कार्ड सहेजा नहीं जा सका</string>
+    <string name="card_error_image_failed">छवि नहीं खोली जा सकती</string>
+    <string name="card_error_no_storage">पर्याप्त स्टोरेज नहीं</string>
+    <string name="card_saved">कार्ड सहेजा गया</string>
+
+    <!-- Card detail -->
+    <string name="card_detail_title">कार्ड</string>
+    <string name="card_show_number">दिखाएँ</string>
+    <string name="card_hide_number">छिपाएँ</string>
+    <string name="card_verify_to_show">पूरा नंबर देखने के लिए कृपया सत्यापित करें</string>
+    <string name="card_created_at">%1$s को जोड़ा गया</string>
+    <string name="card_updated_at">%1$s को अपडेट किया गया</string>
+    <string name="card_action_edit">संपादित करें</string>
+    <string name="card_action_export">निर्यात</string>
+    <string name="card_export_front">आगे की छवि निर्यात करें</string>
+    <string name="card_export_back">पीछे की छवि निर्यात करें</string>
+    <string name="card_export_warning">इससे आपके वॉल्ट के बाहर एक डिक्रिप्टेड प्रति बनेगी. जारी रखें?</string>
+    <string name="card_export_done">छवि निर्यात की गई</string>
+    <string name="card_export_failed">निर्यात विफल</string>
+    <string name="card_open_failed">दस्तावेज़ नहीं खोला जा सका</string>
+    <string name="card_delete_title">कार्ड हटाएँ?</string>
+    <string name="card_delete_message">यह कार्ड हटाए गए में ले जाया जाएगा.</string>
+    <string name="card_restore">पुनर्स्थापित करें</string>
+    <string name="card_delete_forever">हमेशा के लिए हटाएँ</string>
+    <string name="card_delete_forever_message">यह कार्ड और इसकी छवियाँ स्थायी रूप से हटा दी जाएँगी.</string>
+    <string name="cd_card_front">कार्ड के आगे की छवि</string>
+    <string name="cd_card_back">कार्ड के पीछे की छवि</string>
+    <string name="cd_card_color">कार्ड रंग विकल्प</string>
+
+    <!-- Premium cleanup / storage / health -->
+    <string name="duplicates_title">डुप्लिकेट फ़ाइंडर</string>
+    <string name="large_files_title">बड़ी फ़ाइलें</string>
+    <string name="cleanup_title">अस्थायी कैश साफ़ करें</string>
+    <string name="cleanup_clear_temp">कैश साफ़ करें</string>
+    <string name="cleanup_temp_cleared">अस्थायी कैश साफ़ हुआ</string>
+
+    <string name="storage_analyzer_title">स्टोरेज एनालाइज़र</string>
+    <string name="storage_total_label">कुल वॉल्ट स्टोरेज</string>
+    <string name="storage_private_camera">निजी कैमरा</string>
+    <string name="storage_thumbnails">थंबनेल</string>
+    <string name="storage_recycle_bin">रीसायकल बिन</string>
+    <string name="storage_temp_cache">अस्थायी कैश</string>
+
+    <string name="health_title">वॉल्ट स्वास्थ्य</string>
+    <string name="health_score_label">स्वास्थ्य स्कोर</string>
+    <string name="health_scan_now">अभी स्कैन करें</string>
+    <string name="health_open_app_lock">ऐप लॉक खोलें</string>
+    <string name="health_last_scan">अंतिम स्कैन: %1$s</string>
+    <string name="health_never">कभी नहीं</string>
+    <string name="health_encryption">एन्क्रिप्शन</string>
+    <string name="health_active">सक्रिय</string>
+    <string name="health_inactive">निष्क्रिय</string>
+    <string name="health_app_lock">ऐप लॉक</string>
+    <string name="health_ready">तैयार</string>
+    <string name="health_needs_setup">सेटअप आवश्यक</string>
+    <string name="health_unencrypted">एन्क्रिप्ट न किए आइटम</string>
+    <string name="health_failed_repairs">विफल मरम्मत</string>
+
+    <!-- Cleanup: shared selection / actions -->
+    <string name="cleanup_selected_summary">%1$d चयनित · %2$s</string>
+    <string name="cleanup_delete_selected">रीसायकल बिन में ले जाएँ</string>
+    <string name="cleanup_select_first">पहले हटाने के लिए आइटम चुनें</string>
+    <string name="cleanup_moved_to_bin">%1$d आइटम रीसायकल बिन में ले जाए गए</string>
+    <string name="cleanup_confirm_title">रीसायकल बिन में ले जाएँ?</string>
+    <string name="cleanup_confirm_message">%1$d आइटम (%2$s) रीसायकल बिन में ले जाए जाएँगे. आप उन्हें बाद में पुनर्स्थापित कर सकते हैं.</string>
+    <string name="cleanup_confirm_move">ले जाएँ</string>
+    <string name="cleanup_cancel">रद्द करें</string>
+
+    <!-- Large Files screen -->
+    <string name="large_files_empty">इस आकार से बड़ी कोई फ़ाइल नहीं</string>
+    <string name="filter_all">सभी</string>
+    <string name="filter_photos">फ़ोटो</string>
+    <string name="filter_videos">वीडियो</string>
+    <string name="sort_largest">सबसे बड़ा</string>
+    <string name="large_files_min_size">न्यूनतम आकार</string>
+    <string name="size_5mb">5 MB</string>
+    <string name="size_10mb">10 MB</string>
+    <string name="size_25mb">25 MB</string>
+    <string name="size_50mb">50 MB</string>
+    <string name="size_100mb">100 MB</string>
+
+    <!-- Duplicate Finder screen -->
+    <string name="duplicates_scan">डुप्लिकेट के लिए स्कैन करें</string>
+    <string name="duplicates_rescan">फिर से स्कैन करें</string>
+    <string name="duplicates_scanning">स्कैन हो रहा है… %1$d/%2$d</string>
+    <string name="duplicates_empty">कोई डुप्लिकेट फ़ोटो नहीं मिली</string>
+    <string name="duplicates_not_scanned">अपने वॉल्ट में बाइट-समान फ़ोटो खोजने के लिए स्कैन टैप करें.</string>
+    <string name="duplicates_keep_newest">नवीनतम रखें</string>
+    <string name="duplicates_keep_oldest">पुराना रखें</string>
+    <string name="duplicates_keep_best">सर्वश्रेष्ठ रखें</string>
+    <string name="duplicates_group_header">%1$d प्रतियाँ · %2$s पुनर्प्राप्त करने योग्य</string>
+    <string name="duplicates_recommended">रखने की अनुशंसा</string>
+    <string name="cd_media_thumbnail">मीडिया थंबनेल</string>
+</resources>
