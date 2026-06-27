@@ -2,10 +2,7 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="next">Avançar</string>
-    <string name="back">Voltar</string>
     <string name="skip">Pular</string>
-    <string name="get_started">Começar</string>
     <string name="continue_label">Continuar</string>
     <string name="cancel">Cancelar</string>
     <string name="coming_next_phase">Em breve na próxima fase</string>
@@ -15,7 +12,6 @@
     <string name="splash_brand_lock">App Lock</string>
     <string name="splash_brand_amp">&amp;</string>
     <string name="splash_brand_vault">Private Vault</string>
-    <string name="splash_securing">Protegendo seu cofre…</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
     <string name="lv_brand_a">Lock &amp;</string>
@@ -66,29 +62,13 @@
     <string name="lv_vault_recent_empty">Ainda não há mídia. Importe fotos ou vídeos para começar.</string>
 
     <!-- Ported onboarding (4-page flow) -->
-    <string name="ob_title_1">Bloqueie qualquer app</string>
-    <string name="ob_subtitle_1">Proteja seus apps privados com um PIN, padrão ou bloqueio biométrico seguro</string>
-    <string name="ob_title_2">Cofre privado de fotos e vídeos</string>
-    <string name="ob_subtitle_2">Oculte e proteja suas fotos e vídeos pessoais dentro de um cofre privado seguro</string>
-    <string name="ob_title_3">Você está no controle</string>
-    <string name="ob_subtitle_3">Escolha o que bloquear e gerencie sua privacidade exatamente como quiser</string>
-    <string name="ob_title_4">Tudo permanece protegido</string>
-    <string name="ob_subtitle_4">Mantenha seus apps, mídia, arquivos e dados privados criptografados e seguros no seu dispositivo.</string>
 
     <!-- Language screens (ported flow) -->
-    <string name="language_screen_subtitle">Escolha seu idioma preferido para o Lock &amp; Vault.</string>
-    <string name="select_language_prompt">Selecione um idioma</string>
 
     <!-- Note editor -->
     <string name="note_editor_title">Escrever notas</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title_1">Proteção de bloqueio de apps</string>
-    <string name="onboarding_subtitle_1">Bloqueie seus apps privados com PIN, padrão ou impressão digital.</string>
-    <string name="onboarding_title_2">Cofre privado de fotos</string>
-    <string name="onboarding_subtitle_2">Oculte suas fotos e vídeos pessoais com segurança.</string>
-    <string name="onboarding_title_3">Mantenha-se privado</string>
-    <string name="onboarding_subtitle_3">Suas fotos e arquivos permanecem criptografados no seu dispositivo.</string>
 
     <!-- Choose unlock method -->
     <string name="choose_method_title">Escolha como desbloquear</string>
@@ -142,7 +122,6 @@
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Gerencie segurança, privacidade e preferências do app.</string>
     <string name="settings_security_status">Status de segurança</string>
-    <string name="settings_security_status_desc">Seu dispositivo e dados estão protegidos.</string>
     <string name="settings_security_status_active">Todos os recursos de segurança estão ativos</string>
     <string name="settings_change_pin_desc_alt">Altere o PIN de desbloqueio do app</string>
     <string name="settings_change_pattern">Alterar padrão</string>
@@ -160,9 +139,6 @@
     <string name="settings_section_preferences">Preferências</string>
     <string name="settings_notifications">Notificações</string>
     <string name="settings_notifications_desc">Gerencie as notificações do app</string>
-    <string name="settings_language">Idioma</string>
-    <string name="settings_language_desc">Idioma do app</string>
-    <string name="settings_language_default">English</string>
     <string name="settings_section_more">Mais</string>
     <string name="settings_about_app">Sobre o Lock &amp; Vault</string>
     <string name="settings_about_app_desc">Versão, licenças e mais</string>
@@ -612,7 +588,6 @@
 
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">Política de privacidade</string>
-    <string name="privacy_policy_body">Permissão de acesso de uso\nEste app usa o acesso de uso apenas para detectar quando os apps selecionados pelo usuário são abertos, para que possa exibir a tela de bloqueio. Os dados de uso são processados localmente no dispositivo e não são enviados, vendidos, compartilhados ou usados para publicidade.\n\nExibir sobre outros apps\nEste app usa Exibir sobre outros apps apenas para exibir a tela de bloqueio sobre os apps protegidos.\n\nServiço em primeiro plano\nEste app usa um serviço em primeiro plano para manter a proteção do bloqueio de apps ativa enquanto habilitada pelo usuário.\n\nFerramentas premium\nFerramentas premium de limpeza, como o localizador de duplicatas, o localizador de arquivos grandes e o analisador de armazenamento, processam os arquivos do cofre localmente no dispositivo. Nenhuma foto, vídeo, documento, nota, nome de arquivo ou resultado de análise é enviado ou compartilhado.\n\nNotas privadas e documentos privados são armazenados localmente de forma criptografada. O app não envia nem compartilha esse conteúdo.\n\nÁlbuns ocultos e bloqueados são recursos de privacidade controlados pelo usuário e armazenados localmente no dispositivo.</string>
 
     <!-- Phase 9: Private Camera -->
 
@@ -639,8 +614,6 @@
     <string name="tools_duplicate_desc">Encontre e remova fotos, vídeos e arquivos duplicados</string>
     <string name="tools_large_files">Arquivos grandes</string>
     <string name="tools_large_files_desc">Encontre arquivos grandes que ocupam armazenamento valioso</string>
-    <string name="tools_smart_cleanup">Limpeza inteligente</string>
-    <string name="tools_smart_cleanup_desc">Libere espaço, cache e dados desnecessários</string>
     <string name="tools_storage_analyzer">Analisador de armazenamento</string>
     <string name="tools_storage_analyzer_desc">Analise o armazenamento e gerencie seu espaço.</string>
     <string name="tools_view_details">Ver detalhes</string>
@@ -653,7 +626,6 @@
     <string name="settings_open_unavailable">Esta tela não está disponível no seu dispositivo</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>
-    <string name="tools_sample_cleanup_size">1.03 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Fechar</string>
@@ -661,7 +633,6 @@
     <!-- Notes -->
     <string name="notes_title">Notas privadas</string>
     <string name="notes_search_hint">Buscar notas</string>
-    <string name="notes_empty">Ainda não há notas. Toque em + para criar uma.</string>
     <string name="notes_empty_title">Ainda não há notas</string>
     <string name="notes_empty_subtitle">Mantenha seus pensamentos, ideias e tarefas privadas seguros e criptografados. Toque no botão + para criar sua primeira nota.</string>
     <string name="notes_new">Nova nota</string>

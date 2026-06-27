@@ -2,10 +2,7 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="next">Next</string>
-    <string name="back">Back</string>
     <string name="skip">Skip</string>
-    <string name="get_started">Get Started</string>
     <string name="continue_label">Continue</string>
     <string name="cancel">Cancel</string>
     <string name="coming_next_phase">Coming in next phase</string>
@@ -15,7 +12,6 @@
     <string name="splash_brand_lock">App Lock</string>
     <string name="splash_brand_amp">&amp;</string>
     <string name="splash_brand_vault">Private Vault</string>
-    <string name="splash_securing">Securing your vault…</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
     <string name="lv_brand_a">Lock &amp;</string>
@@ -66,29 +62,13 @@
     <string name="lv_vault_recent_empty">No media yet. Import photos or videos to get started.</string>
 
     <!-- Ported onboarding (4-page flow) -->
-    <string name="ob_title_1">Lock Any App</string>
-    <string name="ob_subtitle_1">Protect your private apps with a secure PIN, pattern, or biometric lock</string>
-    <string name="ob_title_2">Private Photo &amp; Video Vault</string>
-    <string name="ob_subtitle_2">Hide and protect your personal photos and videos inside a secure private vault</string>
-    <string name="ob_title_3">You’re in Control</string>
-    <string name="ob_subtitle_3">Choose what to lock and manage your privacy exactly the way you want</string>
-    <string name="ob_title_4">Everything Stays Protected</string>
-    <string name="ob_subtitle_4">Keep your apps, media, files, and private data encrypted and secure on your device.</string>
 
     <!-- Language screens (ported flow) -->
-    <string name="language_screen_subtitle">Choose your preferred language for Lock &amp; Vault.</string>
-    <string name="select_language_prompt">Please Select Language</string>
 
     <!-- Note editor -->
     <string name="note_editor_title">Enter Notes</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title_1">App Lock Protection</string>
-    <string name="onboarding_subtitle_1">Lock your private apps with PIN, Pattern, or Fingerprint.</string>
-    <string name="onboarding_title_2">Private Photo Vault</string>
-    <string name="onboarding_subtitle_2">Hide your personal photos and videos securely.</string>
-    <string name="onboarding_title_3">Stay Private</string>
-    <string name="onboarding_subtitle_3">Your photos and files stay encrypted on your device.</string>
 
     <!-- Choose unlock method -->
     <string name="choose_method_title">Choose how to unlock</string>
@@ -142,7 +122,6 @@
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Manage security, privacy and app preferences.</string>
     <string name="settings_security_status">Security Status</string>
-    <string name="settings_security_status_desc">Your device and data are protected.</string>
     <string name="settings_security_status_active">All security features are active</string>
     <string name="settings_change_pin_desc_alt">Change your app unlock PIN</string>
     <string name="settings_change_pattern">Change Pattern</string>
@@ -160,9 +139,6 @@
     <string name="settings_section_preferences">Preferences</string>
     <string name="settings_notifications">Notifications</string>
     <string name="settings_notifications_desc">Manage app notifications</string>
-    <string name="settings_language">Language</string>
-    <string name="settings_language_desc">App language</string>
-    <string name="settings_language_default">English</string>
     <string name="settings_section_more">More</string>
     <string name="settings_about_app">About Lock &amp; Vault</string>
     <string name="settings_about_app_desc">Version, licenses and more</string>
@@ -612,7 +588,6 @@
 
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">Privacy Policy</string>
-    <string name="privacy_policy_body">Usage Access Permission\nThis app uses Usage Access only to detect when apps selected by the user are opened, so the app can show the lock screen. Usage data is processed locally on the device and is not uploaded, sold, shared, or used for advertising.\n\nDisplay Over Other Apps\nThis app uses Display Over Other Apps only to show the lock screen over protected apps.\n\nForeground Service\nThis app uses a foreground service to keep App Lock protection active while enabled by the user.\n\nPremium Tools\nPremium cleanup tools such as duplicate finder, large file finder, and storage analyzer process vault files locally on the device. No photos, videos, documents, notes, file names, or analysis results are uploaded or shared.\n\nPrivate Notes and Private Documents are stored locally in encrypted form. The app does not upload or share this content.\n\nHidden and locked albums are privacy features controlled by the user and stored locally on the device.</string>
 
     <!-- Phase 9: Private Camera -->
 
@@ -639,8 +614,6 @@
     <string name="tools_duplicate_desc">Find and remove duplicate photos, videos and files</string>
     <string name="tools_large_files">Large Files</string>
     <string name="tools_large_files_desc">Find large files taking up valuable storage</string>
-    <string name="tools_smart_cleanup">Smart Cleanup</string>
-    <string name="tools_smart_cleanup_desc">Free up space, cache and unnecessary data</string>
     <string name="tools_storage_analyzer">Storage Analyzer</string>
     <string name="tools_storage_analyzer_desc">Analyze storage and manage your space.</string>
     <string name="tools_view_details">View Details</string>
@@ -653,7 +626,6 @@
     <string name="settings_open_unavailable">This screen isn\'t available on your device</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>
-    <string name="tools_sample_cleanup_size">1.03 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Close</string>
@@ -661,7 +633,6 @@
     <!-- Notes -->
     <string name="notes_title">Private Notes</string>
     <string name="notes_search_hint">Search notes</string>
-    <string name="notes_empty">No notes yet. Tap + to create one.</string>
     <string name="notes_empty_title">No notes yet</string>
     <string name="notes_empty_subtitle">Keep your private thoughts, ideas and to-dos safe and encrypted. Tap the + button to create your first note.</string>
     <string name="notes_new">New note</string>

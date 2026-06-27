@@ -2,10 +2,7 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="next">Berikutnya</string>
-    <string name="back">Kembali</string>
     <string name="skip">Lewati</string>
-    <string name="get_started">Mulai</string>
     <string name="continue_label">Lanjutkan</string>
     <string name="cancel">Batal</string>
     <string name="coming_next_phase">Segera hadir pada tahap berikutnya</string>
@@ -15,7 +12,6 @@
     <string name="splash_brand_lock">App Lock</string>
     <string name="splash_brand_amp">&amp;</string>
     <string name="splash_brand_vault">Private Vault</string>
-    <string name="splash_securing">Mengamankan brankas Anda…</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
     <string name="lv_brand_a">Lock &amp;</string>
@@ -66,29 +62,13 @@
     <string name="lv_vault_recent_empty">Belum ada media. Impor foto atau video untuk memulai.</string>
 
     <!-- Ported onboarding (4-page flow) -->
-    <string name="ob_title_1">Kunci aplikasi apa pun</string>
-    <string name="ob_subtitle_1">Lindungi aplikasi pribadi Anda dengan PIN, pola, atau kunci biometrik yang aman</string>
-    <string name="ob_title_2">Brankas foto &amp; video pribadi</string>
-    <string name="ob_subtitle_2">Sembunyikan dan lindungi foto serta video pribadi Anda di dalam brankas pribadi yang aman</string>
-    <string name="ob_title_3">Anda yang mengendalikan</string>
-    <string name="ob_subtitle_3">Pilih apa yang akan dikunci dan kelola privasi Anda persis seperti yang Anda inginkan</string>
-    <string name="ob_title_4">Semuanya tetap terlindungi</string>
-    <string name="ob_subtitle_4">Jaga aplikasi, media, file, dan data pribadi Anda tetap terenkripsi dan aman di perangkat Anda.</string>
 
     <!-- Language screens (ported flow) -->
-    <string name="language_screen_subtitle">Pilih bahasa pilihan Anda untuk Lock &amp; Vault.</string>
-    <string name="select_language_prompt">Silakan pilih bahasa</string>
 
     <!-- Note editor -->
     <string name="note_editor_title">Tulis catatan</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title_1">Perlindungan kunci aplikasi</string>
-    <string name="onboarding_subtitle_1">Kunci aplikasi pribadi Anda dengan PIN, pola, atau sidik jari.</string>
-    <string name="onboarding_title_2">Brankas foto pribadi</string>
-    <string name="onboarding_subtitle_2">Sembunyikan foto dan video pribadi Anda dengan aman.</string>
-    <string name="onboarding_title_3">Tetap pribadi</string>
-    <string name="onboarding_subtitle_3">Foto dan file Anda tetap terenkripsi di perangkat Anda.</string>
 
     <!-- Choose unlock method -->
     <string name="choose_method_title">Pilih cara membuka kunci</string>
@@ -142,7 +122,6 @@
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Kelola keamanan, privasi, dan preferensi aplikasi.</string>
     <string name="settings_security_status">Status keamanan</string>
-    <string name="settings_security_status_desc">Perangkat dan data Anda terlindungi.</string>
     <string name="settings_security_status_active">Semua fitur keamanan aktif</string>
     <string name="settings_change_pin_desc_alt">Ubah PIN buka kunci aplikasi Anda</string>
     <string name="settings_change_pattern">Ubah pola</string>
@@ -160,9 +139,6 @@
     <string name="settings_section_preferences">Preferensi</string>
     <string name="settings_notifications">Notifikasi</string>
     <string name="settings_notifications_desc">Kelola notifikasi aplikasi</string>
-    <string name="settings_language">Bahasa</string>
-    <string name="settings_language_desc">Bahasa aplikasi</string>
-    <string name="settings_language_default">English</string>
     <string name="settings_section_more">Lainnya</string>
     <string name="settings_about_app">Tentang Lock &amp; Vault</string>
     <string name="settings_about_app_desc">Versi, lisensi, dan lainnya</string>
@@ -610,7 +586,6 @@
 
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">Kebijakan privasi</string>
-    <string name="privacy_policy_body">Izin Akses Penggunaan\nAplikasi ini menggunakan Akses Penggunaan hanya untuk mendeteksi kapan aplikasi yang dipilih pengguna dibuka, sehingga aplikasi dapat menampilkan layar kunci. Data penggunaan diproses secara lokal di perangkat dan tidak diunggah, dijual, dibagikan, atau digunakan untuk iklan.\n\nTampilkan di Atas Aplikasi Lain\nAplikasi ini menggunakan Tampilkan di Atas Aplikasi Lain hanya untuk menampilkan layar kunci di atas aplikasi terlindungi.\n\nLayanan Latar Depan\nAplikasi ini menggunakan layanan latar depan untuk menjaga perlindungan Kunci Aplikasi tetap aktif saat diaktifkan oleh pengguna.\n\nAlat Premium\nAlat pembersih premium seperti pencari duplikat, pencari file besar, dan penganalisis penyimpanan memproses file brankas secara lokal di perangkat. Tidak ada foto, video, dokumen, catatan, nama file, atau hasil analisis yang diunggah atau dibagikan.\n\nCatatan Pribadi dan Dokumen Pribadi disimpan secara lokal dalam bentuk terenkripsi. Aplikasi tidak mengunggah atau membagikan konten ini.\n\nAlbum tersembunyi dan terkunci adalah fitur privasi yang dikendalikan pengguna dan disimpan secara lokal di perangkat.</string>
 
     <!-- Phase 9: Private Camera -->
 
@@ -637,8 +612,6 @@
     <string name="tools_duplicate_desc">Temukan dan hapus foto, video, dan file duplikat</string>
     <string name="tools_large_files">File besar</string>
     <string name="tools_large_files_desc">Temukan file besar yang memakan penyimpanan berharga</string>
-    <string name="tools_smart_cleanup">Pembersihan cerdas</string>
-    <string name="tools_smart_cleanup_desc">Bebaskan ruang, cache, dan data yang tidak perlu</string>
     <string name="tools_storage_analyzer">Penganalisis penyimpanan</string>
     <string name="tools_storage_analyzer_desc">Analisis penyimpanan dan kelola ruang Anda.</string>
     <string name="tools_view_details">Lihat detail</string>
@@ -651,7 +624,6 @@
     <string name="settings_open_unavailable">Layar ini tidak tersedia di perangkat Anda</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>
-    <string name="tools_sample_cleanup_size">1.03 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Tutup</string>
@@ -659,7 +631,6 @@
     <!-- Notes -->
     <string name="notes_title">Catatan pribadi</string>
     <string name="notes_search_hint">Cari catatan</string>
-    <string name="notes_empty">Belum ada catatan. Ketuk + untuk membuat.</string>
     <string name="notes_empty_title">Belum ada catatan</string>
     <string name="notes_empty_subtitle">Jaga pemikiran, ide, dan tugas pribadi Anda tetap aman dan terenkripsi. Ketuk tombol + untuk membuat catatan pertama Anda.</string>
     <string name="notes_new">Catatan baru</string>

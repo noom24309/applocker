@@ -408,43 +408,7 @@
 
                 <View style="@style/SettingsDivider" />
 
-                <!-- Language -->
-                <LinearLayout
-                    android:id="@+id/rowLanguage"
-                    style="@style/SettingsRow">
 
-                    <FrameLayout
-                        style="@style/SettingsIconTile"
-                        android:backgroundTint="@color/home_tile_teal">
-
-                        <ImageView
-                            style="@style/SettingsIconImg"
-                            android:src="@drawable/ic_globe"
-                            app:tint="@color/home_teal" />
-                    </FrameLayout>
-
-                    <LinearLayout style="@style/SettingsRowText">
-
-                        <TextView
-                            style="@style/SettingsRowTitle"
-                            android:text="@string/settings_language" />
-
-                        <TextView
-                            style="@style/SettingsRowDesc"
-                            android:text="@string/settings_language_desc" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvLanguageValue"
-                        style="@style/SettingsRowValue"
-                        android:textColor="@color/home_primary"
-                        android:text="@string/settings_language_default" />
-
-                    <ImageView
-                        style="@style/SettingsRowTrailingIcon"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="@color/home_hint" />
-                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

@@ -2,10 +2,7 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="next">Siguiente</string>
-    <string name="back">Atrás</string>
     <string name="skip">Omitir</string>
-    <string name="get_started">Comenzar</string>
     <string name="continue_label">Continuar</string>
     <string name="cancel">Cancelar</string>
     <string name="coming_next_phase">Próximamente en la siguiente fase</string>
@@ -15,7 +12,6 @@
     <string name="splash_brand_lock">App Lock</string>
     <string name="splash_brand_amp">&amp;</string>
     <string name="splash_brand_vault">Private Vault</string>
-    <string name="splash_securing">Asegurando tu bóveda…</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
     <string name="lv_brand_a">Lock &amp;</string>
@@ -66,29 +62,13 @@
     <string name="lv_vault_recent_empty">Aún no hay multimedia. Importa fotos o videos para empezar.</string>
 
     <!-- Ported onboarding (4-page flow) -->
-    <string name="ob_title_1">Bloquea cualquier app</string>
-    <string name="ob_subtitle_1">Protege tus apps privadas con un PIN, patrón o bloqueo biométrico seguro</string>
-    <string name="ob_title_2">Bóveda privada de fotos y videos</string>
-    <string name="ob_subtitle_2">Oculta y protege tus fotos y videos personales dentro de una bóveda privada segura</string>
-    <string name="ob_title_3">Tú tienes el control</string>
-    <string name="ob_subtitle_3">Elige qué bloquear y gestiona tu privacidad exactamente como quieras</string>
-    <string name="ob_title_4">Todo permanece protegido</string>
-    <string name="ob_subtitle_4">Mantén tus apps, multimedia, archivos y datos privados cifrados y seguros en tu dispositivo.</string>
 
     <!-- Language screens (ported flow) -->
-    <string name="language_screen_subtitle">Elige tu idioma preferido para Lock &amp; Vault.</string>
-    <string name="select_language_prompt">Selecciona un idioma</string>
 
     <!-- Note editor -->
     <string name="note_editor_title">Escribir notas</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title_1">Protección de bloqueo de apps</string>
-    <string name="onboarding_subtitle_1">Bloquea tus apps privadas con PIN, patrón o huella digital.</string>
-    <string name="onboarding_title_2">Bóveda privada de fotos</string>
-    <string name="onboarding_subtitle_2">Oculta tus fotos y videos personales de forma segura.</string>
-    <string name="onboarding_title_3">Mantente privado</string>
-    <string name="onboarding_subtitle_3">Tus fotos y archivos permanecen cifrados en tu dispositivo.</string>
 
     <!-- Choose unlock method -->
     <string name="choose_method_title">Elige cómo desbloquear</string>
@@ -142,7 +122,6 @@
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Gestiona la seguridad, privacidad y preferencias de la app.</string>
     <string name="settings_security_status">Estado de seguridad</string>
-    <string name="settings_security_status_desc">Tu dispositivo y datos están protegidos.</string>
     <string name="settings_security_status_active">Todas las funciones de seguridad están activas</string>
     <string name="settings_change_pin_desc_alt">Cambia el PIN de desbloqueo de la app</string>
     <string name="settings_change_pattern">Cambiar patrón</string>
@@ -160,9 +139,6 @@
     <string name="settings_section_preferences">Preferencias</string>
     <string name="settings_notifications">Notificaciones</string>
     <string name="settings_notifications_desc">Gestiona las notificaciones de la app</string>
-    <string name="settings_language">Idioma</string>
-    <string name="settings_language_desc">Idioma de la app</string>
-    <string name="settings_language_default">English</string>
     <string name="settings_section_more">Más</string>
     <string name="settings_about_app">Acerca de Lock &amp; Vault</string>
     <string name="settings_about_app_desc">Versión, licencias y más</string>
@@ -612,7 +588,6 @@
 
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">Política de privacidad</string>
-    <string name="privacy_policy_body">Permiso de acceso de uso\nEsta app usa el acceso de uso solo para detectar cuándo se abren las apps seleccionadas por el usuario, de modo que pueda mostrar la pantalla de bloqueo. Los datos de uso se procesan localmente en el dispositivo y no se suben, venden, comparten ni usan para publicidad.\n\nMostrar sobre otras apps\nEsta app usa Mostrar sobre otras apps solo para mostrar la pantalla de bloqueo sobre las apps protegidas.\n\nServicio en primer plano\nEsta app usa un servicio en primer plano para mantener activa la protección del bloqueo de apps mientras esté habilitada por el usuario.\n\nHerramientas premium\nLas herramientas premium de limpieza, como el buscador de duplicados, el buscador de archivos grandes y el analizador de almacenamiento, procesan los archivos de la bóveda localmente en el dispositivo. No se suben ni comparten fotos, videos, documentos, notas, nombres de archivo ni resultados de análisis.\n\nLas notas privadas y los documentos privados se almacenan localmente de forma cifrada. La app no sube ni comparte este contenido.\n\nLos álbumes ocultos y bloqueados son funciones de privacidad controladas por el usuario y almacenadas localmente en el dispositivo.</string>
 
     <!-- Phase 9: Private Camera -->
 
@@ -639,8 +614,6 @@
     <string name="tools_duplicate_desc">Encuentra y elimina fotos, videos y archivos duplicados</string>
     <string name="tools_large_files">Archivos grandes</string>
     <string name="tools_large_files_desc">Encuentra archivos grandes que ocupan almacenamiento valioso</string>
-    <string name="tools_smart_cleanup">Limpieza inteligente</string>
-    <string name="tools_smart_cleanup_desc">Libera espacio, caché y datos innecesarios</string>
     <string name="tools_storage_analyzer">Analizador de almacenamiento</string>
     <string name="tools_storage_analyzer_desc">Analiza el almacenamiento y gestiona tu espacio.</string>
     <string name="tools_view_details">Ver detalles</string>
@@ -653,7 +626,6 @@
     <string name="settings_open_unavailable">Esta pantalla no está disponible en tu dispositivo</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>
-    <string name="tools_sample_cleanup_size">1.03 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Cerrar</string>
@@ -661,7 +633,6 @@
     <!-- Notes -->
     <string name="notes_title">Notas privadas</string>
     <string name="notes_search_hint">Buscar notas</string>
-    <string name="notes_empty">Aún no hay notas. Toca + para crear una.</string>
     <string name="notes_empty_title">Aún no hay notas</string>
     <string name="notes_empty_subtitle">Mantén tus pensamientos, ideas y tareas privadas seguras y cifradas. Toca el botón + para crear tu primera nota.</string>
     <string name="notes_new">Nueva nota</string>

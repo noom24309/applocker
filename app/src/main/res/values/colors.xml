@@ -61,18 +61,9 @@
 
     <color name="tile_blue_bg">#EAF0FF</color>
     <color name="tile_purple_bg">#F0EBFE</color>
-    <color name="tile_gray_bg">#F6F8F5</color>
 
     <!-- Splash screen (branded) -->
-    <color name="splash_grad_top">#5A63F0</color>
-    <color name="splash_grad_bottom">#8B3CE6</color>
     <color name="splash_accent">#2FE0D0</color>
-    <color name="splash_lock_green">#16D08D</color>
-    <color name="splash_blob">#1AFFFFFF</color>
-    <color name="splash_glass">#26FFFFFF</color>
-    <color name="splash_halo">#14FFFFFF</color>
-    <color name="splash_dot">#33FFFFFF</color>
-    <color name="splash_subtitle">#CDD7FB</color>
 
     <!-- Home screen (Lock & Vault redesign) -->
     <color name="home_bg">#ffffff</color>

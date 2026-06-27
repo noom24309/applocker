@@ -69,9 +69,14 @@ class AppLockMonitorService : Service() {
     private var screenReceiver: BroadcastReceiver? = null
 
     // Re-promotes the service to foreground when the user swipes the notification away.
+    // On Android 14/15, startForeground() has a system cooldown after dismissal, so we
+    // call notifyUpdate() first — that posts the notification as a regular ongoing entry
+    // (non-dismissible by swipe) while the cooldown resolves, then startInForeground()
+    // re-ties it to the foreground service.
     private val notifDeletedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == AppLockNotificationHelper.ACTION_NOTIFICATION_DELETED) {
+                notificationHelper.notifyUpdate(lockedPackages.size)
                 startInForeground()
             }
         }
@@ -131,13 +136,14 @@ class AppLockMonitorService : Service() {
         scope.launch {
             dataStore.appLockFeatureEnabled.collectLatest { enabled -> if (!enabled) stopSelf() }
         }
-        // Periodically check if our notification is still visible. On some OEMs the
-        // system removes it silently even with setOngoing(true). Re-posting it keeps
-        // the service in the foreground state so the OS doesn't kill it.
+        // Periodically verify notification is still visible. On Android 14/15 users can
+        // swipe FGS notifications; on OEMs the system removes them silently. When apps
+        // are locked we check every 2 s so the notification reappears almost instantly.
         scope.launch {
             while (isActive) {
-                delay(FOREGROUND_RECHECK_INTERVAL)
+                delay(if (lockedPackages.isNotEmpty()) RECHECK_ACTIVE_MS else RECHECK_IDLE_MS)
                 if (!isNotificationVisible()) {
+                    notificationHelper.notifyUpdate(lockedPackages.size)
                     startInForeground()
                 }
             }
@@ -314,7 +320,8 @@ class AppLockMonitorService : Service() {
         private const val RESTART_REQUEST_CODE = 4203
         private const val RESTART_DELAY_MILLIS = 1_000L
 
-        // How often to verify our notification is still visible and re-post if not.
-        private const val FOREGROUND_RECHECK_INTERVAL = 30_000L
+        // Notification visibility recheck: fast when apps are locked, idle otherwise.
+        private const val RECHECK_ACTIVE_MS = 2_000L
+        private const val RECHECK_IDLE_MS = 30_000L
     }
 }

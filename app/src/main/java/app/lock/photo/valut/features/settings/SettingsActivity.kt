@@ -22,9 +22,7 @@ import app.lock.photo.valut.features.applock.AppLockActivity
 import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
 import app.lock.photo.valut.features.auth.pin.ChangePinActivity
 import app.lock.photo.valut.features.auth.verify.VerifyMasterActivity
-import app.lock.photo.valut.features.language.LanguageActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.wastickers.romantic.stickers.loveromance.ui.settings.SettingActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -81,7 +79,6 @@ class SettingsActivity : BaseActivity() {
         binding.rowAppLockSettings.setOnClickListener { openAppLock() }
         binding.rowLockOverlay.setOnClickListener { openAppLock() }
         binding.rowNotifications.setOnClickListener { openNotificationSettings() }
-        binding.rowLanguage.setOnClickListener { openLanguageSettings() }
         binding.rowPrivacy.setOnClickListener { showPrivacyPolicy() }
         binding.rowAbout.setOnClickListener { showAbout() }
         binding.rowRate.setOnClickListener { openPlayStoreListing() }
@@ -153,12 +150,7 @@ class SettingsActivity : BaseActivity() {
         startSystemSettings(intent)
     }
 
-    private fun openLanguageSettings() {
-        // Came from in-app settings: after the user picks a language the ported
-        // language flow routes back to MainActivity (home) instead of onboarding.
-        SettingActivity.comeFromLangauge = true
-        startActivity(Intent(this, LanguageActivity::class.java))
-    }
+
 
     /** Launches a system settings screen, falling back to a toast if unavailable. */
     private fun startSystemSettings(intent: Intent) {

@@ -2,10 +2,7 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="next">İleri</string>
-    <string name="back">Geri</string>
     <string name="skip">Atla</string>
-    <string name="get_started">Başla</string>
     <string name="continue_label">Devam et</string>
     <string name="cancel">İptal</string>
     <string name="coming_next_phase">Sonraki aşamada geliyor</string>
@@ -15,7 +12,6 @@
     <string name="splash_brand_lock">App Lock</string>
     <string name="splash_brand_amp">&amp;</string>
     <string name="splash_brand_vault">Private Vault</string>
-    <string name="splash_securing">Kasanız güvenceye alınıyor…</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
     <string name="lv_brand_a">Lock &amp;</string>
@@ -66,29 +62,13 @@
     <string name="lv_vault_recent_empty">Henüz medya yok. Başlamak için fotoğraf veya video içe aktarın.</string>
 
     <!-- Ported onboarding (4-page flow) -->
-    <string name="ob_title_1">Herhangi bir uygulamayı kilitleyin</string>
-    <string name="ob_subtitle_1">Özel uygulamalarınızı güvenli bir PIN, desen veya biyometrik kilitle koruyun</string>
-    <string name="ob_title_2">Özel fotoğraf ve video kasası</string>
-    <string name="ob_subtitle_2">Kişisel fotoğraf ve videolarınızı güvenli bir özel kasada gizleyin ve koruyun</string>
-    <string name="ob_title_3">Kontrol sizde</string>
-    <string name="ob_subtitle_3">Neyin kilitleneceğini seçin ve gizliliğinizi tam istediğiniz gibi yönetin</string>
-    <string name="ob_title_4">Her şey korunmaya devam eder</string>
-    <string name="ob_subtitle_4">Uygulamalarınızı, medyanızı, dosyalarınızı ve özel verilerinizi cihazınızda şifreli ve güvende tutun.</string>
 
     <!-- Language screens (ported flow) -->
-    <string name="language_screen_subtitle">Lock &amp; Vault için tercih ettiğiniz dili seçin.</string>
-    <string name="select_language_prompt">Lütfen bir dil seçin</string>
 
     <!-- Note editor -->
     <string name="note_editor_title">Not yazın</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title_1">Uygulama kilidi koruması</string>
-    <string name="onboarding_subtitle_1">Özel uygulamalarınızı PIN, desen veya parmak iziyle kilitleyin.</string>
-    <string name="onboarding_title_2">Özel fotoğraf kasası</string>
-    <string name="onboarding_subtitle_2">Kişisel fotoğraf ve videolarınızı güvenli bir şekilde gizleyin.</string>
-    <string name="onboarding_title_3">Özel kalın</string>
-    <string name="onboarding_subtitle_3">Fotoğraf ve dosyalarınız cihazınızda şifreli kalır.</string>
 
     <!-- Choose unlock method -->
     <string name="choose_method_title">Kilit açma yöntemini seçin</string>
@@ -142,7 +122,6 @@
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Güvenlik, gizlilik ve uygulama tercihlerini yönetin.</string>
     <string name="settings_security_status">Güvenlik durumu</string>
-    <string name="settings_security_status_desc">Cihazınız ve verileriniz korunuyor.</string>
     <string name="settings_security_status_active">Tüm güvenlik özellikleri etkin</string>
     <string name="settings_change_pin_desc_alt">Uygulama kilit açma PIN\'inizi değiştirin</string>
     <string name="settings_change_pattern">Deseni değiştir</string>
@@ -160,9 +139,6 @@
     <string name="settings_section_preferences">Tercihler</string>
     <string name="settings_notifications">Bildirimler</string>
     <string name="settings_notifications_desc">Uygulama bildirimlerini yönetin</string>
-    <string name="settings_language">Dil</string>
-    <string name="settings_language_desc">Uygulama dili</string>
-    <string name="settings_language_default">English</string>
     <string name="settings_section_more">Daha fazla</string>
     <string name="settings_about_app">Lock &amp; Vault hakkında</string>
     <string name="settings_about_app_desc">Sürüm, lisanslar ve daha fazlası</string>
@@ -612,7 +588,6 @@
 
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">Gizlilik politikası</string>
-    <string name="privacy_policy_body">Kullanım Erişimi İzni\nBu uygulama, Kullanım Erişimini yalnızca kullanıcının seçtiği uygulamaların ne zaman açıldığını algılamak için kullanır, böylece kilit ekranını gösterebilir. Kullanım verileri cihazda yerel olarak işlenir ve yüklenmez, satılmaz, paylaşılmaz veya reklam için kullanılmaz.\n\nDiğer Uygulamaların Üzerinde Görüntüle\nBu uygulama, Diğer Uygulamaların Üzerinde Görüntüleme özelliğini yalnızca kilit ekranını korunan uygulamaların üzerinde göstermek için kullanır.\n\nÖn Plan Hizmeti\nBu uygulama, kullanıcı tarafından etkinleştirildiğinde Uygulama Kilidi korumasını etkin tutmak için bir ön plan hizmeti kullanır.\n\nPremium Araçlar\nYinelenen bulucu, büyük dosya bulucu ve depolama çözümleyici gibi premium temizleme araçları, kasa dosyalarını cihazda yerel olarak işler. Hiçbir fotoğraf, video, belge, not, dosya adı veya analiz sonucu yüklenmez veya paylaşılmaz.\n\nÖzel Notlar ve Özel Belgeler şifreli biçimde yerel olarak saklanır. Uygulama bu içeriği yüklemez veya paylaşmaz.\n\nGizli ve kilitli albümler, kullanıcı tarafından kontrol edilen gizlilik özellikleridir ve cihazda yerel olarak saklanır.</string>
 
     <!-- Phase 9: Private Camera -->
 
@@ -639,8 +614,6 @@
     <string name="tools_duplicate_desc">Yinelenen fotoğraf, video ve dosyaları bulun ve kaldırın</string>
     <string name="tools_large_files">Büyük dosyalar</string>
     <string name="tools_large_files_desc">Değerli depolama alanı kaplayan büyük dosyaları bulun</string>
-    <string name="tools_smart_cleanup">Akıllı temizleme</string>
-    <string name="tools_smart_cleanup_desc">Alan, önbellek ve gereksiz verileri serbest bırakın</string>
     <string name="tools_storage_analyzer">Depolama çözümleyici</string>
     <string name="tools_storage_analyzer_desc">Depolamayı analiz edin ve alanınızı yönetin.</string>
     <string name="tools_view_details">Ayrıntıları gör</string>
@@ -653,7 +626,6 @@
     <string name="settings_open_unavailable">Bu ekran cihazınızda kullanılamıyor</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>
-    <string name="tools_sample_cleanup_size">1.03 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Kapat</string>
@@ -661,7 +633,6 @@
     <!-- Notes -->
     <string name="notes_title">Özel notlar</string>
     <string name="notes_search_hint">Notlarda ara</string>
-    <string name="notes_empty">Henüz not yok. Bir tane oluşturmak için + simgesine dokunun.</string>
     <string name="notes_empty_title">Henüz not yok</string>
     <string name="notes_empty_subtitle">Özel düşüncelerinizi, fikirlerinizi ve yapılacaklarınızı güvende ve şifreli tutun. İlk notunuzu oluşturmak için + düğmesine dokunun.</string>
     <string name="notes_new">Yeni not</string>

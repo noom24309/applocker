@@ -2,10 +2,7 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="next">التالي</string>
-    <string name="back">رجوع</string>
     <string name="skip">تخطّي</string>
-    <string name="get_started">ابدأ</string>
     <string name="continue_label">متابعة</string>
     <string name="cancel">إلغاء</string>
     <string name="coming_next_phase">قادم في المرحلة التالية</string>
@@ -15,7 +12,6 @@
     <string name="splash_brand_lock">App Lock</string>
     <string name="splash_brand_amp">&amp;</string>
     <string name="splash_brand_vault">Private Vault</string>
-    <string name="splash_securing">جارٍ تأمين خزنتك…</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
     <string name="lv_brand_a">Lock &amp;</string>
@@ -66,29 +62,13 @@
     <string name="lv_vault_recent_empty">لا توجد وسائط بعد. استورد صورًا أو مقاطع فيديو للبدء.</string>
 
     <!-- Ported onboarding (4-page flow) -->
-    <string name="ob_title_1">اقفل أي تطبيق</string>
-    <string name="ob_subtitle_1">احمِ تطبيقاتك الخاصة برمز PIN أو نمط أو قفل بيومتري آمن</string>
-    <string name="ob_title_2">خزنة الصور والفيديو الخاصة</string>
-    <string name="ob_subtitle_2">أخفِ واحمِ صورك ومقاطع الفيديو الشخصية داخل خزنة خاصة آمنة</string>
-    <string name="ob_title_3">أنت المتحكّم</string>
-    <string name="ob_subtitle_3">اختر ما تريد قفله وأدر خصوصيتك تمامًا كما تريد</string>
-    <string name="ob_title_4">كل شيء يبقى محميًا</string>
-    <string name="ob_subtitle_4">حافظ على تطبيقاتك ووسائطك وملفاتك وبياناتك الخاصة مشفّرة وآمنة على جهازك.</string>
 
     <!-- Language screens (ported flow) -->
-    <string name="language_screen_subtitle">اختر لغتك المفضلة لـ Lock &amp; Vault.</string>
-    <string name="select_language_prompt">يرجى اختيار اللغة</string>
 
     <!-- Note editor -->
     <string name="note_editor_title">أدخل الملاحظات</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title_1">حماية قفل التطبيقات</string>
-    <string name="onboarding_subtitle_1">اقفل تطبيقاتك الخاصة برمز PIN أو نمط أو بصمة.</string>
-    <string name="onboarding_title_2">خزنة الصور الخاصة</string>
-    <string name="onboarding_subtitle_2">أخفِ صورك ومقاطع الفيديو الشخصية بأمان.</string>
-    <string name="onboarding_title_3">ابقَ خاصًا</string>
-    <string name="onboarding_subtitle_3">تبقى صورك وملفاتك مشفّرة على جهازك.</string>
 
     <!-- Choose unlock method -->
     <string name="choose_method_title">اختر طريقة إلغاء القفل</string>
@@ -142,7 +122,6 @@
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">إدارة الأمان والخصوصية وتفضيلات التطبيق.</string>
     <string name="settings_security_status">حالة الأمان</string>
-    <string name="settings_security_status_desc">جهازك وبياناتك محمية.</string>
     <string name="settings_security_status_active">جميع ميزات الأمان مفعّلة</string>
     <string name="settings_change_pin_desc_alt">غيّر رمز PIN لإلغاء قفل التطبيق</string>
     <string name="settings_change_pattern">تغيير النمط</string>
@@ -160,9 +139,6 @@
     <string name="settings_section_preferences">التفضيلات</string>
     <string name="settings_notifications">الإشعارات</string>
     <string name="settings_notifications_desc">إدارة إشعارات التطبيق</string>
-    <string name="settings_language">اللغة</string>
-    <string name="settings_language_desc">لغة التطبيق</string>
-    <string name="settings_language_default">English</string>
     <string name="settings_section_more">المزيد</string>
     <string name="settings_about_app">حول Lock &amp; Vault</string>
     <string name="settings_about_app_desc">الإصدار والتراخيص والمزيد</string>
@@ -620,7 +596,6 @@
 
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">سياسة الخصوصية</string>
-    <string name="privacy_policy_body">إذن الوصول إلى الاستخدام\nيستخدم هذا التطبيق الوصول إلى الاستخدام فقط لاكتشاف وقت فتح التطبيقات التي يحددها المستخدم، حتى يتمكن من عرض شاشة القفل. تُعالَج بيانات الاستخدام محليًا على الجهاز ولا تُرفع أو تُباع أو تُشارك أو تُستخدم للإعلانات.\n\nالعرض فوق التطبيقات الأخرى\nيستخدم هذا التطبيق العرض فوق التطبيقات الأخرى فقط لعرض شاشة القفل فوق التطبيقات المحمية.\n\nخدمة الواجهة الأمامية\nيستخدم هذا التطبيق خدمة الواجهة الأمامية لإبقاء حماية قفل التطبيقات مفعّلة أثناء تمكينها من قبل المستخدم.\n\nالأدوات المميزة\nتعالج أدوات التنظيف المميزة مثل باحث التكرارات وباحث الملفات الكبيرة ومحلل التخزين ملفات الخزنة محليًا على الجهاز. لا تُرفع أو تُشارك أي صور أو مقاطع فيديو أو مستندات أو ملاحظات أو أسماء ملفات أو نتائج تحليل.\n\nتُخزَّن الملاحظات الخاصة والمستندات الخاصة محليًا بشكل مشفّر. لا يرفع التطبيق هذا المحتوى أو يشاركه.\n\nالألبومات المخفية والمقفلة هي ميزات خصوصية يتحكم بها المستخدم وتُخزَّن محليًا على الجهاز.</string>
 
     <!-- Phase 9: Private Camera -->
 
@@ -647,8 +622,6 @@
     <string name="tools_duplicate_desc">ابحث عن الصور ومقاطع الفيديو والملفات المكررة واحذفها</string>
     <string name="tools_large_files">الملفات الكبيرة</string>
     <string name="tools_large_files_desc">ابحث عن الملفات الكبيرة التي تشغل مساحة تخزين ثمينة</string>
-    <string name="tools_smart_cleanup">التنظيف الذكي</string>
-    <string name="tools_smart_cleanup_desc">حرّر المساحة والذاكرة المؤقتة والبيانات غير الضرورية</string>
     <string name="tools_storage_analyzer">محلل التخزين</string>
     <string name="tools_storage_analyzer_desc">حلّل التخزين وأدر مساحتك.</string>
     <string name="tools_view_details">عرض التفاصيل</string>
@@ -661,7 +634,6 @@
     <string name="settings_open_unavailable">هذه الشاشة غير متاحة على جهازك</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>
-    <string name="tools_sample_cleanup_size">1.03 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">إغلاق</string>
@@ -669,7 +641,6 @@
     <!-- Notes -->
     <string name="notes_title">الملاحظات الخاصة</string>
     <string name="notes_search_hint">ابحث في الملاحظات</string>
-    <string name="notes_empty">لا توجد ملاحظات بعد. اضغط + لإنشاء واحدة.</string>
     <string name="notes_empty_title">لا توجد ملاحظات بعد</string>
     <string name="notes_empty_subtitle">احتفظ بأفكارك وتدويناتك ومهامك الخاصة آمنة ومشفّرة. اضغط زر + لإنشاء أول ملاحظة.</string>
     <string name="notes_new">ملاحظة جديدة</string>

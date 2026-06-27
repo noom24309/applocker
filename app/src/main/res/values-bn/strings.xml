@@ -2,10 +2,7 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="next">পরবর্তী</string>
-    <string name="back">পিছনে</string>
     <string name="skip">এড়িয়ে যান</string>
-    <string name="get_started">শুরু করুন</string>
     <string name="continue_label">চালিয়ে যান</string>
     <string name="cancel">বাতিল</string>
     <string name="coming_next_phase">পরবর্তী ধাপে আসছে</string>
@@ -15,7 +12,6 @@
     <string name="splash_brand_lock">App Lock</string>
     <string name="splash_brand_amp">&amp;</string>
     <string name="splash_brand_vault">Private Vault</string>
-    <string name="splash_securing">আপনার ভল্ট সুরক্ষিত করা হচ্ছে…</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
     <string name="lv_brand_a">Lock &amp;</string>
@@ -66,29 +62,13 @@
     <string name="lv_vault_recent_empty">এখনও কোনো মিডিয়া নেই. শুরু করতে ছবি বা ভিডিও আমদানি করুন.</string>
 
     <!-- Ported onboarding (4-page flow) -->
-    <string name="ob_title_1">যেকোনো অ্যাপ লক করুন</string>
-    <string name="ob_subtitle_1">একটি সুরক্ষিত PIN, প্যাটার্ন বা বায়োমেট্রিক লক দিয়ে আপনার ব্যক্তিগত অ্যাপ রক্ষা করুন</string>
-    <string name="ob_title_2">ব্যক্তিগত ছবি ও ভিডিও ভল্ট</string>
-    <string name="ob_subtitle_2">একটি সুরক্ষিত ব্যক্তিগত ভল্টে আপনার ব্যক্তিগত ছবি ও ভিডিও লুকান ও রক্ষা করুন</string>
-    <string name="ob_title_3">নিয়ন্ত্রণ আপনার হাতে</string>
-    <string name="ob_subtitle_3">কী লক করবেন তা বেছে নিন এবং আপনার গোপনীয়তা ঠিক আপনার ইচ্ছামতো পরিচালনা করুন</string>
-    <string name="ob_title_4">সবকিছু সুরক্ষিত থাকে</string>
-    <string name="ob_subtitle_4">আপনার ডিভাইসে আপনার অ্যাপ, মিডিয়া, ফাইল ও ব্যক্তিগত ডেটা এনক্রিপ্ট ও সুরক্ষিত রাখুন.</string>
 
     <!-- Language screens (ported flow) -->
-    <string name="language_screen_subtitle">Lock &amp; Vault-এর জন্য আপনার পছন্দের ভাষা বেছে নিন.</string>
-    <string name="select_language_prompt">অনুগ্রহ করে ভাষা বেছে নিন</string>
 
     <!-- Note editor -->
     <string name="note_editor_title">নোট লিখুন</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title_1">অ্যাপ লক সুরক্ষা</string>
-    <string name="onboarding_subtitle_1">PIN, প্যাটার্ন বা ফিঙ্গারপ্রিন্ট দিয়ে আপনার ব্যক্তিগত অ্যাপ লক করুন.</string>
-    <string name="onboarding_title_2">ব্যক্তিগত ছবি ভল্ট</string>
-    <string name="onboarding_subtitle_2">আপনার ব্যক্তিগত ছবি ও ভিডিও নিরাপদে লুকান.</string>
-    <string name="onboarding_title_3">ব্যক্তিগত থাকুন</string>
-    <string name="onboarding_subtitle_3">আপনার ছবি ও ফাইল আপনার ডিভাইসে এনক্রিপ্ট করা থাকে.</string>
 
     <!-- Choose unlock method -->
     <string name="choose_method_title">কীভাবে আনলক করবেন বেছে নিন</string>
@@ -142,7 +122,6 @@
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">নিরাপত্তা, গোপনীয়তা ও অ্যাপ পছন্দ পরিচালনা করুন.</string>
     <string name="settings_security_status">নিরাপত্তা অবস্থা</string>
-    <string name="settings_security_status_desc">আপনার ডিভাইস ও ডেটা সুরক্ষিত.</string>
     <string name="settings_security_status_active">সব নিরাপত্তা বৈশিষ্ট্য সক্রিয়</string>
     <string name="settings_change_pin_desc_alt">আপনার অ্যাপ আনলক PIN পরিবর্তন করুন</string>
     <string name="settings_change_pattern">প্যাটার্ন পরিবর্তন করুন</string>
@@ -160,9 +139,6 @@
     <string name="settings_section_preferences">পছন্দসমূহ</string>
     <string name="settings_notifications">বিজ্ঞপ্তি</string>
     <string name="settings_notifications_desc">অ্যাপ বিজ্ঞপ্তি পরিচালনা করুন</string>
-    <string name="settings_language">ভাষা</string>
-    <string name="settings_language_desc">অ্যাপ ভাষা</string>
-    <string name="settings_language_default">English</string>
     <string name="settings_section_more">আরও</string>
     <string name="settings_about_app">Lock &amp; Vault সম্পর্কে</string>
     <string name="settings_about_app_desc">সংস্করণ, লাইসেন্স ও আরও</string>
@@ -612,7 +588,6 @@
 
     <!-- Privacy policy (App Lock sections) -->
     <string name="privacy_policy_title">গোপনীয়তা নীতি</string>
-    <string name="privacy_policy_body">ব্যবহার অ্যাক্সেস অনুমতি\nএই অ্যাপ ব্যবহার অ্যাক্সেস শুধুমাত্র ব্যবহারকারীর নির্বাচিত অ্যাপ কখন খোলা হয় তা সনাক্ত করতে ব্যবহার করে, যাতে অ্যাপ লক স্ক্রিন দেখাতে পারে. ব্যবহারের ডেটা ডিভাইসে স্থানীয়ভাবে প্রক্রিয়া করা হয় এবং আপলোড, বিক্রি, শেয়ার বা বিজ্ঞাপনের জন্য ব্যবহার করা হয় না.\n\nঅন্যান্য অ্যাপের উপরে প্রদর্শন\nএই অ্যাপ অন্যান্য অ্যাপের উপরে প্রদর্শন শুধুমাত্র সুরক্ষিত অ্যাপের উপরে লক স্ক্রিন দেখাতে ব্যবহার করে.\n\nফোরগ্রাউন্ড পরিষেবা\nএই অ্যাপ ব্যবহারকারী কর্তৃক সক্ষম থাকাকালীন অ্যাপ লক সুরক্ষা সক্রিয় রাখতে একটি ফোরগ্রাউন্ড পরিষেবা ব্যবহার করে.\n\nপ্রিমিয়াম টুলস\nডুপ্লিকেট ফাইন্ডার, বড় ফাইল ফাইন্ডার ও স্টোরেজ অ্যানালাইজারের মতো প্রিমিয়াম ক্লিনআপ টুল ভল্ট ফাইলগুলি ডিভাইসে স্থানীয়ভাবে প্রক্রিয়া করে. কোনো ছবি, ভিডিও, নথি, নোট, ফাইলের নাম বা বিশ্লেষণের ফলাফল আপলোড বা শেয়ার করা হয় না.\n\nব্যক্তিগত নোট ও ব্যক্তিগত নথি স্থানীয়ভাবে এনক্রিপ্ট করা আকারে সংরক্ষিত হয়. অ্যাপ এই বিষয়বস্তু আপলোড বা শেয়ার করে না.\n\nলুকানো ও লক করা অ্যালবাম ব্যবহারকারী নিয়ন্ত্রিত গোপনীয়তা বৈশিষ্ট্য এবং ডিভাইসে স্থানীয়ভাবে সংরক্ষিত হয়.</string>
 
     <!-- Phase 9: Private Camera -->
 
@@ -639,8 +614,6 @@
     <string name="tools_duplicate_desc">ডুপ্লিকেট ছবি, ভিডিও ও ফাইল খুঁজুন ও সরান</string>
     <string name="tools_large_files">বড় ফাইল</string>
     <string name="tools_large_files_desc">মূল্যবান স্টোরেজ দখল করা বড় ফাইল খুঁজুন</string>
-    <string name="tools_smart_cleanup">স্মার্ট ক্লিনআপ</string>
-    <string name="tools_smart_cleanup_desc">স্থান, ক্যাশে ও অপ্রয়োজনীয় ডেটা খালি করুন</string>
     <string name="tools_storage_analyzer">স্টোরেজ অ্যানালাইজার</string>
     <string name="tools_storage_analyzer_desc">স্টোরেজ বিশ্লেষণ করুন ও আপনার স্থান পরিচালনা করুন.</string>
     <string name="tools_view_details">বিস্তারিত দেখুন</string>
@@ -653,7 +626,6 @@
     <string name="settings_open_unavailable">এই স্ক্রিন আপনার ডিভাইসে উপলব্ধ নয়</string>
     <string name="tools_sample_dup_size">1.26 GB</string>
     <string name="tools_sample_large_size">2.34 GB</string>
-    <string name="tools_sample_cleanup_size">1.03 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">বন্ধ করুন</string>
@@ -661,7 +633,6 @@
     <!-- Notes -->
     <string name="notes_title">ব্যক্তিগত নোট</string>
     <string name="notes_search_hint">নোট খুঁজুন</string>
-    <string name="notes_empty">এখনও কোনো নোট নেই. একটি তৈরি করতে + ট্যাপ করুন.</string>
     <string name="notes_empty_title">এখনও কোনো নোট নেই</string>
     <string name="notes_empty_subtitle">আপনার ব্যক্তিগত চিন্তা, ধারণা ও করণীয় নিরাপদ ও এনক্রিপ্ট করা রাখুন. আপনার প্রথম নোট তৈরি করতে + বোতাম ট্যাপ করুন.</string>
     <string name="notes_new">নতুন নোট</string>

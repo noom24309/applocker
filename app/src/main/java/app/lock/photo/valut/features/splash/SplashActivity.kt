@@ -22,7 +22,6 @@ import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivitySplashBinding
 import app.lock.photo.valut.domain.model.StartDestination
 import app.lock.photo.valut.features.auth.unlock.ChooseUnlockMethodActivity
-import app.lock.photo.valut.features.language.LanguageActivity
 import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
 import com.ads.control.admob.AdsConsentManager
 import com.ads.control.ads.VioAdmob
@@ -131,10 +130,6 @@ class SplashActivity : BaseActivity(), LockExempt {
             loadNativeAd()
         }
 
-        if (remoteConfig["nativeLang"].asBoolean()) {
-            AdsProvider.nativeLanguage.loadAds(this)
-        }
-
         if (remoteConfig["interSplash"].asBoolean()) {
             loadSplashInterstitial()
         } else {
@@ -241,7 +236,6 @@ class SplashActivity : BaseActivity(), LockExempt {
         mainHandler.removeCallbacks(showInterRunnable)
 
         val intent = when (route.destination) {
-            StartDestination.ONBOARDING -> Intent(this, LanguageActivity::class.java)
             StartDestination.PERMISSION_GATE -> AppLockPermissionActivity.gateIntent(this)
             StartDestination.SETUP_CREDENTIAL -> Intent(this, ChooseUnlockMethodActivity::class.java)
             StartDestination.LOCKED -> LockRouter.lockIntent(this, route.unlockMethod)
