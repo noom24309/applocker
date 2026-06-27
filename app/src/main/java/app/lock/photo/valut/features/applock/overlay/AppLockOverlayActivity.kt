@@ -21,6 +21,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
+import app.lock.photo.valut.ad_mob.AdsProvider
+import app.lock.photo.valut.ad_mob.OpenApp
 import app.lock.photo.valut.core.applock.AppIconCacheManager
 import app.lock.photo.valut.core.applock.AppLockOverlayStateManager
 import app.lock.photo.valut.core.lock.LockExempt
@@ -30,8 +32,11 @@ import app.lock.photo.valut.domain.model.FakeMode
 import app.lock.photo.valut.domain.model.LockTheme
 import app.lock.photo.valut.domain.model.UnlockMethod
 import app.lock.photo.valut.features.applock.model.AppLockOverlayUiState
+import com.google.firebase.remoteconfig.get
+import com.wastickers.romantic.stickers.loveromance.ad_mob.util.showNativeAd
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -60,6 +65,7 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
     private val keyViews = mutableListOf<View>()
     private var pinLength = 4
 
+    private val remoteConfig=getRemoteConfig()
     private var currentMethod: UnlockMethod = UnlockMethod.PIN
     private var biometricReady = false
     private var biometricPrompted = false
@@ -86,8 +92,21 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
         loadIcon(intent.getStringExtra(EXTRA_PACKAGE))
         observeState()
         observeEvents()
+
+        loadNativeAd()
     }
 
+    private fun loadNativeAd() {
+        if (!remoteConfig["nativePattern"].asBoolean()) return
+        AdsProvider.nativeHome.loadAds(this)
+        val nativeFlow = MutableStateFlow(false)
+        showNativeAd(
+            adGroup = AdsProvider.nativeHome,
+            frameLayout = binding.flAdNative,
+            adLayout = R.layout.native_medium_ad_layout_new,
+            nativeAdPopulatedFlow = nativeFlow
+        )
+    }
     private fun observeState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) { viewModel.state.collect(::render) }
@@ -361,6 +380,9 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
 
     private fun onUnlocked() {
         unlockSucceeded = true
+        // Suppress the AppOpen ad that would fire when the user returns to our app
+        // after having used the unlocked third-party app.
+        OpenApp.skipOneResume()
         // The overlay lives in its own task, so finishing it doesn't reliably reveal the
         // protected app (it often drops to the launcher). Bring the app's existing task
         // back to the front explicitly, then close the overlay.

@@ -1,8 +1,7 @@
 package app.lock.photo.valut.features.auth.unlock
-import app.lock.photo.valut.features.auth.recovery.ForgotPinActivity
-import app.lock.photo.valut.features.auth.pin.BasePinActivity
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -13,6 +12,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockScreen
 import app.lock.photo.valut.core.permissions.BiometricHelper
+import app.lock.photo.valut.features.auth.pin.BasePinActivity
+import app.lock.photo.valut.features.auth.recovery.ForgotPinActivity
 import app.lock.photo.valut.features.home.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -42,6 +43,9 @@ class UnlockActivity : BasePinActivity(), LockScreen {
         findViewById<View>(R.id.btnForgotPin).setOnClickListener {
             startActivity(Intent(this, ForgotPinActivity::class.java))
         }
+
+        Log.e("TAG**********", "onCreate: bbbbbbbbbbbbbb", )
+
         observeState()
         observeEvents()
         setupBiometric()

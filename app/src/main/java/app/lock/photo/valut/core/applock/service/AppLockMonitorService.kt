@@ -1,6 +1,7 @@
 package app.lock.photo.valut.core.applock.service
 
 import android.app.AlarmManager
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
@@ -67,6 +68,15 @@ class AppLockMonitorService : Service() {
     private val launcherPackages: Set<String> by lazy { resolveLaunchers() }
     private var screenReceiver: BroadcastReceiver? = null
 
+    // Re-promotes the service to foreground when the user swipes the notification away.
+    private val notifDeletedReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == AppLockNotificationHelper.ACTION_NOTIFICATION_DELETED) {
+                startInForeground()
+            }
+        }
+    }
+
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onCreate() {
@@ -76,6 +86,7 @@ class AppLockMonitorService : Service() {
         startInForeground()
         serviceManager.onServiceStarted()
         registerScreenReceiver()
+        registerNotifDeletedReceiver()
         observeState()
     }
 
@@ -120,7 +131,23 @@ class AppLockMonitorService : Service() {
         scope.launch {
             dataStore.appLockFeatureEnabled.collectLatest { enabled -> if (!enabled) stopSelf() }
         }
+        // Periodically check if our notification is still visible. On some OEMs the
+        // system removes it silently even with setOngoing(true). Re-posting it keeps
+        // the service in the foreground state so the OS doesn't kill it.
+        scope.launch {
+            while (isActive) {
+                delay(FOREGROUND_RECHECK_INTERVAL)
+                if (!isNotificationVisible()) {
+                    startInForeground()
+                }
+            }
+        }
     }
+
+    private fun isNotificationVisible(): Boolean = runCatching {
+        val nm = getSystemService(NotificationManager::class.java) ?: return false
+        nm.activeNotifications.any { it.id == AppLockNotificationHelper.NOTIFICATION_ID }
+    }.getOrDefault(true) // assume visible on error to avoid unnecessary re-posts
 
     private fun startMonitoring() {
         if (monitorJob?.isActive == true) return
@@ -198,6 +225,15 @@ class AppLockMonitorService : Service() {
             .toSet()
     }.getOrDefault(emptySet())
 
+    private fun registerNotifDeletedReceiver() {
+        val filter = IntentFilter(AppLockNotificationHelper.ACTION_NOTIFICATION_DELETED)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(notifDeletedReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(notifDeletedReceiver, filter)
+        }
+    }
+
     private fun registerScreenReceiver() {
         val receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
@@ -262,6 +298,7 @@ class AppLockMonitorService : Service() {
         scope.cancel()
         screenReceiver?.let { runCatching { unregisterReceiver(it) } }
         screenReceiver = null
+        runCatching { unregisterReceiver(notifDeletedReceiver) }
         sessionManager.clearAll()
         overlayState.clear()
         serviceManager.onServiceStopped()
@@ -276,5 +313,8 @@ class AppLockMonitorService : Service() {
 
         private const val RESTART_REQUEST_CODE = 4203
         private const val RESTART_DELAY_MILLIS = 1_000L
+
+        // How often to verify our notification is still visible and re-post if not.
+        private const val FOREGROUND_RECHECK_INTERVAL = 30_000L
     }
 }

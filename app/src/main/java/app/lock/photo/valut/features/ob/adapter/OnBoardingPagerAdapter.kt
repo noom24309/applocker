@@ -3,10 +3,10 @@ package app.lock.photo.valut.features.ob.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.wastickers.romantic.stickers.loveromance.ui.ob.fragment.OnboardingFragment1
-import com.wastickers.romantic.stickers.loveromance.ui.ob.fragment.OnboardingFragment2
-import com.wastickers.romantic.stickers.loveromance.ui.ob.fragment.OnboardingFragment3
-import com.wastickers.romantic.stickers.loveromance.ui.ob.fragment.OnboardingFragment4
+import app.lock.photo.valut.features.ob.fragment.OnboardingFragment1
+import app.lock.photo.valut.features.ob.fragment.OnboardingFragment2
+import app.lock.photo.valut.features.ob.fragment.OnboardingFragment3
+import app.lock.photo.valut.features.ob.fragment.OnboardingFragment4
 
 class OnBoardingPagerAdapter(
     fragmentActivity: FragmentActivity,

@@ -1,11 +1,8 @@
 package app.lock.photo.valut.features.auth.pattern
-import app.lock.photo.valut.features.auth.unlock.UnlockUiState
-import app.lock.photo.valut.features.auth.recovery.ForgotPinActivity
-
-import app.lock.photo.valut.core.ui.BaseActivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -13,11 +10,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
+import app.lock.photo.valut.ad_mob.AdsProvider
 import app.lock.photo.valut.core.lock.LockScreen
 import app.lock.photo.valut.core.permissions.BiometricHelper
+import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityPatternUnlockBinding
+import app.lock.photo.valut.features.auth.recovery.ForgotPinActivity
 import app.lock.photo.valut.features.home.MainActivity
+import com.google.firebase.remoteconfig.get
+import com.wastickers.romantic.stickers.loveromance.ad_mob.util.showNativeAd
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,6 +34,7 @@ class PatternUnlockActivity : BaseActivity(), LockScreen {
     @Inject
     lateinit var biometricHelper: BiometricHelper
 
+    private val remoteConfig=getRemoteConfig()
     private var biometricReady = false
     private var biometricPrompted = false
 
@@ -42,6 +46,7 @@ class PatternUnlockActivity : BaseActivity(), LockScreen {
         )
         binding = ActivityPatternUnlockBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.e("TAG**********", "onCreate: assddddddddddd", )
 
         binding.patternView.onPatternComplete = { nodes -> viewModel.verifyPattern(nodes) }
         binding.btnForgotPin.setOnClickListener {
@@ -52,6 +57,7 @@ class PatternUnlockActivity : BaseActivity(), LockScreen {
         observeState()
         observeEvents()
         setupBiometric()
+        loadNativeAd()
     }
 
     private fun setupBiometric() {
@@ -118,6 +124,18 @@ class PatternUnlockActivity : BaseActivity(), LockScreen {
     private fun goToMain() {
         startActivity(Intent(this, MainActivity::class.java))
         finishAffinity()
+    }
+
+    private fun loadNativeAd() {
+        if (!remoteConfig["nativePattern"].asBoolean()) return
+        AdsProvider.nativeHome.loadAds(this)
+        val nativeFlow = MutableStateFlow(false)
+        showNativeAd(
+            adGroup = AdsProvider.nativeHome,
+            frameLayout = binding.flAdNative,
+            adLayout = R.layout.native_medium_ad_layout_new,
+            nativeAdPopulatedFlow = nativeFlow
+        )
     }
 
     private fun formatRemaining(ms: Long): String {

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rating_dialog"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_14sdp">
+
+        <ImageView
+            android:id="@+id/imgEmotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_emotion_level_zero" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/oh_no"
+                android:textColor="@color/raisin_black"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:gravity="center"
+                android:text="@string/rating_invitation"
+                android:textColor="@color/davy_grey"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <ImageView
+                android:id="@+id/imgStarOne"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_star_unselect"
+                app:layout_constraintEnd_toStartOf="@+id/imgStarTwo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgStarTwo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_star_unselect"
+                app:layout_constraintBottom_toBottomOf="@+id/imgStarOne"
+                app:layout_constraintEnd_toStartOf="@+id/imgStarThree"
+                app:layout_constraintStart_toEndOf="@+id/imgStarOne"
+                app:layout_constraintTop_toTopOf="@+id/imgStarOne" />
+
+            <ImageView
+                android:id="@+id/imgStarThree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_star_unselect"
+                app:layout_constraintBottom_toBottomOf="@+id/imgStarTwo"
+                app:layout_constraintEnd_toStartOf="@+id/imgStarFour"
+                app:layout_constraintStart_toEndOf="@+id/imgStarTwo"
+                app:layout_constraintTop_toTopOf="@+id/imgStarTwo" />
+
+            <ImageView
+                android:id="@+id/imgStarFour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_star_unselect"
+                app:layout_constraintBottom_toBottomOf="@+id/imgStarThree"
+                app:layout_constraintEnd_toStartOf="@+id/imgStarFive"
+                app:layout_constraintStart_toEndOf="@+id/imgStarThree"
+                app:layout_constraintTop_toTopOf="@+id/imgStarThree" />
+
+            <ImageView
+                android:id="@+id/imgStarFive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_star_unselect"
+                app:layout_constraintBottom_toBottomOf="@+id/imgStarFour"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgStarFour"
+                app:layout_constraintTop_toTopOf="@+id/imgStarFour" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:text="@string/the_best_we_can_get"
+                android:textColor="@color/blue_bolt"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgDirection"
+                app:layout_constraintEnd_toStartOf="@+id/imgDirection"
+                app:layout_constraintTop_toBottomOf="@+id/imgDirection" />
+
+            <ImageView
+                android:id="@+id/imgDirection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:src="@drawable/ic_direction"
+                app:layout_constraintEnd_toStartOf="@+id/imgStarFive"
+                app:layout_constraintStart_toStartOf="@+id/imgStarFive"
+                app:layout_constraintTop_toBottomOf="@+id/imgStarFive" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_13sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:alpha="0.2"
+            android:background="@drawable/bg_rating_dialog_btn_rate"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_10sdp"
+            android:text="@string/rate_us"
+            android:textAllCaps="false"
+            android:textColor="@color/tt_white"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/tt_transparent"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/davy_grey"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</layout>

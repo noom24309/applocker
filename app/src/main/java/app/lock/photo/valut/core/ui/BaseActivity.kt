@@ -11,7 +11,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.updatePadding
+import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.AutoLockGuard
+import com.google.firebase.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.remoteConfig
+import com.google.firebase.remoteconfig.remoteConfigSettings
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -24,6 +29,18 @@ abstract class BaseActivity : AppCompatActivity() {
      * overlay) and screens that manage their own insets override this to false.
      */
     protected open val applyEdgeToEdgeInsets: Boolean = true
+
+    private val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
+    var interval: Long = 0
+    val configSettings = remoteConfigSettings {
+        minimumFetchIntervalInSeconds = interval
+    }
+    fun getRemoteConfig():FirebaseRemoteConfig{
+        remoteConfig.setConfigSettingsAsync(configSettings)
+        remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
+        return remoteConfig
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()

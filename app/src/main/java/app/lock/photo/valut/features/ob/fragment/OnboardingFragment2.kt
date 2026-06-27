@@ -1,22 +1,40 @@
-package com.wastickers.romantic.stickers.loveromance.ui.ob.fragment
+package app.lock.photo.valut.features.ob.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.wastickers.romantic.stickers.loveromance.activities.onboarding.BaseFragment
+import app.lock.photo.valut.ad_mob.AdsProvider
+import app.lock.photo.valut.ad_mob.isInterstitialAdOnScreen1
 import app.lock.photo.valut.databinding.FragmentOnboarding2Binding
+import app.lock.photo.valut.R
+
 import app.lock.photo.valut.features.ob.OnBoardingActivity
+import com.google.firebase.remoteconfig.get
+import com.wastickers.romantic.stickers.loveromance.activities.onboarding.BaseFragment
+import com.wastickers.romantic.stickers.loveromance.ad_mob.util.showNativeAd
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class OnboardingFragment2 : BaseFragment() {
 
     private lateinit var binding: FragmentOnboarding2Binding
+    private val remoteConfig=getRemoteConfig()
 
+    private var isFullScrNativeAdLoaded = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout for this fragment
         binding = FragmentOnboarding2Binding.inflate(inflater, container, false)
+
+        if (remoteConfig["OB3"].asBoolean()) {
+            activity?.let { AdsProvider.nativeOnBoardingTwo.loadAds(it) }
+        }
+
+        if(remoteConfig["OB4"].asBoolean()) {
+            activity?.let { AdsProvider.nativeOnBoardingThree.loadAds(it) }
+        }
 
         binding.ivChecked.setOnClickListener {
             val current = (activity as? OnBoardingActivity)?.getCurrentPage() ?: return@setOnClickListener
@@ -25,8 +43,34 @@ class OnboardingFragment2 : BaseFragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.flAdNative.visibility = View.GONE
+
+        showNativeOnBoardOne()
+
+
     }
+
+    private var isLogged = false
+    override fun onResume() {
+        super.onResume()
+        isInterstitialAdOnScreen1=false
+        if(remoteConfig["OB2"].asBoolean()) {
+            activity?.let { AdsProvider.nativeOnBoarding1.loadAds(it) }
+            nativeOnBoardOnePopulated1.value =false
+            showNativeOnBoardOne()
+        }
+    }
+    private var nativeOnBoardOnePopulated1 = MutableStateFlow(false)
+    private fun showNativeOnBoardOne(){
+        nativeOnBoardOnePopulated1.value =false
+        showNativeAd(adGroup = AdsProvider.nativeOnBoarding1,
+            frameLayout = binding?.flAdNative,
+            adLayout = R.layout.custom_admob_native_layout_1,
+            nativeAdPopulatedFlow = nativeOnBoardOnePopulated1,
+            facebookAdLayout = R.layout.custom_admob_native_layout_1_white
+        )
+    }
+
 }

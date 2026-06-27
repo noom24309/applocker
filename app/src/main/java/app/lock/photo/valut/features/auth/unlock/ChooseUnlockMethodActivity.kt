@@ -1,17 +1,17 @@
 package app.lock.photo.valut.features.auth.unlock
-import app.lock.photo.valut.features.auth.biometric.BiometricSetupActivity
-import app.lock.photo.valut.features.auth.pin.CreatePinActivity
-import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
-
-import app.lock.photo.valut.core.ui.BaseActivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.isInvisible
 import androidx.lifecycle.lifecycleScope
 import app.lock.photo.valut.core.lock.LockExempt
+import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityChooseUnlockMethodBinding
 import app.lock.photo.valut.domain.repository.SettingsRepository
+import app.lock.photo.valut.features.auth.biometric.BiometricSetupActivity
+import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
+import app.lock.photo.valut.features.auth.pin.CreatePinActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,6 +35,7 @@ class ChooseUnlockMethodActivity : BaseActivity(), LockExempt {
         super.onCreate(savedInstanceState)
         binding = ActivityChooseUnlockMethodBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.e("TAG**********", "onCreate: aaaaaaaaaaa", )
 
         // Reaching the credential picker means onboarding is finished — persist it so relaunches
         // route here (or onward) instead of repeating onboarding.

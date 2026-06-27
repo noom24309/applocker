@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/overlayRoot"
@@ -10,21 +11,26 @@
     <!-- ===== Standard / themed unlock panel ===== -->
     <LinearLayout
         android:id="@+id/standardPanel"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingStart="@dimen/screen_padding"
         android:paddingTop="@dimen/space_xxl"
         android:paddingEnd="@dimen/screen_padding"
-        android:paddingBottom="@dimen/screen_padding">
+        android:paddingBottom="@dimen/screen_padding"
+        app:layout_constraintBottom_toTopOf="@+id/flAdNative"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginTop="@dimen/space_l"
             android:background="@drawable/bg_logo_circle"
-            android:backgroundTint="@color/primary_container">
+            android:backgroundTint="@color/primary_container"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/appIcon"
@@ -107,28 +113,22 @@
 
             <include layout="@layout/view_pin_keypad" />
         </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnUseBiometric"
-            style="@style/Widget.App.Button.Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_s"
-            android:text="@string/biometric_use"
-            android:visibility="gone"
-            app:icon="@drawable/ic_fingerprint" />
     </LinearLayout>
 
     <!-- ===== Fake crash panel ===== -->
     <LinearLayout
         android:id="@+id/crashPanel"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@color/fake_crash_bg"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/screen_padding"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="gone">
 
         <androidx.cardview.widget.CardView
@@ -196,13 +196,17 @@
     <!-- ===== Fake loading panel ===== -->
     <LinearLayout
         android:id="@+id/loadingPanel"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@color/background"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/screen_padding"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="gone">
 
         <ImageView
@@ -232,6 +236,37 @@
     <!-- ===== Fake calculator panel ===== -->
     <include
         android:id="@+id/calculatorPanel"
-        layout="@layout/view_calculator_lock" />
+        layout="@layout/view_calculator_lock"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <!-- Native Ad -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btnUseBiometric"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Biometric button (root level so native ad can anchor above it) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUseBiometric"
+        style="@style/Widget.App.Button.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/screen_padding"
+        android:text="@string/biometric_use"
+        android:visibility="gone"
+        app:icon="@drawable/ic_fingerprint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

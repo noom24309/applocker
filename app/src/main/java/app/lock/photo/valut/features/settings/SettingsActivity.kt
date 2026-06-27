@@ -19,11 +19,11 @@ import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.FragmentSettingsBinding
 import app.lock.photo.valut.domain.model.AutoLockMode
 import app.lock.photo.valut.features.applock.AppLockActivity
-import app.lock.photo.valut.features.auth.pin.ChangePinActivity
 import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
+import app.lock.photo.valut.features.auth.pin.ChangePinActivity
 import app.lock.photo.valut.features.auth.verify.VerifyMasterActivity
+import app.lock.photo.valut.features.language.LanguageActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.wastickers.romantic.stickers.loveromance.ui.language.LanguageActivity
 import com.wastickers.romantic.stickers.loveromance.ui.settings.SettingActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

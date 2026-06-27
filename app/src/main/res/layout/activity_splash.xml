@@ -12,8 +12,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/loading"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26">
 
         <FrameLayout
             android:id="@+id/logoContainer"
@@ -84,6 +85,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
+    <!-- Native Ad Container -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/loading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Loading indicator -->
     <com.google.android.material.progressindicator.CircularProgressIndicator

@@ -850,4 +850,6 @@
     <string name="duplicates_group_header">%1$d copies · %2$s recoverable</string>
     <string name="duplicates_recommended">Recommended to keep</string>
     <string name="cd_media_thumbnail">Media thumbnail</string>
+    <string name="ad">Ad</string>
+    <string name="loading">Loading....</string>
 </resources>

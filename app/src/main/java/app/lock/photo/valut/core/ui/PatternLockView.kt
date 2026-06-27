@@ -77,6 +77,12 @@ class PatternLockView @JvmOverloads constructor(
         invalidate()
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val squareSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY)
+        super.onMeasure(squareSpec, squareSpec)
+    }
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         val size = minOf(w, h).toFloat()
         val cell = size / GRID

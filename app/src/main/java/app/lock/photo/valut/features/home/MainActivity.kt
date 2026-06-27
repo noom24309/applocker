@@ -1,7 +1,5 @@
 package app.lock.photo.valut.features.home
 
-import app.lock.photo.valut.core.ui.BaseActivity
-
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
@@ -14,7 +12,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
@@ -22,12 +19,18 @@ import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.AppLockStateManager
 import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.core.storage.SecureCacheManager
+import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityMainBinding
 import app.lock.photo.valut.domain.repository.SettingsRepository
 import app.lock.photo.valut.domain.repository.VaultRepository
 import app.lock.photo.valut.features.premium.ToolsFragment
 import app.lock.photo.valut.features.vault.EncryptionMigrationActivity
 import app.lock.photo.valut.features.vault.VaultHomeFragment
+import com.ads.control.helper.banner.BannerAdConfig
+import com.ads.control.helper.banner.BannerAdHelper
+import com.ads.control.helper.banner.params.BannerAdParam
+import com.ads.control.util.AppConstant
+import com.google.firebase.remoteconfig.get
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -51,6 +54,7 @@ class MainActivity : BaseActivity() {
     // Applies its own per-view insets (fragment top + bottom-nav bottom) below.
     override val applyEdgeToEdgeInsets: Boolean = false
 
+    private val remoteConfig=getRemoteConfig()
     private var currentTab = Tab.HOME
 
     /** Pre-Phase-4 plain files are migrated to encrypted storage once, on first Vault open. */
@@ -68,6 +72,7 @@ class MainActivity : BaseActivity() {
             insets
         }
 
+        loadBanner()
         binding.navHome.setOnClickListener { selectTab(Tab.HOME) }
         binding.navVault.setOnClickListener { selectTab(Tab.VAULT) }
         binding.navTools.setOnClickListener { selectTab(Tab.TOOLS) }
@@ -174,4 +179,27 @@ class MainActivity : BaseActivity() {
 
         fun intent(context: Context) = Intent(context, MainActivity::class.java)
     }
+
+    private fun loadBanner() {
+        //banner ad
+
+
+        if (remoteConfig["bannerHome"].asBoolean()) {
+
+            val bannerAdHelper = initBannerAdColap()
+            bannerAdHelper.setBannerContentView(binding.frAds)
+            bannerAdHelper.setTagForDebug("BANNER=>>>")
+            bannerAdHelper.requestAds(BannerAdParam.Request.create())
+        }
+    }
+
+
+
+    private fun initBannerAdColap(): BannerAdHelper {
+        val config = BannerAdConfig(getString(R.string.bannerAll), true, true)
+        return BannerAdHelper(this, this, config).apply {
+            config.collapsibleGravity = AppConstant.CollapsibleGravity.BOTTOM
+        }
+    }
+
 }

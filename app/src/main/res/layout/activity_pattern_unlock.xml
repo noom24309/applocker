@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingStart="@dimen/screen_padding"
-    android:paddingTop="@dimen/space_xxl"
-    android:paddingEnd="@dimen/screen_padding"
-    android:paddingBottom="@dimen/screen_padding">
+    android:background="@color/white">
 
+    <!-- Logo -->
     <FrameLayout
+        android:id="@+id/logoContainer"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:layout_marginTop="@dimen/space_l"
+        android:layout_marginTop="@dimen/space_xxl"
         android:background="@drawable/bg_logo_circle"
-        android:backgroundTint="@color/primary_container">
+        android:backgroundTint="@color/primary_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="36dp"
@@ -30,34 +29,47 @@
 
     <TextView
         android:id="@+id/titlePattern"
+        style="@style/TextAppearance.App.Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.App.Bold"
         android:layout_marginTop="@dimen/space_l"
         android:text="@string/pattern_unlock_title"
-        android:textAppearance="@style/TextAppearance.App.Title" />
+        android:textAppearance="@style/TextAppearance.App.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoContainer" />
 
     <TextView
         android:id="@+id/errorPattern"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_padding"
         android:layout_marginTop="@dimen/space_s"
+        android:layout_marginEnd="@dimen/screen_padding"
         android:gravity="center"
         android:textColor="@color/accent_red"
         android:textSize="@dimen/text_caption"
         android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlePattern"
         tools:text="Wrong pattern" />
 
     <TextView
         android:id="@+id/tvLockoutTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_padding"
         android:layout_marginTop="@dimen/space_xs"
+        android:layout_marginEnd="@dimen/screen_padding"
         android:gravity="center"
         android:textColor="@color/accent_amber"
         android:textSize="@dimen/text_caption"
         android:textStyle="bold"
         android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/errorPattern"
         tools:text="Try again in 00:30"
         tools:visibility="visible" />
 
@@ -65,18 +77,26 @@
         android:id="@+id/patternView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="@dimen/screen_padding"
         android:layout_marginTop="@dimen/space_m"
-        android:layout_weight="1"
-        android:contentDescription="@string/cd_pattern" />
+        android:layout_marginEnd="@dimen/screen_padding"
+        android:background="@color/card_bg"
+        app:layout_constraintBottom_toTopOf="@+id/flAdNative"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLockoutTimer" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnUseBiometric"
         style="@style/Widget.App.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/ic_fingerprint"
         android:text="@string/biometric_use"
         android:visibility="gone"
+        app:icon="@drawable/ic_fingerprint"
+        app:layout_constraintBottom_toTopOf="@+id/btnForgotPin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
     <com.google.android.material.button.MaterialButton
@@ -84,6 +104,21 @@
         style="@style/Widget.App.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/forgot_pin" />
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:text="@string/forgot_pin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <!-- Native Ad -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btnUseBiometric"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,6 +62,16 @@ class AppLockNotificationHelper @Inject constructor(
         } else {
             context.getString(R.string.applock_notification_text)
         }
+        // If the user swipes the notification away (Android 14+ allows this), the service
+        // would lose foreground status and eventually get killed. This delete intent tells
+        // the service to re-promote itself immediately.
+        val deleteIntent = PendingIntent.getBroadcast(
+            context,
+            NOTIF_DELETE_REQUEST_CODE,
+            Intent(ACTION_NOTIFICATION_DELETED).setPackage(context.packageName),
+            pendingIntentFlags()
+        )
+
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_shield)
             .setContentTitle(context.getString(R.string.applock_notification_title))
@@ -75,6 +85,7 @@ class AppLockNotificationHelper @Inject constructor(
             // No "Stop" action: protection can only be turned off from inside the app, so a
             // swipe in the shade can't disable App Lock.
             .addAction(0, context.getString(R.string.applock_notification_open), openIntent)
+            .setDeleteIntent(deleteIntent)
             .build()
     }
 
@@ -140,5 +151,7 @@ class AppLockNotificationHelper @Inject constructor(
         private const val LEGACY_CHANNEL_ID = "app_lock_monitor"
         const val NOTIFICATION_ID = 4201
         const val NEW_APP_NOTIFICATION_ID = 4202
+        const val ACTION_NOTIFICATION_DELETED = "app.lock.photo.valut.action.NOTIF_DELETED"
+        private const val NOTIF_DELETE_REQUEST_CODE = 4204
     }
 }
