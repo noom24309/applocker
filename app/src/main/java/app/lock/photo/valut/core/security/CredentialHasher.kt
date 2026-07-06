@@ -28,6 +28,8 @@ class CredentialHasher @Inject constructor(
 
     /** Constant-time verification of [secret] against a stored [hashB64]/[saltB64]. */
     fun verify(secret: CharArray, hashB64: String?, saltB64: String?): Boolean {
+        // PBKDF2 rejects an empty password outright — and it can never match anyway.
+        if (secret.isEmpty()) return false
         if (hashB64.isNullOrEmpty() || saltB64.isNullOrEmpty()) return false
         val salt = saltB64.decode() ?: return false
         val expected = hashB64.decode() ?: return false

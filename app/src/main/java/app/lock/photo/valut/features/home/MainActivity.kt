@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.AppLockStateManager
 import app.lock.photo.valut.core.lock.LockRouter
@@ -26,11 +27,9 @@ import app.lock.photo.valut.domain.repository.VaultRepository
 import app.lock.photo.valut.features.premium.ToolsFragment
 import app.lock.photo.valut.features.vault.EncryptionMigrationActivity
 import app.lock.photo.valut.features.vault.VaultHomeFragment
-import com.ads.control.helper.banner.BannerAdConfig
-import com.ads.control.helper.banner.BannerAdHelper
-import com.ads.control.helper.banner.params.BannerAdParam
-import com.ads.control.util.AppConstant
-import com.google.firebase.remoteconfig.get
+import com.apero.nextgen.AdsSdk.banner.AperoNextGenBanner
+import com.apero.nextgen.AdsSdk.callback.AperoNextGenAdCallback
+import com.apero.nextgen.AdsSdk.interstitial.AperoNextGenInterstitial
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -72,13 +71,25 @@ class MainActivity : BaseActivity() {
             insets
         }
 
+
+
         loadBanner()
+
+
+        AperoNextGenInterstitial.InterAdLoadWithCounter(
+            placement = "MainAd",
+            highAdUnitId = getString(R.string.InterMain),
+            counter = 2,
+            enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds, // TODO: yahan Remote Config ki value pass karein
+            logTag = "MainAd",
+            callback = null,
+        )
         binding.navHome.setOnClickListener { selectTab(Tab.HOME) }
         binding.navVault.setOnClickListener { selectTab(Tab.VAULT) }
         binding.navTools.setOnClickListener { selectTab(Tab.TOOLS) }
 
         if (savedInstanceState == null) {
-            selectTab(Tab.HOME)
+            switchTab(Tab.HOME) // pehla tab bina ad ke
         } else {
             currentTab = runCatching {
                 Tab.valueOf(savedInstanceState.getString(STATE_TAB, Tab.HOME.name))
@@ -109,18 +120,26 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    /** Tab click: counter wala inter ad pehle, dismiss/skip par asal switch. */
     private fun selectTab(tab: Tab) {
-        val hasFragment = supportFragmentManager.findFragmentById(binding.fragmentContainer.id) != null
-        if (tab != currentTab || !hasFragment) {
-            currentTab = tab
-            showFragment(
-                when (tab) {
-                    Tab.HOME -> HomeFragment()
-                    Tab.VAULT -> VaultHomeFragment()
-                    Tab.TOOLS -> ToolsFragment()
+        if (tab == currentTab) return
+        AperoNextGenInterstitial.InterAdShowWithCounter(
+            this,
+            "MainAd",
+            enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+            callback = object : AperoNextGenAdCallback {
+                override fun onNextAction() {
+                    if (!isFinishing && !isDestroyed) switchTab(tab)
                 }
-            )
-        }
+            },
+            logTag = "MainAd",
+            forceShow = false
+        )
+    }
+
+    private fun switchTab(tab: Tab) {
+        currentTab = tab
+        showFragment(tab)
         if (tab == Tab.VAULT) maybeStartMigration()
         updateNavSelection()
     }
@@ -137,10 +156,27 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun showFragment(fragment: Fragment) {
+    /** Tabs are added once and then shown/hidden, so switching back never recreates them. */
+    private fun showFragment(tab: Tab) {
         supportFragmentManager.commit {
-            replace(binding.fragmentContainer.id, fragment)
+            Tab.values().forEach { other ->
+                if (other != tab) {
+                    supportFragmentManager.findFragmentByTag(other.name)?.let { hide(it) }
+                }
+            }
+            val existing = supportFragmentManager.findFragmentByTag(tab.name)
+            if (existing == null) {
+                add(binding.fragmentContainer.id, newFragment(tab), tab.name)
+            } else {
+                show(existing)
+            }
         }
+    }
+
+    private fun newFragment(tab: Tab): Fragment = when (tab) {
+        Tab.HOME -> HomeFragment()
+        Tab.VAULT -> VaultHomeFragment()
+        Tab.TOOLS -> ToolsFragment()
     }
 
     private fun updateNavSelection() {
@@ -184,22 +220,21 @@ class MainActivity : BaseActivity() {
         //banner ad
 
 
-        if (remoteConfig["bannerHome"].asBoolean()) {
-
-            val bannerAdHelper = initBannerAdColap()
-            bannerAdHelper.setBannerContentView(binding.frAds)
-            bannerAdHelper.setTagForDebug("BANNER=>>>")
-            bannerAdHelper.requestAds(BannerAdParam.Request.create())
-        }
+        AperoNextGenBanner.loadAndShowCollapsibleBanner(
+            activity = this,
+            container = binding.frAds,
+            bannerId = getString(R.string.bannerAll), // TODO: apni collapsible id
+            placement = "bottom", // container screen ke bottom par hai
+            shimmerLayout = R.layout.layout_banner_control,
+            canShowAds = RemoteConfig.bannerHome && RemoteConfig.enableAllAds, // TODO: yahan Remote Config ki value pass karein
+            canReloadAds = RemoteConfig.bannerHome&& RemoteConfig.enableAllAds, // TODO: Remote Config — resume par reload + replace
+            logTag = "CollapsibleBannerHome",
+            retryToLoad = 0
+        )
     }
 
 
 
-    private fun initBannerAdColap(): BannerAdHelper {
-        val config = BannerAdConfig(getString(R.string.bannerAll), true, true)
-        return BannerAdHelper(this, this, config).apply {
-            config.collapsibleGravity = AppConstant.CollapsibleGravity.BOTTOM
-        }
-    }
+
 
 }

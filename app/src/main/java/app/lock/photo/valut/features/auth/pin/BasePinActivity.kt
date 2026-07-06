@@ -49,7 +49,8 @@ abstract class BasePinActivity : BaseActivity(), LockExempt {
             android.view.WindowManager.LayoutParams.FLAG_SECURE,
             android.view.WindowManager.LayoutParams.FLAG_SECURE
         )
-        setContentView(layoutRes)
+        val content = createContentView()
+        if (content != null) setContentView(content) else setContentView(layoutRes)
 
         dotsContainer = findViewById(R.id.pinDotsContainer)
         titleView = findViewById(R.id.titlePin)
@@ -61,6 +62,9 @@ abstract class BasePinActivity : BaseActivity(), LockExempt {
         buildDots()
         onViewReady()
     }
+
+    /** Subclasses using view binding return their inflated root here; null falls back to [layoutRes]. */
+    protected open fun createContentView(): View? = null
 
     /** Called once views are bound; subclasses set texts and initial state here. */
     protected open fun onViewReady() {}

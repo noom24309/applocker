@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.view.isInvisible
 import androidx.lifecycle.lifecycleScope
+import app.lock.photo.valut.AdsSdk.RemoteConfig
+import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityChooseUnlockMethodBinding
@@ -12,6 +14,7 @@ import app.lock.photo.valut.domain.repository.SettingsRepository
 import app.lock.photo.valut.features.auth.biometric.BiometricSetupActivity
 import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
 import app.lock.photo.valut.features.auth.pin.CreatePinActivity
+import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,6 +44,7 @@ class ChooseUnlockMethodActivity : BaseActivity(), LockExempt {
         // route here (or onward) instead of repeating onboarding.
         lifecycleScope.launch { settingsRepository.completeOnboarding() }
 
+        loadNativeAd()
         binding.cardPattern.setOnClickListener { select(pattern = true) }
         binding.cardPin.setOnClickListener { select(pattern = false) }
         binding.btnContinue.setOnClickListener { proceed() }
@@ -52,6 +56,20 @@ class ChooseUnlockMethodActivity : BaseActivity(), LockExempt {
         patternSelected = pattern
         binding.checkPattern.isInvisible = !pattern
         binding.checkPin.isInvisible = pattern
+    }
+
+
+    private fun loadNativeAd() {
+        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.OBFull),
+            layoutId = R.layout.custom_admob_native_layout_1,
+            canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.OBFull),
+            canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            logTag = "NativeChoseMethod"
+        )
     }
 
     private fun proceed() {

@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical"
-    android:paddingStart="@dimen/screen_padding"
-    android:paddingTop="@dimen/space_xxl"
-    android:paddingEnd="@dimen/screen_padding"
-    android:paddingBottom="@dimen/screen_padding">
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/titlePin"
         android:layout_width="wrap_content"
-        style="@style/TextAppearance.App.Bold"
         android:layout_height="wrap_content"
+        style="@style/TextAppearance.App.Bold"
+        android:layout_marginTop="@dimen/space_xl"
+        android:layout_marginHorizontal="24dp"
         android:text="@string/create_pin_title"
-        android:textAppearance="@style/TextAppearance.App.Title" />
+        android:textAppearance="@style/TextAppearance.App.Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/subtitlePin"
@@ -25,16 +24,22 @@
         android:layout_height="wrap_content"
         style="@style/TextAppearance.App.Medium"
         android:layout_marginTop="@dimen/space_s"
+        android:layout_marginHorizontal="24dp"
         android:text="@string/create_pin_subtitle"
-        android:textAppearance="@style/TextAppearance.App.Body" />
+        android:textAppearance="@style/TextAppearance.App.Body"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlePin" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/lengthToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_l"
+        android:layout_marginHorizontal="24dp"
         app:selectionRequired="true"
-        app:singleSelection="true">
+        app:singleSelection="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitlePin">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLength4"
@@ -55,28 +60,55 @@
 
     <LinearLayout
         android:id="@+id/pinDotsContainer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_xxl"
+        android:layout_marginHorizontal="24dp"
         android:gravity="center"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lengthToggle" />
 
     <TextView
         android:id="@+id/errorPin"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_m"
+        android:layout_marginHorizontal="24dp"
         android:gravity="center"
         android:textColor="@color/accent_red"
         android:textSize="@dimen/text_caption"
         android:visibility="invisible"
-        tools:text="PINs don't match" />
+        tools:text="PINs don't match"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pinDotsContainer" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    <!-- Native Ad (full width, keypad ke upar) -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/keypadContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <include layout="@layout/view_pin_keypad" />
+    <!-- Keypad (merge include ko vertical container chahiye) -->
+    <LinearLayout
+        android:id="@+id/keypadContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="@dimen/space_s"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-</LinearLayout>
+        <include layout="@layout/view_pin_keypad" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

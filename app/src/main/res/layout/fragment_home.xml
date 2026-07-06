@@ -274,6 +274,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             app:cardBackgroundColor="@color/card_bg"
+            android:visibility="gone"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
             app:strokeColor="@color/home_border"
@@ -383,6 +384,16 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Native Ad -->
+        <FrameLayout
+            android:id="@+id/flAdNative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/btnUseBiometric"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
         <!-- ===== Installed Apps header ===== -->
         <LinearLayout
             android:layout_width="match_parent"

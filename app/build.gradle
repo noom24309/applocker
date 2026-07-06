@@ -18,8 +18,8 @@ android {
         applicationId "com.privatelock.vault.applock"
         minSdk 24
         targetSdk 36
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 4
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,6 +34,7 @@ android {
             resValue "string", "admob_app_open_id", "ca-app-pub-5736130092873918/2742843280"
             resValue "string", "nativeSplash", "ca-app-pub-5736130092873918/6943345118"
             resValue "string", "InterSplash", "ca-app-pub-5736130092873918/6045196419"
+            resValue "string", "InterMain", "ca-app-pub-5736130092873918/7873283403"
             resValue "string", "NativeLanaguge", "ca-app-pub-5736130092873918/1224114578"
             resValue "string", "NativeLanagugeDup", "ca-app-pub-5736130092873918/9082844757"
             resValue "string", "NativeLanagugeOther", "ca-app-pub-5736130092873918/2551271592"
@@ -58,6 +59,7 @@ android {
             resValue "string", "admob_app_open_id", "ca-app-pub-3940256099942544/9257395921"
             resValue "string", "nativeSplash", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "InterSplash", "ca-app-pub-3940256099942544/1033173712"
+            resValue "string", "InterMain", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "NativeLanaguge", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "NativeLanagugeDup", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "NativeLanagugeOther", "ca-app-pub-3940256099942544/2247696110"
@@ -148,7 +150,7 @@ dependencies {
     implementation libs.intuit.sdp
     implementation libs.intuit.ssp
     implementation libs.shimmer
-    //admobs
-    implementation 'com.google.android.gms:play-services-ads:25.4.0'
-    implementation project(':ads')
+    implementation("com.google.android.libraries.ads.mobile.sdk:ads-mobile-sdk:1.2.1")
+    implementation("com.google.android.ump:user-messaging-platform:4.0.0")
+
 }

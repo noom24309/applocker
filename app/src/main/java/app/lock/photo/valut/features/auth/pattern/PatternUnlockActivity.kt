@@ -9,18 +9,16 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
-import app.lock.photo.valut.ad_mob.AdsProvider
 import app.lock.photo.valut.core.lock.LockScreen
 import app.lock.photo.valut.core.permissions.BiometricHelper
 import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityPatternUnlockBinding
 import app.lock.photo.valut.features.auth.recovery.ForgotPinActivity
 import app.lock.photo.valut.features.home.MainActivity
-import com.google.firebase.remoteconfig.get
-import com.wastickers.romantic.stickers.loveromance.ad_mob.util.showNativeAd
+import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -127,14 +125,15 @@ class PatternUnlockActivity : BaseActivity(), LockScreen {
     }
 
     private fun loadNativeAd() {
-        if (!remoteConfig["nativePattern"].asBoolean()) return
-        AdsProvider.nativeHome.loadAds(this)
-        val nativeFlow = MutableStateFlow(false)
-        showNativeAd(
-            adGroup = AdsProvider.nativeHome,
-            frameLayout = binding.flAdNative,
-            adLayout = R.layout.native_medium_ad_layout_new,
-            nativeAdPopulatedFlow = nativeFlow
+        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.NativeLanagugeDup),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.NativeLanagugeDup),
+            canReloadAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds,
+                    logTag = "Pattern_Unlock"
         )
     }
 

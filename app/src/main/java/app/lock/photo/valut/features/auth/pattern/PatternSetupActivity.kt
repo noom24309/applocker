@@ -1,7 +1,4 @@
 package app.lock.photo.valut.features.auth.pattern
-import app.lock.photo.valut.features.auth.recovery.RecoveryKeyActivity
-
-import app.lock.photo.valut.core.ui.BaseActivity
 
 import android.content.Context
 import android.content.Intent
@@ -13,9 +10,14 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockExempt
+import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityPatternSetupBinding
+import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity.Companion.EXTRA_FIRST_RUN
+import app.lock.photo.valut.features.auth.recovery.RecoveryKeyActivity
+import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -50,10 +52,24 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
         binding.btnClear.setOnClickListener { clearPattern() }
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
+        loadNativeAd()
         observePhase()
         observeEvents()
     }
 
+
+    private fun loadNativeAd() {
+        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.OBFull2),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.OBFull2),
+            canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            logTag = "NativePattern"
+        )
+    }
     private fun clearPattern() {
         binding.patternView.reset()
         binding.errorPattern.isVisible = false

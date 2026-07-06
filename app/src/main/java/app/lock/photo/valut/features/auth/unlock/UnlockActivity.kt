@@ -15,6 +15,7 @@ import app.lock.photo.valut.core.permissions.BiometricHelper
 import app.lock.photo.valut.features.auth.pin.BasePinActivity
 import app.lock.photo.valut.features.auth.recovery.ForgotPinActivity
 import app.lock.photo.valut.features.home.MainActivity
+import com.apero.nextgen.AdsSdk.appopen.AperoNextGenAppOpen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -49,6 +50,7 @@ class UnlockActivity : BasePinActivity(), LockScreen {
         observeState()
         observeEvents()
         setupBiometric()
+
     }
 
     override fun onPinEntered(pin: String) {
@@ -125,7 +127,7 @@ class UnlockActivity : BasePinActivity(), LockScreen {
 
     private fun goToMain() {
         startActivity(Intent(this, MainActivity::class.java))
-        finishAffinity()
+        finish()
     }
 
     private fun formatRemaining(ms: Long): String {

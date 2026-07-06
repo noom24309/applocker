@@ -24,4 +24,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "App Lock Photo Valut"
 include(":app")
-include(":ads")

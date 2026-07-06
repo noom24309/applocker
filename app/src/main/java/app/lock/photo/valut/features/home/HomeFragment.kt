@@ -16,6 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.applock.AppIconCacheManager
 import app.lock.photo.valut.core.applock.AppLockPermissionChecker
@@ -31,6 +32,7 @@ import app.lock.photo.valut.features.applock.perapp.PerAppLockSettingsBottomShee
 import app.lock.photo.valut.features.applock.stats.AppLockStatsViewModel
 import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
 import app.lock.photo.valut.features.settings.SettingsActivity
+import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -104,7 +106,27 @@ class HomeFragment : Fragment() {
         )
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
+
+
+        loadNativeAd()
     }
+
+
+    private fun loadNativeAd() {
+        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = activity!!,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.NativeLanagugeOther),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.NativeLanagugeOther),
+            canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            logTag = "NativeHome"
+        )
+    }
+
+
+
 
     private fun setupControls() {
         binding.btnSettings.setOnClickListener {

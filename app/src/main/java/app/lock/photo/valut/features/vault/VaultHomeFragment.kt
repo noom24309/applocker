@@ -18,6 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.databinding.FragmentVaultHomeBinding
@@ -27,6 +28,7 @@ import app.lock.photo.valut.features.importmedia.ImportProgressActivity
 import app.lock.photo.valut.features.vault.adapter.VaultAlbumRowAdapter
 import app.lock.photo.valut.features.vault.adapter.VaultRecentAdapter
 import app.lock.photo.valut.features.vault.model.AlbumUiModel
+import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -65,6 +67,8 @@ class VaultHomeFragment : Fragment() {
         setupLists()
         setupClicks()
         observeState()
+
+        loadNativeAd()
     }
 
     private fun setupLists() {
@@ -81,6 +85,19 @@ class VaultHomeFragment : Fragment() {
         }
         binding.recyclerRecent.layoutManager = GridLayoutManager(requireContext(), 4)
         binding.recyclerRecent.adapter = recentAdapter
+    }
+
+
+    private fun loadNativeAd() {
+        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = activity!!,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.OB1),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeValut&& RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.NativeLanagugeOther),
+            canReloadAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds
+        )
     }
 
     private fun setupClicks() {

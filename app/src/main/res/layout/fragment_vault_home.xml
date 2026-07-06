@@ -314,6 +314,18 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <!-- Native Ad -->
+            <FrameLayout
+                android:id="@+id/flAdNative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/btnUseBiometric"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <!-- ===== Albums ===== -->
             <LinearLayout
                 android:layout_width="match_parent"

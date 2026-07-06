@@ -1,7 +1,5 @@
 package app.lock.photo.valut.features.applock.overlay
 
-import app.lock.photo.valut.core.ui.BaseActivity
-
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -20,23 +18,21 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
-import app.lock.photo.valut.ad_mob.AdsProvider
-import app.lock.photo.valut.ad_mob.OpenApp
 import app.lock.photo.valut.core.applock.AppIconCacheManager
 import app.lock.photo.valut.core.applock.AppLockOverlayStateManager
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.core.permissions.BiometricHelper
+import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityAppLockOverlayBinding
 import app.lock.photo.valut.domain.model.FakeMode
 import app.lock.photo.valut.domain.model.LockTheme
 import app.lock.photo.valut.domain.model.UnlockMethod
 import app.lock.photo.valut.features.applock.model.AppLockOverlayUiState
-import com.google.firebase.remoteconfig.get
-import com.wastickers.romantic.stickers.loveromance.ad_mob.util.showNativeAd
+import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -97,14 +93,16 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
     }
 
     private fun loadNativeAd() {
-        if (!remoteConfig["nativePattern"].asBoolean()) return
-        AdsProvider.nativeHome.loadAds(this)
-        val nativeFlow = MutableStateFlow(false)
-        showNativeAd(
-            adGroup = AdsProvider.nativeHome,
-            frameLayout = binding.flAdNative,
-            adLayout = R.layout.native_medium_ad_layout_new,
-            nativeAdPopulatedFlow = nativeFlow
+
+        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.NativeLanaguge),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.NativeLanaguge),
+            canReloadAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds,
+            logTag = "AppLockOverLay"
         )
     }
     private fun observeState() {
@@ -380,12 +378,6 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
 
     private fun onUnlocked() {
         unlockSucceeded = true
-        // Suppress the AppOpen ad that would fire when the user returns to our app
-        // after having used the unlocked third-party app.
-        OpenApp.skipOneResume()
-        // The overlay lives in its own task, so finishing it doesn't reliably reveal the
-        // protected app (it often drops to the launcher). Bring the app's existing task
-        // back to the front explicitly, then close the overlay.
         launchUnlockedApp(intent.getStringExtra(EXTRA_PACKAGE))
         finish()
     }

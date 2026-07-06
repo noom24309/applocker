@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.common.Constants
 import app.lock.photo.valut.core.permissions.BiometricHelper
@@ -22,6 +23,9 @@ import app.lock.photo.valut.features.applock.AppLockActivity
 import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
 import app.lock.photo.valut.features.auth.pin.ChangePinActivity
 import app.lock.photo.valut.features.auth.verify.VerifyMasterActivity
+import com.apero.nextgen.AdsSdk.banner.AperoNextGenBanner
+import com.apero.nextgen.AdsSdk.callback.AperoNextGenAdCallback
+import com.apero.nextgen.AdsSdk.interstitial.AperoNextGenInterstitial
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -58,6 +62,7 @@ class SettingsActivity : BaseActivity() {
         setupStaticValues()
         setupActions()
         observeState()
+        loadBanner()
     }
 
     private fun setupVersion() {
@@ -106,15 +111,31 @@ class SettingsActivity : BaseActivity() {
         verifyLauncher.launch(Intent(this, VerifyMasterActivity::class.java))
     }
 
-    private fun openChangePin() {
+    /** Counter wala inter ad pehle, dismiss/skip par asal navigation. */
+    private fun showInterThen(action: () -> Unit) {
+        AperoNextGenInterstitial.InterAdShowWithCounter(
+            this,
+            "MainAd",
+            enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+            callback = object : AperoNextGenAdCallback {
+                override fun onNextAction() {
+                    if (!isFinishing && !isDestroyed) action()
+                }
+            },
+            logTag = "MainAd",
+            forceShow = false
+        )
+    }
+
+    private fun openChangePin() = showInterThen {
         startActivity(Intent(this, ChangePinActivity::class.java))
     }
 
-    private fun openPatternSetup() {
+    private fun openPatternSetup() = showInterThen {
         startActivity(Intent(this, PatternSetupActivity::class.java))
     }
 
-    private fun openAppLock() {
+    private fun openAppLock() = showInterThen {
         startActivity(AppLockActivity.intent(this))
     }
 
@@ -161,7 +182,7 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
-    private fun showPrivacyPolicy() {
+    private fun showPrivacyPolicy() = showInterThen {
         startActivity(
             WebViewActivity.intent(
                 this,
@@ -251,6 +272,25 @@ class SettingsActivity : BaseActivity() {
         AutoLockMode.MINUTES_5 -> R.string.auto_lock_5m_short
         AutoLockMode.NEVER_IN_MEMORY -> R.string.auto_lock_never_short
     }
+
+
+    private fun loadBanner() {
+        //banner ad
+
+
+        AperoNextGenBanner.loadAndShowCollapsibleBanner(
+            activity = this,
+            container = binding.frAds,
+            bannerId = getString(R.string.bannerAll), // TODO: apni collapsible id
+            placement = "bottom", // container screen ke bottom par hai
+            shimmerLayout = R.layout.layout_banner_control,
+            canShowAds = RemoteConfig.bannerSettings && RemoteConfig.enableAllAds, // TODO: yahan Remote Config ki value pass karein
+            canReloadAds = RemoteConfig.bannerSettings&& RemoteConfig.enableAllAds, // TODO: Remote Config — resume par reload + replace
+            logTag = "CollapsibleBannerHome",
+            retryToLoad = 0
+        )
+    }
+
 
     companion object {
         private const val PRIVACY_POLICY_URL =

@@ -25,6 +25,15 @@ class KeystoreManager @Inject constructor() {
         return mac.doFinal(data)
     }
 
+    /**
+     * True when the pepper key exists. It is created on the first credential hash and an
+     * uninstall wipes it, so credential data restored from a backup can never verify —
+     * callers use this to detect that state and reset to a fresh setup.
+     */
+    fun hasPepperKey(): Boolean = runCatching {
+        KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }.containsAlias(KEY_ALIAS)
+    }.getOrDefault(false)
+
     private fun getOrCreateKey(): SecretKey {
         val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
         (keyStore.getEntry(KEY_ALIAS, null) as? KeyStore.SecretKeyEntry)?.let {
