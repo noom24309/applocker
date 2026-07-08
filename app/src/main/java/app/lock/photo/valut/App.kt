@@ -5,12 +5,14 @@ import android.content.Context
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import app.lock.photo.valut.core.lock.AppLifecycleObserver
+import app.lock.photo.valut.core.push.PushNotificationHelper
 import app.lock.photo.valut.core.storage.SecureCacheManager
 import com.apero.nextgen.AdsSdk.config.AperoNextGenConfig
 import com.apero.nextgen.AdsSdk.init.AperoNextGen
 import com.apero.nextgen.AdsSdk.init.AperoNextGenInitCallback
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -60,6 +62,14 @@ class App : Application() {
         if (!firebaseReady) {
             Log.w("TAG", "FirebaseApp not initialized")
         }
+
+        // Push notifications: create the channel up front so FCM's automatic
+        // background notifications (manifest default channel) always have it, and
+        // subscribe everyone to the broadcast topic used for announcement pushes.
+        PushNotificationHelper.ensureChannel(this)
+        if (firebaseReady) {
+            runCatching { FirebaseMessaging.getInstance().subscribeToTopic(PUSH_TOPIC_ALL) }
+        }
     }
 
     private fun initializeVioAdmobs() {
@@ -91,5 +101,7 @@ class App : Application() {
         val context: Context
             get() = instance.applicationContext
 
+        /** Broadcast topic every install subscribes to; target it from the FCM API. */
+        const val PUSH_TOPIC_ALL = "all"
     }
 }

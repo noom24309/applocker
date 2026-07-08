@@ -377,6 +377,10 @@
     <!-- ===== Phase 5: App Lock ===== -->
     <string name="applock_title">App Lock</string>
 
+    <!-- Push notifications (FCM) -->
+    <string name="push_channel_name">Announcements</string>
+    <string name="push_channel_desc">News, tips and important updates.</string>
+
     <!-- Foreground service notification -->
     <string name="applock_channel_name">App Lock protection</string>
     <string name="applock_channel_desc">Keeps App Lock running while enabled.</string>

@@ -234,6 +234,24 @@
             </intent-filter>
         </receiver>
 
+        <!-- FCM push notifications -->
+        <service
+            android:name=".core.push.AppFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Defaults used by the FCM SDK when it auto-renders a notification-payload
+             push while the app is in the background. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_shield" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="push_general" />
+
         <receiver
             android:name=".core.applock.receiver.AppLockWatchdogReceiver"
             android:enabled="true"

@@ -18,8 +18,8 @@ android {
         applicationId "com.privatelock.vault.applock"
         minSdk 24
         targetSdk 36
-        versionCode 5
-        versionName "1.0.5"
+        versionCode 6
+        versionName "1.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -145,6 +145,9 @@ dependencies {
     // Firebase Remote Config
     implementation platform(libs.firebase.bom)
     implementation libs.firebase.config.ktx
+
+    // Firebase Cloud Messaging (push notifications; version comes from the BoM)
+    implementation libs.firebase.messaging
 
     // Scalable dp/sp used by the ported onboarding/language layouts
     implementation libs.intuit.sdp
