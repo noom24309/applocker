@@ -24,7 +24,8 @@ class AppLockServiceManager @Inject constructor(
     @ApplicationContext private val context: Context,
     private val permissionChecker: AppLockPermissionChecker,
     private val dataStore: AppSettingsDataStore,
-    private val lockedAppDao: LockedAppDao
+    private val lockedAppDao: LockedAppDao,
+    private val watchdog: AppLockWatchdogScheduler
 ) {
 
     private val _serviceState = MutableStateFlow(false)
@@ -52,6 +53,7 @@ class AppLockServiceManager @Inject constructor(
 
     suspend fun stopProtection() {
         dataStore.setAppLockServiceEnabled(false)
+        watchdog.cancel()
         context.stopService(Intent(context, AppLockMonitorService::class.java))
         onServiceStopped()
     }

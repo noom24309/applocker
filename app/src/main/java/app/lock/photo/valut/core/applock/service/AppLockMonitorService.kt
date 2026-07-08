@@ -1,8 +1,6 @@
 package app.lock.photo.valut.core.applock.service
 
-import android.app.AlarmManager
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,12 +9,12 @@ import android.content.IntentFilter
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
-import android.os.SystemClock
 import app.lock.photo.valut.core.applock.AppLockNotificationHelper
 import app.lock.photo.valut.core.applock.AppLockOverlayStateManager
 import app.lock.photo.valut.core.applock.AppLockPermissionChecker
 import app.lock.photo.valut.core.applock.AppLockServiceManager
 import app.lock.photo.valut.core.applock.AppLockSessionManager
+import app.lock.photo.valut.core.applock.AppLockWatchdogScheduler
 import app.lock.photo.valut.core.applock.ForegroundAppDetector
 import app.lock.photo.valut.core.datastore.AppSettingsDataStore
 import app.lock.photo.valut.data.local.dao.LockedAppDao
@@ -53,6 +51,7 @@ class AppLockMonitorService : Service() {
     @Inject lateinit var lockedAppDao: LockedAppDao
     @Inject lateinit var serviceManager: AppLockServiceManager
     @Inject lateinit var recordStats: RecordLocalAppLockStatsUseCase
+    @Inject lateinit var watchdog: AppLockWatchdogScheduler
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var monitorJob: Job? = null
@@ -67,6 +66,14 @@ class AppLockMonitorService : Service() {
     private var startedAt = 0L
     private val launcherPackages: Set<String> by lazy { resolveLaunchers() }
     private var screenReceiver: BroadcastReceiver? = null
+
+    // Set when the user explicitly stops protection, so onDestroy doesn't schedule
+    // a watchdog restart that would immediately resurrect the service.
+    @Volatile private var userRequestedStop = false
+
+    // Consecutive permission-check failures. Some OEM AppOps implementations return a
+    // transient false right after screen-on/doze; a single blip must not kill protection.
+    private var permissionFailStreak = 0
 
     // Re-promotes the service to foreground when the user swipes the notification away.
     // On Android 14/15, startForeground() has a system cooldown after dismissal, so we
@@ -90,6 +97,9 @@ class AppLockMonitorService : Service() {
         notificationHelper.ensureChannel()
         startInForeground()
         serviceManager.onServiceStarted()
+        // Arm the heartbeat: if an OEM battery manager kills this process without
+        // onDestroy/onTaskRemoved running, the watchdog alarm restarts protection.
+        watchdog.scheduleHeartbeat()
         registerScreenReceiver()
         registerNotifDeletedReceiver()
         observeState()
@@ -97,6 +107,8 @@ class AppLockMonitorService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == ACTION_STOP) {
+            userRequestedStop = true
+            watchdog.cancel()
             stopSelf()
             return START_NOT_STICKY
         }
@@ -134,7 +146,12 @@ class AppLockMonitorService : Service() {
         scope.launch { dataStore.relockAfterScreenOff.collectLatest { relockAfterScreenOff = it } }
         scope.launch { dataStore.relockAfterDeviceLock.collectLatest { relockAfterDeviceLock = it } }
         scope.launch {
-            dataStore.appLockFeatureEnabled.collectLatest { enabled -> if (!enabled) stopSelf() }
+            dataStore.appLockFeatureEnabled.collectLatest { enabled ->
+                if (!enabled) {
+                    userRequestedStop = true
+                    stopSelf()
+                }
+            }
         }
         // Periodically verify notification is still visible. On Android 14/15 users can
         // swipe FGS notifications; on OEMs the system removes them silently. When apps
@@ -160,11 +177,17 @@ class AppLockMonitorService : Service() {
         monitorJob = scope.launch {
             while (isActive) {
                 if (permissionsLost()) {
-                    // Permission revoked while running: stop and let the UI show "setup required".
-                    stopSelf()
-                    break
+                    // Only stop after several consecutive failures: OEM permission checks
+                    // can transiently report "denied" and a single blip must not end
+                    // protection. A real revocation keeps failing and stops the service.
+                    if (++permissionFailStreak >= PERMISSION_FAIL_THRESHOLD) {
+                        stopSelf()
+                        break
+                    }
+                } else {
+                    permissionFailStreak = 0
+                    if (shouldMonitor()) checkForeground()
                 }
-                if (shouldMonitor()) checkForeground()
                 delay(if (screenOn) POLL_INTERVAL_ON else POLL_INTERVAL_OFF)
             }
         }
@@ -270,26 +293,9 @@ class AppLockMonitorService : Service() {
      * is still locked. Removing the notification (Android 14+) does not stop the service either.
      */
     override fun onTaskRemoved(rootIntent: Intent?) {
-        if (lockedPackages.isNotEmpty()) {
-            val restartIntent = Intent(applicationContext, AppLockMonitorService::class.java)
-                .setAction(ACTION_START)
-            var flags = PendingIntent.FLAG_ONE_SHOT
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                flags = flags or PendingIntent.FLAG_IMMUTABLE
-            }
-            val pending = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                PendingIntent.getForegroundService(this, RESTART_REQUEST_CODE, restartIntent, flags)
-            } else {
-                PendingIntent.getService(this, RESTART_REQUEST_CODE, restartIntent, flags)
-            }
-            runCatching {
-                getSystemService(AlarmManager::class.java)?.setAndAllowWhileIdle(
-                    AlarmManager.ELAPSED_REALTIME,
-                    SystemClock.elapsedRealtime() + RESTART_DELAY_MILLIS,
-                    pending
-                )
-            }
-        }
+        // The watchdog receiver re-checks user intent, permissions and the locked-app
+        // list before actually restarting, so scheduling here is always safe.
+        if (!userRequestedStop) watchdog.scheduleRestart()
         super.onTaskRemoved(rootIntent)
     }
 
@@ -308,6 +314,9 @@ class AppLockMonitorService : Service() {
         sessionManager.clearAll()
         overlayState.clear()
         serviceManager.onServiceStopped()
+        // Killed by the system (LMK, OEM battery manager, crash): come back quickly.
+        // The receiver no-ops if the user has meanwhile turned protection off.
+        if (!userRequestedStop) watchdog.scheduleRestart()
     }
 
     companion object {
@@ -317,8 +326,8 @@ class AppLockMonitorService : Service() {
         private const val POLL_INTERVAL_ON = 600L
         private const val POLL_INTERVAL_OFF = 2_000L
 
-        private const val RESTART_REQUEST_CODE = 4203
-        private const val RESTART_DELAY_MILLIS = 1_000L
+        // Consecutive permissionsLost() failures required before the service stops itself.
+        private const val PERMISSION_FAIL_THRESHOLD = 3
 
         // Notification visibility recheck: fast when apps are locked, idle otherwise.
         private const val RECHECK_ACTIVE_MS = 2_000L

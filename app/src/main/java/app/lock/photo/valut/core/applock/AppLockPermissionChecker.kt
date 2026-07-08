@@ -3,6 +3,7 @@ package app.lock.photo.valut.core.applock
 import android.app.AppOpsManager
 import android.content.Context
 import android.os.Build
+import android.os.PowerManager
 import android.os.Process
 import android.provider.Settings
 import androidx.core.app.NotificationManagerCompat
@@ -55,6 +56,17 @@ class AppLockPermissionChecker @Inject constructor(
         } else {
             NotificationManagerCompat.from(context).areNotificationsEnabled()
         }
+    }
+
+    /**
+     * Battery-optimization exemption — not required to *start* protection, but without it
+     * Doze/OEM battery managers kill the monitor service and block the watchdog from
+     * restarting it in the background. Surfaced in troubleshooting, never hard-required.
+     */
+    fun isIgnoringBatteryOptimizations(): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true
+        val pm = context.getSystemService(Context.POWER_SERVICE) as? PowerManager ?: return false
+        return pm.isIgnoringBatteryOptimizations(context.packageName)
     }
 
     fun hasAllRequiredAppLockPermissions(): Boolean =

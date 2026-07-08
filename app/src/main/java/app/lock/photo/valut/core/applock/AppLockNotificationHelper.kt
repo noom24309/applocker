@@ -27,15 +27,18 @@ class AppLockNotificationHelper @Inject constructor(
     fun ensureChannel() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val manager = context.getSystemService(NotificationManager::class.java) ?: return
-        // Drop the old LOW-importance channel so the new MIN-importance one takes effect
-        // (a channel's importance can't be lowered in place once created).
-        runCatching { manager.deleteNotificationChannel(LEGACY_CHANNEL_ID) }
+        // Drop older channels so this one takes effect (a channel's importance can't be
+        // changed in place once created, and recreating a deleted ID restores its old
+        // settings — hence the fresh CHANNEL_ID).
+        LEGACY_CHANNEL_IDS.forEach { runCatching { manager.deleteNotificationChannel(it) } }
         if (manager.getNotificationChannel(CHANNEL_ID) != null) return
         val channel = NotificationChannel(
             CHANNEL_ID,
             context.getString(R.string.applock_channel_name),
-            // MIN: no status-bar icon, no sound; sits collapsed at the bottom of the shade.
-            NotificationManager.IMPORTANCE_MIN
+            // LOW (not MIN): silent, but keeps the foreground service at normal process
+            // priority. MIN-importance FGS processes are deprioritized and are the first
+            // ones OEM battery managers kill, which silently disabled protection.
+            NotificationManager.IMPORTANCE_LOW
         ).apply {
             description = context.getString(R.string.applock_channel_desc)
             setShowBadge(false)
@@ -78,8 +81,9 @@ class AppLockNotificationHelper @Inject constructor(
             .setContentText(text)
             .setContentIntent(openIntent)
             .setOngoing(true)
-            // MIN priority + silent keeps it out of the status bar; collapsed in the shade.
-            .setPriority(NotificationCompat.PRIORITY_MIN)
+            // LOW priority + silent: no sound or heads-up, but keeps the service's
+            // process priority high enough that the system doesn't kill protection.
+            .setPriority(NotificationCompat.PRIORITY_LOW)
             .setSilent(true)
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
             // No "Stop" action: protection can only be turned off from inside the app, so a
@@ -147,8 +151,8 @@ class AppLockNotificationHelper @Inject constructor(
     }
 
     companion object {
-        const val CHANNEL_ID = "app_lock_monitor_min"
-        private const val LEGACY_CHANNEL_ID = "app_lock_monitor"
+        const val CHANNEL_ID = "app_lock_monitor_low"
+        private val LEGACY_CHANNEL_IDS = listOf("app_lock_monitor", "app_lock_monitor_min")
         const val NOTIFICATION_ID = 4201
         const val NEW_APP_NOTIFICATION_ID = 4202
         const val ACTION_NOTIFICATION_DELETED = "app.lock.photo.valut.action.NOTIF_DELETED"

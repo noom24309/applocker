@@ -2,8 +2,10 @@ package app.lock.photo.valut.features.applock.troubleshooting
 
 import app.lock.photo.valut.core.ui.BaseActivity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.TextView
@@ -69,8 +71,13 @@ class AppLockTroubleshootingActivity : BaseActivity() {
         )
     }
 
+    // Asks for the battery-optimization exemption directly (one-tap "Allow" dialog).
+    // Without it, Doze/OEM battery managers kill the App Lock service in the background.
+    @SuppressLint("BatteryLife")
     private fun openBattery() {
-        runCatching {
+        val direct = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+            .setData(Uri.parse("package:$packageName"))
+        runCatching { startActivity(direct) }.recoverCatching {
             startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
         }
     }
