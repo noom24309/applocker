@@ -2,6 +2,7 @@ package app.lock.photo.valut.features.permissions
 
 import androidx.lifecycle.ViewModel
 import app.lock.photo.valut.core.applock.AppLockPermissionChecker
+import app.lock.photo.valut.core.applock.AppLockReliabilityHelper
 import app.lock.photo.valut.core.applock.AppLockServiceManager
 import app.lock.photo.valut.core.datastore.AppSettingsDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -60,4 +61,25 @@ class AppLockPermissionViewModel @Inject constructor(
         dataStore.setAppLockFeatureEnabled(true)
         if (serviceManager.canStartProtection()) serviceManager.startProtection()
     }
+
+    /** True once the app is exempt from battery optimization (service can survive Doze). */
+    fun isIgnoringBatteryOptimizations(): Boolean =
+        permissionChecker.isIgnoringBatteryOptimizations()
+
+    /**
+     * Show the battery-exemption prompt only while it still matters: not yet exempt and
+     * we haven't already asked once (so we never nag on every activation).
+     */
+    suspend fun shouldPromptBatteryExemption(): Boolean =
+        !permissionChecker.isIgnoringBatteryOptimizations() &&
+            !dataStore.batteryHelpShown.first()
+
+    suspend fun markBatteryHelpShown() = dataStore.setBatteryHelpShown(true)
+
+    /** Show the OEM auto-start prompt once, only on manufacturers known to need it. */
+    suspend fun shouldPromptAutoStart(): Boolean =
+        AppLockReliabilityHelper.hasKnownAutoStartManager() &&
+            !dataStore.autostartHelpShown.first()
+
+    suspend fun markAutostartHelpShown() = dataStore.setAutostartHelpShown(true)
 }

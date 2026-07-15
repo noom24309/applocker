@@ -77,6 +77,7 @@ class AppSettingsDataStore(
         val RESTART_PROTECTION_AFTER_BOOT = booleanPreferencesKey("restart_protection_after_boot")
         val LOCAL_STATS_ENABLED = booleanPreferencesKey("local_stats_enabled")
         val BATTERY_HELP_SHOWN = booleanPreferencesKey("battery_help_shown")
+        val AUTOSTART_HELP_SHOWN = booleanPreferencesKey("autostart_help_shown")
         val LAST_HANDLED_PACKAGE_TIME = longPreferencesKey("last_handled_package_time")
 
         // --- Phase 9: Private Camera ---
@@ -251,6 +252,9 @@ class AppSettingsDataStore(
 
     val batteryHelpShown: Flow<Boolean> = read(Keys.BATTERY_HELP_SHOWN, false)
     suspend fun setBatteryHelpShown(value: Boolean) = write(Keys.BATTERY_HELP_SHOWN, value)
+
+    val autostartHelpShown: Flow<Boolean> = read(Keys.AUTOSTART_HELP_SHOWN, false)
+    suspend fun setAutostartHelpShown(value: Boolean) = write(Keys.AUTOSTART_HELP_SHOWN, value)
 
     val lastHandledPackageTime: Flow<Long> = read(Keys.LAST_HANDLED_PACKAGE_TIME, 0L)
     suspend fun setLastHandledPackageTime(value: Long) = write(Keys.LAST_HANDLED_PACKAGE_TIME, value)

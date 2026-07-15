@@ -66,7 +66,12 @@ class AppLockWatchdogScheduler @Inject constructor(
 
     private companion object {
         const val REQUEST_CODE = 4205
-        const val HEARTBEAT_INTERVAL_MILLIS = 15 * 60_000L
+        // Short heartbeat so that if an OEM battery manager hard-kills the process without
+        // running onDestroy/onTaskRemoved (the only paths that schedule the fast 5 s
+        // restart), protection self-heals within ~2 min instead of up to 15. Outside deep
+        // Doze — i.e. while the user is actually using the phone and opening locked apps —
+        // the while-idle alarm fires on time, so protection is virtually never down.
+        const val HEARTBEAT_INTERVAL_MILLIS = 2 * 60_000L
         const val RESTART_DELAY_MILLIS = 5_000L
     }
 }

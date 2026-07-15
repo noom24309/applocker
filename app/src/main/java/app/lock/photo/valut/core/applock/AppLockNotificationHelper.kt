@@ -81,6 +81,8 @@ class AppLockNotificationHelper @Inject constructor(
             .setContentText(text)
             .setContentIntent(openIntent)
             .setOngoing(true)
+            // Never auto-cancel on tap and keep it out of the "clear all" sweep.
+            .setAutoCancel(false)
             // LOW priority + silent: no sound or heads-up, but keeps the service's
             // process priority high enough that the system doesn't kill protection.
             .setPriority(NotificationCompat.PRIORITY_LOW)
@@ -91,6 +93,13 @@ class AppLockNotificationHelper @Inject constructor(
             .addAction(0, context.getString(R.string.applock_notification_open), openIntent)
             .setDeleteIntent(deleteIntent)
             .build()
+            .apply {
+                // Belt-and-suspenders: mark the notification non-clearable so neither a
+                // "Clear all" tap nor a stray cancel removes it. On Android 14+ a manual
+                // swipe can still dismiss an FGS notification — the delete intent above
+                // catches that and the service immediately re-promotes itself.
+                flags = flags or Notification.FLAG_ONGOING_EVENT or Notification.FLAG_NO_CLEAR
+            }
     }
 
     /**

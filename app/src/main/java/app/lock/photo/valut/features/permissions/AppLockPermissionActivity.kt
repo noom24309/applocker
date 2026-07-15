@@ -18,9 +18,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.applock.AppLockReliabilityHelper
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.databinding.ActivityAppLockPermissionBinding
 import app.lock.photo.valut.features.home.MainActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -41,6 +43,12 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
     private val notificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { viewModel.refresh() }
+
+    // The battery-exemption dialog returns here; continue the reliability flow either way
+    // (grant or deny) so the user is never stuck on this screen.
+    private val batteryResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { maybeShowAutoStartThenHome() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,12 +86,7 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
             binding.btnContinue.setText(R.string.applock_activate_protection)
             binding.btnSkip.isVisible = true
             binding.btnSkip.setOnClickListener { goToHome() }
-            binding.btnContinue.setOnClickListener {
-                lifecycleScope.launch {
-                    viewModel.activateProtection()
-                    goToHome()
-                }
-            }
+            binding.btnContinue.setOnClickListener { activateAndFinishGate() }
         } else {
             binding.btnContinue.setOnClickListener {
                 setResult(RESULT_OK)
@@ -98,6 +101,69 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
     private fun goToHome() {
         startActivity(Intent(this, MainActivity::class.java))
         finishAffinity()
+    }
+
+    /**
+     * Gate "Activate protection": turn App Lock on, then — before landing on home — walk the
+     * user through the OEM survival settings that keep the monitor service alive (battery
+     * exemption, then auto-start on manufacturers that need it). Each prompt is shown at most
+     * once; if none are needed we go straight home.
+     */
+    private fun activateAndFinishGate() {
+        lifecycleScope.launch {
+            viewModel.activateProtection()
+            if (viewModel.shouldPromptBatteryExemption()) {
+                viewModel.markBatteryHelpShown()
+                showBatteryDialog()
+            } else {
+                maybeShowAutoStartThenHome()
+            }
+        }
+    }
+
+    private fun showBatteryDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.applock_battery_prompt_title)
+            .setMessage(R.string.applock_battery_prompt_message)
+            .setCancelable(false)
+            .setPositiveButton(R.string.applock_battery_prompt_allow) { _, _ ->
+                runCatching {
+                    batteryResultLauncher.launch(
+                        AppLockReliabilityHelper.batteryExemptionIntent(this)
+                    )
+                }.onFailure {
+                    runCatching { startActivity(AppLockReliabilityHelper.batterySettingsIntent()) }
+                    maybeShowAutoStartThenHome()
+                }
+            }
+            .setNegativeButton(R.string.applock_reliability_later) { _, _ ->
+                maybeShowAutoStartThenHome()
+            }
+            .show()
+    }
+
+    private fun maybeShowAutoStartThenHome() {
+        lifecycleScope.launch {
+            if (viewModel.shouldPromptAutoStart()) {
+                viewModel.markAutostartHelpShown()
+                showAutoStartDialog()
+            } else {
+                goToHome()
+            }
+        }
+    }
+
+    private fun showAutoStartDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.applock_autostart_prompt_title)
+            .setMessage(R.string.applock_autostart_prompt_message)
+            .setCancelable(false)
+            .setPositiveButton(R.string.applock_autostart_prompt_open) { _, _ ->
+                AppLockReliabilityHelper.openAutoStartSettings(this)
+                goToHome()
+            }
+            .setNegativeButton(R.string.applock_reliability_later) { _, _ -> goToHome() }
+            .show()
     }
 
     override fun onResume() {

@@ -426,6 +426,15 @@
     <string name="applock_setup_skip">Skip for now</string>
     <string name="applock_activate_protection">Activate protection</string>
 
+    <!-- Reliability prompts shown right after protection is activated -->
+    <string name="applock_reliability_later">Later</string>
+    <string name="applock_battery_prompt_title">Keep App Lock running</string>
+    <string name="applock_battery_prompt_message">To stop the system from closing App Lock in the background, allow it to run without battery restrictions. Without this, locked apps may open without asking for your PIN.</string>
+    <string name="applock_battery_prompt_allow">Allow</string>
+    <string name="applock_autostart_prompt_title">Enable auto-start</string>
+    <string name="applock_autostart_prompt_message">Your phone stops apps from starting on their own. Turn on auto-start (and “no restrictions”) for App Lock so protection keeps working after you close the app or restart your phone.</string>
+    <string name="applock_autostart_prompt_open">Open settings</string>
+
     <plurals name="applock_locked_count">
         <item quantity="one">%d app locked</item>
         <item quantity="other">%d apps locked</item>
