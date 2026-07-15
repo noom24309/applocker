@@ -217,9 +217,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun loadBanner() {
-        //banner ad
-
-
         AperoNextGenBanner.loadAndShowCollapsibleBanner(
             activity = this,
             container = binding.frAds,

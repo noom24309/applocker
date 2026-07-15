@@ -15,6 +15,8 @@ import app.lock.photo.valut.features.cleanup.storage.StorageAnalyzerActivity
 import app.lock.photo.valut.features.documents.PrivateDocumentsActivity
 import app.lock.photo.valut.features.premium.notes.PrivateNotesActivity
 import app.lock.photo.valut.features.settings.SettingsActivity
+import com.apero.nextgen.AdsSdk.callback.AperoNextGenAdCallback
+import com.apero.nextgen.AdsSdk.interstitial.AperoNextGenInterstitial
 import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,16 +44,122 @@ class ToolsFragment : Fragment() {
         }
 
         // Cleanup tools.
-        binding.cardDuplicates.setOnClickListener { startActivity(DuplicateFinderActivity.intent(requireContext())) }
-        binding.cardLargeFiles.setOnClickListener { startActivity(LargeFilesActivity.intent(requireContext())) }
-        binding.cardStorage.setOnClickListener { startActivity(StorageAnalyzerActivity.intent(requireContext())) }
+        binding.cardDuplicates.setOnClickListener {
+
+            AperoNextGenInterstitial.InterAdShowWithCounter(
+                activity!!,
+                "MainAd",
+                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+                callback = object : AperoNextGenAdCallback {
+                    override fun onNextAction() {
+                        startActivity(
+                            DuplicateFinderActivity.intent(
+                                requireContext()
+                            )
+                        )
+                    }
+                },
+                logTag = "MainAd",
+                forceShow = false
+            )
+
+        }
+        binding.cardLargeFiles.setOnClickListener {
+
+            AperoNextGenInterstitial.InterAdShowWithCounter(
+                activity!!,
+                "MainAd",
+                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+                callback = object : AperoNextGenAdCallback {
+                    override fun onNextAction() {
+                        startActivity(
+                            LargeFilesActivity.intent(
+                                requireContext()
+                            )
+                        )
+                    }
+                },
+                logTag = "MainAd",
+                forceShow = false
+            )
+
+        }
+        binding.cardStorage.setOnClickListener {
+
+            AperoNextGenInterstitial.InterAdShowWithCounter(
+                activity!!,
+                "MainAd",
+                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+                callback = object : AperoNextGenAdCallback {
+                    override fun onNextAction() {
+                        startActivity(
+                            StorageAnalyzerActivity.intent(
+                                requireContext()
+                            )
+                        )
+                    }
+                },
+                logTag = "MainAd",
+                forceShow = false
+            )
+
+        }
 
         // Security & privacy.
-        binding.cardHealth.setOnClickListener { startActivity(VaultHealthActivity.intent(requireContext())) }
+        binding.cardHealth.setOnClickListener {
+            AperoNextGenInterstitial.InterAdShowWithCounter(
+                activity!!,
+                "MainAd",
+                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+                callback = object : AperoNextGenAdCallback {
+                    override fun onNextAction() {
+                        startActivity(
+                            VaultHealthActivity.intent(
+                                requireContext()
+                            )
+                        )
+                    }
+                },
+                logTag = "MainAd",
+                forceShow = false
+            )
+
+        }
 
         // Private storage.
-        binding.cardPrivateNotes.setOnClickListener { startActivity(PrivateNotesActivity.intent(requireContext())) }
-        binding.cardPrivateDocuments.setOnClickListener { startActivity(PrivateDocumentsActivity.intent(requireContext())) }
+        binding.cardPrivateNotes.setOnClickListener {
+
+            AperoNextGenInterstitial.InterAdShowWithCounter(
+                activity!!,
+                "MainAd",
+                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+                callback = object : AperoNextGenAdCallback {
+                    override fun onNextAction() {
+                        startActivity(PrivateNotesActivity.intent(requireContext()))
+                    }
+                },
+                logTag = "MainAd",
+                forceShow = false
+            )
+        }
+
+        // Private storage.
+        binding.cardPrivateDocuments.setOnClickListener {
+            AperoNextGenInterstitial.InterAdShowWithCounter(
+                activity!!,
+                "MainAd",
+                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+                callback = object : AperoNextGenAdCallback {
+                    override fun onNextAction() {
+                        startActivity(PrivateDocumentsActivity.intent(requireContext()))
+                    }
+                },
+                logTag = "MainAd",
+                forceShow = false
+            )
+        }
+
+
     }
 
 
@@ -61,9 +169,9 @@ class ToolsFragment : Fragment() {
             container = binding.flAdNative,
             nativeId = getString(R.string.OB2),
             layoutId = R.layout.native_medium_ad_layout_new,
-            canShowAds = RemoteConfig.nativeTools&& RemoteConfig.enableAllAds,
+            canShowAds = RemoteConfig.nativeTools && RemoteConfig.enableAllAds,
             reloadNativeId = getString(R.string.OB2),
-            canReloadAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds
+            canReloadAds = RemoteConfig.nativePattern && RemoteConfig.enableAllAds
         )
     }
 

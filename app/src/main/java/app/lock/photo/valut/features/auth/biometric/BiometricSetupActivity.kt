@@ -8,11 +8,13 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.core.permissions.BiometricHelper
 import app.lock.photo.valut.databinding.ActivityBiometricSetupBinding
 import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
+import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -42,8 +44,20 @@ class BiometricSetupActivity : BaseActivity(), LockExempt {
         renderAvailability()
         setupActions()
         observeDone()
+        loadNativeAd()
     }
-
+    private fun loadNativeAd() {
+        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.OBFull2),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.OBFull2),
+            canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            logTag = "NativePattern"
+        )
+    }
     private fun renderAvailability() {
         if (biometricAvailable) {
             binding.btnPrimary.setText(R.string.biometric_enable)
