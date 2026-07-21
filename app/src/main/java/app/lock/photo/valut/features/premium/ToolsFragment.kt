@@ -1,5 +1,7 @@
 package app.lock.photo.valut.features.premium
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,121 +47,51 @@ class ToolsFragment : Fragment() {
 
         // Cleanup tools.
         binding.cardDuplicates.setOnClickListener {
-
-            AperoNextGenInterstitial.InterAdShowWithCounter(
-                activity!!,
-                "MainAd",
-                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
-                callback = object : AperoNextGenAdCallback {
-                    override fun onNextAction() {
-                        startActivity(
-                            DuplicateFinderActivity.intent(
-                                requireContext()
-                            )
-                        )
-                    }
-                },
-                logTag = "MainAd",
-                forceShow = false
-            )
-
+            openWithInterstitial { DuplicateFinderActivity.intent(it) }
         }
         binding.cardLargeFiles.setOnClickListener {
-
-            AperoNextGenInterstitial.InterAdShowWithCounter(
-                activity!!,
-                "MainAd",
-                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
-                callback = object : AperoNextGenAdCallback {
-                    override fun onNextAction() {
-                        startActivity(
-                            LargeFilesActivity.intent(
-                                requireContext()
-                            )
-                        )
-                    }
-                },
-                logTag = "MainAd",
-                forceShow = false
-            )
-
+            openWithInterstitial { LargeFilesActivity.intent(it) }
         }
         binding.cardStorage.setOnClickListener {
-
-            AperoNextGenInterstitial.InterAdShowWithCounter(
-                activity!!,
-                "MainAd",
-                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
-                callback = object : AperoNextGenAdCallback {
-                    override fun onNextAction() {
-                        startActivity(
-                            StorageAnalyzerActivity.intent(
-                                requireContext()
-                            )
-                        )
-                    }
-                },
-                logTag = "MainAd",
-                forceShow = false
-            )
-
+            openWithInterstitial { StorageAnalyzerActivity.intent(it) }
         }
 
         // Security & privacy.
         binding.cardHealth.setOnClickListener {
-            AperoNextGenInterstitial.InterAdShowWithCounter(
-                activity!!,
-                "MainAd",
-                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
-                callback = object : AperoNextGenAdCallback {
-                    override fun onNextAction() {
-                        startActivity(
-                            VaultHealthActivity.intent(
-                                requireContext()
-                            )
-                        )
-                    }
-                },
-                logTag = "MainAd",
-                forceShow = false
-            )
-
+            openWithInterstitial { VaultHealthActivity.intent(it) }
         }
 
         // Private storage.
         binding.cardPrivateNotes.setOnClickListener {
-
-            AperoNextGenInterstitial.InterAdShowWithCounter(
-                activity!!,
-                "MainAd",
-                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
-                callback = object : AperoNextGenAdCallback {
-                    override fun onNextAction() {
-                        startActivity(PrivateNotesActivity.intent(requireContext()))
-                    }
-                },
-                logTag = "MainAd",
-                forceShow = false
-            )
+            openWithInterstitial { PrivateNotesActivity.intent(it) }
         }
-
-        // Private storage.
         binding.cardPrivateDocuments.setOnClickListener {
-            AperoNextGenInterstitial.InterAdShowWithCounter(
-                activity!!,
-                "MainAd",
-                enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
-                callback = object : AperoNextGenAdCallback {
-                    override fun onNextAction() {
-                        startActivity(PrivateDocumentsActivity.intent(requireContext()))
-                    }
-                },
-                logTag = "MainAd",
-                forceShow = false
-            )
+            openWithInterstitial { PrivateDocumentsActivity.intent(it) }
         }
+    }
 
-
+    /**
+     * Shows the "MainAd" interstitial and opens the target screen afterwards. The ad
+     * SDK delivers [onNextAction] on a delayed main-thread post, so the fragment may be
+     * detached by the time it fires. We capture the host activity up front and launch
+     * from it — never from the fragment — and bail out if the activity has gone away,
+     * which is what caused the "Fragment not attached to Activity" crash.
+     */
+    private fun openWithInterstitial(intentFactory: (Context) -> Intent) {
+        val host = activity ?: return
+        AperoNextGenInterstitial.InterAdShowWithCounter(
+            host,
+            "MainAd",
+            enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
+            callback = object : AperoNextGenAdCallback {
+                override fun onNextAction() {
+                    if (host.isFinishing || host.isDestroyed) return
+                    host.startActivity(intentFactory(host))
+                }
+            },
+            logTag = "MainAd",
+            forceShow = false
+        )
     }
 
 

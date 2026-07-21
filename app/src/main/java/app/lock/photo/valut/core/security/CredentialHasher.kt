@@ -1,9 +1,11 @@
 package app.lock.photo.valut.core.security
 
 import android.util.Base64
+import java.nio.CharBuffer
+import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
-import javax.crypto.SecretKeyFactory
-import javax.crypto.spec.PBEKeySpec
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -38,14 +40,67 @@ class CredentialHasher @Inject constructor(
     }
 
     private fun derive(secret: CharArray, salt: ByteArray): String {
-        val spec = PBEKeySpec(secret, salt, ITERATIONS, KEY_LENGTH_BITS)
-        val pbkdf = try {
-            SecretKeyFactory.getInstance(PBKDF2_ALGORITHM).generateSecret(spec).encoded
-        } finally {
-            spec.clearPassword()
-        }
+        val pbkdf = pbkdf2(secret, salt, ITERATIONS, KEY_LENGTH_BITS)
         // Device-bound pepper so off-device cracking is infeasible.
         return keystoreManager.pepper(pbkdf).encode()
+    }
+
+    /**
+     * RFC 8018 PBKDF2 built directly on the HmacSHA256 [Mac], which exists on every
+     * supported API level. The JCE "PBKDF2WithHmacSHA256" SecretKeyFactory only ships
+     * on API 26+, so it threw NoSuchAlgorithmException on Android 7 (API 24/25). For the
+     * app's ASCII-only secrets (PIN/pattern/recovery key) this produces byte-identical
+     * output to the old SecretKeyFactory path — Android's implementation encodes the
+     * password as UTF-8, and for ASCII that equals the char bytes — so hashes created on
+     * API 26+ still verify after this change.
+     */
+    private fun pbkdf2(
+        password: CharArray,
+        salt: ByteArray,
+        iterations: Int,
+        keyLengthBits: Int
+    ): ByteArray {
+        val passwordBytes = utf8Bytes(password)
+        return try {
+            val mac = Mac.getInstance(HMAC_ALGORITHM)
+            mac.init(SecretKeySpec(passwordBytes, HMAC_ALGORITHM))
+            val hLen = mac.macLength
+            val dkLen = keyLengthBits / 8
+            val derived = ByteArray(dkLen)
+            val blockIndex = ByteArray(4)
+            var offset = 0
+            var block = 1
+            while (offset < dkLen) {
+                // INT_32_BE(block)
+                blockIndex[0] = (block ushr 24).toByte()
+                blockIndex[1] = (block ushr 16).toByte()
+                blockIndex[2] = (block ushr 8).toByte()
+                blockIndex[3] = block.toByte()
+                mac.update(salt)
+                var u = mac.doFinal(blockIndex)   // U1 = PRF(P, S || INT_32_BE(block))
+                val t = u.copyOf()
+                for (i in 2..iterations) {
+                    u = mac.doFinal(u)            // Ui = PRF(P, Ui-1)
+                    for (k in t.indices) t[k] = (t[k].toInt() xor u[k].toInt()).toByte()
+                }
+                val copyLen = minOf(hLen, dkLen - offset)
+                System.arraycopy(t, 0, derived, offset, copyLen)
+                offset += copyLen
+                block++
+            }
+            derived
+        } finally {
+            passwordBytes.fill(0)
+        }
+    }
+
+    /** UTF-8 encodes [chars] and zeroes the intermediate buffer afterwards. */
+    private fun utf8Bytes(chars: CharArray): ByteArray {
+        val buffer = StandardCharsets.UTF_8.encode(CharBuffer.wrap(chars))
+        val bytes = ByteArray(buffer.remaining())
+        buffer.get(bytes)
+        if (buffer.hasArray()) buffer.array().fill(0)
+        return bytes
     }
 
     private fun ByteArray.encode(): String = Base64.encodeToString(this, Base64.NO_WRAP)
@@ -62,7 +117,7 @@ class CredentialHasher @Inject constructor(
     }
 
     private companion object {
-        const val PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA256"
+        const val HMAC_ALGORITHM = "HmacSHA256"
         const val ITERATIONS = 120_000
         const val KEY_LENGTH_BITS = 256
         const val SALT_LENGTH = 16

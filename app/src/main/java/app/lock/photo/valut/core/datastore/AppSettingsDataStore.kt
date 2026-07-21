@@ -5,13 +5,16 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import app.lock.photo.valut.core.common.Constants
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import java.io.IOException
 
 /** DataStore delegate scoped to the application context. */
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
@@ -296,17 +299,29 @@ class AppSettingsDataStore(
     suspend fun setLastVaultScanTime(value: Long) = write(Keys.LAST_VAULT_SCAN_TIME, value)
 
     // --- helpers ---
+    /**
+     * DataStore's data flow throws IOException on a read error. Left unhandled, that
+     * exception propagates into every collector and every .first() caller — including the
+     * App Lock watchdog/boot receivers, where it would skip re-arming the heartbeat and
+     * permanently break self-healing (the service would never restart after an OEM kill).
+     * Emitting empty prefs makes reads fall back to their defaults instead of throwing.
+     */
+    private val safeData: Flow<Preferences>
+        get() = context.dataStore.data.catch { e ->
+            if (e is IOException) emit(emptyPreferences()) else throw e
+        }
+
     private fun read(key: Preferences.Key<Boolean>, default: Boolean): Flow<Boolean> =
-        context.dataStore.data.map { it[key] ?: default }
+        safeData.map { it[key] ?: default }
 
     private fun read(key: Preferences.Key<Int>, default: Int): Flow<Int> =
-        context.dataStore.data.map { it[key] ?: default }
+        safeData.map { it[key] ?: default }
 
     private fun read(key: Preferences.Key<Long>, default: Long): Flow<Long> =
-        context.dataStore.data.map { it[key] ?: default }
+        safeData.map { it[key] ?: default }
 
     private fun readNullable(key: Preferences.Key<String>): Flow<String?> =
-        context.dataStore.data.map { it[key] }
+        safeData.map { it[key] }
 
     private suspend fun <T> write(key: Preferences.Key<T>, value: T) {
         context.dataStore.edit { it[key] = value }

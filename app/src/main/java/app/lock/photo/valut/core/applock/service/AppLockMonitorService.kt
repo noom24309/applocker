@@ -130,25 +130,28 @@ class AppLockMonitorService : Service() {
 
     private fun observeState() {
         scope.launch {
-            lockedAppDao.observeLockedPackageNames().collectLatest {
-                lockedPackages = it.toSet()
-                // Refresh the notification's locked-app count (no app names exposed).
-                runCatching {
-                    notificationHelper.notifyUpdate(lockedPackages.size)
+            lockedAppDao.observeLockedPackageNames().collectLatest { names ->
+                lockedPackages = names.toSet()
+                if (lockedPackages.isEmpty()) {
+                    // Nothing left to protect: stop. This is the ONLY condition under which
+                    // the service stops itself. The watchdog will not resurrect it while zero
+                    // apps are locked, and locking an app again restarts it via startProtection().
+                    // We do NOT set userRequestedStop, so this isn't treated as a hard user stop.
+                    stopSelf()
+                } else {
+                    // Refresh the notification's locked-app count (no app names exposed).
+                    runCatching { notificationHelper.notifyUpdate(lockedPackages.size) }
                 }
             }
         }
         scope.launch { dataStore.relockAfterAppSwitch.collectLatest { relockAfterAppSwitch = it } }
         scope.launch { dataStore.relockAfterScreenOff.collectLatest { relockAfterScreenOff = it } }
         scope.launch { dataStore.relockAfterDeviceLock.collectLatest { relockAfterDeviceLock = it } }
-        scope.launch {
-            dataStore.appLockFeatureEnabled.collectLatest { enabled ->
-                if (!enabled) {
-                    userRequestedStop = true
-                    stopSelf()
-                }
-            }
-        }
+        // NOTE: the service no longer stops itself when appLockFeatureEnabled flips false.
+        // Turning the feature off is owned by AppLockServiceManager.stopProtection(), which
+        // stops the service and cancels the watchdog explicitly. Observing that flag here was
+        // a permanent-death trap: a transient DataStore read (now defaulting to false) would
+        // have killed protection while apps were still locked.
         // Periodically verify notification is still visible. On Android 14/15 users can
         // swipe FGS notifications; on OEMs the system removes them silently. When apps
         // are locked we check every 2 s so the notification reappears almost instantly.

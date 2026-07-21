@@ -37,15 +37,31 @@ class AppLockWatchdogReceiver : HiltBroadcastReceiver() {
 
         val pending = goAsync()
         CoroutineScope(SupervisorJob() + Dispatchers.Default).launch {
+            // Default to keeping the self-heal chain armed. We only cancel it on a
+            // definitive "nothing to protect" signal — never as a side effect of an
+            // exception, which used to skip the re-arm and kill protection for good.
+            var keepChainAlive = true
             try {
-                val userWantsProtection = dataStore.appLockServiceEnabled.first() &&
-                    dataStore.appLockFeatureEnabled.first()
-                if (!userWantsProtection) {
+                // On a transient read error assume protection is still wanted (fail toward
+                // protection). safeData already prevents throwing, this is defense in depth.
+                val userWantsProtection = runCatching {
+                    dataStore.appLockServiceEnabled.first() && dataStore.appLockFeatureEnabled.first()
+                }.getOrDefault(true)
+                val lockedApps = runCatching { lockedAppDao.getLockedPackageNames() }
+                    .getOrDefault(emptyList())
+
+                // Stop self-healing only when the user turned protection off or there is
+                // genuinely nothing locked. A locked app re-arms the chain via startProtection().
+                if (!userWantsProtection || lockedApps.isEmpty()) {
+                    keepChainAlive = false
                     watchdog.cancel()
                     return@launch
                 }
-                val canRun = permissionChecker.hasAllRequiredAppLockPermissions() &&
-                    lockedAppDao.getLockedPackageNames().isNotEmpty()
+
+                // A permission being transiently unavailable must NOT cancel the chain —
+                // we just skip the restart this round and try again on the next heartbeat.
+                val canRun = runCatching { permissionChecker.hasAllRequiredAppLockPermissions() }
+                    .getOrDefault(false)
                 if (canRun && !serviceManager.isServiceRunning()) {
                     // May be rejected on Android 12+ if the app is neither battery-exempt
                     // nor woken by an exact alarm — the next heartbeat tries again.
@@ -57,10 +73,10 @@ class AppLockWatchdogReceiver : HiltBroadcastReceiver() {
                         )
                     }
                 }
-                // Keep the chain alive while protection is wanted, even if it can't run
-                // right now (e.g. a permission was revoked and later re-granted).
-                watchdog.scheduleHeartbeat()
             } finally {
+                // Always re-arm unless we deliberately stopped the chain, so a single
+                // failure can never permanently break self-healing.
+                if (keepChainAlive) runCatching { watchdog.scheduleHeartbeat() }
                 pending.finish()
             }
         }

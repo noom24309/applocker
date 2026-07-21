@@ -157,7 +157,12 @@ class MainActivity : BaseActivity() {
 
     /** Tabs are added once and then shown/hidden, so switching back never recreates them. */
     private fun showFragment(tab: Tab) {
-        supportFragmentManager.commit {
+        // allowStateLoss: this can be driven by an interstitial's dismiss callback, which
+        // arrives on a delayed post and may land after onSaveInstanceState (activity stopped
+        // but not finishing/destroyed). A plain commit() would then throw
+        // "Can not perform this action after onSaveInstanceState". The selected tab is
+        // persisted separately via STATE_TAB, so losing this transaction's state is harmless.
+        supportFragmentManager.commit(allowStateLoss = true) {
             Tab.values().forEach { other ->
                 if (other != tab) {
                     supportFragmentManager.findFragmentByTag(other.name)?.let { hide(it) }

@@ -44,18 +44,24 @@ class BootReceiver : HiltBroadcastReceiver() {
                     dataStore.appLockFeatureEnabled.first()
                 if (!userWantsProtection) return@launch
 
-                val hasLockedApps = lockedAppDao.getLockedPackageNames().isNotEmpty()
-                val hasPermissions = permissionChecker.hasAllRequiredAppLockPermissions()
+                val hasLockedApps = runCatching { lockedAppDao.getLockedPackageNames().isNotEmpty() }
+                    .getOrDefault(false)
+                val hasPermissions = runCatching { permissionChecker.hasAllRequiredAppLockPermissions() }
+                    .getOrDefault(false)
                 if (hasLockedApps && hasPermissions) {
-                    ContextCompat.startForegroundService(
-                        context,
-                        Intent(context, AppLockMonitorService::class.java)
-                            .setAction(AppLockMonitorService.ACTION_START)
-                    )
+                    // Wrap the start so a rejection (e.g. direct-boot / OEM restriction) can't
+                    // skip the heartbeat re-arm below.
+                    runCatching {
+                        ContextCompat.startForegroundService(
+                            context,
+                            Intent(context, AppLockMonitorService::class.java)
+                                .setAction(AppLockMonitorService.ACTION_START)
+                        )
+                    }
                 }
-                // Alarms don't survive a reboot — re-arm the watchdog heartbeat so
-                // protection also self-heals if the start above failed or is delayed.
-                watchdog.scheduleHeartbeat()
+                // Alarms don't survive a reboot — re-arm the watchdog heartbeat (while there's
+                // something to protect) so protection self-heals even if the start above failed.
+                if (hasLockedApps) runCatching { watchdog.scheduleHeartbeat() }
             } finally {
                 pending.finish()
             }
