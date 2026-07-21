@@ -71,10 +71,6 @@ class AppLockMonitorService : Service() {
     // a watchdog restart that would immediately resurrect the service.
     @Volatile private var userRequestedStop = false
 
-    // Consecutive permission-check failures. Some OEM AppOps implementations return a
-    // transient false right after screen-on/doze; a single blip must not kill protection.
-    private var permissionFailStreak = 0
-
     // Re-promotes the service to foreground when the user swipes the notification away.
     // On Android 14/15, startForeground() has a system cooldown after dismissal, so we
     // call notifyUpdate() first — that posts the notification as a regular ongoing entry
@@ -176,18 +172,15 @@ class AppLockMonitorService : Service() {
         if (monitorJob?.isActive == true) return
         monitorJob = scope.launch {
             while (isActive) {
-                if (permissionsLost()) {
-                    // Only stop after several consecutive failures: OEM permission checks
-                    // can transiently report "denied" and a single blip must not end
-                    // protection. A real revocation keeps failing and stops the service.
-                    if (++permissionFailStreak >= PERMISSION_FAIL_THRESHOLD) {
-                        stopSelf()
-                        break
-                    }
-                } else {
-                    permissionFailStreak = 0
-                    if (shouldMonitor()) checkForeground()
-                }
+                // Never stop the service on a permission check: many OEM AppOps
+                // implementations report a transient "denied" right after screen-on/doze,
+                // and killing the service on such a blip is the main cause of protection
+                // dropping out. Instead we simply pause the overlay check while a required
+                // permission is unavailable and keep the service alive. The moment the
+                // permission returns, monitoring resumes instantly — no wait on the
+                // watchdog alarm. The service only ever ends when the user turns the
+                // feature off or explicitly stops it.
+                if (!permissionsLost() && shouldMonitor()) checkForeground()
                 delay(if (screenOn) POLL_INTERVAL_ON else POLL_INTERVAL_OFF)
             }
         }
@@ -325,9 +318,6 @@ class AppLockMonitorService : Service() {
 
         private const val POLL_INTERVAL_ON = 600L
         private const val POLL_INTERVAL_OFF = 2_000L
-
-        // Consecutive permissionsLost() failures required before the service stops itself.
-        private const val PERMISSION_FAIL_THRESHOLD = 3
 
         // Notification visibility recheck: fast when apps are locked, idle otherwise.
         private const val RECHECK_ACTIVE_MS = 2_000L

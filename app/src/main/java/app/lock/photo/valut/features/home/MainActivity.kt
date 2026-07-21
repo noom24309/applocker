@@ -53,7 +53,6 @@ class MainActivity : BaseActivity() {
     // Applies its own per-view insets (fragment top + bottom-nav bottom) below.
     override val applyEdgeToEdgeInsets: Boolean = false
 
-    private val remoteConfig=getRemoteConfig()
     private var currentTab = Tab.HOME
 
     /** Pre-Phase-4 plain files are migrated to encrypted storage once, on first Vault open. */

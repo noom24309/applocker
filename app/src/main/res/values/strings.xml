@@ -410,6 +410,16 @@
     <string name="applock_perm_check_again">Check again</string>
     <string name="applock_usage_privacy">Usage Access helps App Lock detect when a protected app is opened. This information stays on your device and is never uploaded, sold, or shared.</string>
 
+    <!-- Prominent disclosure dialogs shown BEFORE requesting each sensitive permission (Play policy) -->
+    <string name="applock_disclosure_continue">Continue</string>
+    <string name="applock_disclosure_cancel">Not now</string>
+    <string name="applock_disclosure_usage_title">Usage Access permission</string>
+    <string name="applock_disclosure_usage_message">App Lock needs Usage Access to detect which app is currently on screen, so it can show the lock screen the moment a protected app is opened.\n\nThis is read only on your device to check the app in the foreground. Your usage history is never stored, uploaded, sold, or shared.\n\nOn the next screen, find “%1$s” and turn on “Permit usage access”.</string>
+    <string name="applock_disclosure_overlay_title">Display over other apps</string>
+    <string name="applock_disclosure_overlay_message">App Lock needs the “Display over other apps” permission to show the lock screen on top of a protected app.\n\nWithout it, the lock screen cannot appear over other apps. Nothing about your screen ever leaves the device.\n\nOn the next screen, turn on “Allow display over other apps”.</string>
+    <string name="applock_disclosure_notification_title">Notification permission</string>
+    <string name="applock_disclosure_notification_message">App Lock shows an ongoing notification so protection keeps running reliably in the background and isn’t closed by the system.\n\nAllow notifications on the next screen to keep your apps protected.</string>
+
     <!-- Dashboard -->
     <string name="applock_complete_setup">Complete Setup</string>
     <string name="applock_start_protection">Start Protection</string>

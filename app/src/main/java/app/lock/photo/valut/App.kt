@@ -60,7 +60,7 @@ class App : Application() {
             }
         }.getOrDefault(false)
         if (!firebaseReady) {
-            Log.w("TAG", "FirebaseApp not initialized")
+            Log.w("App", "FirebaseApp not initialized")
         }
 
         // Push notifications: create the channel up front so FCM's automatic
@@ -76,8 +76,8 @@ class App : Application() {
         AperoNextGen.initialize(
             application = this,
             config = AperoNextGenConfig(
-                adMobAppId = "ca-app-pub-3940256099942544~3347511713",
-                enableDebugLogs = true,
+                adMobAppId = getString(R.string.admob_app_id),
+                enableDebugLogs = BuildConfig.DEBUG,
                 testMode = BuildConfig.DEBUG,
                 testDeviceIds = listOf("69950DC5AA4AFC2ADF73C60F85906DCD"),
                 disableNativeValidator = true,

@@ -77,9 +77,24 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
 
         binding.ivBack.isVisible = !gateMode
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
-        binding.btnUsage.setOnClickListener { openUsageAccessSettings() }
-        binding.btnOverlay.setOnClickListener { openOverlaySettings() }
-        binding.btnNotification.setOnClickListener { requestNotificationPermission() }
+        binding.btnUsage.setOnClickListener {
+            showPermissionDisclosure(
+                R.string.applock_disclosure_usage_title,
+                getString(R.string.applock_disclosure_usage_message, getString(R.string.app_name))
+            ) { openUsageAccessSettings() }
+        }
+        binding.btnOverlay.setOnClickListener {
+            showPermissionDisclosure(
+                R.string.applock_disclosure_overlay_title,
+                getString(R.string.applock_disclosure_overlay_message)
+            ) { openOverlaySettings() }
+        }
+        binding.btnNotification.setOnClickListener {
+            showPermissionDisclosure(
+                R.string.applock_disclosure_notification_title,
+                getString(R.string.applock_disclosure_notification_message)
+            ) { requestNotificationPermission() }
+        }
         binding.btnCheckAgain.setOnClickListener { viewModel.refresh() }
 
         if (gateMode) {
@@ -119,6 +134,26 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
                 maybeShowAutoStartThenHome()
             }
         }
+    }
+
+    /**
+     * Prominent, in-context disclosure required by Google Play before requesting the
+     * sensitive Usage Access / overlay (and notification) permissions. Explains why the
+     * permission is needed and how the data is used, entirely on-device. Only when the user
+     * taps "Continue" does [onProceed] start the actual system permission flow.
+     */
+    private fun showPermissionDisclosure(
+        titleRes: Int,
+        message: String,
+        onProceed: () -> Unit
+    ) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(titleRes)
+            .setMessage(message)
+            .setCancelable(true)
+            .setPositiveButton(R.string.applock_disclosure_continue) { _, _ -> onProceed() }
+            .setNegativeButton(R.string.applock_disclosure_cancel, null)
+            .show()
     }
 
     private fun showBatteryDialog() {

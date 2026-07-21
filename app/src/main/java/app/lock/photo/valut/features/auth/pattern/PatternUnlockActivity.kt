@@ -32,7 +32,6 @@ class PatternUnlockActivity : BaseActivity(), LockScreen {
     @Inject
     lateinit var biometricHelper: BiometricHelper
 
-    private val remoteConfig=getRemoteConfig()
     private var biometricReady = false
     private var biometricPrompted = false
 

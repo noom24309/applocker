@@ -61,7 +61,6 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
     private val keyViews = mutableListOf<View>()
     private var pinLength = 4
 
-    private val remoteConfig=getRemoteConfig()
     private var currentMethod: UnlockMethod = UnlockMethod.PIN
     private var biometricReady = false
     private var biometricPrompted = false

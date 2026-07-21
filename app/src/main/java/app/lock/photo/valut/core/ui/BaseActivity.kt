@@ -30,15 +30,24 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     protected open val applyEdgeToEdgeInsets: Boolean = true
 
-    private val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
     var interval: Long = 0
-    val configSettings = remoteConfigSettings {
-        minimumFetchIntervalInSeconds = interval
+
+    // Firebase Remote Config, resolved lazily and defensively. Accessing Firebase.remoteConfig
+    // throws if Firebase failed to initialise; doing it during activity *construction* (as a
+    // property initialiser) would crash every screen — including the lock overlay, which would
+    // then expose the protected app without a PIN. Lazy + runCatching keeps that impossible.
+    private val firebaseRemoteConfig: FirebaseRemoteConfig? by lazy {
+        runCatching { Firebase.remoteConfig }.getOrNull()
     }
-    fun getRemoteConfig():FirebaseRemoteConfig{
-        remoteConfig.setConfigSettingsAsync(configSettings)
-        remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
-        return remoteConfig
+
+    /** Shared Remote Config instance, or null when Firebase is unavailable. Never throws. */
+    fun getRemoteConfig(): FirebaseRemoteConfig? = firebaseRemoteConfig?.also { config ->
+        runCatching {
+            config.setConfigSettingsAsync(
+                remoteConfigSettings { minimumFetchIntervalInSeconds = interval }
+            )
+            config.setDefaultsAsync(R.xml.remote_config_defaults)
+        }
     }
 
 
