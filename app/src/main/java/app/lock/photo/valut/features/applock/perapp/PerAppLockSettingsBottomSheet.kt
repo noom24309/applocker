@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -53,7 +53,7 @@ class PerAppLockSettingsBottomSheet : BottomSheetDialogFragment() {
                 launch { viewModel.state.collect(::render) }
                 launch {
                     viewModel.savedFlow.collect {
-                        Toast.makeText(requireContext(), R.string.perapp_saved, Toast.LENGTH_SHORT).show()
+                        requireContext().showToast(R.string.perapp_saved)
                         dismiss()
                     }
                 }

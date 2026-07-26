@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="ltr"
-    android:background="@color/background"
+    android:background="@drawable/sp_bg"
     >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,9 +20,8 @@
         <FrameLayout
             android:id="@+id/logoContainer"
             android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:background="@drawable/app_icon"
+            android:layout_height="@dimen/_130sdp"
+            android:background="@drawable/sp_icon"
             app:layout_constraintBottom_toTopOf="@id/wordmark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,31 +38,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logoContainer">
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:letterSpacing="0.01"
-                android:text="@string/splash_brand_lock"
+                android:text="App Lock &amp;\nPhoto Vault"
                 android:textColor="@color/text_primary"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/splash_brand_amp"
-                android:textColor="@color/splash_accent"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:letterSpacing="0.01"
-                android:text="@string/splash_brand_vault"
-                android:textColor="@color/primary"
                 android:textSize="28sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -73,7 +55,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            android:text="@string/splash_tagline"
+            android:gravity="center"
+            android:text="Lock any app, hide your photos and\n
+videos, and keep prying eyes out —\n
+protected by a passcode only you\n
+know."
             android:textColor="@color/text_secondary"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -91,21 +77,24 @@
         android:id="@+id/flAdNative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_16sdp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/loading"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/loading"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <!-- Loading indicator -->
-    <com.google.android.material.progressindicator.CircularProgressIndicator
+    <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/loading"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:indeterminate="true"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
         app:indicatorColor="@color/primary"
-        android:layout_marginBottom="@dimen/_4sdp"
-        app:indicatorSize="34dp"
-        app:trackThickness="3dp"
+        app:trackColor="@color/text_secondary"
+        app:trackThickness="4dp"
+        app:trackCornerRadius="2dp"
         app:layout_constraintBottom_toTopOf="@id/securingText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -117,7 +106,7 @@
         android:alpha="0.85"
         android:text="@string/splash_tagline"
         android:layout_marginBottom="@dimen/_16sdp"
-        android:textColor="@color/text_secondary"
+        android:textColor="@color/primary"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

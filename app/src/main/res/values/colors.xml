@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFFFF</color>
+    <color name="white1">#29FFFFFF</color>
 
     <!-- Brand — aligned to the HomeFragment palette (home_primary) so every screen and
          Material widget uses the exact same purple as the home dashboard. -->
-    <color name="primary">#5F57D5</color>
+    <color name="primary">#8FB4FF</color>
     <color name="primary_dark">#5F57D5</color>
-    <color name="primary_container">#EEEFFF</color>
+    <color name="primary_container">#18263F</color>
 
     <!-- Accents -->
     <color name="accent_green">#22C55E</color>
@@ -14,16 +15,16 @@
     <color name="accent_red">#EF4444</color>
     <color name="accent_blue">#3B82F6</color>
 
-    <!-- Surfaces / background -->
-    <color name="background">#ffffff</color>
-    <color name="surface">#FFFFFFFF</color>
-    <color name="card_stroke">#E2E2EC</color>
+    <!-- Surfaces / background (dark app-wide) -->
+    <color name="background">#0A0C10</color>
+    <color name="surface">#111A28</color>
+    <color name="card_stroke">#22304A</color>
 
     <!-- Text — aligned to the HomeFragment palette (home_title / home_subtitle / home_hint)
          so titles and body text render in the exact same shades on every screen.
          The theme attributes colorTextPrimary/Secondary/... point at these. -->
-    <color name="text_primary">#071333</color>
-    <color name="text_secondary">#6F7590</color>
+    <color name="text_primary">#EEF1F6</color>
+    <color name="text_secondary">#8B93A3</color>
     <color name="text_tertiary">#A3A7BC</color>
     <color name="text_inverse">#FFFFFFFF</color>
     <color name="text_error">#EF4444</color>
@@ -34,8 +35,22 @@
     <!-- Explicit per-mode palette (kept for reference / direct use). -->
 
     <!-- Pin / misc -->
-    <color name="pin_dot_empty">#D8DAE8</color>
-    <color name="divider">#EEF0F6</color>
+    <color name="pin_dot_empty">#66FFFFFF</color>
+    <!-- Passcode screens (dark, splash-styled) -->
+    <color name="pin_dot_filled">#FFFFFFFF</color>
+    <color name="keypad_key_bg">#141A26</color>
+    <color name="keypad_key_ripple">#33FFFFFF</color>
+    <color name="pin_accent">#8E9BFF</color>
+    <color name="biometric_ring_outer">#294F8CFF</color>
+    <color name="biometric_ring_inner">#4F8CFF</color>
+    <color name="text_on_accent">#0E1524</color>
+    <!-- Permissions screen (dark) -->
+    <color name="perm_card_bg">#111A28</color>
+    <color name="perm_stroke">#22304A</color>
+    <color name="perm_tile_bg">#18263F</color>
+    <color name="pattern_node_idle">#59FFFFFF</color>
+    <color name="pattern_ring_idle">#29FFFFFF</color>
+    <color name="divider">#33EEF0F6</color>
 
     <!-- App Lock overlay themes (Phase 6) -->
     <color name="overlay_dark_bg">#0E1016</color>
@@ -51,7 +66,7 @@
     <color name="badge_bg">#B3000000</color>
     <color name="viewer_bg">#FF000000</color>
     <color name="selection_overlay">#665B4DF0</color>
-    <color name="thumb_placeholder">#ECEDF3</color>
+    <color name="thumb_placeholder">#1A2233</color>
 
     <!-- Home dashboard (screenshot redesign) -->
     <color name="hero_gradient_start">#4361F5</color>
@@ -59,36 +74,37 @@
     <color name="hero_pill_bg">#26FFFFFF</color>
     <color name="hero_text_muted">#D7DBFB</color>
 
-    <color name="tile_blue_bg">#EAF0FF</color>
-    <color name="tile_purple_bg">#F0EBFE</color>
+    <color name="tile_blue_bg">#18263F</color>
+    <color name="tile_purple_bg">#1E2038</color>
 
     <!-- Splash screen (branded) -->
     <color name="splash_accent">#2FE0D0</color>
 
-    <!-- Home screen (Lock & Vault redesign) -->
-    <color name="home_bg">#ffffff</color>
-    <color name="home_primary">#5F57D5</color>
-    <color name="home_primary_light">#EEEFFF</color>
-    <color name="home_card">#FFFFFF</color>
-    <color name="home_title">#071333</color>
-    <color name="home_subtitle">#6F7590</color>
-    <color name="home_border">#E2E2EC</color>
-    <color name="home_divider">#EEF0F6</color>
+    <!-- Main screens palette (dark). Every main-screen layout resolves its surfaces, text
+         and tiles through these names, so the whole app follows this one block. -->
+    <color name="home_bg">#0A0C10</color>
+    <color name="home_primary">#8FB4FF</color>
+    <color name="home_primary_light">#18263F</color>
+    <color name="home_card">#111A28</color>
+    <color name="home_title">#EEF1F6</color>
+    <color name="home_subtitle">#8B93A3</color>
+    <color name="home_border">#22304A</color>
+    <color name="home_divider">#1A2233</color>
     <color name="home_success">#16C76A</color>
     <color name="home_info">#2F7BFF</color>
     <color name="home_teal">#22C7D9</color>
-    <color name="home_toggle_off">#DADDE8</color>
-    <color name="home_hint">#A3A7BC</color>
-    <color name="home_chip_text">#5F6680</color>
-    <color name="home_system_icon">#7B8098</color>
-    <color name="home_setup_stroke">#D8D4FF</color>
-    <color name="home_setup_bg">#F4F3FF</color>
+    <color name="home_toggle_off">#2A3547</color>
+    <color name="home_hint">#6B7488</color>
+    <color name="home_chip_text">#A7B0C4</color>
+    <color name="home_system_icon">#6B7488</color>
+    <color name="home_setup_stroke">#24314A</color>
+    <color name="home_setup_bg">#131C2B</color>
     <!-- Soft icon-tile backgrounds for the stats card -->
-    <color name="home_tile_purple">#EEEFFF</color>
-    <color name="home_tile_green">#E3F9EE</color>
-    <color name="home_tile_blue">#E5F0FF</color>
-    <color name="home_tile_teal">#E2F8FB</color>
-    <color name="home_tile_amber">#FFF1DD</color>
-    <color name="home_tile_pink">#FDEBEF</color>
-    <color name="card_bg">#F6F8F5</color>
+    <color name="home_tile_purple">#1E2038</color>
+    <color name="home_tile_green">#12271E</color>
+    <color name="home_tile_blue">#18263F</color>
+    <color name="home_tile_teal">#10262B</color>
+    <color name="home_tile_amber">#2A2114</color>
+    <color name="home_tile_pink">#2A1720</color>
+    <color name="card_bg">#111A28</color>
 </resources>

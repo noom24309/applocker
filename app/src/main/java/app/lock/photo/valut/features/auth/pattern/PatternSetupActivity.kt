@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -17,7 +17,7 @@ import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityPatternSetupBinding
 import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity.Companion.EXTRA_FIRST_RUN
 import app.lock.photo.valut.features.auth.recovery.RecoveryKeyActivity
-import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -43,14 +43,24 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
         binding = ActivityPatternSetupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Drawing keeps the pattern on screen; submission waits for Continue.
+        // Drawn on the splash background, so the system bars need light icons.
+        useLightSystemBarIcons()
+
+        // Lifting the finger submits straight away — same as the PIN screen advancing
+        // on the last digit, so the screen needs no Continue button.
         binding.patternView.onPatternComplete = { nodes ->
             drawnNodes = nodes
-            binding.btnContinue.isEnabled = true
+            viewModel.submit(nodes)
         }
-        binding.btnContinue.setOnClickListener { drawnNodes?.let { viewModel.submit(it) } }
-        binding.btnClear.setOnClickListener { clearPattern() }
+        // First run is a forward-only setup step; from Settings ("Change pattern") the user
+        // must be able to back out, so the arrow only shows there.
+        binding.ivBack.isVisible = !firstRun
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
+        // First-run only: the PIN screen is the previous step, so going back to it is
+        // just finishing. From Settings there is nothing to switch to.
+        binding.btnUsePin.isVisible = firstRun
+        binding.btnUsePin.setOnClickListener { finish() }
 
         loadNativeAd()
         observePhase()
@@ -59,13 +69,13 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
 
 
     private fun loadNativeAd() {
-        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
-            nativeId = getString(R.string.OBFull2),
+            nativeId = getString(R.string.NativePassCode),
             layoutId = R.layout.native_medium_ad_layout_new,
             canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.OBFull2),
+            reloadNativeId = getString(R.string.NativePassCode),
             canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
             logTag = "NativePattern"
         )
@@ -74,17 +84,13 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
         binding.patternView.reset()
         binding.errorPattern.isVisible = false
         drawnNodes = null
-        binding.btnContinue.isEnabled = false
     }
 
     private fun observePhase() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.phase.collect { phase ->
-                    binding.patternView.reset()
-                    binding.errorPattern.isVisible = false
-                    drawnNodes = null
-                    binding.btnContinue.isEnabled = false
+                    clearPattern()
                     when (phase) {
                         PatternSetupViewModel.Phase.DRAW -> {
                             binding.titlePattern.setText(R.string.pattern_setup_title)
@@ -111,7 +117,7 @@ class PatternSetupActivity : BaseActivity(), LockExempt {
                             showError(getString(R.string.pattern_mismatch))
                         PatternSetupViewModel.Event.ProceedToConfirm -> Unit // handled by phase flow
                         PatternSetupViewModel.Event.Saved -> {
-                            Toast.makeText(this@PatternSetupActivity, R.string.pattern_saved, Toast.LENGTH_SHORT).show()
+                            showToast(R.string.pattern_saved)
                             if (firstRun) {
                                 startActivity(Intent(this@PatternSetupActivity, RecoveryKeyActivity::class.java))
                                 finishAffinity()

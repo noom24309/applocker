@@ -51,9 +51,20 @@
 
 
 
+        <!-- First-launch language picker; the splash skips it on every later start. -->
         <activity
-            android:name=".features.auth.unlock.ChooseUnlockMethodActivity"
+            android:name=".features.language.LanguageActivity"
             android:exported="false" />
+
+        <!-- Lets appcompat store the locale chosen on that screen, so API < 33 keeps it too. -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
 
         <activity
             android:name=".features.auth.pin.CreatePinActivity"
@@ -252,10 +263,25 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="push_general" />
 
+        <!-- Second self-heal channel: persisted periodic job, survives reboots and the
+             app-standby buckets where alarms get suppressed. -->
+        <service
+            android:name=".core.applock.service.AppLockKeepAliveJobService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <receiver
             android:name=".core.applock.receiver.AppLockWatchdogReceiver"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false">
+            <!-- Broadcasts still delivered to manifest receivers — each is a free chance to
+                 notice a killed service and restart protection. -->
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name=".core.applock.receiver.PackageChangeReceiver"

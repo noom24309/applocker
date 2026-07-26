@@ -6,13 +6,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.databinding.FragmentAppLockHomeBinding
 import app.lock.photo.valut.features.applock.apps.AppLockAppsActivity
@@ -22,6 +23,7 @@ import app.lock.photo.valut.features.applock.model.AppLockStatsUiState
 import app.lock.photo.valut.features.applock.settings.AppLockSettingsActivity
 import app.lock.photo.valut.features.applock.stats.AppLockStatsViewModel
 import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
@@ -45,7 +47,7 @@ class AppLockActivity : BaseActivity() {
         // user lands straight on "choose apps to lock".
         if (result.resultCode == Activity.RESULT_OK) {
             viewModel.setAppLockEnabled(true)
-            Toast.makeText(this, R.string.applock_setup_done_lock_apps, Toast.LENGTH_SHORT).show()
+            showToast(R.string.applock_setup_done_lock_apps)
         }
     }
 
@@ -72,6 +74,21 @@ class AppLockActivity : BaseActivity() {
         binding.cardManageApps.setOnClickListener { startActivity(AppLockAppsActivity.intent(this)) }
         binding.cardSettings.setOnClickListener { startActivity(AppLockSettingsActivity.intent(this)) }
         observe()
+        loadNativeAd()
+    }
+
+    /** Medium native ad pinned at the bottom of the screen. */
+    private fun loadNativeAd() {
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.frAdsBottom,
+            nativeId = getString(R.string.nativeAll),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeHome && RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.nativeAll),
+            canReloadAds = RemoteConfig.nativeHome && RemoteConfig.enableAllAds,
+            logTag = "AppLockHome"
+        )
     }
 
     override fun onResume() {
@@ -128,15 +145,17 @@ class AppLockActivity : BaseActivity() {
         }
 
         binding.btnCompleteSetup.isVisible = !state.permissionsGranted
-        // Start shown when we can run but aren't; Stop shown when running.
-        binding.btnStart.isVisible = state.permissionsGranted && state.isAppLockEnabled &&
-            !state.isServiceRunning && state.lockedAppsCount > 0
-        binding.btnStop.isVisible = state.permissionsGranted && state.isServiceRunning
+        // Start shown when we can run but aren't. Stop is only offered once nothing is locked:
+        // while apps are locked protection stays on by design, so the button would be a no-op.
+        binding.btnStart.isVisible = state.permissionsGranted && !state.isServiceRunning &&
+            state.lockedAppsCount > 0
+        binding.btnStop.isVisible = state.permissionsGranted && state.isServiceRunning &&
+            state.lockedAppsCount == 0
     }
 
     /** Tells the user setup comes first, then routes into the permission wizard. */
     private fun requireSetupThen() {
-        Toast.makeText(this, R.string.applock_setup_first, Toast.LENGTH_SHORT).show()
+        showToast(R.string.applock_setup_first)
         openPermissions()
     }
 

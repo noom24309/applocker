@@ -71,11 +71,17 @@ class VaultHomeViewModel @Inject constructor(
         if (total <= 0L) 0 else (((total - stat.availableBytes) * 100) / total).toInt()
     }.getOrDefault(0)
 
-    fun createAlbum(name: String) {
+    /**
+     * Creates a folder and reports its id, so the caller can open it straight away — adding
+     * media only lands in a folder when the import is started from inside it.
+     */
+    fun createAlbum(name: String, onCreated: (Long) -> Unit = {}) {
         if (name.isBlank()) return
         viewModelScope.launch {
-            repository.createAlbum(name)
+            // mediaType stays null: a user folder holds photos *and* videos.
+            val id = repository.createAlbum(name)
             events.trySend(Unit)
+            onCreated(id)
         }
     }
 }

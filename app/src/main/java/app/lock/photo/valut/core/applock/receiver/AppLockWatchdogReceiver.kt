@@ -2,30 +2,26 @@ package app.lock.photo.valut.core.applock.receiver
 
 import android.content.Context
 import android.content.Intent
-import androidx.core.content.ContextCompat
 import app.lock.photo.valut.core.applock.AppLockPermissionChecker
 import app.lock.photo.valut.core.applock.AppLockServiceManager
 import app.lock.photo.valut.core.applock.AppLockWatchdogScheduler
-import app.lock.photo.valut.core.applock.service.AppLockMonitorService
-import app.lock.photo.valut.core.datastore.AppSettingsDataStore
 import app.lock.photo.valut.data.local.dao.LockedAppDao
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Fired by [AppLockWatchdogScheduler]'s heartbeat/restart alarms. Restarts the monitor
- * service if the system killed it while the user still wants protection on, then re-arms
- * the next heartbeat. Cancels the chain once the user has turned protection off.
+ * Restarts the monitor service whenever it went down while apps are still locked.
+ *
+ * Fired by [AppLockWatchdogScheduler]'s heartbeat/restart alarms and by the system broadcasts
+ * that are still delivered to manifest receivers (app updated, power connected/disconnected) —
+ * each is a free chance to notice a dead service and revive it.
+ *
+ * The single decision rule is "are any apps locked": if yes, protection must run and the chain
+ * stays armed; if no, protection is genuinely over and the chain is cancelled.
  */
 @AndroidEntryPoint
 class AppLockWatchdogReceiver : HiltBroadcastReceiver() {
 
-    @Inject lateinit var dataStore: AppSettingsDataStore
     @Inject lateinit var permissionChecker: AppLockPermissionChecker
     @Inject lateinit var lockedAppDao: LockedAppDao
     @Inject lateinit var serviceManager: AppLockServiceManager
@@ -33,56 +29,53 @@ class AppLockWatchdogReceiver : HiltBroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        if (intent.action != ACTION_WATCHDOG_CHECK) return
+        if (intent.action !in HANDLED_ACTIONS) return
 
-        val pending = goAsync()
-        CoroutineScope(SupervisorJob() + Dispatchers.Default).launch {
-            // Default to keeping the self-heal chain armed. We only cancel it on a
-            // definitive "nothing to protect" signal — never as a side effect of an
-            // exception, which used to skip the re-arm and kill protection for good.
+        // runAsync() guarantees the broadcast is finished (even on a hang), so a slow DB or
+        // service start can never get the process killed for holding the broadcast open.
+        runAsync(goAsync()) {
+            // Default to keeping the self-heal chain armed. It is only cancelled on a
+            // definitive "nothing is locked" signal — never as a side effect of an exception,
+            // which used to skip the re-arm and kill protection for good.
             var keepChainAlive = true
             try {
-                // On a transient read error assume protection is still wanted (fail toward
-                // protection). safeData already prevents throwing, this is defense in depth.
-                val userWantsProtection = runCatching {
-                    dataStore.appLockServiceEnabled.first() && dataStore.appLockFeatureEnabled.first()
-                }.getOrDefault(true)
+                // Locked apps are the only intent signal that matters. On a read error assume
+                // there are some (fail toward protection).
                 val lockedApps = runCatching { lockedAppDao.getLockedPackageNames() }
-                    .getOrDefault(emptyList())
+                    .getOrDefault(listOf("unknown"))
 
-                // Stop self-healing only when the user turned protection off or there is
-                // genuinely nothing locked. A locked app re-arms the chain via startProtection().
-                if (!userWantsProtection || lockedApps.isEmpty()) {
+                if (lockedApps.isEmpty()) {
                     keepChainAlive = false
                     watchdog.cancel()
-                    return@launch
+                    return@runAsync
                 }
 
-                // A permission being transiently unavailable must NOT cancel the chain —
-                // we just skip the restart this round and try again on the next heartbeat.
+                // A permission being transiently unavailable must NOT cancel the chain — we
+                // just skip the restart this round and try again on the next heartbeat.
                 val canRun = runCatching { permissionChecker.hasAllRequiredAppLockPermissions() }
                     .getOrDefault(false)
+                // isServiceRunning() is heartbeat-backed, so a service killed without
+                // onDestroy is correctly seen as dead and gets restarted here.
                 if (canRun && !serviceManager.isServiceRunning()) {
-                    // May be rejected on Android 12+ if the app is neither battery-exempt
-                    // nor woken by an exact alarm — the next heartbeat tries again.
-                    runCatching {
-                        ContextCompat.startForegroundService(
-                            context,
-                            Intent(context, AppLockMonitorService::class.java)
-                                .setAction(AppLockMonitorService.ACTION_START)
-                        )
-                    }
+                    runCatching { serviceManager.startProtection() }
                 }
             } finally {
-                // Always re-arm unless we deliberately stopped the chain, so a single
-                // failure can never permanently break self-healing.
-                if (keepChainAlive) runCatching { watchdog.scheduleHeartbeat() }
-                pending.finish()
+                // Always re-arm unless we deliberately stopped the chain, so a single failure
+                // can never permanently break self-healing.
+                if (keepChainAlive) runCatching { watchdog.ensureAllChannels() }
             }
         }
     }
 
     companion object {
         const val ACTION_WATCHDOG_CHECK = "app.lock.photo.valut.action.WATCHDOG_CHECK"
+
+        private val HANDLED_ACTIONS = setOf(
+            ACTION_WATCHDOG_CHECK,
+            Intent.ACTION_MY_PACKAGE_REPLACED,
+            Intent.ACTION_POWER_CONNECTED,
+            Intent.ACTION_POWER_DISCONNECTED,
+            Intent.ACTION_USER_PRESENT
+        )
     }
 }

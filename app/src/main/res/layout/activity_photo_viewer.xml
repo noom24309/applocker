@@ -1,69 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Private photo viewer, shaped like the video player: fixed header, pager in the middle,
+     action row, bottom banner. Not immersive so the header and banner keep a stable slot. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/viewer_bg">
+    android:background="@color/viewer_bg"
+    android:orientation="vertical">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!-- Top bar -->
+    <!-- ===== Header ===== -->
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/scrim"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/space_s"
-        android:paddingTop="@dimen/space_m"
-        android:paddingEnd="@dimen/space_s"
-        android:paddingBottom="@dimen/space_m">
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp">
 
         <ImageButton
             android:id="@+id/btnClose"
-            android:layout_width="@dimen/viewer_action_size"
-            android:layout_height="@dimen/viewer_action_size"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/cd_close"
-            android:src="@drawable/ic_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_perm_badge"
+            android:contentDescription="@string/cd_back"
+            android:padding="9dp"
+            android:src="@drawable/ic_arrow_back"
             app:tint="@color/white" />
 
-        <TextView
-            android:id="@+id/tvTitle"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_body"
-            tools:text="IMG_001" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/TextAppearance.App.SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="middle"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                tools:text="IMG_20260725_001.jpg" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                style="@style/TextAppearance.App.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/home_subtitle"
+                android:textSize="12sp"
+                tools:text="3 of 12 · 1.4 MB" />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/btnFavorite"
-            android:layout_width="@dimen/viewer_action_size"
-            android:layout_height="@dimen/viewer_action_size"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/cd_favorite"
+            android:padding="9dp"
             android:src="@drawable/ic_favorite_border"
             app:tint="@color/white" />
     </LinearLayout>
 
-    <!-- Bottom bar -->
+    <!-- ===== Photo pager ===== -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- ===== Actions ===== -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/scrim"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/space_m"
-        android:paddingBottom="@dimen/space_m">
+        android:paddingVertical="6dp">
 
         <ImageButton
             android:id="@+id/btnMove"
@@ -81,7 +103,7 @@
             android:id="@+id/btnDetails"
             style="@style/ViewerBottomAction"
             android:contentDescription="@string/action_details"
-            android:src="@drawable/ic_more_vert" />
+            android:src="@drawable/ic_info" />
 
         <ImageButton
             android:id="@+id/btnDelete"
@@ -89,4 +111,11 @@
             android:contentDescription="@string/action_delete"
             android:src="@drawable/ic_delete" />
     </LinearLayout>
-</FrameLayout>
+
+    <!-- ===== Bottom banner ===== -->
+    <FrameLayout
+        android:id="@+id/frAdsBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -8,7 +8,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +17,7 @@ import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.databinding.ActivityRecoveryKeyBinding
-import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -36,6 +36,9 @@ class RecoveryKeyActivity : BaseActivity(), LockExempt {
         binding = ActivityRecoveryKeyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Drawn on the splash background, so the system bars need light icons.
+        useLightSystemBarIcons()
+
         viewModel.ensureKey()
         observeKey()
 
@@ -49,15 +52,16 @@ class RecoveryKeyActivity : BaseActivity(), LockExempt {
 
 
     private fun loadNativeAd() {
-        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
-            nativeId = getString(R.string.OBFull2),
-            layoutId = R.layout.native_medium_ad_layout_new,
+            nativeId = getString(R.string.NativeRecoveryKey),
+            // Same native layout the splash uses.
+            layoutId = R.layout.custom_admob_native_layout_1,
             canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.OBFull2),
+            reloadNativeId = getString(R.string.NativeRecoveryKey),
             canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
-            logTag = "NativePattern"
+            logTag = "RecoveryKey"
         )
     }
 
@@ -78,6 +82,6 @@ class RecoveryKeyActivity : BaseActivity(), LockExempt {
         if (key.isEmpty()) return
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.recovery_title), key))
-        Toast.makeText(this, R.string.recovery_copied, Toast.LENGTH_SHORT).show()
+        showToast(R.string.recovery_copied)
     }
 }

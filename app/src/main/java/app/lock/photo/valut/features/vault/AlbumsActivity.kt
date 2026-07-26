@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.activity.viewModels
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -116,6 +117,7 @@ class AlbumsActivity : SecureVaultActivity() {
         val input = EditText(this).apply {
             hint = getString(R.string.album_name_hint)
             setText(initial)
+            setTextColor(ContextCompat.getColor(this@AlbumsActivity, R.color.text_primary))
         }
         val pad = resources.getDimensionPixelSize(R.dimen.space_l)
         container.setPadding(pad, 0, pad, 0)

@@ -5,17 +5,19 @@ import app.lock.photo.valut.core.ui.BaseActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.common.Formatters
 import app.lock.photo.valut.databinding.ActivityVaultHealthBinding
 import app.lock.photo.valut.databinding.ViewHealthRowBinding
 import app.lock.photo.valut.domain.model.VaultHealth
 import app.lock.photo.valut.features.applock.AppLockActivity
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,6 +31,7 @@ class VaultHealthActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityVaultHealthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loadNativeAd()
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.btnScan.setOnClickListener { viewModel.scan() }
         binding.btnClearTemp.setOnClickListener { viewModel.clearTempCache() }
@@ -37,7 +40,7 @@ class VaultHealthActivity : BaseActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch { viewModel.health.collect { it?.let(::render) } }
-                launch { viewModel.messages.collect { Toast.makeText(this@VaultHealthActivity, it, Toast.LENGTH_SHORT).show() } }
+                launch { viewModel.messages.collect { showToast(it) } }
             }
         }
     }
@@ -64,6 +67,20 @@ class VaultHealthActivity : BaseActivity() {
         row.healthLabel.text = label
         row.healthValue.text = value
         binding.healthContainer.addView(row.root)
+    }
+
+    /** Medium native ad pinned below the content. */
+    private fun loadNativeAd() {
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.frAdsBottom,
+            nativeId = getString(R.string.nativeAll),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeTools && RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.nativeAll),
+            canReloadAds = RemoteConfig.nativeTools && RemoteConfig.enableAllAds,
+            logTag = "VaultHealth"
+        )
     }
 
     companion object {

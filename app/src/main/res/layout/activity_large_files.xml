@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/sp_bg"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -250,4 +250,13 @@
             android:layout_height="wrap_content"
             android:text="@string/cleanup_delete_selected" />
     </LinearLayout>
+
+    <!-- Bottom banner: this screen has no native ad. -->
+    <FrameLayout
+        android:id="@+id/frAdsBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp" />
+
 </LinearLayout>

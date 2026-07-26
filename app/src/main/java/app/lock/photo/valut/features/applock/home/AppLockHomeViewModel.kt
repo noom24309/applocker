@@ -55,15 +55,13 @@ class AppLockHomeViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Master toggle. Turning protection off only takes effect once no app is locked —
+     * [AppLockServiceManager.setFeatureEnabled] enforces that, so locked apps can never end
+     * up unprotected via this switch.
+     */
     fun setAppLockEnabled(enabled: Boolean) {
-        viewModelScope.launch {
-            dataStore.setAppLockFeatureEnabled(enabled)
-            if (enabled) {
-                if (serviceManager.canStartProtection()) serviceManager.startProtection()
-            } else {
-                serviceManager.stopProtection()
-            }
-        }
+        viewModelScope.launch { serviceManager.setFeatureEnabled(enabled) }
     }
 
     fun startProtection() {

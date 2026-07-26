@@ -17,11 +17,13 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.applock.AppLockReliabilityHelper
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.databinding.ActivityAppLockPermissionBinding
 import app.lock.photo.valut.features.home.MainActivity
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -75,42 +77,78 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
         binding = ActivityAppLockPermissionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Drawn on the splash background, so the system bars need light icons.
+        useLightSystemBarIcons()
+
         binding.ivBack.isVisible = !gateMode
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
-        binding.btnUsage.setOnClickListener {
-            showPermissionDisclosure(
-                R.string.applock_disclosure_usage_title,
-                getString(R.string.applock_disclosure_usage_message, getString(R.string.app_name))
-            ) { openUsageAccessSettings() }
-        }
-        binding.btnOverlay.setOnClickListener {
-            showPermissionDisclosure(
-                R.string.applock_disclosure_overlay_title,
-                getString(R.string.applock_disclosure_overlay_message)
-            ) { openOverlaySettings() }
-        }
-        binding.btnNotification.setOnClickListener {
-            showPermissionDisclosure(
-                R.string.applock_disclosure_notification_title,
-                getString(R.string.applock_disclosure_notification_message)
-            ) { requestNotificationPermission() }
-        }
+        binding.rowUsage.setOnClickListener { requestUsageAccess() }
+        binding.rowOverlay.setOnClickListener { requestOverlay() }
+        binding.rowNotification.setOnClickListener { requestNotifications() }
         binding.btnCheckAgain.setOnClickListener { viewModel.refresh() }
 
         if (gateMode) {
-            binding.btnContinue.setText(R.string.applock_activate_protection)
             binding.btnSkip.isVisible = true
             binding.btnSkip.setOnClickListener { goToHome() }
-            binding.btnContinue.setOnClickListener { activateAndFinishGate() }
-        } else {
-            binding.btnContinue.setOnClickListener {
+        }
+        binding.btnContinue.setOnClickListener { onPrimaryAction() }
+
+        loadNativeAd()
+        observeState()
+        viewModel.refresh()
+    }
+
+    private fun loadNativeAd() {
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.NativePermissions),
+            // Same native layout the splash uses.
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeHome && RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.NativePermissions),
+            canReloadAds = RemoteConfig.nativeHome && RemoteConfig.enableAllAds,
+            logTag = "AppLockPermission"
+        )
+    }
+
+    /**
+     * The bottom action doubles as the setup driver: while permissions are missing it opens
+     * the next one, and only once they are all granted does it activate protection / return.
+     */
+    private fun onPrimaryAction() {
+        val state = viewModel.state.value
+        when {
+            !state.hasUsageAccess -> requestUsageAccess()
+            !state.hasOverlayPermission -> requestOverlay()
+            !state.hasNotificationPermission -> requestNotifications()
+            gateMode -> activateAndFinishGate()
+            else -> {
                 setResult(RESULT_OK)
                 finish()
             }
         }
+    }
 
-        observeState()
-        viewModel.refresh()
+    private fun requestUsageAccess() {
+        showPermissionDisclosure(
+            R.string.applock_disclosure_usage_title,
+            getString(R.string.applock_disclosure_usage_message, getString(R.string.app_name))
+        ) { openUsageAccessSettings() }
+    }
+
+    private fun requestOverlay() {
+        showPermissionDisclosure(
+            R.string.applock_disclosure_overlay_title,
+            getString(R.string.applock_disclosure_overlay_message)
+        ) { openOverlaySettings() }
+    }
+
+    private fun requestNotifications() {
+        showPermissionDisclosure(
+            R.string.applock_disclosure_notification_title,
+            getString(R.string.applock_disclosure_notification_message)
+        ) { requestNotificationPermission() }
     }
 
     private fun goToHome() {
@@ -223,19 +261,30 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
     }
 
     private fun render(state: AppLockPermissionUiState) {
-        bindCard(state.hasUsageAccess, binding.checkUsage, binding.btnUsage)
-        bindCard(state.hasOverlayPermission, binding.checkOverlay, binding.btnOverlay)
-        bindCard(state.hasNotificationPermission, binding.checkNotification, binding.btnNotification)
-        binding.btnContinue.isEnabled = state.canContinue
+        bindRow(state.hasUsageAccess, binding.checkUsage, binding.badgeUsage)
+        bindRow(state.hasOverlayPermission, binding.checkOverlay, binding.badgeOverlay)
+        bindRow(state.hasNotificationPermission, binding.checkNotification, binding.badgeNotification)
+
+        val granted = listOf(
+            state.hasUsageAccess,
+            state.hasOverlayPermission,
+            state.hasNotificationPermission
+        ).count { it }
+        binding.tvProgress.text = getString(R.string.applock_perm_progress, granted, PERMISSION_COUNT)
+
+        binding.btnContinue.setText(
+            when {
+                !state.canContinue -> R.string.applock_perm_setup_cta
+                gateMode -> R.string.applock_activate_protection
+                else -> R.string.continue_label
+            }
+        )
     }
 
-    private fun bindCard(
-        granted: Boolean,
-        check: android.view.View,
-        button: com.google.android.material.button.MaterialButton
-    ) {
+    /** Granted rows swap their step number for a green check. */
+    private fun bindRow(granted: Boolean, check: android.view.View, badge: android.view.View) {
         check.isVisible = granted
-        button.isVisible = !granted
+        badge.isVisible = !granted
     }
 
     private fun openUsageAccessSettings() {
@@ -314,6 +363,7 @@ class AppLockPermissionActivity : BaseActivity(), LockExempt {
     companion object {
         private const val EXTRA_GATE_MODE = "extra_gate_mode"
         private const val POLL_INTERVAL_MS = 500L
+        private const val PERMISSION_COUNT = 3
 
         /**
          * Intent for the pre-home gate shown after unlock/first-run. The gate passes

@@ -33,6 +33,10 @@ class AppSettingsDataStore(
     private object Keys {
         val ONBOARDING_COMPLETED = booleanPreferencesKey("onboarding_completed")
 
+        /** Set once the user confirms a language, so the picker is a first-launch-only step. */
+        val LANGUAGE_SELECTED = booleanPreferencesKey("language_selected")
+        val APP_LANGUAGE = stringPreferencesKey("app_language")
+
         val PIN_CREATED = booleanPreferencesKey("pin_created")
         val PIN_LENGTH = intPreferencesKey("pin_length")
         val PIN_HASH = stringPreferencesKey("pin_hash")
@@ -102,6 +106,15 @@ class AppSettingsDataStore(
     // --- Onboarding ---
     val onboardingCompleted: Flow<Boolean> = read(Keys.ONBOARDING_COMPLETED, false)
     suspend fun setOnboardingCompleted(value: Boolean) = write(Keys.ONBOARDING_COMPLETED, value)
+
+    // --- Language ---
+    /** False only on the very first launch: that's when the language picker is shown. */
+    val languageSelected: Flow<Boolean> = read(Keys.LANGUAGE_SELECTED, false)
+    suspend fun setLanguageSelected(value: Boolean) = write(Keys.LANGUAGE_SELECTED, value)
+
+    /** BCP-47 tag of the chosen language (null = never picked, follow the system). */
+    val appLanguage: Flow<String?> = readNullable(Keys.APP_LANGUAGE)
+    suspend fun setAppLanguage(tag: String) = write(Keys.APP_LANGUAGE, tag)
 
     // --- PIN ---
     val pinCreated: Flow<Boolean> = read(Keys.PIN_CREATED, false)

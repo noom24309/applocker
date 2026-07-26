@@ -1,67 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Pattern unlock — same look as activity_pattern_setup: splash background, lock badge,
+     borderless dark grid, accent text links at the bottom. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/sp_bg">
 
-    <!-- Logo -->
-    <FrameLayout
-        android:id="@+id/logoContainer"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="@dimen/space_xxl"
-        android:background="@drawable/bg_logo_circle"
-        android:backgroundTint="@color/primary_container"
+    <ImageView
+        android:id="@+id/lockBadge"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/cd_app_logo"
+        android:src="@drawable/ic_lock_badge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/cd_app_logo"
-            android:src="@drawable/ic_lock"
-            app:tint="@color/primary" />
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titlePattern"
         style="@style/TextAppearance.App.Bold"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_l"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:gravity="center"
         android:text="@string/pattern_unlock_title"
-        android:textAppearance="@style/TextAppearance.App.Title"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoContainer" />
+        app:layout_constraintTop_toBottomOf="@id/lockBadge" />
+
+    <TextView
+        android:id="@+id/subtitlePattern"
+        style="@style/TextAppearance.App.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/space_xs"
+        android:gravity="center"
+        android:text="@string/pattern_unlock_subtitle"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlePattern" />
 
     <TextView
         android:id="@+id/errorPattern"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/screen_padding"
+        android:layout_marginHorizontal="@dimen/screen_padding"
         android:layout_marginTop="@dimen/space_s"
-        android:layout_marginEnd="@dimen/screen_padding"
         android:gravity="center"
         android:textColor="@color/accent_red"
         android:textSize="@dimen/text_caption"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titlePattern"
+        app:layout_constraintTop_toBottomOf="@id/subtitlePattern"
         tools:text="Wrong pattern" />
 
     <TextView
         android:id="@+id/tvLockoutTimer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/screen_padding"
+        android:layout_marginHorizontal="@dimen/screen_padding"
         android:layout_marginTop="@dimen/space_xs"
-        android:layout_marginEnd="@dimen/screen_padding"
         android:gravity="center"
         android:textColor="@color/accent_amber"
         android:textSize="@dimen/text_caption"
@@ -75,37 +83,55 @@
 
     <app.lock.photo.valut.core.ui.PatternLockView
         android:id="@+id/patternView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/screen_padding"
-        android:layout_marginTop="@dimen/space_m"
-        android:layout_marginEnd="@dimen/screen_padding"
-        android:background="@color/card_bg"
-        app:layout_constraintBottom_toTopOf="@+id/flAdNative"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:contentDescription="@string/cd_pattern"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLockoutTimer" />
+        app:layout_constraintTop_toBottomOf="@id/tvLockoutTimer"
+        app:patternIdleNodeColor="@color/pattern_node_idle"
+        app:patternIdleRingColor="@color/pattern_ring_idle"
+        app:patternNodeColor="@color/pin_accent"
+        app:patternPanelColor="@android:color/transparent" />
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:id="@+id/btnUseBiometric"
-        style="@style/Widget.App.Button.Text"
+        style="@style/TextAppearance.App.SemiBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:drawablePadding="8dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:padding="@dimen/space_xs"
         android:text="@string/biometric_use"
+        android:textColor="@color/pin_accent"
+        android:textSize="16sp"
         android:visibility="gone"
-        app:icon="@drawable/ic_fingerprint"
-        app:layout_constraintBottom_toTopOf="@+id/btnForgotPin"
+        app:drawableStartCompat="@drawable/ic_fingerprint"
+        app:drawableTint="@color/pin_accent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/patternView"
         tools:visibility="visible" />
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:id="@+id/btnForgotPin"
-        style="@style/Widget.App.Button.Text"
+        style="@style/TextAppearance.App.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/space_xs"
         android:text="@string/forgot_pin"
+        android:textColor="@color/text_secondary"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -113,12 +139,13 @@
     <!-- Native Ad -->
     <FrameLayout
         android:id="@+id/flAdNative"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_8sdp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/btnUseBiometric"
+        app:layout_constraintBottom_toTopOf="@id/btnForgotPin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnUseBiometric"
+        app:layout_constraintVertical_bias="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

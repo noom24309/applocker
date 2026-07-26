@@ -1,5 +1,8 @@
 package app.lock.photo.valut.features.vault.video
 
+import android.net.Uri
+import android.os.SystemClock
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -32,10 +35,18 @@ class VideoPlayerViewModel @Inject constructor(
         data object Deleted : Event
     }
 
-    /** Where the decrypted, playable video currently lives (a secure cache temp file). */
+    /**
+     * What the player should read.
+     *
+     * Vault video is decrypted into the secure cache first and played from there. Streaming the
+     * decryption was tried and does not work for these files: AES/GCM only releases plaintext
+     * once the trailing auth tag verifies, so Android's CipherInputStream hands back no bytes
+     * until the whole stream has been consumed — the player just buffers forever. Decrypting
+     * up front is correct and, at typical vault sizes, still starts in well under a second.
+     */
     sealed interface Playback {
         data object Loading : Playback
-        data class Ready(val file: File) : Playback
+        data class Ready(val uri: Uri) : Playback
         data object Error : Playback
     }
 
@@ -51,23 +62,68 @@ class VideoPlayerViewModel @Inject constructor(
     private var tempFile: File? = null
     private var preparing = false
 
-    private val events = Channel<Event>(Channel.BUFFERED)
-    val eventFlow = events.receiveAsFlow()
+    /** MIME type of the item, handed to the player so it never has to guess the container. */
+    val mimeType: String? get() = media.value?.mimeType
 
-    /** Decrypts the video into a temp file once; safe to call repeatedly. */
+    /** Decrypts the video into the secure cache once; safe to call repeatedly. */
     fun preparePlayback() {
-        if (tempFile?.exists() == true || preparing) return
+        val existing = tempFile
+        if (existing?.exists() == true && existing.length() > 0L) {
+            Log.d(TAG, "reusing decrypted file (${existing.length()} bytes)")
+            _playback.value = Playback.Ready(Uri.fromFile(existing))
+            return
+        }
+        if (preparing) {
+            Log.d(TAG, "decrypt already in flight")
+            return
+        }
         preparing = true
         viewModelScope.launch {
             _playback.value = Playback.Loading
+            val startedAt = SystemClock.elapsedRealtime()
             val file = repository.decryptVideoToTemp(mediaId)
+            val tookMs = SystemClock.elapsedRealtime() - startedAt
             preparing = false
             tempFile = file
-            _playback.value = if (file != null) Playback.Ready(file) else Playback.Error
+            val size = file?.length() ?: 0L
+            Log.d(TAG, "decrypt finished in ${tookMs}ms, file=${file != null}, bytes=$size")
+            _playback.value = if (file != null && size > 0L) {
+                Playback.Ready(Uri.fromFile(file))
+            } else {
+                Playback.Error
+            }
+            // Items imported before the fast key format are re-encrypted once, in the background,
+            // right after playback starts — so the next open doesn't pay the slow decrypt again.
+            if (file != null && size > 0L) upgradeStorageFormat(file)
         }
     }
 
-    /** Deletes the decrypted temp file (called when playback stops / screen leaves). */
+    private fun upgradeStorageFormat(plainFile: File) {
+        viewModelScope.launch {
+            val startedAt = SystemClock.elapsedRealtime()
+            val upgraded = runCatching {
+                repository.upgradeEncryptionIfNeeded(mediaId, plainFile)
+            }.getOrDefault(false)
+            if (upgraded) {
+                Log.d(TAG, "re-encrypted to fast format in ${SystemClock.elapsedRealtime() - startedAt}ms")
+            }
+        }
+    }
+
+    /**
+     * Forgets the current decrypted file and prepares again. Used when playback fails because
+     * the temp file went away underneath us — the vault screens clear that cache on resume, so a
+     * stale path is a real possibility rather than a theoretical one.
+     */
+    fun invalidateAndReprepare() {
+        Log.d(TAG, "invalidating decrypted file and preparing again")
+        tempFile = null
+        preparing = false
+        _playback.value = Playback.Loading
+        preparePlayback()
+    }
+
+    /** Drops the decrypted temp file (screen closing / playback stopped). */
     fun clearPlayback() {
         val file = tempFile
         tempFile = null
@@ -76,6 +132,9 @@ class VideoPlayerViewModel @Inject constructor(
             viewModelScope.launch(Dispatchers.IO) { runCatching { if (file.exists()) file.delete() } }
         }
     }
+
+    private val events = Channel<Event>(Channel.BUFFERED)
+    val eventFlow = events.receiveAsFlow()
 
     fun toggleFavorite() {
         viewModelScope.launch { repository.toggleFavorite(mediaId) }
@@ -100,13 +159,12 @@ class VideoPlayerViewModel @Inject constructor(
         super.onCleared()
         val file = tempFile
         tempFile = null
-        if (file != null) {
-            // Best-effort synchronous delete on teardown.
-            runCatching { if (file.exists()) file.delete() }
-        }
+        // Best-effort synchronous delete on teardown: no plaintext is left behind.
+        if (file != null) runCatching { if (file.exists()) file.delete() }
     }
 
     companion object {
         const val ARG_MEDIA_ID = "arg_media_id"
+        private const val TAG = "VaultVideoPlayer"
     }
 }

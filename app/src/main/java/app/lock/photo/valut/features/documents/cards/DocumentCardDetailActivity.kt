@@ -10,7 +10,7 @@ import android.view.Menu
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -285,7 +285,7 @@ class DocumentCardDetailActivity : BaseActivity() {
     private fun expiryText(millis: Long): String =
         SimpleDateFormat("MM/yyyy", Locale.getDefault()).format(Date(millis))
 
-    private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun toast(msg: String) = showToast(msg)
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean = super.onCreateOptionsMenu(menu)
 

@@ -2,64 +2,20 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="skip">تخطّي</string>
     <string name="continue_label">متابعة</string>
     <string name="cancel">إلغاء</string>
     <string name="coming_next_phase">قادم في المرحلة التالية</string>
+    <string name="loading">جارٍ التحميل....</string>
 
     <!-- Splash -->
     <string name="splash_tagline">خاص. آمن. لك.</string>
-    <string name="splash_brand_lock">App Lock</string>
-    <string name="splash_brand_amp">&amp;</string>
-    <string name="splash_brand_vault">Private Vault</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
-    <string name="lv_brand_a">Lock &amp;</string>
-    <string name="lv_brand_b">Vault</string>
-    <string name="lv_subtitle">أمّن تطبيقاتك. احمِ خصوصيتك.</string>
-    <string name="lv_search_hint">ابحث عن التطبيقات...</string>
-    <string name="lv_chip_all">الكل</string>
-    <string name="lv_chip_locked">مقفلة</string>
-    <string name="lv_chip_unlocked">غير مقفلة</string>
-    <string name="lv_chip_system">النظام</string>
-    <string name="lv_stat_locked_apps">التطبيقات المقفلة</string>
-    <string name="lv_stat_protection">الحماية</string>
-    <string name="lv_stat_protection_value">مفعّلة</string>
-    <string name="lv_stat_protection_off">متوقفة</string>
-    <string name="lv_stat_blocked">المحظورة اليوم</string>
-    <string name="lv_stat_time">وقت الحماية</string>
-    <string name="lv_installed_apps">التطبيقات المثبّتة</string>
-    <string name="lv_app_count">(%1$d)</string>
-    <string name="lv_sort_az">الترتيب: A-Z</string>
-    <string name="lv_sort_za">الترتيب: Z-A</string>
-    <string name="lv_complete_setup">إكمال الإعداد</string>
-    <string name="lv_complete_setup_sub">امنح الأذونات المتبقية لضمان حماية كاملة.</string>
-    <string name="lv_finish_setup">إنهاء الإعداد</string>
-    <string name="lv_nav_home">الرئيسية</string>
     <string name="lv_nav_vault">الخزنة</string>
     <string name="lv_nav_tools">الأدوات</string>
 
     <!-- Vault home (Lock & Vault redesign) -->
-    <string name="lv_vault_subtitle">صورك ومقاطع الفيديو الخاصة، آمنة.</string>
-    <string name="lv_vault_safe_title">الخزنة آمنة</string>
-    <string name="lv_vault_safe_sub">جميع ملفاتك مشفّرة ومخزّنة بأمان.</string>
-    <string name="lv_vault_unsafe_title">إكمال التشفير</string>
-    <string name="lv_vault_unsafe_sub">بعض الملفات غير مشفّرة بعد. اضغط لتأمينها.</string>
-    <string name="lv_vault_learn_more">معرفة المزيد</string>
-    <string name="lv_vault_used">المستخدَم</string>
-    <string name="lv_vault_percent">%1$d%%</string>
-    <string name="lv_vault_import_photos">استيراد الصور</string>
-    <string name="lv_vault_import_videos">استيراد الفيديو</string>
     <string name="lv_vault_new_album">ألبوم جديد</string>
-    <string name="lv_vault_settings">إعدادات الخزنة</string>
-    <string name="lv_vault_albums">الألبومات</string>
-    <string name="lv_vault_recent">الوسائط الأخيرة</string>
-    <string name="lv_view_all">عرض الكل</string>
-    <string name="lv_vault_all_photos">جميع الصور</string>
-    <string name="lv_vault_protected_title">خزنتك محمية</string>
-    <string name="lv_vault_protected_sub">يحافظ تشفير AES-256 على خصوصية ذكرياتك تمامًا.</string>
-    <string name="lv_vault_check_health">فحص الحالة</string>
-    <string name="lv_vault_recent_empty">لا توجد وسائط بعد. استورد صورًا أو مقاطع فيديو للبدء.</string>
 
     <!-- Ported onboarding (4-page flow) -->
 
@@ -71,21 +27,11 @@
     <!-- Onboarding -->
 
     <!-- Choose unlock method -->
-    <string name="choose_method_title">اختر طريقة إلغاء القفل</string>
-    <string name="choose_method_subtitle">اختر القفل الذي ستستخدمه لفتح التطبيق. يمكنك إضافة إلغاء القفل بالبصمة في الخطوات التالية.</string>
-    <string name="choose_method_pattern_title">النمط</string>
-    <string name="choose_method_pattern_desc">ارسم نمطًا لإلغاء القفل — سريع وسهل.</string>
-    <string name="choose_method_pin_title">PIN</string>
-    <string name="choose_method_pin_desc">استخدم رمز PIN رقميًا من 4 أو 6 أرقام.</string>
-    <string name="choose_method_recommended">موصى به</string>
 
     <!-- PIN -->
-    <string name="create_pin_title">أنشئ رمز PIN</string>
     <string name="create_pin_subtitle">يحافظ رمز PIN هذا على أمان خزنتك.</string>
     <string name="confirm_pin_title">أكّد رمز PIN</string>
     <string name="confirm_pin_subtitle">أعد إدخال رمز PIN للمتابعة.</string>
-    <string name="pin_length_4">4 أرقام</string>
-    <string name="pin_length_6">6 أرقام</string>
     <string name="pin_mismatch">رمزا PIN غير متطابقين. حاول مرة أخرى.</string>
 
     <!-- Biometric setup -->
@@ -107,7 +53,6 @@
     <string name="home_videos">الفيديو الخاص</string>
 
     <!-- Navigation -->
-    <string name="nav_settings">الإعدادات</string>
 
     <!-- Home dashboard (redesign) -->
 
@@ -121,8 +66,6 @@
 
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">إدارة الأمان والخصوصية وتفضيلات التطبيق.</string>
-    <string name="settings_security_status">حالة الأمان</string>
-    <string name="settings_security_status_active">جميع ميزات الأمان مفعّلة</string>
     <string name="settings_change_pin_desc_alt">غيّر رمز PIN لإلغاء قفل التطبيق</string>
     <string name="settings_change_pattern">تغيير النمط</string>
     <string name="settings_change_pattern_desc">غيّر نمط إلغاء القفل</string>
@@ -136,9 +79,6 @@
     <string name="settings_app_lock_settings_desc">إدارة التفضيلات الحالية</string>
     <string name="settings_lock_overlay">تراكب شاشة القفل</string>
     <string name="settings_lock_overlay_desc">تهيئة شاشة القفل والسلوك</string>
-    <string name="settings_section_preferences">التفضيلات</string>
-    <string name="settings_notifications">الإشعارات</string>
-    <string name="settings_notifications_desc">إدارة إشعارات التطبيق</string>
     <string name="settings_section_more">المزيد</string>
     <string name="settings_about_app">حول Lock &amp; Vault</string>
     <string name="settings_about_app_desc">الإصدار والتراخيص والمزيد</string>
@@ -161,7 +101,6 @@
     <string name="auto_lock_never_short">أبدًا</string>
 
     <!-- Weak credential -->
-    <string name="pin_weak_warning">رمز PIN هذا سهل التخمين جدًا. اختر رمزًا آخر.</string>
 
     <!-- Recovery key -->
     <string name="recovery_title">مفتاح الاسترداد الخاص بك</string>
@@ -195,8 +134,6 @@
     <!-- Pattern -->
     <string name="pattern_setup_title">عيّن نمطك</string>
     <string name="pattern_setup_subtitle">ارسم نمطًا لإلغاء قفل التطبيق. اربط 4 نقاط على الأقل.</string>
-    <string name="pattern_clear">مسح النمط</string>
-    <string name="pattern_hint_note">اجعله سهل التذكر لكن يصعب على الآخرين تخمينه.</string>
     <string name="pattern_confirm_title">تأكيد النمط</string>
     <string name="pattern_confirm_subtitle">ارسم النمط نفسه مرة أخرى.</string>
     <string name="pattern_too_short">اربط 4 نقاط على الأقل.</string>
@@ -364,7 +301,6 @@
     <string name="cd_thumbnail">صورة مصغّرة للوسائط</string>
     <string name="cd_play_video">تشغيل الفيديو</string>
     <string name="cd_favorite">مفضّل</string>
-    <string name="cd_close">إغلاق</string>
     <string name="cd_more_options">المزيد من الخيارات</string>
 
     <!-- Content descriptions -->
@@ -387,16 +323,17 @@
     <string name="applock_overlay_title">التطبيق مقفل</string>
     <string name="applock_wrong_credential">غير صحيح. حاول مرة أخرى.</string>
 
+    <!-- Language picker (first launch only) -->
+    <string name="language_title">اللغة</string>
+    <string name="language_subtitle">اختر لغتك</string>
+    <string name="language_confirm_cd">تأكيد اللغة</string>
+    <string name="language_selected_cd">محدد</string>
+    <string name="language_follow_system">إعداد النظام الافتراضي</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_language_desc">تغيير لغة التطبيق</string>
+    <string name="lv_vault_create_folder_sub">إضافة مجلد جديد</string>
+
     <!-- Permission setup (screenshot redesign) -->
-    <string name="applock_setup_title">إعداد قفل التطبيقات</string>
-    <string name="applock_setup_subtitle">امنح الأذونات المطلوبة لتفعيل الحماية.</string>
-    <string name="applock_perm_usage_desc_alt">مطلوب لاكتشاف وقت فتح التطبيقات المحددة</string>
-    <string name="applock_perm_overlay_title_alt">العرض فوق التطبيقات الأخرى</string>
-    <string name="applock_perm_overlay_desc_alt">مطلوب لعرض شاشة القفل فوق التطبيقات المحمية</string>
-    <string name="applock_perm_notification_title_alt">الإشعارات</string>
-    <string name="applock_perm_notification_desc_alt">مطلوب لإبقاء الحماية تعمل بشكل موثوق وعرض التنبيهات المهمة</string>
-    <string name="applock_perm_grant">منح</string>
-    <string name="applock_perm_privacy_note">تُستخدم هذه الأذونات فقط لحماية التطبيقات على جهازك.</string>
 
     <!-- Permission setup -->
     <string name="applock_perm_usage_title">الوصول إلى الاستخدام</string>
@@ -433,10 +370,6 @@
 
     <!-- Installed apps list -->
     <string name="applock_search_hint">ابحث عن التطبيقات</string>
-    <string name="applock_filter_all">الكل</string>
-    <string name="applock_filter_locked">مقفلة</string>
-    <string name="applock_filter_unlocked">غير مقفلة</string>
-    <string name="applock_filter_system">تطبيقات النظام</string>
     <string name="applock_no_apps">لا توجد تطبيقات لعرضها.</string>
 
     <!-- App Lock settings -->
@@ -612,28 +545,17 @@
 
     <!-- Tools dashboard (screenshot redesign) -->
     <string name="tools_header_subtitle">أدوات ذكية لتنظيف جهازك وتنظيمه وتأمينه.</string>
-    <string name="tools_hero_title">الجهاز سليم</string>
-    <string name="tools_hero_desc">جهازك نظيف ومحمي. استمر هكذا!</string>
-    <string name="tools_hero_protected">محمي</string>
-    <string name="tools_hero_percent">92%</string>
-    <string name="tools_section_cleanup">أدوات التنظيف</string>
-    <string name="tools_section_security">الأمان والخصوصية</string>
     <string name="tools_duplicate_finder">باحث التكرارات</string>
     <string name="tools_duplicate_desc">ابحث عن الصور ومقاطع الفيديو والملفات المكررة واحذفها</string>
     <string name="tools_large_files">الملفات الكبيرة</string>
     <string name="tools_large_files_desc">ابحث عن الملفات الكبيرة التي تشغل مساحة تخزين ثمينة</string>
     <string name="tools_storage_analyzer">محلل التخزين</string>
     <string name="tools_storage_analyzer_desc">حلّل التخزين وأدر مساحتك.</string>
-    <string name="tools_view_details">عرض التفاصيل</string>
     <string name="tools_vault_health">حالة الخزنة</string>
     <string name="tools_vault_health_desc">افحص حالة التشفير والأمان</string>
-    <string name="tools_status_secure">آمن</string>
-    <string name="tools_section_storage">التخزين الخاص</string>
     <string name="tools_private_notes_desc">ملاحظات خاصة آمنة</string>
     <string name="tools_private_documents_desc">الهويات والبطاقات والملفات</string>
     <string name="settings_open_unavailable">هذه الشاشة غير متاحة على جهازك</string>
-    <string name="tools_sample_dup_size">1.26 GB</string>
-    <string name="tools_sample_large_size">2.34 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">إغلاق</string>

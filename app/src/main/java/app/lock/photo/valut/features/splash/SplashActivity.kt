@@ -13,20 +13,18 @@ import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.App
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.lock.LockExempt
-import app.lock.photo.valut.core.lock.LockRouter
+import app.lock.photo.valut.core.lock.StartRouter
 import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivitySplashBinding
-import app.lock.photo.valut.domain.model.StartDestination
 import app.lock.photo.valut.features.applock.overlay.AppLockOverlayActivity
 import app.lock.photo.valut.features.auth.pattern.PatternUnlockActivity
-import app.lock.photo.valut.features.auth.unlock.ChooseUnlockMethodActivity
-import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
-import com.apero.nextgen.AdsSdk.appopen.AperoNextGenAppOpen
-import com.apero.nextgen.AdsSdk.callback.AperoNextGenAdCallback
-import com.apero.nextgen.AdsSdk.consent.AperoNextGenConsent
-import com.apero.nextgen.AdsSdk.interstitial.AperoNextGenInterstitial
-import com.apero.nextgen.AdsSdk.interstitial.AperoNextGenInterstitialConfig
-import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
+import app.lock.photo.valut.features.language.LanguageActivity
+import com.nextgen.ads.appopen.NextGenAppOpen
+import com.nextgen.ads.callback.NextGenAdCallback
+import com.nextgen.ads.consent.NextGenConsent
+import com.nextgen.ads.interstitial.NextGenInterstitial
+import com.nextgen.ads.interstitial.NextGenInterstitialConfig
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -40,15 +38,33 @@ class SplashActivity : BaseActivity(), LockExempt {
 
     private var pendingRoute: SplashRoute? = null
     private var adFlowDone = false
+    private var navigated = false
+    private var adsAllowed = false
+    private var languagePreloadStarted = false
+
+    /** Single handler for every delayed hop off this screen, so all of them can be cancelled. */
+    private val handler = Handler(Looper.getMainLooper())
+    private val flowTimeout = Runnable { navigateNow() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        useLightSystemBarIcons()
+
         observeRoute()
         viewModel.resolveStartDestination()
         startSplashFlow()
+        // Safety net: the consent/remote-config/ad callbacks are all out of our hands, and if any
+        // of them never fires the splash would sit here for good. Move on regardless once the
+        // wait stops being reasonable.
+        handler.postDelayed(flowTimeout, MAX_SPLASH_WAIT_MS)
+    }
+
+    override fun onDestroy() {
+        handler.removeCallbacksAndMessages(null)
+        super.onDestroy()
     }
 
     private fun isNetworkAvailable(): Boolean {
@@ -61,9 +77,11 @@ class SplashActivity : BaseActivity(), LockExempt {
     private fun startSplashFlow() {
         if (isNetworkAvailable()) {
             RemoteConfig.fetch { success ->
-                AperoNextGenConsent.gatherConsent(this){canRequestAds ->
+                NextGenConsent.gatherConsent(this){canRequestAds ->
+                    adsAllowed = canRequestAds
                     if (canRequestAds){
                         startLoadingAds()
+                        preloadLanguageNativeIfNeeded()
                     }else{
                         navigateNow()
 
@@ -71,9 +89,7 @@ class SplashActivity : BaseActivity(), LockExempt {
                 }
             }
         } else {
-            Handler(Looper.getMainLooper()).postDelayed({
-                navigateNow()
-            }, 4000)
+            handler.postDelayed({ navigateNow() }, OFFLINE_DWELL_MS)
         }
     }
 
@@ -85,19 +101,19 @@ class SplashActivity : BaseActivity(), LockExempt {
     }
 
     private fun initOpenAppAd(){
-        AperoNextGenAppOpen.initialize(
+        NextGenAppOpen.initialize(
             application = App.instance,
             appOpenId = getString(R.string.admob_app_open_id), // Google test app open id
             canShowAds = RemoteConfig.appOpen&& RemoteConfig.enableAllAds,
             logTag = "AppOpenResume",
         )
-        AperoNextGenAppOpen.excludeActivity(SplashActivity::class.java, AppLockOverlayActivity::class.java,
+        NextGenAppOpen.excludeActivity(SplashActivity::class.java, AppLockOverlayActivity::class.java,
             PatternUnlockActivity::class.java)
     }
 
     private fun loadSplashInterAd(){
-        AperoNextGenInterstitial.register(
-            AperoNextGenInterstitialConfig(
+        NextGenInterstitial.register(
+            NextGenInterstitialConfig(
                 placement = "SPLASH_PLACEMENT",
                 highAdUnitId = getString(R.string.InterSplash),
                 enabled = RemoteConfig.interSplash&& RemoteConfig.enableAllAds,
@@ -107,19 +123,19 @@ class SplashActivity : BaseActivity(), LockExempt {
             )
         )
 
-        AperoNextGenInterstitial.loadSplashInterstitial(
+        NextGenInterstitial.loadSplashInterstitial(
             activity = this,
             placement = "SPLASH_PLACEMENT",
             timeoutMs = 30_000L,
             logTag = "Inter_Splash_Ad",
-            callback = object : AperoNextGenAdCallback {
+            callback = object : NextGenAdCallback {
                 override fun onNextAction() = navigateNow()
             },
         )
     }
 
     private fun loadShowNativeSplash(){
-        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
             nativeId = getString(R.string.nativeSplash),
@@ -137,6 +153,8 @@ class SplashActivity : BaseActivity(), LockExempt {
                 viewModel.route.collect { route ->
                     route?.let {
                         pendingRoute = it
+                        // Only now do we know whether the language picker is coming up.
+                        preloadLanguageNativeIfNeeded()
                         if (adFlowDone) navigateNow()
                     }
                 }
@@ -146,14 +164,44 @@ class SplashActivity : BaseActivity(), LockExempt {
 
     private fun navigateNow() {
         adFlowDone = true
+        // Several callbacks can race to leave this screen (the interstitial, the route, the
+        // timeout above) — only the first one gets to start the next activity.
+        if (navigated || isFinishing) return
         val route = pendingRoute ?: return
-        val intent = when (route.destination) {
-            StartDestination.PERMISSION_GATE -> AppLockPermissionActivity.gateIntent(this)
-            StartDestination.SETUP_CREDENTIAL -> Intent(this, ChooseUnlockMethodActivity::class.java)
-            StartDestination.LOCKED -> LockRouter.lockIntent(this, route.unlockMethod)
+        navigated = true
+        handler.removeCallbacksAndMessages(null)
+        // First launch: the language picker goes first and continues the flow itself.
+        val intent = if (route.needsLanguage) {
+            LanguageActivity.intent(this)
+        } else {
+            StartRouter.intentFor(this, route.destination, route.unlockMethod)
         }
         startActivity(intent)
         finish()
     }
 
+    /**
+     * Requests the language picker's native ad here on the splash so it's already cached by the
+     * time that screen appears. Needs both facts first — consent granted, and a first launch —
+     * and runs at most once.
+     */
+    private fun preloadLanguageNativeIfNeeded() {
+        if (languagePreloadStarted || !adsAllowed) return
+        if (pendingRoute?.needsLanguage != true) return
+        languagePreloadStarted = true
+        NextGenNativeHelper.nativePreload(
+            nativeId = getString(R.string.NativeLanguage),
+            canShowAds = RemoteConfig.nativeLanguge && RemoteConfig.enableAllAds,
+            logTag = "Native_Language",
+            slot = LanguageActivity.SPLASH_PRELOAD_SLOT
+        )
+    }
+
+    private companion object {
+        /** Splash dwell when there's no network and therefore no ad flow to wait for. */
+        const val OFFLINE_DWELL_MS = 4_000L
+
+        /** Hard cap on the whole consent + remote-config + ad wait. */
+        const val MAX_SPLASH_WAIT_MS = 20_000L
+    }
 }

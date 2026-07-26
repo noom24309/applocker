@@ -11,7 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -30,7 +30,7 @@ import app.lock.photo.valut.domain.model.FakeMode
 import app.lock.photo.valut.domain.model.LockTheme
 import app.lock.photo.valut.domain.model.UnlockMethod
 import app.lock.photo.valut.features.applock.model.AppLockOverlayUiState
-import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -93,13 +93,13 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
 
     private fun loadNativeAd() {
 
-        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
-            nativeId = getString(R.string.NativeLanaguge),
+            nativeId = getString(R.string.NativeOverlay),
             layoutId = R.layout.native_medium_ad_layout_new,
             canShowAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.NativeLanaguge),
+            reloadNativeId = getString(R.string.NativeOverlay),
             canReloadAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds,
             logTag = "AppLockOverLay"
         )
@@ -339,7 +339,7 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
         binding.crashClose.setOnClickListener { goHome() }
         binding.crashOpenAgain.setOnClickListener { /* keep showing the fake crash */ }
         binding.crashReport.setOnClickListener {
-            Toast.makeText(this, R.string.fake_crash_reported, Toast.LENGTH_SHORT).show()
+            showToast(R.string.fake_crash_reported)
         }
 
         // Fake loading: long-press the spinner or 5 taps on the text reveals the real lock.
@@ -470,6 +470,16 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
         }
         runCatching { startActivity(home) }
         finish()
+    }
+
+    /**
+     * Keeps the overlay's mark fresh while it is actually on screen. The mark self-expires, so
+     * this is what tells the monitor "the lock screen really is up" — without it a live overlay
+     * would look stale, and with it a killed/backgrounded overlay can never block the next one.
+     */
+    override fun onResume() {
+        super.onResume()
+        intent.getStringExtra(EXTRA_PACKAGE)?.let { overlayState.refreshOverlayAlive(it) }
     }
 
     override fun onDestroy() {

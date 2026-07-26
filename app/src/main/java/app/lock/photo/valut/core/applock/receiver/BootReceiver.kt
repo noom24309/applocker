@@ -6,14 +6,8 @@ import androidx.core.content.ContextCompat
 import app.lock.photo.valut.core.applock.AppLockPermissionChecker
 import app.lock.photo.valut.core.applock.AppLockWatchdogScheduler
 import app.lock.photo.valut.core.applock.service.AppLockMonitorService
-import app.lock.photo.valut.core.datastore.AppSettingsDataStore
 import app.lock.photo.valut.data.local.dao.LockedAppDao
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -23,7 +17,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class BootReceiver : HiltBroadcastReceiver() {
 
-    @Inject lateinit var dataStore: AppSettingsDataStore
     @Inject lateinit var permissionChecker: AppLockPermissionChecker
     @Inject lateinit var lockedAppDao: LockedAppDao
     @Inject lateinit var watchdog: AppLockWatchdogScheduler
@@ -34,37 +27,32 @@ class BootReceiver : HiltBroadcastReceiver() {
             intent.action != Intent.ACTION_LOCKED_BOOT_COMPLETED
         ) return
 
-        val pending = goAsync()
-        val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-        scope.launch {
-            try {
-                // Respect the user's choice: only resume when protection was on before
-                // the reboot. Never force the feature back on here.
-                val userWantsProtection = dataStore.appLockServiceEnabled.first() &&
-                    dataStore.appLockFeatureEnabled.first()
-                if (!userWantsProtection) return@launch
+        // Boot is exactly when the DB/DataStore are slowest to come up, so the work runs under
+        // runAsync()'s timeout — the broadcast is always released, hang or not.
+        runAsync(goAsync()) {
+            // Locked apps are the intent: if the user has any, protection resumes after the
+            // reboot. (Gating this on the enabled-flags used to leave people rebooting into
+            // locked apps with no service — the flags can be unset/stale, the lock list can't.)
+            val hasLockedApps = runCatching { lockedAppDao.getLockedPackageNames().isNotEmpty() }
+                .getOrDefault(false)
+            if (!hasLockedApps) return@runAsync
 
-                val hasLockedApps = runCatching { lockedAppDao.getLockedPackageNames().isNotEmpty() }
-                    .getOrDefault(false)
-                val hasPermissions = runCatching { permissionChecker.hasAllRequiredAppLockPermissions() }
-                    .getOrDefault(false)
-                if (hasLockedApps && hasPermissions) {
-                    // Wrap the start so a rejection (e.g. direct-boot / OEM restriction) can't
-                    // skip the heartbeat re-arm below.
-                    runCatching {
-                        ContextCompat.startForegroundService(
-                            context,
-                            Intent(context, AppLockMonitorService::class.java)
-                                .setAction(AppLockMonitorService.ACTION_START)
-                        )
-                    }
+            val hasPermissions = runCatching { permissionChecker.hasAllRequiredAppLockPermissions() }
+                .getOrDefault(false)
+            if (hasPermissions) {
+                // Wrap the start so a rejection (e.g. direct-boot / OEM restriction) can't
+                // skip the watchdog re-arm below.
+                runCatching {
+                    ContextCompat.startForegroundService(
+                        context,
+                        Intent(context, AppLockMonitorService::class.java)
+                            .setAction(AppLockMonitorService.ACTION_START)
+                    )
                 }
-                // Alarms don't survive a reboot — re-arm the watchdog heartbeat (while there's
-                // something to protect) so protection self-heals even if the start above failed.
-                if (hasLockedApps) runCatching { watchdog.scheduleHeartbeat() }
-            } finally {
-                pending.finish()
             }
+            // Alarms don't survive a reboot — re-arm both self-heal channels so protection
+            // comes back even if the start above was rejected.
+            runCatching { watchdog.ensureAllChannels() }
         }
     }
 }

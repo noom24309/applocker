@@ -58,8 +58,9 @@ class AppLockPermissionViewModel @Inject constructor(
      * Called from the gate's "Activate protection" action once permissions are granted.
      */
     suspend fun activateProtection() {
-        dataStore.setAppLockFeatureEnabled(true)
-        if (serviceManager.canStartProtection()) serviceManager.startProtection()
+        // Records the intent, starts the service when something is already locked, and arms the
+        // self-heal channels. Locking an app later does the same thing on its own.
+        serviceManager.activateProtection()
     }
 
     /** True once the app is exempt from battery optimization (service can survive Doze). */

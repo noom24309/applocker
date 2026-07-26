@@ -7,11 +7,7 @@ import app.lock.photo.valut.core.datastore.AppSettingsDataStore
 import app.lock.photo.valut.domain.model.InstalledAppInfo
 import app.lock.photo.valut.domain.repository.AppLockRepository
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -35,33 +31,29 @@ class PackageChangeReceiver : HiltBroadcastReceiver() {
         if (packageName == context.packageName) return
         val replacing = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
 
-        val pending = goAsync()
-        val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-        scope.launch {
-            try {
-                when (intent.action) {
-                    Intent.ACTION_PACKAGE_FULLY_REMOVED,
-                    Intent.ACTION_PACKAGE_REMOVED -> {
-                        if (!replacing) repository.refreshInstalledApps()
-                    }
-                    Intent.ACTION_PACKAGE_ADDED -> {
-                        if (replacing) return@launch
-                        val info = resolveApp(context, packageName) ?: return@launch
-                        // Debounce: don't handle the same install burst twice.
-                        val now = System.currentTimeMillis()
-                        if (now - dataStore.lastHandledPackageTime.first() < HANDLE_DEBOUNCE_MILLIS) return@launch
-                        dataStore.setLastHandledPackageTime(now)
+        // A full app-list refresh plus several DataStore reads is the slowest work any of our
+        // receivers does, so it runs under runAsync()'s timeout-and-always-finish guarantee.
+        runAsync(goAsync()) {
+            when (intent.action) {
+                Intent.ACTION_PACKAGE_FULLY_REMOVED,
+                Intent.ACTION_PACKAGE_REMOVED -> {
+                    if (!replacing) repository.refreshInstalledApps()
+                }
+                Intent.ACTION_PACKAGE_ADDED -> {
+                    if (replacing) return@runAsync
+                    val info = resolveApp(context, packageName) ?: return@runAsync
+                    // Debounce: don't handle the same install burst twice.
+                    val now = System.currentTimeMillis()
+                    if (now - dataStore.lastHandledPackageTime.first() < HANDLE_DEBOUNCE_MILLIS) return@runAsync
+                    dataStore.setLastHandledPackageTime(now)
 
-                        if (dataStore.lockNewAppsAutomatically.first()) {
-                            repository.setAppLocked(info, locked = true)
-                            notificationHelper.showNewAppNotification(info.appName, autoLocked = true)
-                        } else if (dataStore.showNewAppLockPrompt.first()) {
-                            notificationHelper.showNewAppNotification(info.appName, autoLocked = false)
-                        }
+                    if (dataStore.lockNewAppsAutomatically.first()) {
+                        repository.setAppLocked(info, locked = true)
+                        notificationHelper.showNewAppNotification(info.appName, autoLocked = true)
+                    } else if (dataStore.showNewAppLockPrompt.first()) {
+                        notificationHelper.showNewAppNotification(info.appName, autoLocked = false)
                     }
                 }
-            } finally {
-                pending.finish()
             }
         }
     }

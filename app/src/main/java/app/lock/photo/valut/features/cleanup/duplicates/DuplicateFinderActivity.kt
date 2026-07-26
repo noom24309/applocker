@@ -3,7 +3,7 @@ package app.lock.photo.valut.features.cleanup.duplicates
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.ads.AppAds
 import app.lock.photo.valut.core.common.Formatters
 import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.core.ui.BaseActivity
@@ -33,6 +34,7 @@ class DuplicateFinderActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDuplicateFinderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, "DuplicateFinder")
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         adapter = DuplicateAdapter(thumbnailLoader, onToggle = viewModel::toggle)
@@ -105,7 +107,7 @@ class DuplicateFinderActivity : BaseActivity() {
     private fun confirmDelete() {
         val count = viewModel.uiState.value.selectedCount
         if (count == 0) {
-            Toast.makeText(this, R.string.cleanup_select_first, Toast.LENGTH_SHORT).show()
+            showToast(R.string.cleanup_select_first)
             return
         }
         val size = Formatters.formatSize(viewModel.selectedSizeBytes())
@@ -115,11 +117,7 @@ class DuplicateFinderActivity : BaseActivity() {
             .setNegativeButton(R.string.cleanup_cancel, null)
             .setPositiveButton(R.string.cleanup_confirm_move) { _, _ ->
                 viewModel.deleteSelected()
-                Toast.makeText(
-                    this,
-                    getString(R.string.cleanup_moved_to_bin, count),
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(getString(R.string.cleanup_moved_to_bin, count))
             }
             .show()
     }

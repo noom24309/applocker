@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.ads.AppAds
 import app.lock.photo.valut.databinding.ActivityPrivateNotesBinding
 import app.lock.photo.valut.domain.model.NoteListItem
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -33,6 +34,7 @@ class PrivateNotesActivity : BaseActivity() {
         // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityPrivateNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, "PrivateNotes")
 
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         adapter = NotesAdapter(

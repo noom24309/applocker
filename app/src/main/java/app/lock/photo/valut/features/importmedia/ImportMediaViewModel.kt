@@ -42,61 +42,61 @@ class ImportMediaViewModel @Inject constructor(
             var photos = 0
             var videos = 0
             val originalsToRemove = mutableListOf<Uri>()
-            val importedIds = mutableListOf<Long>()
-            val videoIds = mutableListOf<Long>()
-            for ((index, uri) in uris.withIndex()) {
-                if (!isActive) break
-                _state.update { it.copy(currentFileName = "${index + 1} / ${uris.size}") }
-                when (val result = repository.importSingleMedia(uri)) {
-                    is ImportItemResult.Success -> {
-                        completed++
-                        importedIds.add(result.mediaId)
-                        if (result.mediaType == MediaType.VIDEO) {
-                            videos++
-                            videoIds.add(result.mediaId)
-                        } else {
-                            photos++
+            try {
+                for ((index, uri) in uris.withIndex()) {
+                    if (!isActive) break
+                    _state.update { it.copy(currentFileName = "${index + 1} / ${uris.size}") }
+                    when (val result = repository.importSingleMedia(uri)) {
+                        is ImportItemResult.Success -> {
+                            completed++
+                            if (result.mediaType == MediaType.VIDEO) videos++ else photos++
+
+                            // File the item into its target folder RIGHT NOW, before any optional
+                            // post-processing. This used to run after the whole loop, so anything
+                            // that threw in between (the hidden-gallery copy below talks to
+                            // MediaStore and can fail per device) meant the media never landed in
+                            // the folder the user imported it into.
+                            if (albumId != NO_ALBUM) {
+                                runCatching { repository.moveToAlbum(listOf(result.mediaId), albumId) }
+                            }
+
+                            // Copy the original into the hidden shared folder (survives uninstall).
+                            // Only when that copy succeeds do we queue the original for removal,
+                            // so a photo is never lost. We queue the *resolved* MediaStore URI
+                            // (picker URIs can't be deleted); null means we skip removal safely.
+                            // Wrapped: this is a nice-to-have, and a MediaStore rejection here must
+                            // never kill the import — the media is already safe in the vault.
+                            runCatching {
+                                val hidden = hiddenGalleryManager.copyToHidden(uri, result.mediaType)
+                                if (hidden != null) {
+                                    // Link the hidden copy so it can be restored later.
+                                    repository.setHiddenUri(result.mediaId, hidden.toString())
+                                    hiddenGalleryManager.resolveDeletableUri(uri, result.mediaType)
+                                        ?.let { originalsToRemove.add(it) }
+                                }
+                            }
                         }
-                        // Copy the original into the hidden shared folder (survives uninstall).
-                        // Only when that copy succeeds do we queue the original for removal,
-                        // so a photo is never lost. We queue the *resolved* MediaStore URI
-                        // (picker URIs can't be deleted); null means we skip removal safely.
-                        val hidden = hiddenGalleryManager.copyToHidden(uri, result.mediaType)
-                        if (hidden != null) {
-                            // Link the hidden copy to the vault item so it can be restored later.
-                            repository.setHiddenUri(result.mediaId, hidden.toString())
-                            hiddenGalleryManager.resolveDeletableUri(uri, result.mediaType)
-                                ?.let { originalsToRemove.add(it) }
-                        }
+                        is ImportItemResult.Failed -> failed++
                     }
-                    is ImportItemResult.Failed -> failed++
+                    _state.update {
+                        it.copy(
+                            completedCount = completed,
+                            failedCount = failed,
+                            importedPhotos = photos,
+                            importedVideos = videos
+                        )
+                    }
                 }
+            } finally {
+                // Always land on the finished state. Anything unexpected mid-import used to leave
+                // this screen spinning on "Importing…" with no way forward but the back button.
                 _state.update {
                     it.copy(
-                        completedCount = completed,
-                        failedCount = failed,
-                        importedPhotos = photos,
-                        importedVideos = videos
+                        isImporting = false,
+                        isFinished = true,
+                        originalsToRemove = originalsToRemove.toList()
                     )
                 }
-            }
-            // File freshly-imported items into the target folder, if one was given.
-            // Otherwise, auto-collect any imported videos into the "All Videos" album so
-            // every added video lands in a dedicated folder.
-            if (albumId != NO_ALBUM && importedIds.isNotEmpty()) {
-                repository.moveToAlbum(importedIds, albumId)
-            } else if (videoIds.isNotEmpty()) {
-                val videosAlbumId = repository.getOrCreateAlbum(
-                    ALL_VIDEOS_ALBUM, MediaType.VIDEO.storageValue
-                )
-                repository.moveToAlbum(videoIds, videosAlbumId)
-            }
-            _state.update {
-                it.copy(
-                    isImporting = false,
-                    isFinished = true,
-                    originalsToRemove = originalsToRemove.toList()
-                )
             }
         }
     }
@@ -108,6 +108,5 @@ class ImportMediaViewModel @Inject constructor(
 
     companion object {
         const val NO_ALBUM = -1L
-        private const val ALL_VIDEOS_ALBUM = "All Videos"
     }
 }

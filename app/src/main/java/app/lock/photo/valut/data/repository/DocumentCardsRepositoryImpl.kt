@@ -213,7 +213,7 @@ class DocumentCardsRepositoryImpl @Inject constructor(
         } ?: return@withContext false
         runCatching {
             context.contentResolver.openOutputStream(destUri)?.use { output ->
-                cryptoFileManager.decryptFileToInputStream(File(path)).use { input -> input.copyTo(output) }
+                cryptoFileManager.decryptFileToStream(File(path), output)
             } ?: return@runCatching false
             true
         }.getOrDefault(false)

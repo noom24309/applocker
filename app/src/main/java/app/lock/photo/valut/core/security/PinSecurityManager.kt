@@ -13,15 +13,13 @@ import javax.inject.Singleton
 @Singleton
 class PinSecurityManager @Inject constructor(
     private val dataStore: AppSettingsDataStore,
-    private val hasher: CredentialHasher,
-    private val weakChecker: WeakCredentialChecker
+    private val hasher: CredentialHasher
 ) {
 
     suspend fun isPinCreated(): Boolean = dataStore.pinCreated.first()
 
-    /** Creates a new PIN. Rejects weak PINs. */
+    /** Creates a new PIN. Any PIN the user picks is accepted. */
     suspend fun createPin(pin: String, length: Int): SecurityResult {
-        if (weakChecker.isWeakPin(pin)) return SecurityResult.WeakCredential
         persist(pin, length)
         return SecurityResult.Success
     }
@@ -33,15 +31,14 @@ class PinSecurityManager @Inject constructor(
     }
 
     /**
-     * Changes the PIN after verifying [oldPin]. Disallows reusing the old PIN and
-     * weak PINs. Returns a [SecurityResult] describing the outcome.
+     * Changes the PIN after verifying [oldPin]. Only reusing the old PIN is refused.
+     * Returns a [SecurityResult] describing the outcome.
      */
     suspend fun changePin(oldPin: String, newPin: String, newLength: Int): SecurityResult {
         if (!verifyPin(oldPin)) {
             return SecurityResult.WrongCredential(attemptCount = 0)
         }
         if (oldPin == newPin) return SecurityResult.SameAsOld
-        if (weakChecker.isWeakPin(newPin)) return SecurityResult.WeakCredential
         persist(newPin, newLength)
         return SecurityResult.Success
     }

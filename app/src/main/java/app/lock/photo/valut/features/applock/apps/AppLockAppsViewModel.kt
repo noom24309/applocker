@@ -58,6 +58,18 @@ class AppLockAppsViewModel @Inject constructor(
             .toList()
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
+    /**
+     * locked-to-total counts for the header, over the user-visible (non-system) apps only,
+     * so the number doesn't move when the search box or the filter chips change.
+     */
+    val protectedSummary: StateFlow<Pair<Int, Int>> = combine(
+        installedApps, lockedPackages
+    ) { all, locked ->
+        val lockedSet = locked.toHashSet()
+        val userApps = all.filterNot { it.isSystemApp }
+        userApps.count { it.packageName in lockedSet } to userApps.size
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), 0 to 0)
+
     init {
         load()
     }
@@ -76,20 +88,15 @@ class AppLockAppsViewModel @Inject constructor(
                 InstalledAppInfo(app.packageName, app.appName, app.isSystemApp),
                 locked
             )
-            // Keep the service in sync: start when first app is locked.
-            if (locked && serviceManager.canStartProtection() && !serviceManager.isServiceRunning()) {
-                serviceManager.startProtection()
-            }
+            // Locking an app IS the request to be protected: turn protection on right here and
+            // arm the self-heal channels, instead of waiting for a separate "activate" step.
+            if (locked) serviceManager.activateProtection()
         }
     }
 
     /** Start the monitor service once it can run — e.g. after permissions were just granted. */
     fun ensureProtectionRunning() {
-        viewModelScope.launch {
-            if (serviceManager.canStartProtection() && !serviceManager.isServiceRunning()) {
-                serviceManager.startProtection()
-            }
-        }
+        viewModelScope.launch { serviceManager.ensureRunning() }
     }
 
     fun setQuery(value: String) { query.value = value }

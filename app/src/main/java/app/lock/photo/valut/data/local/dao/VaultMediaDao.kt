@@ -52,6 +52,13 @@ interface VaultMediaDao {
     @Query("SELECT * FROM vault_media WHERE id = :id")
     suspend fun getById(id: Long): VaultMediaEntity?
 
+    /** Items still stored in the old (slow to read) key format, oldest first. */
+    @Query(
+        "SELECT * FROM vault_media WHERE isEncrypted = 1 AND keyVersion < :version " +
+            "ORDER BY id ASC LIMIT :limit"
+    )
+    suspend fun getLegacyKeyItems(version: Int, limit: Int): List<VaultMediaEntity>
+
     @Query("SELECT * FROM vault_media WHERE id IN (:ids)")
     suspend fun getByIds(ids: List<Long>): List<VaultMediaEntity>
 

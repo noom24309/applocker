@@ -2,64 +2,20 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="skip">Lewati</string>
     <string name="continue_label">Lanjutkan</string>
     <string name="cancel">Batal</string>
     <string name="coming_next_phase">Segera hadir pada tahap berikutnya</string>
+    <string name="loading">Memuat....</string>
 
     <!-- Splash -->
     <string name="splash_tagline">Pribadi. Aman. Milik Anda.</string>
-    <string name="splash_brand_lock">App Lock</string>
-    <string name="splash_brand_amp">&amp;</string>
-    <string name="splash_brand_vault">Private Vault</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
-    <string name="lv_brand_a">Lock &amp;</string>
-    <string name="lv_brand_b">Vault</string>
-    <string name="lv_subtitle">Amankan aplikasi Anda. Lindungi privasi Anda.</string>
-    <string name="lv_search_hint">Cari aplikasi...</string>
-    <string name="lv_chip_all">Semua</string>
-    <string name="lv_chip_locked">Terkunci</string>
-    <string name="lv_chip_unlocked">Tidak terkunci</string>
-    <string name="lv_chip_system">Sistem</string>
-    <string name="lv_stat_locked_apps">Aplikasi terkunci</string>
-    <string name="lv_stat_protection">Perlindungan</string>
-    <string name="lv_stat_protection_value">Aktif</string>
-    <string name="lv_stat_protection_off">Nonaktif</string>
-    <string name="lv_stat_blocked">Diblokir hari ini</string>
-    <string name="lv_stat_time">Waktu perlindungan</string>
-    <string name="lv_installed_apps">Aplikasi terpasang</string>
-    <string name="lv_app_count">(%1$d)</string>
-    <string name="lv_sort_az">Urutkan: A-Z</string>
-    <string name="lv_sort_za">Urutkan: Z-A</string>
-    <string name="lv_complete_setup">Selesaikan pengaturan</string>
-    <string name="lv_complete_setup_sub">Berikan izin yang tersisa untuk memastikan perlindungan penuh.</string>
-    <string name="lv_finish_setup">Selesaikan pengaturan</string>
-    <string name="lv_nav_home">Beranda</string>
     <string name="lv_nav_vault">Brankas</string>
     <string name="lv_nav_tools">Alat</string>
 
     <!-- Vault home (Lock & Vault redesign) -->
-    <string name="lv_vault_subtitle">Foto dan video pribadi Anda, aman.</string>
-    <string name="lv_vault_safe_title">Brankas aman</string>
-    <string name="lv_vault_safe_sub">Semua file Anda terenkripsi dan tersimpan dengan aman.</string>
-    <string name="lv_vault_unsafe_title">Selesaikan enkripsi</string>
-    <string name="lv_vault_unsafe_sub">Beberapa file belum terenkripsi. Ketuk untuk mengamankannya.</string>
-    <string name="lv_vault_learn_more">Pelajari lebih lanjut</string>
-    <string name="lv_vault_used">Terpakai</string>
-    <string name="lv_vault_percent">%1$d%%</string>
-    <string name="lv_vault_import_photos">Impor foto</string>
-    <string name="lv_vault_import_videos">Impor video</string>
     <string name="lv_vault_new_album">Album baru</string>
-    <string name="lv_vault_settings">Pengaturan brankas</string>
-    <string name="lv_vault_albums">Album</string>
-    <string name="lv_vault_recent">Media terbaru</string>
-    <string name="lv_view_all">Lihat semua</string>
-    <string name="lv_vault_all_photos">Semua foto</string>
-    <string name="lv_vault_protected_title">Brankas Anda terlindungi</string>
-    <string name="lv_vault_protected_sub">Enkripsi AES-256 menjaga kenangan Anda tetap sepenuhnya pribadi.</string>
-    <string name="lv_vault_check_health">Periksa kesehatan</string>
-    <string name="lv_vault_recent_empty">Belum ada media. Impor foto atau video untuk memulai.</string>
 
     <!-- Ported onboarding (4-page flow) -->
 
@@ -71,21 +27,11 @@
     <!-- Onboarding -->
 
     <!-- Choose unlock method -->
-    <string name="choose_method_title">Pilih cara membuka kunci</string>
-    <string name="choose_method_subtitle">Pilih kunci yang akan Anda gunakan untuk membuka aplikasi. Anda dapat menambahkan buka kunci sidik jari pada langkah berikutnya.</string>
-    <string name="choose_method_pattern_title">Pola</string>
-    <string name="choose_method_pattern_desc">Gambar pola untuk membuka kunci — cepat dan mudah.</string>
-    <string name="choose_method_pin_title">PIN</string>
-    <string name="choose_method_pin_desc">Gunakan PIN numerik 4 atau 6 digit.</string>
-    <string name="choose_method_recommended">Disarankan</string>
 
     <!-- PIN -->
-    <string name="create_pin_title">Buat PIN Anda</string>
     <string name="create_pin_subtitle">PIN ini menjaga brankas Anda tetap aman.</string>
     <string name="confirm_pin_title">Konfirmasi PIN Anda</string>
     <string name="confirm_pin_subtitle">Masukkan kembali PIN Anda untuk melanjutkan.</string>
-    <string name="pin_length_4">4 digit</string>
-    <string name="pin_length_6">6 digit</string>
     <string name="pin_mismatch">PIN tidak cocok. Coba lagi.</string>
 
     <!-- Biometric setup -->
@@ -107,7 +53,6 @@
     <string name="home_videos">Video pribadi</string>
 
     <!-- Navigation -->
-    <string name="nav_settings">Pengaturan</string>
 
     <!-- Home dashboard (redesign) -->
 
@@ -121,8 +66,6 @@
 
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Kelola keamanan, privasi, dan preferensi aplikasi.</string>
-    <string name="settings_security_status">Status keamanan</string>
-    <string name="settings_security_status_active">Semua fitur keamanan aktif</string>
     <string name="settings_change_pin_desc_alt">Ubah PIN buka kunci aplikasi Anda</string>
     <string name="settings_change_pattern">Ubah pola</string>
     <string name="settings_change_pattern_desc">Ubah pola buka kunci Anda</string>
@@ -136,9 +79,6 @@
     <string name="settings_app_lock_settings_desc">Kelola preferensi yang ada</string>
     <string name="settings_lock_overlay">Overlay layar kunci</string>
     <string name="settings_lock_overlay_desc">Konfigurasikan layar kunci dan perilaku</string>
-    <string name="settings_section_preferences">Preferensi</string>
-    <string name="settings_notifications">Notifikasi</string>
-    <string name="settings_notifications_desc">Kelola notifikasi aplikasi</string>
     <string name="settings_section_more">Lainnya</string>
     <string name="settings_about_app">Tentang Lock &amp; Vault</string>
     <string name="settings_about_app_desc">Versi, lisensi, dan lainnya</string>
@@ -161,7 +101,6 @@
     <string name="auto_lock_never_short">Tidak pernah</string>
 
     <!-- Weak credential -->
-    <string name="pin_weak_warning">PIN itu terlalu mudah ditebak. Pilih yang lain.</string>
 
     <!-- Recovery key -->
     <string name="recovery_title">Kunci pemulihan Anda</string>
@@ -195,8 +134,6 @@
     <!-- Pattern -->
     <string name="pattern_setup_title">Atur pola Anda</string>
     <string name="pattern_setup_subtitle">Gambar pola untuk membuka kunci aplikasi. Hubungkan setidaknya 4 titik.</string>
-    <string name="pattern_clear">Hapus pola</string>
-    <string name="pattern_hint_note">Buat mudah diingat tetapi sulit ditebak orang lain.</string>
     <string name="pattern_confirm_title">Konfirmasi pola</string>
     <string name="pattern_confirm_subtitle">Gambar pola yang sama lagi.</string>
     <string name="pattern_too_short">Hubungkan setidaknya 4 titik.</string>
@@ -364,7 +301,6 @@
     <string name="cd_thumbnail">Thumbnail media</string>
     <string name="cd_play_video">Putar video</string>
     <string name="cd_favorite">Favorit</string>
-    <string name="cd_close">Tutup</string>
     <string name="cd_more_options">Opsi lainnya</string>
 
     <!-- Content descriptions -->
@@ -387,16 +323,17 @@
     <string name="applock_overlay_title">Aplikasi terkunci</string>
     <string name="applock_wrong_credential">Salah. Coba lagi.</string>
 
+    <!-- Language picker (first launch only) -->
+    <string name="language_title">Bahasa</string>
+    <string name="language_subtitle">Pilih bahasa Anda</string>
+    <string name="language_confirm_cd">Konfirmasi bahasa</string>
+    <string name="language_selected_cd">Dipilih</string>
+    <string name="language_follow_system">Default sistem</string>
+    <string name="settings_language">Bahasa</string>
+    <string name="settings_language_desc">Ubah bahasa aplikasi</string>
+    <string name="lv_vault_create_folder_sub">Tambahkan folder baru</string>
+
     <!-- Permission setup (screenshot redesign) -->
-    <string name="applock_setup_title">Siapkan kunci aplikasi</string>
-    <string name="applock_setup_subtitle">Berikan izin yang diperlukan untuk mengaktifkan perlindungan.</string>
-    <string name="applock_perm_usage_desc_alt">Diperlukan untuk mendeteksi kapan aplikasi yang dipilih dibuka</string>
-    <string name="applock_perm_overlay_title_alt">Tampilkan di atas aplikasi lain</string>
-    <string name="applock_perm_overlay_desc_alt">Diperlukan untuk menampilkan layar kunci di atas aplikasi terlindungi</string>
-    <string name="applock_perm_notification_title_alt">Notifikasi</string>
-    <string name="applock_perm_notification_desc_alt">Diperlukan untuk menjaga perlindungan berjalan dengan andal dan menampilkan peringatan penting</string>
-    <string name="applock_perm_grant">Berikan</string>
-    <string name="applock_perm_privacy_note">Izin ini hanya digunakan untuk perlindungan aplikasi di perangkat Anda.</string>
 
     <!-- Permission setup -->
     <string name="applock_perm_usage_title">Akses Penggunaan</string>
@@ -428,10 +365,6 @@
 
     <!-- Installed apps list -->
     <string name="applock_search_hint">Cari aplikasi</string>
-    <string name="applock_filter_all">Semua</string>
-    <string name="applock_filter_locked">Terkunci</string>
-    <string name="applock_filter_unlocked">Tidak terkunci</string>
-    <string name="applock_filter_system">Aplikasi sistem</string>
     <string name="applock_no_apps">Tidak ada aplikasi untuk ditampilkan.</string>
 
     <!-- App Lock settings -->
@@ -602,28 +535,17 @@
 
     <!-- Tools dashboard (screenshot redesign) -->
     <string name="tools_header_subtitle">Alat cerdas untuk membersihkan, mengatur &amp; mengamankan perangkat Anda.</string>
-    <string name="tools_hero_title">Perangkat sehat</string>
-    <string name="tools_hero_desc">Perangkat Anda bersih dan terlindungi. Pertahankan!</string>
-    <string name="tools_hero_protected">Terlindungi</string>
-    <string name="tools_hero_percent">92%</string>
-    <string name="tools_section_cleanup">Alat pembersih</string>
-    <string name="tools_section_security">Keamanan &amp; Privasi</string>
     <string name="tools_duplicate_finder">Pencari duplikat</string>
     <string name="tools_duplicate_desc">Temukan dan hapus foto, video, dan file duplikat</string>
     <string name="tools_large_files">File besar</string>
     <string name="tools_large_files_desc">Temukan file besar yang memakan penyimpanan berharga</string>
     <string name="tools_storage_analyzer">Penganalisis penyimpanan</string>
     <string name="tools_storage_analyzer_desc">Analisis penyimpanan dan kelola ruang Anda.</string>
-    <string name="tools_view_details">Lihat detail</string>
     <string name="tools_vault_health">Kesehatan brankas</string>
     <string name="tools_vault_health_desc">Pindai status enkripsi dan keamanan</string>
-    <string name="tools_status_secure">Aman</string>
-    <string name="tools_section_storage">Penyimpanan pribadi</string>
     <string name="tools_private_notes_desc">Catatan pribadi yang aman</string>
     <string name="tools_private_documents_desc">ID, kartu &amp; file</string>
     <string name="settings_open_unavailable">Layar ini tidak tersedia di perangkat Anda</string>
-    <string name="tools_sample_dup_size">1.26 GB</string>
-    <string name="tools_sample_large_size">2.34 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Tutup</string>

@@ -10,7 +10,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -270,7 +270,7 @@ class AddEditDocumentCardActivity : BaseActivity() {
         ).show()
     }
 
-    private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun toast(msg: String) = showToast(msg)
 
     companion object {
         fun intentForNew(context: Context, type: DocumentCardType): Intent =

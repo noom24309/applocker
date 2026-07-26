@@ -273,6 +273,10 @@
         <value>true</value>
     </entry>
     <entry>
+        <key>nativeLanguge</key>
+        <value>true</value>
+    </entry>
+    <entry>
         <key>nativeSingle</key>
         <value>true</value>
     </entry>

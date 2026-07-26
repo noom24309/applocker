@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.databinding.FragmentMediaGridBinding
@@ -26,6 +27,7 @@ import app.lock.photo.valut.features.vault.model.VaultMediaUiModel
 import app.lock.photo.valut.features.vault.photo.PhotoViewerActivity
 import app.lock.photo.valut.features.vault.video.VideoPlayerActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -41,7 +43,27 @@ class MediaGridActivity : SecureVaultActivity() {
     private lateinit var adapter: MediaGridAdapter
     private var selectionMode = false
 
-    private val title: String get() = intent.getStringExtra(ARG_TITLE).orEmpty()
+    /**
+     * Screen title: the caller's label when it passed one (album names), otherwise derived
+     * from what this grid shows — "Private Images", "Private Videos", and so on.
+     */
+    private val title: String
+        get() = intent.getStringExtra(ARG_TITLE)?.takeIf { it.isNotBlank() }
+            ?: getString(defaultTitleRes())
+
+    private fun defaultTitleRes(): Int = when {
+        isAlbum && viewModel.mediaFilter == MediaType.PHOTO -> R.string.vault_title_private_images
+        isAlbum && viewModel.mediaFilter == MediaType.VIDEO -> R.string.vault_title_private_videos
+        isAlbum -> R.string.vault_title_folder
+        else -> when (viewModel.source) {
+            GridSource.PHOTOS -> R.string.vault_title_private_images
+            GridSource.VIDEOS -> R.string.vault_title_private_videos
+            GridSource.FAVORITES -> R.string.vault_title_favorites
+            GridSource.RECENT -> R.string.vault_title_recent
+            GridSource.RECYCLE_BIN -> R.string.vault_title_recycle_bin
+            GridSource.ALBUM -> R.string.vault_title_folder
+        }
+    }
 
     private val isRecycleBin get() = viewModel.source == GridSource.RECYCLE_BIN
     private val isAlbum get() = viewModel.source == GridSource.ALBUM
@@ -57,6 +79,21 @@ class MediaGridActivity : SecureVaultActivity() {
         setupToolbar()
         setupRecycler()
         observe()
+        loadNativeAd()
+    }
+
+    /** Medium native ad pinned below the grid. */
+    private fun loadNativeAd() {
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.frAdsBottom,
+            nativeId = getString(R.string.nativeAll),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeValut && RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.nativeAll),
+            canReloadAds = RemoteConfig.nativeValut && RemoteConfig.enableAllAds,
+            logTag = "MediaGrid"
+        )
     }
 
     private fun setupToolbar() = with(binding.toolbar) {
@@ -75,16 +112,51 @@ class MediaGridActivity : SecureVaultActivity() {
         binding.emptyState.emptyIcon.setImageResource(emptyIcon())
         binding.emptyState.emptyText.setText(emptyText())
 
-        // Inside a folder, a "+" FAB adds media of this view's type (photos or videos).
-        binding.fabAdd.isVisible = isAlbum
-        binding.fabAdd.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(pickerType()))
-        }
+        // Import FAB on every browsable grid (folders, images, videos). The recycle bin,
+        // favourites and "recent" are views over existing items, so there is nothing to add.
+        binding.fabAdd.isVisible = canImportHere()
+        binding.fabAdd.contentDescription = getString(
+            when (importType()) {
+                MediaType.VIDEO -> R.string.vault_add_videos
+                MediaType.PHOTO -> R.string.vault_add_photo
+                else -> R.string.vault_add_media
+            }
+        )
+        binding.fabAdd.setOnClickListener { launchPicker() }
+
+        // Same action on the empty state: a new folder starts empty, so "add" must be obvious.
+        binding.emptyState.emptyAction.isVisible = canImportHere()
+        binding.emptyState.emptyAction.setText(
+            when (importType()) {
+                MediaType.VIDEO -> R.string.vault_add_videos
+                MediaType.PHOTO -> R.string.vault_add_photo
+                else -> R.string.vault_add_media
+            }
+        )
+        binding.emptyState.emptyAction.setOnClickListener { launchPicker() }
+    }
+
+    private fun launchPicker() {
+        pickMedia.launch(PickVisualMediaRequest(pickerType()))
+    }
+
+    private fun canImportHere(): Boolean = isAlbum ||
+        viewModel.source == GridSource.PHOTOS ||
+        viewModel.source == GridSource.VIDEOS
+
+    /**
+     * What this grid holds — a videos grid imports videos, an images grid imports images, and
+     * a folder follows its own media filter.
+     */
+    private fun importType(): MediaType? = when {
+        viewModel.source == GridSource.VIDEOS -> MediaType.VIDEO
+        viewModel.source == GridSource.PHOTOS -> MediaType.PHOTO
+        else -> viewModel.mediaFilter
     }
 
     /** Constrain the picker to the view's media type so Pictures/Videos stay separate. */
     private fun pickerType(): ActivityResultContracts.PickVisualMedia.VisualMediaType =
-        when (viewModel.mediaFilter) {
+        when (importType()) {
             MediaType.PHOTO -> ActivityResultContracts.PickVisualMedia.ImageOnly
             MediaType.VIDEO -> ActivityResultContracts.PickVisualMedia.VideoOnly
             else -> ActivityResultContracts.PickVisualMedia.ImageAndVideo
@@ -285,10 +357,10 @@ class MediaGridActivity : SecureVaultActivity() {
             result.failedCount > 0 -> getString(R.string.export_some_failed)
             else -> getString(R.string.export_done, result.exportedCount)
         }
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        showToast(msg)
     }
 
-    private fun toast(resId: Int) = Toast.makeText(this, resId, Toast.LENGTH_SHORT).show()
+    private fun toast(resId: Int) = showToast(resId)
 
     private fun emptyIcon(): Int = when (viewModel.source) {
         GridSource.VIDEOS -> R.drawable.ic_video

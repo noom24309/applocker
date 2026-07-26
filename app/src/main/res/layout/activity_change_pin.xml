@@ -1,82 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Change PIN — same look as the setup passcode screens (splash background, lock
+     badge, dark keypad). The length pills only show on the "enter new PIN" step. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical">
+    android:background="@drawable/sp_bg">
+
+    <ImageView
+        android:id="@+id/lockBadge"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/cd_app_logo"
+        android:src="@drawable/ic_lock_badge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titlePin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:text="@string/change_pin_verify_title"
         style="@style/TextAppearance.App.Bold"
-        android:textAppearance="@style/TextAppearance.App.Title" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:gravity="center"
+        android:text="@string/change_pin_verify_title"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lockBadge" />
 
     <TextView
         android:id="@+id/subtitlePin"
-        android:layout_width="wrap_content"
+        style="@style/TextAppearance.App.Medium"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_s"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:fontFamily="@font/inter_medium"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/space_xs"
+        android:gravity="center"
         android:text="@string/change_pin_verify_subtitle"
-        android:textAppearance="@style/TextAppearance.App.Body" />
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlePin" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/lengthToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_l"
-        android:visibility="gone"
-        app:selectionRequired="true"
-        app:singleSelection="true">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLength4"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pin_length_4"
-            android:textAllCaps="false" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLength6"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pin_length_6"
-            android:textAllCaps="false" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
+    <!-- Preview placeholders; the real dots are rebuilt by BasePinActivity. -->
     <LinearLayout
         android:id="@+id/pinDotsContainer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_xxl"
+        android:layout_marginTop="@dimen/_20sdp"
         android:gravity="center"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitlePin">
+
+        <ImageView
+            android:layout_width="@dimen/pin_dot_size"
+            android:layout_height="@dimen/pin_dot_size"
+            android:layout_marginHorizontal="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_pin_dot_empty" />
+
+        <ImageView
+            android:layout_width="@dimen/pin_dot_size"
+            android:layout_height="@dimen/pin_dot_size"
+            android:layout_marginHorizontal="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_pin_dot_empty" />
+
+        <ImageView
+            android:layout_width="@dimen/pin_dot_size"
+            android:layout_height="@dimen/pin_dot_size"
+            android:layout_marginHorizontal="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_pin_dot_empty" />
+
+        <ImageView
+            android:layout_width="@dimen/pin_dot_size"
+            android:layout_height="@dimen/pin_dot_size"
+            android:layout_marginHorizontal="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_pin_dot_empty" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/errorPin"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_m"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/space_s"
         android:gravity="center"
         android:textColor="@color/accent_red"
         android:textSize="@dimen/text_caption"
         android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pinDotsContainer"
         tools:text="Wrong PIN" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    <LinearLayout
+        android:id="@+id/keypadContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/errorPin">
 
-    <include layout="@layout/view_pin_keypad" />
+        <include layout="@layout/view_pin_keypad" />
+    </LinearLayout>
 
-</LinearLayout>
+    <!-- Native Ad -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

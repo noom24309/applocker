@@ -10,4 +10,13 @@
     <attr name="colorTextError" format="color" />
     <attr name="colorTextSuccess" format="color" />
     <attr name="colorTextWarning" format="color" />
+
+    <!-- PatternLockView palette. Defaults keep the original light look (white panel,
+         primary nodes); the dark setup screen overrides them. -->
+    <declare-styleable name="PatternLockView">
+        <attr name="patternPanelColor" format="color" />
+        <attr name="patternNodeColor" format="color" />
+        <attr name="patternIdleNodeColor" format="color" />
+        <attr name="patternIdleRingColor" format="color" />
+    </declare-styleable>
 </resources>

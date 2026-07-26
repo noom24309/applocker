@@ -25,4 +25,25 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.App.Body"
         tools:text="No private photos yet." />
+
+    <!-- Shown on screens that can import (folders, images, videos): a fresh folder is empty,
+         so the way to fill it has to be right there and not only in the corner FAB. -->
+    <TextView
+        android:id="@+id/emptyAction"
+        style="@style/TextAppearance.App.SemiBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_l"
+        android:background="@drawable/bg_button_primary"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:minHeight="@dimen/button_height"
+        android:paddingHorizontal="22dp"
+        android:text="@string/vault_add_media"
+        android:textColor="@color/text_on_accent"
+        android:textSize="15sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
 </LinearLayout>

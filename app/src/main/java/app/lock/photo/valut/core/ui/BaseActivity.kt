@@ -54,6 +54,10 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        // The app is dark everywhere, so the status/navigation glyphs are always light. This
+        // has to run after enableEdgeToEdge(): that call follows the *system* light/dark
+        // setting and would otherwise paint them dark on a light-mode device, theme or not.
+        useLightSystemBarIcons()
         applyNavigationBarVisibility()
     }
 
@@ -124,6 +128,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        // Re-assert on resume: ad SDK activities and system dialogs can hand the window back
+        // with the appearance flags reset.
+        useLightSystemBarIcons()
         applyNavigationBarVisibility()
     }
 
@@ -131,6 +138,18 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) {
             applyNavigationBarVisibility()
+        }
+    }
+
+    /**
+     * Forces white status-bar icons/text, for screens that draw on the dark splash
+     * background. [enableEdgeToEdge] follows the system light/dark setting and would
+     * otherwise paint them dark on a light-mode device, overriding the theme.
+     */
+    protected fun useLightSystemBarIcons() {
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+            isAppearanceLightStatusBars = false
+            isAppearanceLightNavigationBars = false
         }
     }
 

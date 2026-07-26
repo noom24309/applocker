@@ -1,85 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Private video player: fixed header, letterboxed player, action row, bottom banner.
+     Not immersive on purpose — the header stays readable and the banner has a stable slot. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/viewer_bg">
+    android:background="@color/viewer_bg"
+    android:orientation="vertical">
 
-    <!--
-      texture_view: a secure window (FLAG_SECURE) with the default SurfaceView often renders
-      black / fails to show video on many devices and emulators. A TextureView plays reliably
-      while still being excluded from screenshots by the window flag.
-    -->
-    <androidx.media3.ui.PlayerView
-        android:id="@+id/playerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:resize_mode="fit"
-        app:show_buffering="when_playing"
-        app:surface_type="texture_view" />
-
-    <TextView
-        android:id="@+id/tvError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/error_video_playback"
-        android:textColor="@color/white"
-        android:visibility="gone"
-        tools:visibility="gone" />
-
+    <!-- ===== Header ===== -->
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/scrim"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/space_s"
-        android:paddingTop="@dimen/space_m"
-        android:paddingEnd="@dimen/space_s"
-        android:paddingBottom="@dimen/space_m">
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp">
 
         <ImageButton
             android:id="@+id/btnClose"
-            android:layout_width="@dimen/viewer_action_size"
-            android:layout_height="@dimen/viewer_action_size"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/cd_close"
-            android:src="@drawable/ic_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_perm_badge"
+            android:contentDescription="@string/cd_back"
+            android:padding="9dp"
+            android:src="@drawable/ic_arrow_back"
             app:tint="@color/white" />
 
-        <TextView
-            android:id="@+id/tvTitle"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_body"
-            tools:text="VID_001" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/TextAppearance.App.SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="middle"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                tools:text="VID_20260725_001.mp4" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                style="@style/TextAppearance.App.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/home_subtitle"
+                android:textSize="12sp"
+                tools:text="1:23 · 24.6 MB" />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/btnFavorite"
-            android:layout_width="@dimen/viewer_action_size"
-            android:layout_height="@dimen/viewer_action_size"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/cd_favorite"
+            android:padding="9dp"
             android:src="@drawable/ic_favorite_border"
+            app:tint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/btnFullscreen"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/player_fullscreen"
+            android:padding="9dp"
+            android:src="@drawable/ic_fullscreen"
             app:tint="@color/white" />
     </LinearLayout>
 
+    <!-- ===== Player ===== -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!--
+          texture_view: a secure window (FLAG_SECURE) with the default SurfaceView often renders
+          black / fails to show video on many devices and emulators. A TextureView plays reliably
+          while still being excluded from screenshots by the window flag.
+        -->
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:auto_show="true"
+            app:hide_on_touch="true"
+            app:resize_mode="fit"
+            app:show_buffering="when_playing"
+            app:show_next_button="false"
+            app:show_previous_button="false"
+            app:show_timeout="2600"
+            app:surface_type="texture_view"
+            app:use_controller="true" />
+
+        <!-- Landscape-only floating controls: the header is hidden there, so exiting
+             fullscreen (and going back) has to stay reachable over the video. Shown/hidden
+             together with the player controller. -->
+        <LinearLayout
+            android:id="@+id/landscapeControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="12dp"
+            android:background="@drawable/bg_player_controls"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/btnBackLandscape"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_back"
+                android:padding="8dp"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnExitFullscreen"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/player_exit_fullscreen"
+                android:padding="8dp"
+                android:src="@drawable/ic_fullscreen_exit"
+                app:tint="@color/white" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/primary" />
+
+        <TextView
+            android:id="@+id/tvError"
+            style="@style/TextAppearance.App.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/error_video_playback"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            tools:visibility="gone" />
+    </FrameLayout>
+
+    <!-- ===== Actions ===== -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/scrim"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/space_m"
-        android:paddingBottom="@dimen/space_m">
+        android:paddingVertical="6dp">
 
         <ImageButton
             android:id="@+id/btnExport"
@@ -91,7 +181,7 @@
             android:id="@+id/btnDetails"
             style="@style/ViewerBottomAction"
             android:contentDescription="@string/action_details"
-            android:src="@drawable/ic_more_vert" />
+            android:src="@drawable/ic_info" />
 
         <ImageButton
             android:id="@+id/btnDelete"
@@ -99,4 +189,11 @@
             android:contentDescription="@string/action_delete"
             android:src="@drawable/ic_delete" />
     </LinearLayout>
-</FrameLayout>
+
+    <!-- ===== Bottom banner ===== -->
+    <FrameLayout
+        android:id="@+id/frAdsBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

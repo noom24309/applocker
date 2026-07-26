@@ -93,11 +93,10 @@
 
         <ImageView
             android:id="@+id/key_backspace"
-            style="@style/KeypadKey"
+            style="@style/KeypadKey1"
             android:contentDescription="@string/cd_backspace"
             android:padding="22dp"
-            android:src="@drawable/ic_backspace"
-            app:tint="@color/text_primary" />
+            android:src="@drawable/ic_backspace"/>
     </LinearLayout>
 
 </merge>

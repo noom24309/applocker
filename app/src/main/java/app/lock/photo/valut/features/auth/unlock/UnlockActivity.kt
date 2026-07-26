@@ -3,19 +3,24 @@ package app.lock.photo.valut.features.auth.unlock
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.applock.AppLockPermissionChecker
 import app.lock.photo.valut.core.lock.LockScreen
 import app.lock.photo.valut.core.permissions.BiometricHelper
 import app.lock.photo.valut.features.auth.pin.BasePinActivity
 import app.lock.photo.valut.features.auth.recovery.ForgotPinActivity
 import app.lock.photo.valut.features.home.MainActivity
-import com.apero.nextgen.AdsSdk.appopen.AperoNextGenAppOpen
+import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
+import com.nextgen.ads.appopen.NextGenAppOpen
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,6 +39,9 @@ class UnlockActivity : BasePinActivity(), LockScreen {
     @Inject
     lateinit var biometricHelper: BiometricHelper
 
+    @Inject
+    lateinit var permissionChecker: AppLockPermissionChecker
+
     private lateinit var lockoutTimer: TextView
     private var appliedLength = -1
     private var biometricReady = false
@@ -50,7 +58,22 @@ class UnlockActivity : BasePinActivity(), LockScreen {
         observeState()
         observeEvents()
         setupBiometric()
+        loadNativeAd()
+    }
 
+    /** Native ad above the keypad — this is the screen every relaunch lands on. */
+    private fun loadNativeAd() {
+        val container = findViewById<FrameLayout>(R.id.flAdNative) ?: return
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = container,
+            nativeId = getString(R.string.NativePassCode),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativePattern && RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.NativePassCode),
+            canReloadAds = RemoteConfig.nativePattern && RemoteConfig.enableAllAds,
+            logTag = "Pin_Unlock"
+        )
     }
 
     override fun onPinEntered(pin: String) {
@@ -125,8 +148,17 @@ class UnlockActivity : BasePinActivity(), LockScreen {
         }
     }
 
+    /**
+     * Straight to home, unless not a single App Lock permission is granted — then the
+     * permission gate comes first, so a relaunch always offers protection setup again.
+     */
     private fun goToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+        val next = if (permissionChecker.hasNoAppLockPermissions()) {
+            AppLockPermissionActivity.gateIntent(this)
+        } else {
+            Intent(this, MainActivity::class.java)
+        }
+        startActivity(next)
         finish()
     }
 

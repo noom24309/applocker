@@ -4,18 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/sp_bg"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <!-- ===== Header: title + protected count, with a quick "Lock now" ===== -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="@string/applock_manage_apps"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="16dp"
+        android:paddingEnd="@dimen/screen_padding">
 
-        style="@style/TextAppearance.App.Bold"
-        app:titleTextColor="@color/text_primary" />
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_card_icon"
+            android:padding="7dp"
+            android:src="@drawable/ic_arrow_back"
+            android:visibility="gone"
+            app:tint="@color/home_title" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.App.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="App Lock"
+                android:textColor="@color/home_title"
+                android:textSize="26sp" />
+
+            <TextView
+                android:id="@+id/tvProtectedCount"
+                style="@style/TextAppearance.App.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/home_subtitle"
+                android:textSize="13sp"
+                tools:text="6 of 9 apps protected" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <!-- ===== Search box (home style) ===== -->
     <LinearLayout
@@ -55,65 +94,12 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/screen_padding"
-        android:layout_marginTop="8dp"
-        android:paddingEnd="@dimen/screen_padding"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/filterChips"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:selectionRequired="true"
-                app:singleLine="true"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipAll"
-                    style="@style/Widget.App.Chip.SoftClose"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/applock_filter_all" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipLocked"
-                    style="@style/Widget.App.Chip.SoftClose"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/applock_filter_locked" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipUnlocked"
-                    style="@style/Widget.App.Chip.SoftClose"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/applock_filter_unlocked" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSystem"
-                style="@style/Widget.App.Chip.SoftClose"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/applock_filter_system" />
-        </LinearLayout>
-    </HorizontalScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSuggestions"
         style="@style/Widget.App.Button.Text"
         android:layout_width="wrap_content"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_s"
         android:text="@string/applock_suggestions_button"
@@ -129,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/_8sdp"
-            android:background="@drawable/bg_back"
+            android:background="@drawable/bg_perm_surface"
             android:layout_marginTop="@dimen/space_s"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/space_l"

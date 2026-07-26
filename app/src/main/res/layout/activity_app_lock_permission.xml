@@ -1,346 +1,303 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Permissions setup, dark scheme. Each row is tappable to grant that permission;
+     the badge at the end of a row turns into a green check once granted. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_bg"
-    android:orientation="vertical">
-
-    <!-- ===== Toolbar ===== -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="14dp"
-        android:paddingEnd="14dp"
-        android:paddingVertical="10dp">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/cd_card_icon"
-            android:padding="9dp"
-            android:rotation="180"
-            android:src="@drawable/ic_chevron_right"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/home_title" />
-
-        <FrameLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_lv_circle_light"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_shield"
-                app:tint="@color/home_primary" />
-        </FrameLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="@drawable/sp_bg">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:fillViewport="true"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/flAdNative"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="22dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="22dp"
-            android:paddingBottom="24dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/applock_setup_title"
-                style="@style/TextAppearance.App.Bold"
-                android:textColor="@color/home_title"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                style="@style/TextAppearance.App.Medium"
-                android:text="@string/applock_setup_subtitle"
-                android:textColor="@color/home_subtitle"
-                android:textSize="14sp" />
-
-            <!-- ===== Usage Access ===== -->
-            <com.google.android.material.card.MaterialCardView
-                style="@style/PermCard"
-                android:layout_marginTop="24dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="14dp">
-
-                    <FrameLayout style="@style/PermIconTile">
-
-                        <ImageView
-                            style="@style/PermIconImg"
-                            android:src="@drawable/ic_bar_chart" />
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/applock_perm_usage_title"
-                            style="@style/TextAppearance.App.SemiBold"
-                            android:textSize="15.5sp"
-                            android:fontFamily="@font/inter_semi" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            style="@style/TextAppearance.App.Medium"
-                            android:text="@string/applock_perm_usage_desc_alt"
-                            android:textSize="12.5sp" />
-                    </LinearLayout>
-
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnUsage"
-                            style="@style/PermGrantButton"
-                            android:text="@string/applock_perm_grant" />
-
-                        <LinearLayout
-                            android:id="@+id/checkUsage"
-                            style="@style/PermGrantedPill"
-                            android:visibility="gone">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_marginEnd="5dp"
-                                android:contentDescription="@string/applock_perm_granted"
-                                android:src="@drawable/ic_check_circle"
-                                app:tint="@color/home_success" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/applock_perm_granted"
-                                android:textColor="@color/home_success"
-                                android:textSize="13sp"
-                                android:fontFamily="@font/inter_semi" />
-                        </LinearLayout>
-                    </FrameLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ===== Draw over other apps ===== -->
-            <com.google.android.material.card.MaterialCardView style="@style/PermCard">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="14dp">
-
-                    <FrameLayout style="@style/PermIconTile">
-
-                        <ImageView
-                            style="@style/PermIconImg"
-                            android:src="@drawable/ic_layers" />
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/applock_perm_overlay_title_alt"
-                            style="@style/TextAppearance.App.SemiBold"
-
-                            android:textSize="15.5sp"
-                            android:fontFamily="@font/inter_semi" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            style="@style/TextAppearance.App.Medium"
-                            android:text="@string/applock_perm_overlay_desc_alt"
-                            android:textSize="12.5sp" />
-                    </LinearLayout>
-
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnOverlay"
-                            style="@style/PermGrantButton"
-                            android:text="@string/applock_perm_grant" />
-
-                        <LinearLayout
-                            android:id="@+id/checkOverlay"
-                            style="@style/PermGrantedPill"
-                            android:visibility="gone">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_marginEnd="5dp"
-                                android:contentDescription="@string/applock_perm_granted"
-                                android:src="@drawable/ic_check_circle"
-                                app:tint="@color/home_success" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/applock_perm_granted"
-                                android:textColor="@color/home_success"
-                                android:textSize="13sp"
-                                android:fontFamily="@font/inter_semi" />
-                        </LinearLayout>
-                    </FrameLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ===== Notifications ===== -->
-            <com.google.android.material.card.MaterialCardView style="@style/PermCard">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="14dp">
-
-                    <FrameLayout style="@style/PermIconTile">
-
-                        <ImageView
-                            style="@style/PermIconImg"
-                            android:src="@drawable/ic_bell" />
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/applock_perm_notification_title_alt"
-                            style="@style/TextAppearance.App.SemiBold"
-                            android:textSize="15.5sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            style="@style/TextAppearance.App.Medium"
-                            android:text="@string/applock_perm_notification_desc_alt"
-                            android:textSize="12.5sp" />
-                    </LinearLayout>
-
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnNotification"
-                            style="@style/PermGrantButton"
-                            android:text="@string/applock_perm_grant" />
-
-                        <LinearLayout
-                            android:id="@+id/checkNotification"
-                            style="@style/PermGrantedPill"
-                            android:visibility="gone">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_marginEnd="5dp"
-                                android:contentDescription="@string/applock_perm_granted"
-                                android:src="@drawable/ic_check_circle"
-                                app:tint="@color/home_success" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/applock_perm_granted"
-                                android:textColor="@color/home_success"
-                                android:textSize="13sp"
-                                android:fontFamily="@font/inter_semi" />
-                        </LinearLayout>
-                    </FrameLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ===== Privacy note ===== -->
+            <!-- ===== Toolbar ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/bg_perm_info_card"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="14dp">
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_shield"
-                    app:tint="@color/home_success" />
+                    android:id="@+id/ivBack"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_perm_badge"
+                    android:contentDescription="@string/cd_card_icon"
+                    android:padding="10dp"
+                    android:rotation="180"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_primary" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_weight="1"
-                    style="@style/TextAppearance.App.Regular"
-                    android:text="@string/applock_perm_privacy_note"
-                    android:textColor="@color/home_subtitle"
-                    android:textSize="12.5sp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.App.Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/applock_perm_screen_title"
+                        android:textColor="@color/text_primary"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        style="@style/TextAppearance.App.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/applock_perm_screen_subtitle"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12.5sp" />
+                </LinearLayout>
             </LinearLayout>
+
+            <!-- ===== Hero card ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_perm_surface"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <FrameLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_perm_tile">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_shield"
+                        app:tint="@color/primary" />
+                </FrameLayout>
+
+                <TextView
+                    style="@style/TextAppearance.App.Bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/applock_perm_hero_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="24sp" />
+
+                <TextView
+                    style="@style/TextAppearance.App.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingExtra="4dp"
+                    android:text="@string/applock_perm_hero_desc"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- ===== Section header ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.App.SemiBold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:letterSpacing="0.08"
+                    android:text="@string/applock_perm_section"
+                    android:textAllCaps="true"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvProgress"
+                    style="@style/TextAppearance.App.SemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary"
+                    android:textSize="12sp"
+                    tools:text="0 of 3" />
+            </LinearLayout>
+
+            <!-- ===== Permission rows ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_perm_surface"
+                android:orientation="vertical"
+                android:paddingVertical="4dp">
+
+                <LinearLayout
+                    android:id="@+id/rowUsage"
+                    style="@style/PermRow">
+
+                    <FrameLayout style="@style/PermRowTile">
+
+                        <ImageView
+                            style="@style/PermRowIcon"
+                            android:src="@drawable/ic_bar_chart" />
+                    </FrameLayout>
+
+                    <LinearLayout style="@style/PermRowText">
+
+                        <TextView
+                            style="@style/PermRowTitle"
+                            android:text="@string/applock_perm_usage_title_short" />
+
+                        <TextView
+                            style="@style/PermRowDesc"
+                            android:text="@string/applock_perm_usage_desc_short" />
+                    </LinearLayout>
+
+                    <FrameLayout style="@style/PermRowBadge">
+
+                        <TextView
+                            android:id="@+id/badgeUsage"
+                            style="@style/PermRowBadgeText"
+                            android:text="@string/key_1" />
+
+                        <ImageView
+                            android:id="@+id/checkUsage"
+                            style="@style/PermRowBadgeCheck"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <View style="@style/PermRowDivider" />
+
+                <LinearLayout
+                    android:id="@+id/rowOverlay"
+                    style="@style/PermRow">
+
+                    <FrameLayout style="@style/PermRowTile">
+
+                        <ImageView
+                            style="@style/PermRowIcon"
+                            android:src="@drawable/ic_layers" />
+                    </FrameLayout>
+
+                    <LinearLayout style="@style/PermRowText">
+
+                        <TextView
+                            style="@style/PermRowTitle"
+                            android:text="@string/applock_perm_overlay_title_short" />
+
+                        <TextView
+                            style="@style/PermRowDesc"
+                            android:text="@string/applock_perm_overlay_desc_short" />
+                    </LinearLayout>
+
+                    <FrameLayout style="@style/PermRowBadge">
+
+                        <TextView
+                            android:id="@+id/badgeOverlay"
+                            style="@style/PermRowBadgeText"
+                            android:text="@string/key_2" />
+
+                        <ImageView
+                            android:id="@+id/checkOverlay"
+                            style="@style/PermRowBadgeCheck"
+                            android:visibility="gone" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <View style="@style/PermRowDivider" />
+
+                <LinearLayout
+                    android:id="@+id/rowNotification"
+                    style="@style/PermRow">
+
+                    <FrameLayout style="@style/PermRowTile">
+
+                        <ImageView
+                            style="@style/PermRowIcon"
+                            android:src="@drawable/ic_bell" />
+                    </FrameLayout>
+
+                    <LinearLayout style="@style/PermRowText">
+
+                        <TextView
+                            style="@style/PermRowTitle"
+                            android:text="@string/applock_perm_notification_title_short" />
+
+                        <TextView
+                            style="@style/PermRowDesc"
+                            android:text="@string/applock_perm_notification_desc_short" />
+                    </LinearLayout>
+
+                    <FrameLayout style="@style/PermRowBadge">
+
+                        <TextView
+                            android:id="@+id/badgeNotification"
+                            style="@style/PermRowBadgeText"
+                            android:text="@string/key_3" />
+
+                        <ImageView
+                            android:id="@+id/checkNotification"
+                            style="@style/PermRowBadgeCheck"
+                            android:visibility="gone" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ===== Primary action ===== -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnContinue"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/extra_bold"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:letterSpacing="0.01"
+                android:minHeight="@dimen/button_height"
+                android:text="@string/applock_perm_setup_cta"
+                android:textAllCaps="false"
+                android:textColor="@color/text_on_accent"
+                android:textSize="16sp"
+                app:backgroundTint="@color/primary"
+                app:cornerRadius="@dimen/radius_m"
+                app:icon="@drawable/ic_chevron_right"
+                app:iconGravity="textEnd"
+                app:iconPadding="8dp"
+                android:visibility="visible"
+                app:iconTint="@color/text_on_accent" />
+
+            <TextView
+                android:id="@+id/tvFooterNote"
+                style="@style/TextAppearance.App.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/applock_perm_footer_note"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCheckAgain"
@@ -352,29 +309,30 @@
                 android:text="@string/applock_perm_check_again"
                 android:visibility="gone" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnContinue"
-                style="@style/Widget.App.Button.Primary"
+            <TextView
+                android:id="@+id/btnSkip"
+                style="@style/TextAppearance.App.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:enabled="false"
-                android:text="@string/applock_activate_protection"
-                app:icon="@drawable/ic_shield"
-                app:iconGravity="textStart"
-                app:iconTint="@color/white" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSkip"
-                style="@style/Widget.App.Button.Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingVertical="10dp"
                 android:text="@string/applock_setup_skip"
-                android:textColor="@color/home_primary"
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp"
                 android:visibility="gone" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+
+    <!-- Native Ad -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

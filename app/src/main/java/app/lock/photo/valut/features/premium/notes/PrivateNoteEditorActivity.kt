@@ -7,7 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -108,7 +108,7 @@ class PrivateNoteEditorActivity : BaseActivity() {
         return "${title.take(40)}.txt"
     }
 
-    private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun toast(msg: String) = showToast(msg)
 
     companion object {
         fun intent(context: Context, noteId: Long): Intent =

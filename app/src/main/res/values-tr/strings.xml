@@ -2,64 +2,20 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="skip">Atla</string>
     <string name="continue_label">Devam et</string>
     <string name="cancel">İptal</string>
     <string name="coming_next_phase">Sonraki aşamada geliyor</string>
+    <string name="loading">Yükleniyor....</string>
 
     <!-- Splash -->
     <string name="splash_tagline">Özel. Güvenli. Sizin.</string>
-    <string name="splash_brand_lock">App Lock</string>
-    <string name="splash_brand_amp">&amp;</string>
-    <string name="splash_brand_vault">Private Vault</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
-    <string name="lv_brand_a">Lock &amp;</string>
-    <string name="lv_brand_b">Vault</string>
-    <string name="lv_subtitle">Uygulamalarınızı güvenceye alın. Gizliliğinizi koruyun.</string>
-    <string name="lv_search_hint">Uygulama ara...</string>
-    <string name="lv_chip_all">Tümü</string>
-    <string name="lv_chip_locked">Kilitli</string>
-    <string name="lv_chip_unlocked">Kilitsiz</string>
-    <string name="lv_chip_system">Sistem</string>
-    <string name="lv_stat_locked_apps">Kilitli uygulamalar</string>
-    <string name="lv_stat_protection">Koruma</string>
-    <string name="lv_stat_protection_value">Etkin</string>
-    <string name="lv_stat_protection_off">Kapalı</string>
-    <string name="lv_stat_blocked">Bugün engellenen</string>
-    <string name="lv_stat_time">Koruma süresi</string>
-    <string name="lv_installed_apps">Yüklü uygulamalar</string>
-    <string name="lv_app_count">(%1$d)</string>
-    <string name="lv_sort_az">Sırala: A-Z</string>
-    <string name="lv_sort_za">Sırala: Z-A</string>
-    <string name="lv_complete_setup">Kurulumu tamamla</string>
-    <string name="lv_complete_setup_sub">Tam koruma sağlamak için kalan izinleri verin.</string>
-    <string name="lv_finish_setup">Kurulumu bitir</string>
-    <string name="lv_nav_home">Ana sayfa</string>
     <string name="lv_nav_vault">Kasa</string>
     <string name="lv_nav_tools">Araçlar</string>
 
     <!-- Vault home (Lock & Vault redesign) -->
-    <string name="lv_vault_subtitle">Özel fotoğraf ve videolarınız, güvende.</string>
-    <string name="lv_vault_safe_title">Kasa güvenli</string>
-    <string name="lv_vault_safe_sub">Tüm dosyalarınız şifrelenmiş ve güvenli bir şekilde saklanıyor.</string>
-    <string name="lv_vault_unsafe_title">Şifrelemeyi tamamla</string>
-    <string name="lv_vault_unsafe_sub">Bazı dosyalar henüz şifrelenmedi. Güvenceye almak için dokunun.</string>
-    <string name="lv_vault_learn_more">Daha fazla bilgi</string>
-    <string name="lv_vault_used">Kullanılan</string>
-    <string name="lv_vault_percent">%1$d%%</string>
-    <string name="lv_vault_import_photos">Fotoğraf içe aktar</string>
-    <string name="lv_vault_import_videos">Video içe aktar</string>
     <string name="lv_vault_new_album">Yeni albüm</string>
-    <string name="lv_vault_settings">Kasa ayarları</string>
-    <string name="lv_vault_albums">Albümler</string>
-    <string name="lv_vault_recent">Son medya</string>
-    <string name="lv_view_all">Tümünü gör</string>
-    <string name="lv_vault_all_photos">Tüm fotoğraflar</string>
-    <string name="lv_vault_protected_title">Kasanız korunuyor</string>
-    <string name="lv_vault_protected_sub">AES-256 şifreleme anılarınızı tamamen özel tutar.</string>
-    <string name="lv_vault_check_health">Durumu kontrol et</string>
-    <string name="lv_vault_recent_empty">Henüz medya yok. Başlamak için fotoğraf veya video içe aktarın.</string>
 
     <!-- Ported onboarding (4-page flow) -->
 
@@ -71,21 +27,11 @@
     <!-- Onboarding -->
 
     <!-- Choose unlock method -->
-    <string name="choose_method_title">Kilit açma yöntemini seçin</string>
-    <string name="choose_method_subtitle">Uygulamayı açmak için kullanacağınız kilidi seçin. Sonraki adımlarda parmak izi ile kilit açma ekleyebilirsiniz.</string>
-    <string name="choose_method_pattern_title">Desen</string>
-    <string name="choose_method_pattern_desc">Kilidi açmak için bir desen çizin — hızlı ve kolay.</string>
-    <string name="choose_method_pin_title">PIN</string>
-    <string name="choose_method_pin_desc">4 veya 6 haneli sayısal bir PIN kullanın.</string>
-    <string name="choose_method_recommended">Önerilen</string>
 
     <!-- PIN -->
-    <string name="create_pin_title">PIN\'inizi oluşturun</string>
     <string name="create_pin_subtitle">Bu PIN kasanızı güvende tutar.</string>
     <string name="confirm_pin_title">PIN\'inizi onaylayın</string>
     <string name="confirm_pin_subtitle">Devam etmek için PIN\'inizi tekrar girin.</string>
-    <string name="pin_length_4">4 hane</string>
-    <string name="pin_length_6">6 hane</string>
     <string name="pin_mismatch">PIN\'ler eşleşmiyor. Tekrar deneyin.</string>
 
     <!-- Biometric setup -->
@@ -107,7 +53,6 @@
     <string name="home_videos">Özel videolar</string>
 
     <!-- Navigation -->
-    <string name="nav_settings">Ayarlar</string>
 
     <!-- Home dashboard (redesign) -->
 
@@ -121,8 +66,6 @@
 
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Güvenlik, gizlilik ve uygulama tercihlerini yönetin.</string>
-    <string name="settings_security_status">Güvenlik durumu</string>
-    <string name="settings_security_status_active">Tüm güvenlik özellikleri etkin</string>
     <string name="settings_change_pin_desc_alt">Uygulama kilit açma PIN\'inizi değiştirin</string>
     <string name="settings_change_pattern">Deseni değiştir</string>
     <string name="settings_change_pattern_desc">Kilit açma deseninizi değiştirin</string>
@@ -136,9 +79,6 @@
     <string name="settings_app_lock_settings_desc">Mevcut tercihleri yönetin</string>
     <string name="settings_lock_overlay">Kilit ekranı yer paylaşımı</string>
     <string name="settings_lock_overlay_desc">Kilit ekranını ve davranışı yapılandırın</string>
-    <string name="settings_section_preferences">Tercihler</string>
-    <string name="settings_notifications">Bildirimler</string>
-    <string name="settings_notifications_desc">Uygulama bildirimlerini yönetin</string>
     <string name="settings_section_more">Daha fazla</string>
     <string name="settings_about_app">Lock &amp; Vault hakkında</string>
     <string name="settings_about_app_desc">Sürüm, lisanslar ve daha fazlası</string>
@@ -161,7 +101,6 @@
     <string name="auto_lock_never_short">Asla</string>
 
     <!-- Weak credential -->
-    <string name="pin_weak_warning">Bu PIN tahmin edilmesi çok kolay. Başka bir tane seçin.</string>
 
     <!-- Recovery key -->
     <string name="recovery_title">Kurtarma anahtarınız</string>
@@ -195,8 +134,6 @@
     <!-- Pattern -->
     <string name="pattern_setup_title">Deseninizi ayarlayın</string>
     <string name="pattern_setup_subtitle">Uygulamanın kilidini açmak için bir desen çizin. En az 4 nokta bağlayın.</string>
-    <string name="pattern_clear">Deseni temizle</string>
-    <string name="pattern_hint_note">Hatırlanması kolay ama başkalarının tahmin etmesi zor olsun.</string>
     <string name="pattern_confirm_title">Deseni onayla</string>
     <string name="pattern_confirm_subtitle">Aynı deseni tekrar çizin.</string>
     <string name="pattern_too_short">En az 4 nokta bağlayın.</string>
@@ -364,7 +301,6 @@
     <string name="cd_thumbnail">Medya küçük resmi</string>
     <string name="cd_play_video">Videoyu oynat</string>
     <string name="cd_favorite">Favori</string>
-    <string name="cd_close">Kapat</string>
     <string name="cd_more_options">Diğer seçenekler</string>
 
     <!-- Content descriptions -->
@@ -387,16 +323,17 @@
     <string name="applock_overlay_title">Uygulama kilitli</string>
     <string name="applock_wrong_credential">Yanlış. Tekrar deneyin.</string>
 
+    <!-- Language picker (first launch only) -->
+    <string name="language_title">Dil</string>
+    <string name="language_subtitle">Dilinizi seçin</string>
+    <string name="language_confirm_cd">Dili onayla</string>
+    <string name="language_selected_cd">Seçildi</string>
+    <string name="language_follow_system">Sistem varsayılanı</string>
+    <string name="settings_language">Dil</string>
+    <string name="settings_language_desc">Uygulama dilini değiştir</string>
+    <string name="lv_vault_create_folder_sub">Yeni klasör ekle</string>
+
     <!-- Permission setup (screenshot redesign) -->
-    <string name="applock_setup_title">Uygulama Kilidini kur</string>
-    <string name="applock_setup_subtitle">Korumayı etkinleştirmek için gerekli izinleri verin.</string>
-    <string name="applock_perm_usage_desc_alt">Seçilen uygulamaların ne zaman açıldığını algılamak için gereklidir</string>
-    <string name="applock_perm_overlay_title_alt">Diğer uygulamaların üzerinde göster</string>
-    <string name="applock_perm_overlay_desc_alt">Kilit ekranını korunan uygulamaların üzerinde göstermek için gereklidir</string>
-    <string name="applock_perm_notification_title_alt">Bildirimler</string>
-    <string name="applock_perm_notification_desc_alt">Korumayı güvenilir bir şekilde çalışır tutmak ve önemli uyarıları göstermek için gereklidir</string>
-    <string name="applock_perm_grant">Ver</string>
-    <string name="applock_perm_privacy_note">Bu izinler yalnızca cihazınızdaki uygulama koruması için kullanılır.</string>
 
     <!-- Permission setup -->
     <string name="applock_perm_usage_title">Kullanım Erişimi</string>
@@ -429,10 +366,6 @@
 
     <!-- Installed apps list -->
     <string name="applock_search_hint">Uygulama ara</string>
-    <string name="applock_filter_all">Tümü</string>
-    <string name="applock_filter_locked">Kilitli</string>
-    <string name="applock_filter_unlocked">Kilitsiz</string>
-    <string name="applock_filter_system">Sistem uygulamaları</string>
     <string name="applock_no_apps">Gösterilecek uygulama yok.</string>
 
     <!-- App Lock settings -->
@@ -604,28 +537,17 @@
 
     <!-- Tools dashboard (screenshot redesign) -->
     <string name="tools_header_subtitle">Cihazınızı temizlemek, düzenlemek ve güvenceye almak için akıllı araçlar.</string>
-    <string name="tools_hero_title">Cihaz sağlıklı</string>
-    <string name="tools_hero_desc">Cihazınız temiz ve korunuyor. Böyle devam edin!</string>
-    <string name="tools_hero_protected">Korunuyor</string>
-    <string name="tools_hero_percent">92%</string>
-    <string name="tools_section_cleanup">Temizleme araçları</string>
-    <string name="tools_section_security">Güvenlik ve Gizlilik</string>
     <string name="tools_duplicate_finder">Yinelenen bulucu</string>
     <string name="tools_duplicate_desc">Yinelenen fotoğraf, video ve dosyaları bulun ve kaldırın</string>
     <string name="tools_large_files">Büyük dosyalar</string>
     <string name="tools_large_files_desc">Değerli depolama alanı kaplayan büyük dosyaları bulun</string>
     <string name="tools_storage_analyzer">Depolama çözümleyici</string>
     <string name="tools_storage_analyzer_desc">Depolamayı analiz edin ve alanınızı yönetin.</string>
-    <string name="tools_view_details">Ayrıntıları gör</string>
     <string name="tools_vault_health">Kasa durumu</string>
     <string name="tools_vault_health_desc">Şifreleme durumunu ve güvenliği tarayın</string>
-    <string name="tools_status_secure">Güvenli</string>
-    <string name="tools_section_storage">Özel depolama</string>
     <string name="tools_private_notes_desc">Güvenli özel notlar</string>
     <string name="tools_private_documents_desc">Kimlikler, kartlar ve dosyalar</string>
     <string name="settings_open_unavailable">Bu ekran cihazınızda kullanılamıyor</string>
-    <string name="tools_sample_dup_size">1.26 GB</string>
-    <string name="tools_sample_large_size">2.34 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Kapat</string>

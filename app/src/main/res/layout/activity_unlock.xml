@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/sp_bg"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingStart="@dimen/screen_padding"
@@ -82,6 +82,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <!-- Native ad in the gap above the keypad (PIN unlock = the second-launch screen). -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_s" />
 
     <include layout="@layout/view_pin_keypad" />
 

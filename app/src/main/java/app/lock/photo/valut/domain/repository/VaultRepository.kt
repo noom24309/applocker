@@ -43,6 +43,13 @@ interface VaultRepository {
     /** Decrypts a video into a secure cache temp file for playback. Null on failure. */
     suspend fun decryptVideoToTemp(mediaId: Long): File?
 
+    /**
+     * Re-encrypts an item that still uses the old Keystore-key format with the current fast
+     * format. No-op when it is already current. [plainFile] is the already-decrypted content, so
+     * the caller's decrypt is not repeated. Returns true when the item was upgraded.
+     */
+    suspend fun upgradeEncryptionIfNeeded(mediaId: Long, plainFile: File): Boolean
+
     /** Copies one picked Uri into the vault, builds a thumbnail and saves metadata. */
     suspend fun importSingleMedia(uri: Uri): ImportItemResult
 

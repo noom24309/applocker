@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Biometric opt-in, styled like the passcode screens: splash background, ringed
+     fingerprint mark, primary action pinned to the bottom. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:background="@drawable/sp_bg">
 
     <FrameLayout
-        android:id="@+id/flAdNative"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/biometricMark"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:background="@drawable/bg_biometric_rings"
+        app:layout_constraintBottom_toTopOf="@id/title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <FrameLayout
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:background="@drawable/bg_logo_circle"
-        android:backgroundTint="@color/primary_container">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23000002"
+        app:layout_constraintVertical_chainStyle="packed">
 
         <ImageView
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
             android:layout_gravity="center"
             android:contentDescription="@string/cd_biometric"
             android:src="@drawable/ic_fingerprint"
@@ -38,57 +30,93 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         style="@style/TextAppearance.App.Bold"
-        android:layout_marginTop="@dimen/space_xl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/_20sdp"
         android:gravity="center"
-        android:text="@string/biometric_title"/>
+        android:text="@string/biometric_title"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/biometricMark" />
 
     <TextView
         android:id="@+id/subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_m"
-        android:gravity="center"
         style="@style/TextAppearance.App.Medium"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/biometric_subtitle" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <TextView
-        android:id="@+id/btnPrimary"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_button_primary"
-        android:foreground="?attr/selectableItemBackground"
+        android:layout_marginHorizontal="@dimen/_28sdp"
+        android:layout_marginTop="@dimen/space_s"
         android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/biometric_subtitle"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <!-- Native Ad fills the gap between the copy and the action -->
+    <FrameLayout
+        android:id="@+id/flAdNative"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintVertical_bias="1" />
+
+    <!-- MaterialButton (not a TextView with a compound drawable): app:icon keeps the
+         fingerprint glued to the label, while a drawableStart would sit at the far
+         left edge of a full-width button. -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPrimary"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:fontFamily="@font/extra_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:letterSpacing="0.01"
         android:minHeight="@dimen/button_height"
-        android:layout_marginHorizontal="@dimen/_16sdp"
-        style="@style/TextAppearance.App.SemiBold"
-        android:paddingVertical="12dp"
         android:text="@string/biometric_enable"
         android:textAllCaps="false"
-        android:textColor="@color/text_on_primary"
-        android:letterSpacing="0.01"
-        android:textSize="16sp" />
+        android:textColor="@color/text_on_accent"
+        android:textSize="16sp"
+        app:backgroundTint="@color/primary"
+        app:cornerRadius="@dimen/radius_m"
+        app:icon="@drawable/ic_fingerprint"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconTint="@color/text_on_accent"
+        app:layout_constraintBottom_toTopOf="@id/btnSkip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/btnSkip"
-        android:layout_width="match_parent"
+        style="@style/TextAppearance.App.Medium"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_s"
+        android:layout_marginBottom="@dimen/_16sdp"
         android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
-        style="@style/TextAppearance.App.Medium"
         android:paddingVertical="10dp"
-        android:text="@string/skip"
+        android:text="@string/biometric_skip"
         android:textAllCaps="false"
         android:textColor="@color/text_secondary"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -130,8 +130,7 @@ class PrivateDocumentsRepositoryImpl @Inject constructor(
         val item = documentDao.getById(id) ?: return@withContext false
         runCatching {
             context.contentResolver.openOutputStream(destUri)?.use { output ->
-                cryptoFileManager.decryptFileToInputStream(File(item.encryptedFilePath))
-                    .use { input -> input.copyTo(output) }
+                cryptoFileManager.decryptFileToStream(File(item.encryptedFilePath), output)
             } ?: return@runCatching false
             true
         }.getOrDefault(false)

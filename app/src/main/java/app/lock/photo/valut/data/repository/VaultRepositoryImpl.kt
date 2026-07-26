@@ -2,7 +2,9 @@ package app.lock.photo.valut.data.repository
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import app.lock.photo.valut.core.security.VaultKeyManager
+import app.lock.photo.valut.core.storage.CryptoResult
 import app.lock.photo.valut.core.storage.CryptoFileManager
 import app.lock.photo.valut.core.storage.DecryptPurpose
 import app.lock.photo.valut.core.storage.HiddenGalleryManager
@@ -28,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -84,11 +87,51 @@ class VaultRepositoryImpl @Inject constructor(
         }.getOrNull()
     }
 
+    /**
+     * Rewrites a legacy item (bytes encrypted with the Keystore key itself, ~0.1 MB/s to read)
+     * into the current format that uses the wrapped in-process data key. Written to a new file
+     * first and only swapped in once it verifies, so a failure can never lose the original.
+     */
+    override suspend fun upgradeEncryptionIfNeeded(mediaId: Long, plainFile: File): Boolean =
+        withContext(io) {
+            val item = mediaDao.getById(mediaId) ?: return@withContext false
+            if (item.keyVersion >= VaultKeyManager.KEY_VERSION_DATA_KEY) return@withContext false
+            if (!item.isEncrypted || !plainFile.exists() || plainFile.length() == 0L) {
+                return@withContext false
+            }
+            val oldPath = item.encryptedFilePath ?: item.filePath
+            val mediaType = MediaType.fromStorage(item.mediaType)
+            val newFile = File(
+                fileManager.encryptedMediaDir(mediaType),
+                "${UUID.randomUUID()}.plv"
+            )
+            val result = cryptoFileManager.encryptFile(plainFile, newFile, mediaId)
+            if (result !is CryptoResult.Success || newFile.length() == 0L) {
+                runCatching { newFile.delete() }
+                return@withContext false
+            }
+            mediaDao.updateMedia(
+                item.copy(
+                    filePath = newFile.absolutePath,
+                    encryptedFilePath = newFile.absolutePath,
+                    encryptedSizeBytes = newFile.length(),
+                    keyVersion = VaultKeyManager.KEY_VERSION_DATA_KEY,
+                    dateModified = System.currentTimeMillis()
+                )
+            )
+            // The row no longer points at the old blob; drop it.
+            runCatching { File(oldPath).delete() }
+            true
+        }
+
     override suspend fun importSingleMedia(uri: Uri): ImportItemResult = withContext(io) {
         val mime = context.contentResolver.getType(uri)
         val mediaType = MediaType.fromMimeType(mime)
         val result = cryptoFileManager.encryptUriToVault(uri, mediaType)
-            ?: return@withContext ImportItemResult.Failed(ImportItemResult.Failed.Reason.COPY_FAILED)
+            ?: run {
+                Log.w(TAG, "import: encrypt stage failed (mime=$mime, type=$mediaType)")
+                return@withContext ImportItemResult.Failed(ImportItemResult.Failed.Reason.COPY_FAILED)
+            }
 
         val now = System.currentTimeMillis()
         val entity = VaultMediaEntity(
@@ -120,6 +163,7 @@ class VaultRepositoryImpl @Inject constructor(
             val id = mediaDao.insertMedia(entity)
             ImportItemResult.Success(id, mediaType)
         } catch (e: Exception) {
+            Log.w(TAG, "import: db insert failed: ${e.javaClass.simpleName} ${e.message}")
             fileManager.deleteVaultFile(result.encryptedFilePath)
             fileManager.deleteVaultFile(result.encryptedThumbnailPath)
             ImportItemResult.Failed(ImportItemResult.Failed.Reason.DB_FAILED)
@@ -314,12 +358,16 @@ class VaultRepositoryImpl @Inject constructor(
                     ) { output ->
                         if (item.isEncrypted) {
                             val encryptedPath = item.encryptedFilePath ?: item.filePath
-                            cryptoFileManager.decryptFileToInputStream(File(encryptedPath))
-                                .use { input -> input.copyTo(output) }
+                            // Decrypt straight into the MediaStore stream. This used to go
+                            // through CipherInputStream, which made exporting anything large
+                            // (any video) run for minutes and effectively never finish.
+                            cryptoFileManager.decryptFileToStream(File(encryptedPath), output)
                         } else {
                             File(item.filePath).inputStream().use { input -> input.copyTo(output) }
                         }
                     }
+                }.onFailure {
+                    Log.w(TAG, "export failed for id=${item.id}: ${it.javaClass.simpleName} ${it.message}")
                 }.getOrDefault(false)
                 if (ok) {
                     exported++
@@ -347,4 +395,8 @@ class VaultRepositoryImpl @Inject constructor(
             if (index >= 0 && cursor.moveToFirst()) cursor.getString(index) else null
         }
     }.getOrNull()
+
+    private companion object {
+        const val TAG = "VaultRepository"
+    }
 }

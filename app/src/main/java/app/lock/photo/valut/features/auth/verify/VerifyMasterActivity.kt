@@ -29,6 +29,9 @@ class VerifyMasterActivity : BasePinActivity() {
     private var usePattern = false
 
     override fun onViewReady() {
+        // Drawn on the splash background, so the system bars need light icons.
+        useLightSystemBarIcons()
+
         pinGroup = findViewById(R.id.pinGroup)
         patternView = findViewById(R.id.patternView)
 

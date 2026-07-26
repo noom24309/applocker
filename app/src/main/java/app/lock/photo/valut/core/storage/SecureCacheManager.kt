@@ -23,6 +23,9 @@ class SecureCacheManager @Inject constructor(
     /** Dedicated temp area for plain photos/videos captured by the Private Camera, before encryption. */
     val privateCameraTempDir: File get() = File(tempDir, PRIVATE_CAMERA_TEMP_DIR)
 
+    /** Where an in-progress import stages the picked file while it is being encrypted. */
+    val importStagingDir: File get() = File(tempDir, IMPORT_STAGING_DIR)
+
     fun ensureTempDir() {
         tempDir.mkdirs()
         File(tempDir, ".nomedia").takeIf { !it.exists() }?.createNewFile()
@@ -32,6 +35,21 @@ class SecureCacheManager @Inject constructor(
         ensureTempDir()
         val safeExt = extension.ifBlank { "tmp" }
         return File(tempDir, "${UUID.randomUUID()}.$safeExt")
+    }
+
+    /**
+     * A staging file for an import that is currently running.
+     *
+     * Deliberately NOT in the top-level temp dir: that one is wiped by [clearAllDecryptedTempFiles]
+     * whenever a vault screen resumes, and returning from the system photo picker resumes the grid
+     * at the same moment the import starts copying. A large pick (any video) was still being staged
+     * when the wipe ran, so the file vanished mid-copy and the import failed.
+     */
+    fun createImportStagingFile(extension: String): File {
+        ensureTempDir()
+        importStagingDir.mkdirs()
+        val safeExt = extension.ifBlank { "tmp" }
+        return File(importStagingDir, "${UUID.randomUUID()}.$safeExt")
     }
 
     fun ensurePrivateCameraTempDir() {
@@ -60,8 +78,22 @@ class SecureCacheManager @Inject constructor(
         privateCameraTempDir.listFiles()?.forEach { it.deleteRecursively() }
     }
 
-    /** Recursively clears every decrypted temp file, keeping .nomedia. */
+    /**
+     * Clears the decrypted leftovers a closed viewer/player left behind.
+     *
+     * Skips the in-flight areas ([IMPORT_STAGING_DIR], [PRIVATE_CAMERA_TEMP_DIR]): those hold work
+     * an operation is still writing, and this runs on every vault-screen resume — including the
+     * resume that happens as the photo picker closes and an import begins. Use [clearAllTempFiles]
+     * on a cold start, when nothing can be in flight.
+     */
     fun clearAllDecryptedTempFiles() {
+        tempDir.listFiles()?.forEach {
+            if (it.name != ".nomedia" && it.name !in IN_FLIGHT_DIRS) it.deleteRecursively()
+        }
+    }
+
+    /** Wipes the whole temp area, in-flight directories included. Cold start only. */
+    fun clearAllTempFiles() {
         tempDir.listFiles()?.forEach { if (it.name != ".nomedia") it.deleteRecursively() }
     }
 
@@ -85,5 +117,9 @@ class SecureCacheManager @Inject constructor(
     private companion object {
         const val TEMP_DIR = "private_vault_temp"
         const val PRIVATE_CAMERA_TEMP_DIR = "private_camera"
+        const val IMPORT_STAGING_DIR = "import_staging"
+
+        /** Owned by a running operation — never cleared as "leftovers". */
+        val IN_FLIGHT_DIRS = setOf(PRIVATE_CAMERA_TEMP_DIR, IMPORT_STAGING_DIR)
     }
 }

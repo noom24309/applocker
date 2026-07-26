@@ -2,64 +2,20 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="skip">Omitir</string>
     <string name="continue_label">Continuar</string>
     <string name="cancel">Cancelar</string>
     <string name="coming_next_phase">Próximamente en la siguiente fase</string>
+    <string name="loading">Cargando....</string>
 
     <!-- Splash -->
     <string name="splash_tagline">Privado. Seguro. Tuyo.</string>
-    <string name="splash_brand_lock">App Lock</string>
-    <string name="splash_brand_amp">&amp;</string>
-    <string name="splash_brand_vault">Private Vault</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
-    <string name="lv_brand_a">Lock &amp;</string>
-    <string name="lv_brand_b">Vault</string>
-    <string name="lv_subtitle">Protege tus apps. Protege tu privacidad.</string>
-    <string name="lv_search_hint">Buscar apps...</string>
-    <string name="lv_chip_all">Todas</string>
-    <string name="lv_chip_locked">Bloqueadas</string>
-    <string name="lv_chip_unlocked">Desbloqueadas</string>
-    <string name="lv_chip_system">Sistema</string>
-    <string name="lv_stat_locked_apps">Apps bloqueadas</string>
-    <string name="lv_stat_protection">Protección</string>
-    <string name="lv_stat_protection_value">Activa</string>
-    <string name="lv_stat_protection_off">Desactivada</string>
-    <string name="lv_stat_blocked">Bloqueadas hoy</string>
-    <string name="lv_stat_time">Tiempo de protección</string>
-    <string name="lv_installed_apps">Apps instaladas</string>
-    <string name="lv_app_count">(%1$d)</string>
-    <string name="lv_sort_az">Orden: A-Z</string>
-    <string name="lv_sort_za">Orden: Z-A</string>
-    <string name="lv_complete_setup">Completar configuración</string>
-    <string name="lv_complete_setup_sub">Concede los permisos restantes para garantizar una protección completa.</string>
-    <string name="lv_finish_setup">Finalizar configuración</string>
-    <string name="lv_nav_home">Inicio</string>
     <string name="lv_nav_vault">Bóveda</string>
     <string name="lv_nav_tools">Herramientas</string>
 
     <!-- Vault home (Lock & Vault redesign) -->
-    <string name="lv_vault_subtitle">Tus fotos y videos privados, protegidos.</string>
-    <string name="lv_vault_safe_title">La bóveda está segura</string>
-    <string name="lv_vault_safe_sub">Todos tus archivos están cifrados y almacenados de forma segura.</string>
-    <string name="lv_vault_unsafe_title">Finalizar cifrado</string>
-    <string name="lv_vault_unsafe_sub">Algunos archivos aún no están cifrados. Toca para protegerlos.</string>
-    <string name="lv_vault_learn_more">Más información</string>
-    <string name="lv_vault_used">Usado</string>
-    <string name="lv_vault_percent">%1$d%%</string>
-    <string name="lv_vault_import_photos">Importar fotos</string>
-    <string name="lv_vault_import_videos">Importar videos</string>
     <string name="lv_vault_new_album">Nuevo álbum</string>
-    <string name="lv_vault_settings">Ajustes de la bóveda</string>
-    <string name="lv_vault_albums">Álbumes</string>
-    <string name="lv_vault_recent">Multimedia reciente</string>
-    <string name="lv_view_all">Ver todo</string>
-    <string name="lv_vault_all_photos">Todas las fotos</string>
-    <string name="lv_vault_protected_title">Tu bóveda está protegida</string>
-    <string name="lv_vault_protected_sub">El cifrado AES-256 mantiene tus recuerdos completamente privados.</string>
-    <string name="lv_vault_check_health">Comprobar estado</string>
-    <string name="lv_vault_recent_empty">Aún no hay multimedia. Importa fotos o videos para empezar.</string>
 
     <!-- Ported onboarding (4-page flow) -->
 
@@ -71,21 +27,11 @@
     <!-- Onboarding -->
 
     <!-- Choose unlock method -->
-    <string name="choose_method_title">Elige cómo desbloquear</string>
-    <string name="choose_method_subtitle">Elige el bloqueo que usarás para abrir la app. Puedes añadir el desbloqueo con huella en los siguientes pasos.</string>
-    <string name="choose_method_pattern_title">Patrón</string>
-    <string name="choose_method_pattern_desc">Dibuja un patrón para desbloquear: rápido y fácil.</string>
-    <string name="choose_method_pin_title">PIN</string>
-    <string name="choose_method_pin_desc">Usa un PIN numérico de 4 o 6 dígitos.</string>
-    <string name="choose_method_recommended">Recomendado</string>
 
     <!-- PIN -->
-    <string name="create_pin_title">Crea tu PIN</string>
     <string name="create_pin_subtitle">Este PIN mantiene segura tu bóveda.</string>
     <string name="confirm_pin_title">Confirma tu PIN</string>
     <string name="confirm_pin_subtitle">Vuelve a introducir tu PIN para continuar.</string>
-    <string name="pin_length_4">4 dígitos</string>
-    <string name="pin_length_6">6 dígitos</string>
     <string name="pin_mismatch">Los PIN no coinciden. Inténtalo de nuevo.</string>
 
     <!-- Biometric setup -->
@@ -107,7 +53,6 @@
     <string name="home_videos">Videos privados</string>
 
     <!-- Navigation -->
-    <string name="nav_settings">Ajustes</string>
 
     <!-- Home dashboard (redesign) -->
 
@@ -121,8 +66,6 @@
 
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Gestiona la seguridad, privacidad y preferencias de la app.</string>
-    <string name="settings_security_status">Estado de seguridad</string>
-    <string name="settings_security_status_active">Todas las funciones de seguridad están activas</string>
     <string name="settings_change_pin_desc_alt">Cambia el PIN de desbloqueo de la app</string>
     <string name="settings_change_pattern">Cambiar patrón</string>
     <string name="settings_change_pattern_desc">Cambia tu patrón de desbloqueo</string>
@@ -136,9 +79,6 @@
     <string name="settings_app_lock_settings_desc">Gestiona las preferencias existentes</string>
     <string name="settings_lock_overlay">Superposición de pantalla de bloqueo</string>
     <string name="settings_lock_overlay_desc">Configura la pantalla de bloqueo y su comportamiento</string>
-    <string name="settings_section_preferences">Preferencias</string>
-    <string name="settings_notifications">Notificaciones</string>
-    <string name="settings_notifications_desc">Gestiona las notificaciones de la app</string>
     <string name="settings_section_more">Más</string>
     <string name="settings_about_app">Acerca de Lock &amp; Vault</string>
     <string name="settings_about_app_desc">Versión, licencias y más</string>
@@ -161,7 +101,6 @@
     <string name="auto_lock_never_short">Nunca</string>
 
     <!-- Weak credential -->
-    <string name="pin_weak_warning">Ese PIN es demasiado fácil de adivinar. Elige otro.</string>
 
     <!-- Recovery key -->
     <string name="recovery_title">Tu clave de recuperación</string>
@@ -195,8 +134,6 @@
     <!-- Pattern -->
     <string name="pattern_setup_title">Establece tu patrón</string>
     <string name="pattern_setup_subtitle">Dibuja un patrón para desbloquear la app. Conecta al menos 4 puntos.</string>
-    <string name="pattern_clear">Borrar patrón</string>
-    <string name="pattern_hint_note">Hazlo fácil de recordar pero difícil de adivinar para otros.</string>
     <string name="pattern_confirm_title">Confirmar patrón</string>
     <string name="pattern_confirm_subtitle">Dibuja el mismo patrón de nuevo.</string>
     <string name="pattern_too_short">Conecta al menos 4 puntos.</string>
@@ -364,7 +301,6 @@
     <string name="cd_thumbnail">Miniatura de multimedia</string>
     <string name="cd_play_video">Reproducir video</string>
     <string name="cd_favorite">Favorito</string>
-    <string name="cd_close">Cerrar</string>
     <string name="cd_more_options">Más opciones</string>
 
     <!-- Content descriptions -->
@@ -387,16 +323,17 @@
     <string name="applock_overlay_title">App bloqueada</string>
     <string name="applock_wrong_credential">Incorrecto. Inténtalo de nuevo.</string>
 
+    <!-- Language picker (first launch only) -->
+    <string name="language_title">Idioma</string>
+    <string name="language_subtitle">Elige tu idioma</string>
+    <string name="language_confirm_cd">Confirmar idioma</string>
+    <string name="language_selected_cd">Seleccionado</string>
+    <string name="language_follow_system">Predeterminado del sistema</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_language_desc">Cambiar el idioma de la app</string>
+    <string name="lv_vault_create_folder_sub">Añadir una nueva carpeta</string>
+
     <!-- Permission setup (screenshot redesign) -->
-    <string name="applock_setup_title">Configurar bloqueo de apps</string>
-    <string name="applock_setup_subtitle">Concede los permisos necesarios para activar la protección.</string>
-    <string name="applock_perm_usage_desc_alt">Necesario para detectar cuándo se abren las apps seleccionadas</string>
-    <string name="applock_perm_overlay_title_alt">Mostrar sobre otras apps</string>
-    <string name="applock_perm_overlay_desc_alt">Necesario para mostrar la pantalla de bloqueo sobre las apps protegidas</string>
-    <string name="applock_perm_notification_title_alt">Notificaciones</string>
-    <string name="applock_perm_notification_desc_alt">Necesario para mantener la protección activa de forma fiable y mostrar alertas importantes</string>
-    <string name="applock_perm_grant">Conceder</string>
-    <string name="applock_perm_privacy_note">Estos permisos se usan solo para la protección de apps en tu dispositivo.</string>
 
     <!-- Permission setup -->
     <string name="applock_perm_usage_title">Acceso de uso</string>
@@ -429,10 +366,6 @@
 
     <!-- Installed apps list -->
     <string name="applock_search_hint">Buscar apps</string>
-    <string name="applock_filter_all">Todas</string>
-    <string name="applock_filter_locked">Bloqueadas</string>
-    <string name="applock_filter_unlocked">Desbloqueadas</string>
-    <string name="applock_filter_system">Apps del sistema</string>
     <string name="applock_no_apps">No hay apps para mostrar.</string>
 
     <!-- App Lock settings -->
@@ -604,28 +537,17 @@
 
     <!-- Tools dashboard (screenshot redesign) -->
     <string name="tools_header_subtitle">Herramientas inteligentes para limpiar, organizar y proteger tu dispositivo.</string>
-    <string name="tools_hero_title">El dispositivo está saludable</string>
-    <string name="tools_hero_desc">Tu dispositivo está limpio y protegido. ¡Sigue así!</string>
-    <string name="tools_hero_protected">Protegido</string>
-    <string name="tools_hero_percent">92%</string>
-    <string name="tools_section_cleanup">Herramientas de limpieza</string>
-    <string name="tools_section_security">Seguridad y privacidad</string>
     <string name="tools_duplicate_finder">Buscador de duplicados</string>
     <string name="tools_duplicate_desc">Encuentra y elimina fotos, videos y archivos duplicados</string>
     <string name="tools_large_files">Archivos grandes</string>
     <string name="tools_large_files_desc">Encuentra archivos grandes que ocupan almacenamiento valioso</string>
     <string name="tools_storage_analyzer">Analizador de almacenamiento</string>
     <string name="tools_storage_analyzer_desc">Analiza el almacenamiento y gestiona tu espacio.</string>
-    <string name="tools_view_details">Ver detalles</string>
     <string name="tools_vault_health">Estado de la bóveda</string>
     <string name="tools_vault_health_desc">Escanea el estado del cifrado y la seguridad</string>
-    <string name="tools_status_secure">Seguro</string>
-    <string name="tools_section_storage">Almacenamiento privado</string>
     <string name="tools_private_notes_desc">Notas privadas seguras</string>
     <string name="tools_private_documents_desc">IDs, tarjetas y archivos</string>
     <string name="settings_open_unavailable">Esta pantalla no está disponible en tu dispositivo</string>
-    <string name="tools_sample_dup_size">1.26 GB</string>
-    <string name="tools_sample_large_size">2.34 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Cerrar</string>

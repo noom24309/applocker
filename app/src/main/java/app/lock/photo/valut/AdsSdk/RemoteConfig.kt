@@ -48,6 +48,9 @@ object RemoteConfig {
     const val KEY_INTER_SINGLE_BACK = "intersingleBack"
     const val KEY_OB4 = "OB4"
     const val KEY_NATIVE_LANG = "nativeLang"
+
+    /** Language picker's native ad (preloaded on splash, shown on the picker). */
+    const val KEY_NATIVE_LANGUAGE = "nativeLanguge"
     const val KEY_NATIVE_SINGLE = "nativeSingle"
     const val KEY_NATIVE_Settings = "nativeSettings"
     const val KEY_INTER_SINGLE = "nativePattern"
@@ -120,6 +123,7 @@ object RemoteConfig {
     val rewardedPack: Boolean get() = adFlag(KEY_REWARDED_PACK)
     val interSingleBack: Boolean get() = adFlag(KEY_INTER_SINGLE_BACK)
     val nativeLang: Boolean get() = adFlag(KEY_NATIVE_LANG)
+    val nativeLanguge: Boolean get() = adFlag(KEY_NATIVE_LANGUAGE)
     val nativeSingle: Boolean get() = adFlag(KEY_NATIVE_SINGLE)
     val nativeSettings: Boolean get() = adFlag(KEY_NATIVE_Settings)
     val nativePattern: Boolean get() = adFlag(KEY_INTER_SINGLE)

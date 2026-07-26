@@ -9,10 +9,12 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.common.Constants
 import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.databinding.ActivityForgotPinBinding
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -31,12 +33,29 @@ class ForgotPinActivity : BaseActivity(), LockExempt {
         binding = ActivityForgotPinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Drawn on the splash background, so the system bars need light icons.
+        useLightSystemBarIcons()
+
         binding.btnVerifyKey.setOnClickListener {
             binding.recoveryInputLayout.error = null
             val key = binding.recoveryInput.text?.toString().orEmpty()
             viewModel.submitRecoveryKey(key)
         }
+        loadNativeAd()
         observeEvents()
+    }
+
+    private fun loadNativeAd() {
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.flAdNative,
+            nativeId = getString(R.string.NativeRecoveryKey),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.NativeRecoveryKey),
+            canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
+            logTag = "ForgotPin"
+        )
     }
 
     private fun observeEvents() {

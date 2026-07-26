@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -59,11 +59,7 @@ class SuggestedAppsActivity : BaseActivity() {
                 launch { viewModel.loading.collect { binding.progress.isVisible = it } }
                 launch {
                     viewModel.lockedFlow.collect { count ->
-                        Toast.makeText(
-                            this@SuggestedAppsActivity,
-                            getString(R.string.applock_suggestions_locked, count),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        showToast(getString(R.string.applock_suggestions_locked, count))
                         onBackPressedDispatcher.onBackPressed()
                     }
                 }

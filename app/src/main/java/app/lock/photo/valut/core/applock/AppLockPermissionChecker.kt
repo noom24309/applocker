@@ -71,4 +71,11 @@ class AppLockPermissionChecker @Inject constructor(
 
     fun hasAllRequiredAppLockPermissions(): Boolean =
         hasUsageAccess() && hasOverlayPermission() && hasNotificationPermission()
+
+    /**
+     * True when not one of the three grants is in place — protection cannot work at all.
+     * Unlocking routes to the permission screen in that case instead of straight to home.
+     */
+    fun hasNoAppLockPermissions(): Boolean =
+        !hasUsageAccess() && !hasOverlayPermission() && !hasNotificationPermission()
 }

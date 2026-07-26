@@ -4,13 +4,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/sp_bg"
     android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
         android:layout_weight="1" />
 
     <!-- ===== Custom Bottom Navigation (no BottomNavigationView) ===== -->
@@ -24,24 +25,24 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/navHome"
+            android:id="@+id/navApps"
             style="@style/LvNavTab">
 
             <View
-                android:id="@+id/navHomeIndicator"
+                android:id="@+id/navAppsIndicator"
                 style="@style/LvNavIndicator"
                 android:backgroundTint="@color/home_primary" />
 
             <ImageView
-                android:id="@+id/navHomeIcon"
+                android:id="@+id/navAppsIcon"
                 style="@style/LvNavIcon"
-                android:src="@drawable/home_ic"
+                android:src="@drawable/ic_apps"
                 app:tint="@color/home_primary" />
 
             <TextView
-                android:id="@+id/navHomeLabel"
+                android:id="@+id/navAppsLabel"
                 style="@style/LvNavLabel"
-                android:text="@string/lv_nav_home"
+                android:text="@string/lv_nav_applock"
                 android:textColor="@color/home_primary"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -89,6 +90,29 @@
                 android:id="@+id/navToolsLabel"
                 style="@style/LvNavLabel"
                 android:text="@string/lv_nav_tools"
+                android:textColor="@color/home_system_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSettings"
+            style="@style/LvNavTab">
+
+            <View
+                android:id="@+id/navSettingsIndicator"
+                style="@style/LvNavIndicator"
+                android:backgroundTint="@color/home_primary"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/navSettingsIcon"
+                style="@style/LvNavIcon"
+                android:src="@drawable/ic_settings"
+                app:tint="@color/home_system_icon" />
+
+            <TextView
+                android:id="@+id/navSettingsLabel"
+                style="@style/LvNavLabel"
+                android:text="@string/lv_nav_settings"
                 android:textColor="@color/home_system_icon" />
         </LinearLayout>
     </LinearLayout>

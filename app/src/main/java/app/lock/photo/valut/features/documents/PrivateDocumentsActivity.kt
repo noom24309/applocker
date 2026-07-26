@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -22,6 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.ads.AppAds
 import app.lock.photo.valut.data.local.entity.PrivateDocumentEntity
 import app.lock.photo.valut.databinding.ActivityPrivateDocumentsBinding
 import app.lock.photo.valut.domain.model.DocumentCardType
@@ -66,6 +67,7 @@ class PrivateDocumentsActivity : BaseActivity() {
         // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityPrivateDocumentsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, "PrivateDocuments")
 
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setupTabs()
@@ -315,7 +317,7 @@ class PrivateDocumentsActivity : BaseActivity() {
             .show()
     }
 
-    private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun toast(msg: String) = showToast(msg)
 
     companion object {
         fun intent(context: Context) = Intent(context, PrivateDocumentsActivity::class.java)

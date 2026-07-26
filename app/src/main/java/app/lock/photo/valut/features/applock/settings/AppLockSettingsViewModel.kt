@@ -85,15 +85,9 @@ class AppLockSettingsViewModel @Inject constructor(
 
     // --- setters ---
 
+    /** Off is only honoured when nothing is locked — see [AppLockServiceManager.setFeatureEnabled]. */
     fun setAppLockEnabled(enabled: Boolean) {
-        viewModelScope.launch {
-            dataStore.setAppLockFeatureEnabled(enabled)
-            if (enabled) {
-                if (serviceManager.canStartProtection()) serviceManager.startProtection()
-            } else {
-                serviceManager.stopProtection()
-            }
-        }
+        viewModelScope.launch { serviceManager.setFeatureEnabled(enabled) }
     }
 
     fun setDelayMode(mode: AppLockDelayMode) {

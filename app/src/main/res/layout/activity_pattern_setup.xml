@@ -1,182 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Pattern setup, styled like the passcode screens: splash background, lock badge,
+     borderless grid. The pattern is submitted as soon as the finger lifts, so there
+     is no Continue button. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_bg">
+    android:background="@drawable/sp_bg">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/flAdNative"
-        app:layout_constraintTop_toTopOf="parent">
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cd_card_icon"
+        android:padding="9dp"
+        android:rotation="180"
+        android:src="@drawable/ic_chevron_right"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/text_primary" />
 
-        <!-- ===== Toolbar ===== -->
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/cd_card_icon"
-            android:padding="9dp"
-            android:rotation="180"
-            android:src="@drawable/ic_chevron_right"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/home_title" />
+    <ImageView
+        android:id="@+id/lockBadge"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/cd_app_logo"
+        android:src="@drawable/ic_lock_badge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/iconTile"
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:visibility="gone"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_tile_purple"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivBack"
-            app:layout_goneMarginTop="16dp">
+    <TextView
+        android:id="@+id/titlePattern"
+        style="@style/TextAppearance.App.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:gravity="center"
+        android:text="@string/pattern_setup_title"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lockBadge" />
 
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_gravity="center"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_lock"
-                app:tint="@color/home_primary" />
-        </FrameLayout>
+    <TextView
+        android:id="@+id/subtitlePattern"
+        style="@style/TextAppearance.App.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/space_xs"
+        android:gravity="center"
+        android:text="@string/pattern_setup_subtitle"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlePattern" />
 
-        <TextView
-            android:id="@+id/titlePattern"
-            style="@style/TextAppearance.App.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="@string/pattern_setup_title"
-            android:textColor="@color/home_title"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iconTile" />
+    <TextView
+        android:id="@+id/errorPattern"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/space_s"
+        android:gravity="center"
+        android:textColor="@color/accent_red"
+        android:textSize="@dimen/text_caption"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitlePattern"
+        tools:text="Patterns don't match" />
 
-        <TextView
-            android:id="@+id/subtitlePattern"
-            style="@style/TextAppearance.App.Medium"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="@string/pattern_setup_subtitle"
-            android:textColor="@color/home_subtitle"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titlePattern" />
+    <app.lock.photo.valut.core.ui.PatternLockView
+        android:id="@+id/patternView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:contentDescription="@string/cd_pattern"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/errorPattern"
+        app:patternIdleNodeColor="@color/pattern_node_idle"
+        app:patternIdleRingColor="@color/pattern_ring_idle"
+        app:patternNodeColor="@color/pin_accent"
+        app:patternPanelColor="@android:color/transparent" />
 
-        <TextView
-            android:id="@+id/errorPattern"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="@dimen/space_m"
-            android:gravity="center"
-            android:textColor="@color/accent_red"
-            android:textSize="@dimen/text_caption"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/subtitlePattern"
-            tools:text="Patterns don't match" />
-
-        <app.lock.photo.valut.core.ui.PatternLockView
-            android:id="@+id/patternView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="@dimen/space_l"
-            android:contentDescription="@string/cd_pattern"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/errorPattern" />
-
-        <!-- ===== Hint note ===== -->
-        <LinearLayout
-            android:id="@+id/hintNote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/patternView">
-
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginEnd="7dp"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_shield"
-                app:tint="@color/home_primary" />
-
-            <TextView
-                style="@style/TextAppearance.App.Regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pattern_hint_note"
-                android:textColor="@color/home_subtitle"
-                android:textSize="12.5sp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/btnContinue"
-            style="@style/TextAppearance.App.SemiBold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:background="@drawable/bg_button_primary"
-            android:foreground="?attr/selectableItemBackground"
-            android:gravity="center"
-            android:letterSpacing="0.01"
-            android:minHeight="@dimen/button_height"
-            android:paddingVertical="12dp"
-            android:text="@string/continue_label"
-            android:textAllCaps="false"
-            android:textColor="@color/text_on_primary"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hintNote" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnClear"
-            style="@style/Widget.App.Button.Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:text="@string/pattern_clear"
-            android:textColor="@color/home_primary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnContinue" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/btnUsePin"
+        style="@style/TextAppearance.App.SemiBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/space_xs"
+        android:text="@string/pattern_use_pin"
+        android:textColor="@color/pin_accent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/patternView" />
 
     <!-- Native Ad -->
     <FrameLayout
         android:id="@+id/flAdNative"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

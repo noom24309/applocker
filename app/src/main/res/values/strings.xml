@@ -1,96 +1,57 @@
 <resources>
-    <string name="app_name">Private Lock Vault</string>
+    <string name="app_name">App Lock and Private valut</string>
 
     <!-- Common -->
-    <string name="skip">Skip</string>
     <string name="continue_label">Continue</string>
     <string name="cancel">Cancel</string>
     <string name="coming_next_phase">Coming in next phase</string>
+    <string name="loading">Loading....</string>
 
     <!-- Splash -->
     <string name="splash_tagline">Private. Secure. Yours.</string>
-    <string name="splash_brand_lock">App Lock</string>
-    <string name="splash_brand_amp">&amp;</string>
-    <string name="splash_brand_vault">Private Vault</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
-    <string name="lv_brand_a">Lock &amp;</string>
-    <string name="lv_brand_b">Vault</string>
-    <string name="lv_subtitle">Secure your apps. Protect your privacy.</string>
-    <string name="lv_search_hint">Search apps...</string>
-    <string name="lv_chip_all">All</string>
-    <string name="lv_chip_locked">Locked</string>
-    <string name="lv_chip_unlocked">Unlocked</string>
-    <string name="lv_chip_system">System</string>
-    <string name="lv_stat_locked_apps">Locked Apps</string>
-    <string name="lv_stat_protection">Protection</string>
-    <string name="lv_stat_protection_value">Active</string>
-    <string name="lv_stat_protection_off">Off</string>
-    <string name="lv_stat_blocked">Blocked Today</string>
-    <string name="lv_stat_time">Protection Time</string>
-    <string name="lv_installed_apps">Installed Apps</string>
-    <string name="lv_app_count">(%1$d)</string>
-    <string name="lv_sort_az">Sort: A-Z</string>
-    <string name="lv_sort_za">Sort: Z-A</string>
-    <string name="lv_complete_setup">Complete Setup</string>
-    <string name="lv_complete_setup_sub">Grant remaining permissions to ensure complete protection.</string>
-    <string name="lv_finish_setup">Finish Setup</string>
-    <string name="lv_nav_home">Home</string>
     <string name="lv_nav_vault">Vault</string>
     <string name="lv_nav_tools">Tools</string>
+    <string name="lv_nav_applock">App Lock</string>
+    <string name="lv_nav_settings">Settings</string>
+    <string name="applock_protected_count">%1$d of %2$d apps protected</string>
 
     <!-- Vault home (Lock & Vault redesign) -->
-    <string name="lv_vault_subtitle">Your private photos &amp; videos, secured.</string>
-    <string name="lv_vault_safe_title">Vault is Safe</string>
-    <string name="lv_vault_safe_sub">All your files are encrypted and stored securely.</string>
-    <string name="lv_vault_unsafe_title">Finish Encryption</string>
-    <string name="lv_vault_unsafe_sub">Some files are not encrypted yet. Tap to secure them.</string>
-    <string name="lv_vault_learn_more">Learn more</string>
-    <string name="lv_vault_used">Used</string>
-    <string name="lv_vault_percent">%1$d%%</string>
-    <string name="lv_vault_import_photos">Import Photos</string>
-    <string name="lv_vault_import_videos">Import Videos</string>
     <string name="lv_vault_new_album">New Album</string>
-    <string name="lv_vault_settings">Vault Settings</string>
-    <string name="lv_vault_albums">Albums</string>
-    <string name="lv_vault_recent">Recent Media</string>
-    <string name="lv_view_all">View All</string>
-    <string name="lv_vault_all_photos">All Photos</string>
-    <string name="lv_vault_protected_title">Your Vault is Protected</string>
-    <string name="lv_vault_protected_sub">AES-256 encryption keeps your memories completely private.</string>
-    <string name="lv_vault_check_health">Check Health</string>
-    <string name="lv_vault_recent_empty">No media yet. Import photos or videos to get started.</string>
 
-    <!-- Ported onboarding (4-page flow) -->
-
-    <!-- Language screens (ported flow) -->
-
-    <!-- Note editor -->
+    <!-- Vault folder screen -->
+    <string name="lv_vault_title">My Vault</string>
+    <string name="lv_vault_summary">%1$d items · %2$d folders</string>
+    <string name="lv_vault_search_hint">Search folders and files</string>
+    <string name="lv_vault_add_media">Add photos &amp; videos</string>
+    <string name="lv_vault_create_folder">Create folder</string>
+    <string name="lv_vault_create_folder_sub">Add a new folder</string>
+    <string name="lv_vault_no_folders">No folders match your search</string>
+    <string name="lv_vault_folder_photos">Photos</string>
+    <string name="lv_vault_folder_photos_sub">Images in your vault</string>
+    <string name="lv_vault_folder_videos">Private Videos</string>
+    <string name="lv_vault_folder_videos_sub">Clips in your vault</string>
+    <string name="lv_vault_folder_documents">Documents</string>
+    <string name="lv_vault_folder_documents_sub">IDs, cards &amp; files</string>
+    <string name="lv_vault_folder_notes">Private Notes</string>
+    <string name="lv_vault_folder_notes_sub">Text kept encrypted</string>
+    <string name="lv_vault_folder_album_sub">Album</string>
     <string name="note_editor_title">Enter Notes</string>
 
-    <!-- Onboarding -->
-
-    <!-- Choose unlock method -->
-    <string name="choose_method_title">Choose how to unlock</string>
-    <string name="choose_method_subtitle">Pick the lock you\'ll use to open the app. You can add fingerprint unlock in the next steps.</string>
-    <string name="choose_method_pattern_title">Pattern</string>
-    <string name="choose_method_pattern_desc">Draw a pattern to unlock — quick and easy.</string>
-    <string name="choose_method_pin_title">PIN</string>
-    <string name="choose_method_pin_desc">Use a 4- or 6-digit numeric PIN.</string>
-    <string name="choose_method_recommended">Recommended</string>
-
     <!-- PIN -->
-    <string name="create_pin_title">Create your PIN</string>
     <string name="create_pin_subtitle">This PIN keeps your vault secure.</string>
     <string name="confirm_pin_title">Confirm your PIN</string>
     <string name="confirm_pin_subtitle">Re-enter your PIN to continue.</string>
-    <string name="pin_length_4">4 digits</string>
-    <string name="pin_length_6">6 digits</string>
     <string name="pin_mismatch">PINs don\'t match. Try again.</string>
+    <string name="pin_use_pattern">Use pattern instead</string>
+    <string name="pattern_use_pin">Use PIN instead</string>
+    <string name="pin_save_failed">Couldn\'t save that PIN. Please try again.</string>
 
     <!-- Biometric setup -->
-    <string name="biometric_title">Enable Biometric Unlock</string>
-    <string name="biometric_subtitle">Use your fingerprint or face to unlock instantly.</string>
+    <string name="biometric_title">Enable biometric unlock</string>
+    <string name="biometric_subtitle">Open your vault instantly with your fingerprint or face — your passcode stays as backup.</string>
+    <string name="biometric_skip">Skip for now</string>
     <string name="biometric_enable">Enable Biometric</string>
     <string name="biometric_unavailable_subtitle">Biometric unlock isn\'t available on this device. You can still use your PIN.</string>
     <string name="biometric_prompt_title">Unlock Private Lock Vault</string>
@@ -107,7 +68,6 @@
     <string name="home_videos">Private Videos</string>
 
     <!-- Navigation -->
-    <string name="nav_settings">Settings</string>
 
     <!-- Home dashboard (redesign) -->
 
@@ -121,8 +81,6 @@
 
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">Manage security, privacy and app preferences.</string>
-    <string name="settings_security_status">Security Status</string>
-    <string name="settings_security_status_active">All security features are active</string>
     <string name="settings_change_pin_desc_alt">Change your app unlock PIN</string>
     <string name="settings_change_pattern">Change Pattern</string>
     <string name="settings_change_pattern_desc">Change your unlock pattern</string>
@@ -136,9 +94,6 @@
     <string name="settings_app_lock_settings_desc">Manage existing preferences</string>
     <string name="settings_lock_overlay">Lock Screen Overlay</string>
     <string name="settings_lock_overlay_desc">Configure lock screen and behavior</string>
-    <string name="settings_section_preferences">Preferences</string>
-    <string name="settings_notifications">Notifications</string>
-    <string name="settings_notifications_desc">Manage app notifications</string>
     <string name="settings_section_more">More</string>
     <string name="settings_about_app">About Lock &amp; Vault</string>
     <string name="settings_about_app_desc">Version, licenses and more</string>
@@ -161,7 +116,6 @@
     <string name="auto_lock_never_short">Never</string>
 
     <!-- Weak credential -->
-    <string name="pin_weak_warning">That PIN is too easy to guess. Choose another.</string>
 
     <!-- Recovery key -->
     <string name="recovery_title">Your Recovery Key</string>
@@ -195,13 +149,12 @@
     <!-- Pattern -->
     <string name="pattern_setup_title">Set Your Pattern</string>
     <string name="pattern_setup_subtitle">Draw a pattern to unlock the app. Connect at least 4 dots.</string>
-    <string name="pattern_clear">Clear Pattern</string>
-    <string name="pattern_hint_note">Make it memorable but hard for others to guess.</string>
     <string name="pattern_confirm_title">Confirm pattern</string>
     <string name="pattern_confirm_subtitle">Draw the same pattern again.</string>
     <string name="pattern_too_short">Connect at least 4 dots.</string>
     <string name="pattern_mismatch">Patterns don\'t match. Try again.</string>
     <string name="pattern_unlock_title">Draw your pattern</string>
+    <string name="pattern_unlock_subtitle">Connect the dots to unlock your vault.</string>
     <string name="pattern_saved">Pattern saved.</string>
     <string name="pattern_wrong">Wrong pattern. Attempt %1$d.</string>
     <string name="cd_pattern">Pattern drawing area</string>
@@ -261,6 +214,19 @@
     <string name="empty_album">This album is empty.</string>
     <string name="empty_pictures">No pictures</string>
     <string name="empty_videos_short">No videos</string>
+
+    <!-- Media grid screen titles -->
+    <string name="vault_title_private_images">Private Images</string>
+    <string name="vault_title_private_videos">Private Videos</string>
+    <string name="vault_title_favorites">Favorites</string>
+    <string name="vault_title_recent">Recently Added</string>
+    <string name="vault_title_recycle_bin">Recycle Bin</string>
+    <string name="vault_title_folder">Private Folder</string>
+    <string name="vault_add_videos">Add videos</string>
+    <string name="vault_add_media">Add photos or videos</string>
+    <string name="viewer_position">%1$d of %2$d</string>
+    <string name="player_fullscreen">Fullscreen</string>
+    <string name="player_exit_fullscreen">Exit fullscreen</string>
 
     <!-- Import -->
     <string name="import_progress_title">Importing…</string>
@@ -364,7 +330,6 @@
     <string name="cd_thumbnail">Media thumbnail</string>
     <string name="cd_play_video">Play video</string>
     <string name="cd_favorite">Favorite</string>
-    <string name="cd_close">Close</string>
     <string name="cd_more_options">More options</string>
 
     <!-- Content descriptions -->
@@ -392,15 +357,31 @@
     <string name="applock_wrong_credential">Incorrect. Try again.</string>
 
     <!-- Permission setup (screenshot redesign) -->
-    <string name="applock_setup_title">Set up App Lock</string>
-    <string name="applock_setup_subtitle">Grant the required permissions to activate protection.</string>
-    <string name="applock_perm_usage_desc_alt">Needed to detect when selected apps are opened</string>
-    <string name="applock_perm_overlay_title_alt">Draw over other apps</string>
-    <string name="applock_perm_overlay_desc_alt">Needed to show the lock screen over protected apps</string>
-    <string name="applock_perm_notification_title_alt">Notifications</string>
-    <string name="applock_perm_notification_desc_alt">Needed to keep protection running reliably and show important alerts</string>
-    <string name="applock_perm_grant">Grant</string>
-    <string name="applock_perm_privacy_note">These permissions are used only for app protection on your device.</string>
+
+    <!-- Language picker (first launch only) -->
+    <string name="language_title">Language</string>
+    <string name="language_subtitle">Choose your language</string>
+    <string name="language_confirm_cd">Confirm language</string>
+    <string name="language_selected_cd">Selected</string>
+    <string name="language_follow_system">System default</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_desc">Change the app language</string>
+
+    <!-- Permissions screen (dark redesign) -->
+    <string name="applock_perm_screen_title">Permissions</string>
+    <string name="applock_perm_screen_subtitle">Protection setup</string>
+    <string name="applock_perm_hero_title">Enable protection</string>
+    <string name="applock_perm_hero_desc">App Lock needs three Android permissions to detect protected apps and display the lock screen securely.</string>
+    <string name="applock_perm_section">Required permissions</string>
+    <string name="applock_perm_progress">%1$d of %2$d</string>
+    <string name="applock_perm_setup_cta">Set up permissions</string>
+    <string name="applock_perm_footer_note">Permissions are used only for app protection. Your private files remain encrypted on your device.</string>
+    <string name="applock_perm_usage_title_short">Usage access</string>
+    <string name="applock_perm_usage_desc_short">Detect when a locked app is opened</string>
+    <string name="applock_perm_overlay_title_short">Display over other apps</string>
+    <string name="applock_perm_overlay_desc_short">Show the secure lock screen</string>
+    <string name="applock_perm_notification_title_short">Notifications</string>
+    <string name="applock_perm_notification_desc_short">Keep protection active in background</string>
 
     <!-- Permission setup -->
     <string name="applock_perm_usage_title">Usage Access</string>
@@ -452,10 +433,6 @@
 
     <!-- Installed apps list -->
     <string name="applock_search_hint">Search apps</string>
-    <string name="applock_filter_all">All</string>
-    <string name="applock_filter_locked">Locked</string>
-    <string name="applock_filter_unlocked">Unlocked</string>
-    <string name="applock_filter_system">System apps</string>
     <string name="applock_no_apps">No apps to show.</string>
 
     <!-- App Lock settings -->
@@ -627,28 +604,17 @@
 
     <!-- Tools dashboard (screenshot redesign) -->
     <string name="tools_header_subtitle">Smart tools to clean, organize &amp; secure your device.</string>
-    <string name="tools_hero_title">Device is Healthy</string>
-    <string name="tools_hero_desc">Your device is clean and protected. Keep it up!</string>
-    <string name="tools_hero_protected">Protected</string>
-    <string name="tools_hero_percent">92%</string>
-    <string name="tools_section_cleanup">Cleanup Tools</string>
-    <string name="tools_section_security">Security &amp; Privacy</string>
     <string name="tools_duplicate_finder">Duplicate Finder</string>
     <string name="tools_duplicate_desc">Find and remove duplicate photos, videos and files</string>
     <string name="tools_large_files">Large Files</string>
     <string name="tools_large_files_desc">Find large files taking up valuable storage</string>
     <string name="tools_storage_analyzer">Storage Analyzer</string>
     <string name="tools_storage_analyzer_desc">Analyze storage and manage your space.</string>
-    <string name="tools_view_details">View Details</string>
     <string name="tools_vault_health">Vault Health</string>
     <string name="tools_vault_health_desc">Scan encryption status and security</string>
-    <string name="tools_status_secure">Secure</string>
-    <string name="tools_section_storage">Private Storage</string>
     <string name="tools_private_notes_desc">Secure private notes</string>
     <string name="tools_private_documents_desc">IDs, cards &amp; files</string>
     <string name="settings_open_unavailable">This screen isn\'t available on your device</string>
-    <string name="tools_sample_dup_size">1.26 GB</string>
-    <string name="tools_sample_large_size">2.34 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">Close</string>
@@ -845,5 +811,4 @@
     <string name="duplicates_recommended">Recommended to keep</string>
     <string name="cd_media_thumbnail">Media thumbnail</string>
     <string name="ad">Ad</string>
-    <string name="loading">Loading....</string>
 </resources>

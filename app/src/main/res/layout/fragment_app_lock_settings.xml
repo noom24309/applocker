@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -583,4 +583,11 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom banner: this screen has no native ad. -->
+    <FrameLayout
+        android:id="@+id/frAdsBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

@@ -1,6 +1,7 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@android:color/transparent" />
-    <corners android:radius="12dp"></corners>
-    <solid android:color="#F6F8F5"></solid>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft surface behind the search box / list panels on the main screens. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/home_card" />
+    <corners android:radius="12dp" />
 </shape>
-

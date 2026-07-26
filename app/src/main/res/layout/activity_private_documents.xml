@@ -1,282 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_bg">
+    android:background="@drawable/sp_bg">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/frAdsBottom"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- ===== Toolbar ===== -->
+        <!-- Fills the wrapper, which is itself already constrained to sit above the ad slot.
+             (It used to constrain itself to the ad container, which lives one level up in the
+             root — not a sibling, so the constraint did nothing and failed release lint.) -->
         <LinearLayout
-            android:id="@+id/toolbar"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/cd_card_icon"
-                android:padding="9dp"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="@color/home_title" />
-
-            <TextView
-                android:id="@+id/title"
-                style="@style/TextAppearance.App.Bold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_weight="1"
-                android:text="@string/documents_title"
-                android:textColor="@color/home_title"
-                android:textSize="22sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/screen_padding"
-            android:layout_marginEnd="@dimen/screen_padding"
-            android:layout_marginBottom="@dimen/space_s"
-            style="@style/TextAppearance.App.Medium"
-            android:text="@string/documents_header_subtitle"
-            android:textColor="@color/home_subtitle"
-            android:textSize="13sp" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/home_bg"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@color/home_primary"
-            app:tabIndicatorFullWidth="false"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/home_primary"
-            app:tabTextColor="@color/home_subtitle" />
-
-        <!-- ===== Search box (home style) ===== -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginStart="@dimen/screen_padding"
-            android:layout_marginTop="@dimen/space_m"
-            android:layout_marginEnd="@dimen/screen_padding"
-            android:background="@drawable/bg_lv_search"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="14dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_search"
-                app:tint="@color/home_hint" />
-
-            <EditText
-                android:id="@+id/searchInput"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="@string/cards_search_hint"
-                android:imeOptions="actionSearch"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLines="1"
-                style="@style/TextAppearance.App.Medium"
-                android:textColor="@color/home_title"
-                android:textColorHint="@color/home_hint"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <!-- ===== Filter chips ===== -->
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/cardsFilterGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/screen_padding"
-            android:layout_marginTop="@dimen/space_m"
-            android:layout_marginEnd="@dimen/screen_padding"
-            android:layout_marginBottom="@dimen/space_s"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipAll"
-                style="@style/Widget.App.Chip.DocFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/cards_filter_all" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFavorites"
-                style="@style/Widget.App.Chip.DocFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cards_filter_favorites" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipDeleted"
-                style="@style/Widget.App.Chip.DocFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cards_filter_deleted" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <!-- Cards tab -->
-            <FrameLayout
-                android:id="@+id/cardsContainer"
+            <!-- ===== Toolbar ===== -->
+            <LinearLayout
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cardsRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:paddingBottom="96dp"
-                    tools:listitem="@layout/item_document_card" />
-
-                <LinearLayout
-                    android:id="@+id/cardsEmpty"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="@dimen/screen_padding"
-                    android:visibility="gone"
-                    tools:visibility="visible">
-
-                    <FrameLayout
-                        android:layout_width="84dp"
-                        android:layout_height="84dp"
-                        android:background="@drawable/bg_lv_icon_tile"
-                        android:backgroundTint="@color/home_tile_purple">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@null"
-                            android:src="@drawable/ic_card_id"
-                            app:tint="@color/home_primary" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:id="@+id/cardsEmptyTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_l"
-                        style="@style/TextAppearance.App.Bold"
-                        android:text="@string/cards_empty_title"
-                        android:textColor="@color/home_title"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/cardsEmptySubtitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_s"
-                        android:gravity="center"
-                        style="@style/TextAppearance.App.Medium"
-                        android:text="@string/cards_empty_subtitle"
-                        android:textColor="@color/home_subtitle"
-                        android:textSize="13.5sp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnAddCard"
-                        style="@style/Widget.App.Button.Primary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_l"
-                        app:backgroundTint="@color/home_primary"
-                        android:text="@string/cards_add_button" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnImportFileEmpty"
-                        style="@style/Widget.App.Button.Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_xs"
-                        android:textColor="@color/home_primary"
-                        android:text="@string/add_import_file" />
-                </LinearLayout>
-            </FrameLayout>
-
-            <!-- Files tab -->
-            <FrameLayout
-                android:id="@+id/filesContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/docsRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:paddingBottom="96dp"
-                    tools:listitem="@layout/item_document" />
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/cd_card_icon"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_arrow_back"
+                    app:tint="@color/home_title" />
 
                 <TextView
-                    android:id="@+id/emptyText"
-                    android:layout_width="match_parent"
+                    android:id="@+id/title"
+                    style="@style/TextAppearance.App.Bold"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/documents_title"
+                    android:textColor="@color/home_title"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_padding"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:layout_marginBottom="@dimen/space_s"
+                android:text="@string/documents_header_subtitle"
+                android:textColor="@color/home_subtitle"
+                android:textSize="13sp" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/home_primary"
+                app:tabIndicatorFullWidth="false"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/home_primary"
+                app:tabTextColor="@color/home_subtitle" />
+
+            <!-- ===== Search box (home style) ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginStart="@dimen/screen_padding"
+                android:layout_marginTop="@dimen/space_m"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:background="@drawable/bg_lv_search"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/home_hint" />
+
+                <EditText
+                    android:id="@+id/searchInput"
                     style="@style/TextAppearance.App.Medium"
-                    android:text="@string/documents_empty"
-                    android:textColor="@color/home_subtitle"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/cards_search_hint"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/home_title"
+                    android:textColorHint="@color/home_hint"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- ===== Filter chips ===== -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cardsFilterGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_padding"
+                android:layout_marginTop="@dimen/space_m"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:layout_marginBottom="@dimen/space_s"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAll"
+                    style="@style/Widget.App.Chip.DocFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/cards_filter_all" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipFavorites"
+                    style="@style/Widget.App.Chip.DocFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cards_filter_favorites" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipDeleted"
+                    style="@style/Widget.App.Chip.DocFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cards_filter_deleted" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <!-- Cards tab -->
+                <FrameLayout
+                    android:id="@+id/cardsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/cardsRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:paddingBottom="96dp"
+                        tools:listitem="@layout/item_document_card" />
+
+                    <LinearLayout
+                        android:id="@+id/cardsEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/screen_padding"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <FrameLayout
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:background="@drawable/bg_lv_icon_tile"
+                            android:backgroundTint="@color/home_tile_purple">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_card_id"
+                                app:tint="@color/home_primary" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/cardsEmptyTitle"
+                            style="@style/TextAppearance.App.Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_l"
+                            android:text="@string/cards_empty_title"
+                            android:textColor="@color/home_title"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/cardsEmptySubtitle"
+                            style="@style/TextAppearance.App.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_s"
+                            android:gravity="center"
+                            android:text="@string/cards_empty_subtitle"
+                            android:textColor="@color/home_subtitle"
+                            android:textSize="13.5sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAddCard"
+                            style="@style/Widget.App.Button.Primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_l"
+                            android:text="@string/cards_add_button"
+                            app:backgroundTint="@color/home_primary" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnImportFileEmpty"
+                            style="@style/Widget.App.Button.Text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_xs"
+                            android:text="@string/add_import_file"
+                            android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <!-- Files tab -->
+                <FrameLayout
+                    android:id="@+id/filesContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/docsRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:paddingBottom="96dp"
+                        tools:listitem="@layout/item_document" />
+
+                    <TextView
+                        android:id="@+id/emptyText"
+                        style="@style/TextAppearance.App.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/documents_empty"
+                        android:textColor="@color/home_subtitle"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+                </FrameLayout>
             </FrameLayout>
-        </FrameLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/importProgress"
-        android:layout_width="wrap_content"
+        <ProgressBar
+            android:id="@+id/importProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/home_primary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            tools:visibility="visible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/space_l"
+            android:contentDescription="@string/cards_add_button"
+            app:backgroundTint="@color/home_primary"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/white" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Bottom banner: this screen has no native ad. -->
+    <FrameLayout
+        android:id="@+id/frAdsBottom"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/home_primary"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/space_l"
-        android:contentDescription="@string/cards_add_button"
-        app:backgroundTint="@color/home_primary"
-        app:srcCompat="@drawable/ic_add"
-        app:tint="@color/white" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

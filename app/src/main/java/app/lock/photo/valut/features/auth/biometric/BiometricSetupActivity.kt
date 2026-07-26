@@ -14,7 +14,7 @@ import app.lock.photo.valut.core.lock.LockExempt
 import app.lock.photo.valut.core.permissions.BiometricHelper
 import app.lock.photo.valut.databinding.ActivityBiometricSetupBinding
 import app.lock.photo.valut.features.permissions.AppLockPermissionActivity
-import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,19 +41,23 @@ class BiometricSetupActivity : BaseActivity(), LockExempt {
         binding = ActivityBiometricSetupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Drawn on the splash background, so the system bars need light icons.
+        useLightSystemBarIcons()
+
         renderAvailability()
         setupActions()
         observeDone()
         loadNativeAd()
     }
     private fun loadNativeAd() {
-        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
-            nativeId = getString(R.string.OBFull2),
-            layoutId = R.layout.native_medium_ad_layout_new,
+            nativeId = getString(R.string.NativeBioMatric),
+            // Same native layout the splash uses.
+            layoutId = R.layout.custom_admob_native_layout_1,
             canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.OBFull2),
+            reloadNativeId = getString(R.string.NativeBioMatric),
             canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
             logTag = "NativePattern"
         )

@@ -18,8 +18,8 @@ android {
         applicationId "com.privatelock.vault.applock"
         minSdk 24
         targetSdk 36
-        versionCode 8
-        versionName "1.0.8"
+        versionCode 12
+        versionName "1.1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,16 +35,18 @@ android {
             resValue "string", "nativeSplash", "ca-app-pub-5736130092873918/6943345118"
             resValue "string", "InterSplash", "ca-app-pub-5736130092873918/6045196419"
             resValue "string", "InterMain", "ca-app-pub-5736130092873918/7873283403"
-            resValue "string", "NativeLanaguge", "ca-app-pub-5736130092873918/1224114578"
-            resValue "string", "NativeLanagugeDup", "ca-app-pub-5736130092873918/9082844757"
-            resValue "string", "NativeLanagugeOther", "ca-app-pub-5736130092873918/2551271592"
-            resValue "string", "NativeLanagugeOtherDup", "ca-app-pub-5736130092873918/9354307496"
-            resValue "string", "OB1", "ca-app-pub-5736130092873918/5247120065"
-            resValue "string", "OB2", "ca-app-pub-5736130092873918/8925108253"
-            resValue "string", "OB3", "ca-app-pub-5736130092873918/4101980816"
-            resValue "string", "OB4", "ca-app-pub-5736130092873918/1475817474"
-            resValue "string", "OBFull", "ca-app-pub-5736130092873918/9162735803"
-            resValue "string", "OBFull2", "ca-app-pub-5736130092873918/9004999300"
+
+            resValue "string", "NativeLanguage", "ca-app-pub-5736130092873918/9004999300"
+            resValue "string", "NativePassCode", "ca-app-pub-5736130092873918/9004999300"
+            resValue "string", "NativePassCodeConfirm", "ca-app-pub-5736130092873918/9004999300"
+            resValue "string", "NativeRecoveryKey", "ca-app-pub-5736130092873918/9004999300"
+            resValue "string", "NativeBioMatric", "ca-app-pub-5736130092873918/9004999300"
+
+            resValue "string", "NativePermissions", "ca-app-pub-5736130092873918/9004999300"
+            resValue "string", "NativeAppList", "ca-app-pub-5736130092873918/7612026581"
+            resValue "string", "NativeValut", "ca-app-pub-5736130092873918/5247120065"
+            resValue "string", "NativeTools", "ca-app-pub-5736130092873918/8925108253"
+            resValue "string", "NativeOverlay", "ca-app-pub-5736130092873918/1224114578"
 
             resValue "string", "bannerAll", "ca-app-pub-5736130092873918/6298944915"
             resValue "string", "nativeAll", "ca-app-pub-5736130092873918/7612026581"
@@ -60,16 +62,18 @@ android {
             resValue "string", "nativeSplash", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "InterSplash", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "InterMain", "ca-app-pub-3940256099942544/1033173712"
-            resValue "string", "NativeLanaguge", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "NativeLanagugeDup", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "NativeLanagugeOther", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "NativeLanagugeOtherDup", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "OB1", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "OB2", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "OB3", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "OB4", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "OBFull", "ca-app-pub-3940256099942544/2247696110"
-            resValue "string", "OBFull2", "ca-app-pub-3940256099942544/2247696110"
+
+            resValue "string", "NativeLanguage", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativePassCode", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativePassCodeConfirm", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeRecoveryKey", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeBioMatric", "ca-app-pub-3940256099942544/2247696110"
+
+            resValue "string", "NativePermissions", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeAppList", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeValut", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeTools", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeOverlay", "ca-app-pub-3940256099942544/2247696110"
 
             resValue "string", "bannerAll", "ca-app-pub-3940256099942544/6300978111"
             resValue "string", "nativeAll", "ca-app-pub-3940256099942544/2247696110"
@@ -153,6 +157,7 @@ dependencies {
     implementation libs.intuit.sdp
     implementation libs.intuit.ssp
     implementation libs.shimmer
+    implementation(project(":adssdk"))
     implementation("com.google.android.libraries.ads.mobile.sdk:ads-mobile-sdk:1.2.1")
     implementation("com.google.android.ump:user-messaging-platform:4.0.0")
     implementation('com.google.ads.mediation:facebook:6.21.0.4') {

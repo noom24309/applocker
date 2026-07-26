@@ -14,6 +14,8 @@ data class VaultMediaUiModel(
     val mimeType: String,
     val durationText: String?,
     val sizeText: String,
+    /** Decrypted size in bytes — the player needs it to know how long the stream is. */
+    val sizeBytes: Long,
     val dateImportedText: String,
     val width: Int?,
     val height: Int?,
@@ -38,6 +40,7 @@ fun VaultMediaEntity.toUiModel(isSelected: Boolean = false): VaultMediaUiModel {
         mimeType = mimeType,
         durationText = if (type == MediaType.VIDEO) Formatters.formatDuration(durationMillis) else null,
         sizeText = Formatters.formatSize(sizeBytes),
+        sizeBytes = sizeBytes,
         dateImportedText = Formatters.formatDate(dateImported),
         width = width,
         height = height,

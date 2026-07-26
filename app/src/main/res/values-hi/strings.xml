@@ -2,64 +2,20 @@
     <string name="app_name">Private Lock Vault</string>
 
     <!-- Common -->
-    <string name="skip">छोड़ें</string>
     <string name="continue_label">जारी रखें</string>
     <string name="cancel">रद्द करें</string>
     <string name="coming_next_phase">अगले चरण में आ रहा है</string>
+    <string name="loading">लोड हो रहा है....</string>
 
     <!-- Splash -->
     <string name="splash_tagline">निजी. सुरक्षित. आपका.</string>
-    <string name="splash_brand_lock">App Lock</string>
-    <string name="splash_brand_amp">&amp;</string>
-    <string name="splash_brand_vault">Private Vault</string>
 
     <!-- Home screen (Lock & Vault redesign) -->
-    <string name="lv_brand_a">Lock &amp;</string>
-    <string name="lv_brand_b">Vault</string>
-    <string name="lv_subtitle">अपने ऐप्स सुरक्षित करें. अपनी निजता की रक्षा करें.</string>
-    <string name="lv_search_hint">ऐप्स खोजें...</string>
-    <string name="lv_chip_all">सभी</string>
-    <string name="lv_chip_locked">लॉक</string>
-    <string name="lv_chip_unlocked">अनलॉक</string>
-    <string name="lv_chip_system">सिस्टम</string>
-    <string name="lv_stat_locked_apps">लॉक किए ऐप्स</string>
-    <string name="lv_stat_protection">सुरक्षा</string>
-    <string name="lv_stat_protection_value">सक्रिय</string>
-    <string name="lv_stat_protection_off">बंद</string>
-    <string name="lv_stat_blocked">आज ब्लॉक किए</string>
-    <string name="lv_stat_time">सुरक्षा समय</string>
-    <string name="lv_installed_apps">इंस्टॉल किए ऐप्स</string>
-    <string name="lv_app_count">(%1$d)</string>
-    <string name="lv_sort_az">क्रम: A-Z</string>
-    <string name="lv_sort_za">क्रम: Z-A</string>
-    <string name="lv_complete_setup">सेटअप पूरा करें</string>
-    <string name="lv_complete_setup_sub">पूरी सुरक्षा सुनिश्चित करने के लिए शेष अनुमतियाँ दें.</string>
-    <string name="lv_finish_setup">सेटअप समाप्त करें</string>
-    <string name="lv_nav_home">होम</string>
     <string name="lv_nav_vault">वॉल्ट</string>
     <string name="lv_nav_tools">टूल्स</string>
 
     <!-- Vault home (Lock & Vault redesign) -->
-    <string name="lv_vault_subtitle">आपके निजी फ़ोटो और वीडियो, सुरक्षित.</string>
-    <string name="lv_vault_safe_title">वॉल्ट सुरक्षित है</string>
-    <string name="lv_vault_safe_sub">आपकी सभी फ़ाइलें एन्क्रिप्ट और सुरक्षित रूप से संग्रहीत हैं.</string>
-    <string name="lv_vault_unsafe_title">एन्क्रिप्शन पूरा करें</string>
-    <string name="lv_vault_unsafe_sub">कुछ फ़ाइलें अभी एन्क्रिप्ट नहीं हुई हैं. सुरक्षित करने के लिए टैप करें.</string>
-    <string name="lv_vault_learn_more">और जानें</string>
-    <string name="lv_vault_used">उपयोग किया</string>
-    <string name="lv_vault_percent">%1$d%%</string>
-    <string name="lv_vault_import_photos">फ़ोटो आयात करें</string>
-    <string name="lv_vault_import_videos">वीडियो आयात करें</string>
     <string name="lv_vault_new_album">नया एल्बम</string>
-    <string name="lv_vault_settings">वॉल्ट सेटिंग्स</string>
-    <string name="lv_vault_albums">एल्बम</string>
-    <string name="lv_vault_recent">हाल का मीडिया</string>
-    <string name="lv_view_all">सभी देखें</string>
-    <string name="lv_vault_all_photos">सभी फ़ोटो</string>
-    <string name="lv_vault_protected_title">आपका वॉल्ट सुरक्षित है</string>
-    <string name="lv_vault_protected_sub">AES-256 एन्क्रिप्शन आपकी यादों को पूरी तरह निजी रखता है.</string>
-    <string name="lv_vault_check_health">स्वास्थ्य जाँचें</string>
-    <string name="lv_vault_recent_empty">अभी कोई मीडिया नहीं. शुरू करने के लिए फ़ोटो या वीडियो आयात करें.</string>
 
     <!-- Ported onboarding (4-page flow) -->
 
@@ -71,21 +27,11 @@
     <!-- Onboarding -->
 
     <!-- Choose unlock method -->
-    <string name="choose_method_title">अनलॉक करने का तरीका चुनें</string>
-    <string name="choose_method_subtitle">वह लॉक चुनें जिससे आप ऐप खोलेंगे. आप अगले चरणों में फ़िंगरप्रिंट अनलॉक जोड़ सकते हैं.</string>
-    <string name="choose_method_pattern_title">पैटर्न</string>
-    <string name="choose_method_pattern_desc">अनलॉक करने के लिए पैटर्न बनाएँ — तेज़ और आसान.</string>
-    <string name="choose_method_pin_title">PIN</string>
-    <string name="choose_method_pin_desc">4 या 6 अंकों का संख्यात्मक PIN उपयोग करें.</string>
-    <string name="choose_method_recommended">अनुशंसित</string>
 
     <!-- PIN -->
-    <string name="create_pin_title">अपना PIN बनाएँ</string>
     <string name="create_pin_subtitle">यह PIN आपके वॉल्ट को सुरक्षित रखता है.</string>
     <string name="confirm_pin_title">अपने PIN की पुष्टि करें</string>
     <string name="confirm_pin_subtitle">जारी रखने के लिए अपना PIN फिर से दर्ज करें.</string>
-    <string name="pin_length_4">4 अंक</string>
-    <string name="pin_length_6">6 अंक</string>
     <string name="pin_mismatch">PIN मेल नहीं खाते. फिर से प्रयास करें.</string>
 
     <!-- Biometric setup -->
@@ -107,7 +53,6 @@
     <string name="home_videos">निजी वीडियो</string>
 
     <!-- Navigation -->
-    <string name="nav_settings">सेटिंग्स</string>
 
     <!-- Home dashboard (redesign) -->
 
@@ -121,8 +66,6 @@
 
     <!-- Settings redesign (screenshot match) -->
     <string name="settings_subtitle">सुरक्षा, निजता और ऐप प्राथमिकताएँ प्रबंधित करें.</string>
-    <string name="settings_security_status">सुरक्षा स्थिति</string>
-    <string name="settings_security_status_active">सभी सुरक्षा सुविधाएँ सक्रिय हैं</string>
     <string name="settings_change_pin_desc_alt">अपना ऐप अनलॉक PIN बदलें</string>
     <string name="settings_change_pattern">पैटर्न बदलें</string>
     <string name="settings_change_pattern_desc">अपना अनलॉक पैटर्न बदलें</string>
@@ -136,9 +79,6 @@
     <string name="settings_app_lock_settings_desc">मौजूदा प्राथमिकताएँ प्रबंधित करें</string>
     <string name="settings_lock_overlay">लॉक स्क्रीन ओवरले</string>
     <string name="settings_lock_overlay_desc">लॉक स्क्रीन और व्यवहार कॉन्फ़िगर करें</string>
-    <string name="settings_section_preferences">प्राथमिकताएँ</string>
-    <string name="settings_notifications">सूचनाएँ</string>
-    <string name="settings_notifications_desc">ऐप सूचनाएँ प्रबंधित करें</string>
     <string name="settings_section_more">अधिक</string>
     <string name="settings_about_app">Lock &amp; Vault के बारे में</string>
     <string name="settings_about_app_desc">संस्करण, लाइसेंस और अधिक</string>
@@ -161,7 +101,6 @@
     <string name="auto_lock_never_short">कभी नहीं</string>
 
     <!-- Weak credential -->
-    <string name="pin_weak_warning">यह PIN अनुमान लगाने में बहुत आसान है. कोई दूसरा चुनें.</string>
 
     <!-- Recovery key -->
     <string name="recovery_title">आपकी रिकवरी कुंजी</string>
@@ -195,8 +134,6 @@
     <!-- Pattern -->
     <string name="pattern_setup_title">अपना पैटर्न सेट करें</string>
     <string name="pattern_setup_subtitle">ऐप अनलॉक करने के लिए पैटर्न बनाएँ. कम से कम 4 बिंदु जोड़ें.</string>
-    <string name="pattern_clear">पैटर्न साफ़ करें</string>
-    <string name="pattern_hint_note">इसे याद रखने योग्य बनाएँ लेकिन दूसरों के लिए अनुमान लगाना कठिन.</string>
     <string name="pattern_confirm_title">पैटर्न की पुष्टि करें</string>
     <string name="pattern_confirm_subtitle">वही पैटर्न फिर से बनाएँ.</string>
     <string name="pattern_too_short">कम से कम 4 बिंदु जोड़ें.</string>
@@ -364,7 +301,6 @@
     <string name="cd_thumbnail">मीडिया थंबनेल</string>
     <string name="cd_play_video">वीडियो चलाएँ</string>
     <string name="cd_favorite">पसंदीदा</string>
-    <string name="cd_close">बंद करें</string>
     <string name="cd_more_options">अधिक विकल्प</string>
 
     <!-- Content descriptions -->
@@ -387,16 +323,17 @@
     <string name="applock_overlay_title">ऐप लॉक है</string>
     <string name="applock_wrong_credential">गलत. फिर से प्रयास करें.</string>
 
+    <!-- Language picker (first launch only) -->
+    <string name="language_title">भाषा</string>
+    <string name="language_subtitle">अपनी भाषा चुनें</string>
+    <string name="language_confirm_cd">भाषा की पुष्टि करें</string>
+    <string name="language_selected_cd">चयनित</string>
+    <string name="language_follow_system">सिस्टम डिफ़ॉल्ट</string>
+    <string name="settings_language">भाषा</string>
+    <string name="settings_language_desc">ऐप की भाषा बदलें</string>
+    <string name="lv_vault_create_folder_sub">नया फ़ोल्डर जोड़ें</string>
+
     <!-- Permission setup (screenshot redesign) -->
-    <string name="applock_setup_title">ऐप लॉक सेट करें</string>
-    <string name="applock_setup_subtitle">सुरक्षा सक्रिय करने के लिए आवश्यक अनुमतियाँ दें.</string>
-    <string name="applock_perm_usage_desc_alt">यह पता लगाने के लिए आवश्यक कि चयनित ऐप्स कब खोले जाते हैं</string>
-    <string name="applock_perm_overlay_title_alt">अन्य ऐप्स के ऊपर दिखाएँ</string>
-    <string name="applock_perm_overlay_desc_alt">सुरक्षित ऐप्स के ऊपर लॉक स्क्रीन दिखाने के लिए आवश्यक</string>
-    <string name="applock_perm_notification_title_alt">सूचनाएँ</string>
-    <string name="applock_perm_notification_desc_alt">सुरक्षा को विश्वसनीय रूप से चालू रखने और महत्वपूर्ण अलर्ट दिखाने के लिए आवश्यक</string>
-    <string name="applock_perm_grant">दें</string>
-    <string name="applock_perm_privacy_note">ये अनुमतियाँ केवल आपके डिवाइस पर ऐप सुरक्षा के लिए उपयोग की जाती हैं.</string>
 
     <!-- Permission setup -->
     <string name="applock_perm_usage_title">उपयोग पहुँच</string>
@@ -429,10 +366,6 @@
 
     <!-- Installed apps list -->
     <string name="applock_search_hint">ऐप्स खोजें</string>
-    <string name="applock_filter_all">सभी</string>
-    <string name="applock_filter_locked">लॉक</string>
-    <string name="applock_filter_unlocked">अनलॉक</string>
-    <string name="applock_filter_system">सिस्टम ऐप्स</string>
     <string name="applock_no_apps">दिखाने के लिए कोई ऐप नहीं.</string>
 
     <!-- App Lock settings -->
@@ -604,28 +537,17 @@
 
     <!-- Tools dashboard (screenshot redesign) -->
     <string name="tools_header_subtitle">आपके डिवाइस को साफ़, व्यवस्थित और सुरक्षित करने के लिए स्मार्ट टूल्स.</string>
-    <string name="tools_hero_title">डिवाइस स्वस्थ है</string>
-    <string name="tools_hero_desc">आपका डिवाइस साफ़ और सुरक्षित है. ऐसे ही बनाए रखें!</string>
-    <string name="tools_hero_protected">सुरक्षित</string>
-    <string name="tools_hero_percent">92%</string>
-    <string name="tools_section_cleanup">क्लीनअप टूल्स</string>
-    <string name="tools_section_security">सुरक्षा और निजता</string>
     <string name="tools_duplicate_finder">डुप्लिकेट फ़ाइंडर</string>
     <string name="tools_duplicate_desc">डुप्लिकेट फ़ोटो, वीडियो और फ़ाइलें खोजें और हटाएँ</string>
     <string name="tools_large_files">बड़ी फ़ाइलें</string>
     <string name="tools_large_files_desc">मूल्यवान स्टोरेज लेने वाली बड़ी फ़ाइलें खोजें</string>
     <string name="tools_storage_analyzer">स्टोरेज एनालाइज़र</string>
     <string name="tools_storage_analyzer_desc">स्टोरेज का विश्लेषण करें और अपनी जगह प्रबंधित करें.</string>
-    <string name="tools_view_details">विवरण देखें</string>
     <string name="tools_vault_health">वॉल्ट स्वास्थ्य</string>
     <string name="tools_vault_health_desc">एन्क्रिप्शन स्थिति और सुरक्षा स्कैन करें</string>
-    <string name="tools_status_secure">सुरक्षित</string>
-    <string name="tools_section_storage">निजी स्टोरेज</string>
     <string name="tools_private_notes_desc">सुरक्षित निजी नोट्स</string>
     <string name="tools_private_documents_desc">ID, कार्ड और फ़ाइलें</string>
     <string name="settings_open_unavailable">यह स्क्रीन आपके डिवाइस पर उपलब्ध नहीं है</string>
-    <string name="tools_sample_dup_size">1.26 GB</string>
-    <string name="tools_sample_large_size">2.34 GB</string>
 
     <!-- Phase 11: Premium Tools -->
     <string name="close">बंद करें</string>

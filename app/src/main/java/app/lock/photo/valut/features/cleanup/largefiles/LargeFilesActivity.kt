@@ -3,19 +3,21 @@ package app.lock.photo.valut.features.cleanup.largefiles
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.common.Formatters
 import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityLargeFilesBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,6 +37,7 @@ class LargeFilesActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLargeFilesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loadNativeAd()
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         adapter = LargeFilesAdapter(thumbnailLoader, onToggle = viewModel::toggle)
@@ -97,7 +100,7 @@ class LargeFilesActivity : BaseActivity() {
     private fun confirmDelete() {
         val count = viewModel.uiState.value.selectedIds.size
         if (count == 0) {
-            Toast.makeText(this, R.string.cleanup_select_first, Toast.LENGTH_SHORT).show()
+            showToast(R.string.cleanup_select_first)
             return
         }
         val size = Formatters.formatSize(viewModel.selectedSizeBytes())
@@ -107,13 +110,23 @@ class LargeFilesActivity : BaseActivity() {
             .setNegativeButton(R.string.cleanup_cancel, null)
             .setPositiveButton(R.string.cleanup_confirm_move) { _, _ ->
                 viewModel.deleteSelected()
-                Toast.makeText(
-                    this,
-                    getString(R.string.cleanup_moved_to_bin, count),
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(getString(R.string.cleanup_moved_to_bin, count))
             }
             .show()
+    }
+
+    /** Medium native ad pinned below the list. */
+    private fun loadNativeAd() {
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
+            activity = this,
+            container = binding.frAdsBottom,
+            nativeId = getString(R.string.nativeAll),
+            layoutId = R.layout.native_medium_ad_layout_new,
+            canShowAds = RemoteConfig.nativeTools && RemoteConfig.enableAllAds,
+            reloadNativeId = getString(R.string.nativeAll),
+            canReloadAds = RemoteConfig.nativeTools && RemoteConfig.enableAllAds,
+            logTag = "LargeFiles"
+        )
     }
 
     companion object {

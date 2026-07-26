@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -23,8 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:padding="@dimen/grid_spacing"
-            android:scrollbars="vertical" />
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:paddingTop="@dimen/_6sdp"
+            android:paddingBottom="@dimen/_72sdp"
+            android:scrollbars="none" />
 
         <include
             android:id="@+id/emptyState"
@@ -37,9 +39,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/space_l"
-            android:contentDescription="@string/vault_add_photo"
+            android:contentDescription="@string/vault_add_media"
             android:src="@drawable/ic_add"
             android:visibility="gone"
-            app:tint="@color/white" />
+            app:backgroundTint="@color/primary"
+            app:tint="@color/text_on_accent" />
     </FrameLayout>
+
+    <!-- Medium native ad pinned below the grid. -->
+    <FrameLayout
+        android:id="@+id/frAdsBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp" />
+
 </LinearLayout>

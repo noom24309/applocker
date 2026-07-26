@@ -2,6 +2,7 @@ package app.lock.photo.valut.core.ui
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -33,11 +34,31 @@ class PatternLockView @JvmOverloads constructor(
     private var errorState = false
     private var inputEnabled = true
 
-    // White nodes/line on a purple (primary) panel — matches the reference design.
-    private val panelColor = ContextCompat.getColor(context, R.color.white)
-    private val nodeColor = ContextCompat.getColor(context, R.color.primary)
+    // Palette. Defaults are the original light look (white panel, primary nodes);
+    // dark screens override them via the PatternLockView styleable attributes. A
+    // transparent panel plus an idle ring colour gives the borderless dark grid.
+    private val panelColor: Int
+    private val nodeColor: Int
+    private val idleNodeColor: Int
+    private val idleRingColor: Int
     private val errorColor = ContextCompat.getColor(context, R.color.accent_red)
     private val panelRadius = dp(24f)
+
+    init {
+        val defaultPanel = ContextCompat.getColor(context, R.color.white)
+        val defaultNode = ContextCompat.getColor(context, R.color.primary)
+        val a = context.obtainStyledAttributes(attrs, R.styleable.PatternLockView)
+        val panel = a.getColor(R.styleable.PatternLockView_patternPanelColor, defaultPanel)
+        val node = a.getColor(R.styleable.PatternLockView_patternNodeColor, defaultNode)
+        val idleNode = a.getColor(R.styleable.PatternLockView_patternIdleNodeColor, node)
+        val idleRing = a.getColor(R.styleable.PatternLockView_patternIdleRingColor, Color.TRANSPARENT)
+        a.recycle()
+
+        panelColor = panel
+        nodeColor = node
+        idleNodeColor = idleNode
+        idleRingColor = idleRing
+    }
 
     private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
@@ -156,10 +177,12 @@ class PatternLockView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        // Purple panel background.
-        canvas.drawRoundRect(
-            0f, 0f, width.toFloat(), height.toFloat(), panelRadius, panelRadius, bgPaint
-        )
+        // Panel background (skipped when the screen wants a borderless grid).
+        if (panelColor != Color.TRANSPARENT) {
+            canvas.drawRoundRect(
+                0f, 0f, width.toFloat(), height.toFloat(), panelRadius, panelRadius, bgPaint
+            )
+        }
 
         val activeColor = if (errorState) errorColor else nodeColor
 
@@ -183,7 +206,11 @@ class PatternLockView @JvmOverloads constructor(
                 nodePaint.color = activeColor
                 canvas.drawCircle(nodeCx[index], nodeCy[index], nodeRadius * 0.8f, nodePaint)
             } else {
-                nodePaint.color = nodeColor
+                if (idleRingColor != Color.TRANSPARENT) {
+                    ringPaint.color = idleRingColor
+                    canvas.drawCircle(nodeCx[index], nodeCy[index], nodeRadius * 1.7f, ringPaint)
+                }
+                nodePaint.color = idleNodeColor
                 canvas.drawCircle(nodeCx[index], nodeCy[index], nodeRadius * 0.5f, nodePaint)
             }
         }

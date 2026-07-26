@@ -17,22 +17,28 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.applock.AppLockServiceManager
 import app.lock.photo.valut.core.lock.AppLockStateManager
 import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.core.storage.SecureCacheManager
+import app.lock.photo.valut.core.storage.VaultEncryptionUpgrader
 import app.lock.photo.valut.core.ui.BaseActivity
 import app.lock.photo.valut.databinding.ActivityMainBinding
 import app.lock.photo.valut.domain.repository.SettingsRepository
 import app.lock.photo.valut.domain.repository.VaultRepository
+import app.lock.photo.valut.features.applock.apps.AppLockAppsFragment
 import app.lock.photo.valut.features.premium.ToolsFragment
+import app.lock.photo.valut.features.settings.SettingsFragment
 import app.lock.photo.valut.features.vault.EncryptionMigrationActivity
 import app.lock.photo.valut.features.vault.VaultHomeFragment
-import com.apero.nextgen.AdsSdk.banner.AperoNextGenBanner
-import com.apero.nextgen.AdsSdk.callback.AperoNextGenAdCallback
-import com.apero.nextgen.AdsSdk.interstitial.AperoNextGenInterstitial
+import com.nextgen.ads.banner.NextGenBanner
+import com.nextgen.ads.callback.NextGenAdCallback
+import com.nextgen.ads.interstitial.NextGenInterstitial
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -46,14 +52,16 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
 
     @Inject lateinit var appLockStateManager: AppLockStateManager
+    @Inject lateinit var appLockServiceManager: AppLockServiceManager
     @Inject lateinit var settingsRepository: SettingsRepository
     @Inject lateinit var secureCacheManager: SecureCacheManager
+    @Inject lateinit var encryptionUpgrader: VaultEncryptionUpgrader
     @Inject lateinit var vaultRepository: VaultRepository
 
     // Applies its own per-view insets (fragment top + bottom-nav bottom) below.
     override val applyEdgeToEdgeInsets: Boolean = false
 
-    private var currentTab = Tab.HOME
+    private var currentTab = Tab.APPS
 
     /** Pre-Phase-4 plain files are migrated to encrypted storage once, on first Vault open. */
     private var migrationChecked = false
@@ -75,7 +83,7 @@ class MainActivity : BaseActivity() {
         loadBanner()
 
 
-        AperoNextGenInterstitial.InterAdLoadWithCounter(
+        NextGenInterstitial.InterAdLoadWithCounter(
             placement = "MainAd",
             highAdUnitId = getString(R.string.InterMain),
             counter = 2,
@@ -83,16 +91,19 @@ class MainActivity : BaseActivity() {
             logTag = "MainAd",
             callback = null,
         )
-        binding.navHome.setOnClickListener { selectTab(Tab.HOME) }
+        useLightSystemBarIcons()
+
         binding.navVault.setOnClickListener { selectTab(Tab.VAULT) }
+        binding.navApps.setOnClickListener { selectTab(Tab.APPS) }
         binding.navTools.setOnClickListener { selectTab(Tab.TOOLS) }
+        binding.navSettings.setOnClickListener { selectTab(Tab.SETTINGS) }
 
         if (savedInstanceState == null) {
-            switchTab(Tab.HOME) // pehla tab bina ad ke
+            switchTab(Tab.APPS) // pehla tab bina ad ke
         } else {
             currentTab = runCatching {
-                Tab.valueOf(savedInstanceState.getString(STATE_TAB, Tab.HOME.name))
-            }.getOrDefault(Tab.HOME)
+                Tab.valueOf(savedInstanceState.getString(STATE_TAB, Tab.APPS.name))
+            }.getOrDefault(Tab.APPS)
             updateNavSelection()
         }
     }
@@ -115,18 +126,27 @@ class MainActivity : BaseActivity() {
                 finish()
                 return@launch
             }
-            runCatching { secureCacheManager.clearAllDecryptedTempFiles() }
+            // Blocking file deletes — keep them off the main thread.
+            withContext(Dispatchers.IO) {
+                runCatching { secureCacheManager.clearAllDecryptedTempFiles() }
+            }
+            // Cheapest self-heal there is: every time the user opens the app, make sure
+            // protection is actually running for whatever they have locked.
+            runCatching { appLockServiceManager.ensureRunning() }
+            // Quietly rewrite any vault items still in the slow key format, so no screen ever
+            // pays that one-time cost again.
+            runCatching { encryptionUpgrader.startIfNeeded() }
         }
     }
 
     /** Tab click: counter wala inter ad pehle, dismiss/skip par asal switch. */
     private fun selectTab(tab: Tab) {
         if (tab == currentTab) return
-        AperoNextGenInterstitial.InterAdShowWithCounter(
+        NextGenInterstitial.InterAdShowWithCounter(
             this,
             "MainAd",
             enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds,
-            callback = object : AperoNextGenAdCallback {
+            callback = object : NextGenAdCallback {
                 override fun onNextAction() {
                     if (!isFinishing && !isDestroyed) switchTab(tab)
                 }
@@ -178,15 +198,22 @@ class MainActivity : BaseActivity() {
     }
 
     private fun newFragment(tab: Tab): Fragment = when (tab) {
-        Tab.HOME -> HomeFragment()
         Tab.VAULT -> VaultHomeFragment()
+        Tab.APPS -> AppLockAppsFragment.asTab()
         Tab.TOOLS -> ToolsFragment()
+        Tab.SETTINGS -> SettingsFragment.asTab()
     }
 
     private fun updateNavSelection() {
-        styleTab(binding.navHomeIcon, binding.navHomeLabel, binding.navHomeIndicator, currentTab == Tab.HOME)
         styleTab(binding.navVaultIcon, binding.navVaultLabel, binding.navVaultIndicator, currentTab == Tab.VAULT)
+        styleTab(binding.navAppsIcon, binding.navAppsLabel, binding.navAppsIndicator, currentTab == Tab.APPS)
         styleTab(binding.navToolsIcon, binding.navToolsLabel, binding.navToolsIndicator, currentTab == Tab.TOOLS)
+        styleTab(
+            binding.navSettingsIcon,
+            binding.navSettingsLabel,
+            binding.navSettingsIndicator,
+            currentTab == Tab.SETTINGS
+        )
     }
 
     private fun styleTab(icon: ImageView, label: TextView, indicator: View, selected: Boolean) {
@@ -212,7 +239,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private enum class Tab { HOME, VAULT, TOOLS }
+    private enum class Tab { APPS, VAULT, TOOLS, SETTINGS }
 
     companion object {
         private const val STATE_TAB = "current_tab"
@@ -221,7 +248,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun loadBanner() {
-        AperoNextGenBanner.loadAndShowCollapsibleBanner(
+        NextGenBanner.loadAndShowCollapsibleBanner(
             activity = this,
             container = binding.frAds,
             bannerId = getString(R.string.bannerAll), // TODO: apni collapsible id

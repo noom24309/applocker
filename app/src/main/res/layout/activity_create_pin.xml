@@ -4,111 +4,147 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@drawable/sp_bg">
 
-    <TextView
-        android:id="@+id/titlePin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextAppearance.App.Bold"
-        android:layout_marginTop="@dimen/space_xl"
-        android:layout_marginHorizontal="24dp"
-        android:text="@string/create_pin_title"
-        android:textAppearance="@style/TextAppearance.App.Title"
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/cd_app_logo"
+        android:src="@drawable/ic_lock_badge"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <TextView
+        android:id="@+id/titlePin"
+        style="@style/TextAppearance.App.SemiBold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:gravity="center"
+        android:text="Enter passcode"
+        android:fontFamily="@font/extra_bold"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <TextView
         android:id="@+id/subtitlePin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         style="@style/TextAppearance.App.Medium"
-        android:layout_marginTop="@dimen/space_s"
-        android:layout_marginHorizontal="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xs"
+        android:layout_marginHorizontal="@dimen/screen_padding"
+        android:gravity="center"
         android:text="@string/create_pin_subtitle"
-        android:textAppearance="@style/TextAppearance.App.Body"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titlePin" />
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/lengthToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_l"
-        android:layout_marginHorizontal="24dp"
-        app:selectionRequired="true"
-        app:singleSelection="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitlePin">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLength4"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pin_length_4"
-            android:textAllCaps="false" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLength6"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pin_length_6"
-            android:textAllCaps="false" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <LinearLayout
         android:id="@+id/pinDotsContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_xxl"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lengthToggle" />
+        app:layout_constraintTop_toBottomOf="@id/subtitlePin">
+
+        <ImageView
+            android:layout_width="@dimen/pin_dot_size"
+            android:layout_height="@dimen/pin_dot_size"
+            android:layout_marginHorizontal="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_pin_dot_empty" />
+
+        <ImageView
+            android:layout_width="@dimen/pin_dot_size"
+            android:layout_height="@dimen/pin_dot_size"
+            android:layout_marginHorizontal="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_pin_dot_empty" />
+
+        <ImageView
+            android:layout_width="@dimen/pin_dot_size"
+            android:layout_height="@dimen/pin_dot_size"
+            android:layout_marginHorizontal="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_pin_dot_empty" />
+
+        <ImageView
+            android:layout_width="@dimen/pin_dot_size"
+            android:layout_height="@dimen/pin_dot_size"
+            android:layout_marginHorizontal="6dp"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_pin_dot_empty" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/errorPin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_m"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="@dimen/space_s"
+        android:layout_marginHorizontal="@dimen/screen_padding"
         android:gravity="center"
         android:textColor="@color/accent_red"
         android:textSize="@dimen/text_caption"
         android:visibility="invisible"
-        tools:text="PINs don't match"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pinDotsContainer" />
+        app:layout_constraintTop_toBottomOf="@id/pinDotsContainer"
+        tools:text="PINs don't match" />
 
-    <!-- Native Ad (full width, keypad ke upar) -->
+    <!-- Native ad fills the gap between the keypad and the pattern shortcut -->
     <FrameLayout
         android:id="@+id/flAdNative"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/keypadContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Keypad (merge include ko vertical container chahiye) -->
     <LinearLayout
         android:id="@+id/keypadContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="@dimen/space_s"
+        android:layout_marginHorizontal="@dimen/_24sdp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/_8sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/errorPin">
 
         <include layout="@layout/view_pin_keypad" />
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/btnUsePattern"
+        style="@style/TextAppearance.App.SemiBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_12sdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/space_xs"
+        android:text="@string/pin_use_pattern"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keypadContainer" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

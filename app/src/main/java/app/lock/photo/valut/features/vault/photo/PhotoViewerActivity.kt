@@ -7,14 +7,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.ads.AppAds
 import app.lock.photo.valut.core.storage.SecureThumbnailLoader
 import app.lock.photo.valut.databinding.ActivityPhotoViewerBinding
 import app.lock.photo.valut.domain.model.ExportResult
@@ -23,7 +21,7 @@ import app.lock.photo.valut.features.vault.model.VaultMediaUiModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 
 @AndroidEntryPoint
 class PhotoViewerActivity : BaseActivity() {
@@ -33,9 +31,6 @@ class PhotoViewerActivity : BaseActivity() {
     private lateinit var pagerAdapter: PhotoPagerAdapter
     private var initialPositionApplied = false
 
-    // Immersive viewer: draws under the system bars and manages them itself.
-    override val applyEdgeToEdgeInsets: Boolean = false
-
     @javax.inject.Inject
     lateinit var thumbnailLoader: SecureThumbnailLoader
 
@@ -44,13 +39,17 @@ class PhotoViewerActivity : BaseActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityPhotoViewerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        hideSystemBars()
+        // The viewer now has a real header and a banner slot, so the system bars stay put
+        // (BaseActivity pads the content for them) instead of the old immersive mode.
+        useLightSystemBarIcons()
 
         pagerAdapter = PhotoPagerAdapter(thumbnailLoader) { zoomed -> binding.viewPager.isUserInputEnabled = !zoomed }
         binding.viewPager.adapter = pagerAdapter
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) = updateBarsForCurrent()
         })
+
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, "PhotoViewer")
 
         binding.btnClose.setOnClickListener { finish() }
         binding.btnFavorite.setOnClickListener { current()?.let { viewModel.toggleFavorite(it.id) } }
@@ -85,7 +84,7 @@ class PhotoViewerActivity : BaseActivity() {
                             is PhotoViewerViewModel.Event.ExportFinished -> toastExport(event.result)
                             is PhotoViewerViewModel.Event.RestoredToGallery -> {
                                 val msg = if (event.success) R.string.restore_done else R.string.restore_failed
-                                Toast.makeText(this@PhotoViewerActivity, msg, Toast.LENGTH_SHORT).show()
+                                showToast(msg)
                             }
                             PhotoViewerViewModel.Event.ActionDone -> Unit
                         }
@@ -100,6 +99,10 @@ class PhotoViewerActivity : BaseActivity() {
     private fun updateBarsForCurrent() {
         val item = current() ?: return
         binding.tvTitle.text = item.displayName
+        val position = binding.viewPager.currentItem + 1
+        val total = viewModel.items.value.size
+        binding.tvSubtitle.text =
+            getString(R.string.viewer_position, position, total) + " · " + item.sizeText
         binding.btnFavorite.setImageResource(
             if (item.isFavorite) R.drawable.ic_favorite else R.drawable.ic_favorite_border
         )
@@ -153,15 +156,7 @@ class PhotoViewerActivity : BaseActivity() {
             result.exportedCount > 0 -> getString(R.string.export_done, result.exportedCount)
             else -> getString(R.string.export_failed)
         }
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun hideSystemBars() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        WindowInsetsControllerCompat(window, binding.root).apply {
-            hide(WindowInsetsCompat.Type.statusBars())
-            systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
+        showToast(msg)
     }
 
     companion object {

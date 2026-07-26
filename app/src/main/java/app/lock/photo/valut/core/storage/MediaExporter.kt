@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import app.lock.photo.valut.domain.model.MediaType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.OutputStream
@@ -53,20 +54,28 @@ class MediaExporter @Inject constructor(
             put(MediaStore.MediaColumns.IS_PENDING, 1)
         }
 
-        val uri = resolver.insert(collection, values) ?: return false
+        // insert() itself throws on some OEMs (rejected relative path, duplicate name); a failed
+        // export must report false, never take the caller's coroutine down with it.
+        val uri = runCatching { resolver.insert(collection, values) }
+            .onFailure { Log.w(TAG, "export insert failed: ${it.javaClass.simpleName} ${it.message}") }
+            .getOrNull() ?: return false
         return try {
-            resolver.openOutputStream(uri)?.use { output -> write(output) } ?: return false
+            resolver.openOutputStream(uri)?.use { output -> write(output) }
+                ?: throw IllegalStateException("export destination not writable")
             values.clear()
             values.put(MediaStore.MediaColumns.IS_PENDING, 0)
             resolver.update(uri, values, null, null)
             true
         } catch (e: Exception) {
-            resolver.delete(uri, null, null)
+            Log.w(TAG, "export write failed: ${e.javaClass.simpleName} ${e.message}")
+            // Drop the half-written pending entry so the gallery never shows a broken file.
+            runCatching { resolver.delete(uri, null, null) }
             false
         }
     }
 
     private companion object {
         const val EXPORT_FOLDER = "PrivateLockVault"
+        const val TAG = "MediaExporter"
     }
 }

@@ -3,7 +3,6 @@ package app.lock.photo.valut.features.auth.pin
 import androidx.lifecycle.ViewModel
 import app.lock.photo.valut.core.common.Constants
 import app.lock.photo.valut.core.security.PinSetupSession
-import app.lock.photo.valut.core.security.WeakCredentialChecker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,12 +13,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreatePinViewModel @Inject constructor(
-    private val session: PinSetupSession,
-    private val weakChecker: WeakCredentialChecker
+    private val session: PinSetupSession
 ) : ViewModel() {
 
     sealed interface Event {
-        data object WeakPin : Event
         data object Proceed : Event
     }
 
@@ -33,11 +30,8 @@ class CreatePinViewModel @Inject constructor(
         _length.value = length
     }
 
+    /** Any PIN is accepted — no strength screening. */
     fun submitPin(pin: String) {
-        if (weakChecker.isWeakPin(pin)) {
-            events.trySend(Event.WeakPin)
-            return
-        }
         session.store(pin, _length.value)
         events.trySend(Event.Proceed)
     }

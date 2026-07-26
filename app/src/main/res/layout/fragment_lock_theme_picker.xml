@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -32,4 +32,11 @@
         android:clipToPadding="false"
         android:padding="@dimen/space_m"
         tools:listitem="@layout/item_lock_theme" />
+
+    <!-- Bottom banner: this screen has no native ad. -->
+    <FrameLayout
+        android:id="@+id/frAdsBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

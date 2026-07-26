@@ -9,8 +9,10 @@ import app.lock.photo.valut.core.lock.AppLockStateManager
 import app.lock.photo.valut.core.lock.LockRouter
 import app.lock.photo.valut.core.storage.SecureCacheManager
 import app.lock.photo.valut.domain.repository.SettingsRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -44,7 +46,10 @@ abstract class SecureVaultActivity : BaseActivity() {
                 finish()
                 return@launch
             }
-            runCatching { secureCacheManager.clearAllDecryptedTempFiles() }
+            // Deleting cache files is blocking IO — keep it off the main thread.
+            withContext(Dispatchers.IO) {
+                runCatching { secureCacheManager.clearAllDecryptedTempFiles() }
+            }
         }
     }
 }

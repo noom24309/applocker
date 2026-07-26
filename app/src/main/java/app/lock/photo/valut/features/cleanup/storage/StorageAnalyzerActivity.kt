@@ -5,12 +5,13 @@ import app.lock.photo.valut.core.ui.BaseActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import app.lock.photo.valut.R
+import app.lock.photo.valut.core.ads.AppAds
 import app.lock.photo.valut.core.common.Formatters
 import app.lock.photo.valut.databinding.ActivityStorageAnalyzerBinding
 import app.lock.photo.valut.databinding.ViewStorageRowBinding
@@ -30,6 +31,7 @@ class StorageAnalyzerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStorageAnalyzerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, "StorageAnalyzer")
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.btnClearTemp.setOnClickListener { viewModel.clearTempCache() }
         binding.btnDuplicates.setOnClickListener { startActivity(DuplicateFinderActivity.intent(this)) }
@@ -38,7 +40,7 @@ class StorageAnalyzerActivity : BaseActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch { viewModel.breakdown.collect { it?.let(::render) } }
-                launch { viewModel.messages.collect { Toast.makeText(this@StorageAnalyzerActivity, it, Toast.LENGTH_SHORT).show() } }
+                launch { viewModel.messages.collect { showToast(it) } }
             }
         }
     }

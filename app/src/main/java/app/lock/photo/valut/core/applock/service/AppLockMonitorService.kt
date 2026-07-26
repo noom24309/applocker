@@ -9,9 +9,11 @@ import android.content.IntentFilter
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
+import androidx.core.content.ContextCompat
 import app.lock.photo.valut.core.applock.AppLockNotificationHelper
 import app.lock.photo.valut.core.applock.AppLockOverlayStateManager
 import app.lock.photo.valut.core.applock.AppLockPermissionChecker
+import app.lock.photo.valut.core.applock.AppLockProtectionState
 import app.lock.photo.valut.core.applock.AppLockServiceManager
 import app.lock.photo.valut.core.applock.AppLockSessionManager
 import app.lock.photo.valut.core.applock.AppLockWatchdogScheduler
@@ -52,6 +54,7 @@ class AppLockMonitorService : Service() {
     @Inject lateinit var serviceManager: AppLockServiceManager
     @Inject lateinit var recordStats: RecordLocalAppLockStatsUseCase
     @Inject lateinit var watchdog: AppLockWatchdogScheduler
+    @Inject lateinit var protectionState: AppLockProtectionState
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var monitorJob: Job? = null
@@ -79,8 +82,14 @@ class AppLockMonitorService : Service() {
     private val notifDeletedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == AppLockNotificationHelper.ACTION_NOTIFICATION_DELETED) {
-                notificationHelper.notifyUpdate(lockedPackages.size)
-                startInForeground()
+                // Never let a failed re-post escape onReceive: an exception thrown out of a
+                // receiver is reported back as an undeliverable broadcast and kills the process,
+                // which would take protection down with it. Losing the notification is survivable
+                // — the watchdog re-posts it on the next heartbeat.
+                runCatching {
+                    notificationHelper.notifyUpdate(lockedPackages.size)
+                    startInForeground()
+                }
             }
         }
     }
@@ -93,9 +102,11 @@ class AppLockMonitorService : Service() {
         notificationHelper.ensureChannel()
         startInForeground()
         serviceManager.onServiceStarted()
-        // Arm the heartbeat: if an OEM battery manager kills this process without
-        // onDestroy/onTaskRemoved running, the watchdog alarm restarts protection.
-        watchdog.scheduleHeartbeat()
+        // Publish liveness immediately so a watchdog firing right now doesn't start a second
+        // copy, and arm both self-heal channels: if an OEM battery manager kills this process
+        // without onDestroy/onTaskRemoved running, they bring protection back.
+        protectionState.markAlive()
+        watchdog.ensureAllChannels()
         registerScreenReceiver()
         registerNotifDeletedReceiver()
         observeState()
@@ -103,10 +114,23 @@ class AppLockMonitorService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == ACTION_STOP) {
-            userRequestedStop = true
-            watchdog.cancel()
-            stopSelf()
-            return START_NOT_STICKY
+            // A stop request is only honoured once nothing is locked any more. While apps are
+            // locked protection must stay up, so the request is ignored and monitoring continues.
+            scope.launch {
+                val stillLocked = runCatching { lockedAppDao.getLockedPackageNames().isNotEmpty() }
+                    .getOrDefault(true)
+                if (stillLocked) {
+                    startInForeground()
+                    startMonitoring()
+                } else {
+                    userRequestedStop = true
+                    protectionState.setProtectionWanted(false)
+                    protectionState.markStopped()
+                    watchdog.cancel()
+                    stopSelf()
+                }
+            }
+            return START_STICKY
         }
         startInForeground()
         startMonitoring()
@@ -133,13 +157,23 @@ class AppLockMonitorService : Service() {
             lockedAppDao.observeLockedPackageNames().collectLatest { names ->
                 lockedPackages = names.toSet()
                 if (lockedPackages.isEmpty()) {
-                    // Nothing left to protect: stop. This is the ONLY condition under which
-                    // the service stops itself. The watchdog will not resurrect it while zero
-                    // apps are locked, and locking an app again restarts it via startProtection().
-                    // We do NOT set userRequestedStop, so this isn't treated as a hard user stop.
-                    stopSelf()
+                    // Nothing left to protect: stop. This is the ONLY condition under which the
+                    // service stops itself — and it is confirmed with a direct query first,
+                    // because a single transient empty emission (DB not warm yet, migration,
+                    // observer restart) used to kill protection while apps were still locked.
+                    val reallyEmpty = runCatching { lockedAppDao.getLockedPackageNames().isEmpty() }
+                        .getOrDefault(false)
+                    if (reallyEmpty) {
+                        protectionState.setProtectionWanted(false)
+                        protectionState.markStopped()
+                        watchdog.cancel()
+                        stopSelf()
+                    }
                 } else {
-                    // Refresh the notification's locked-app count (no app names exposed).
+                    // Something is locked: keep the intent recorded so every self-heal channel
+                    // knows protection is wanted, then refresh the notification's locked-app
+                    // count (no app names exposed).
+                    protectionState.setProtectionWanted(true)
                     runCatching { notificationHelper.notifyUpdate(lockedPackages.size) }
                 }
             }
@@ -173,6 +207,14 @@ class AppLockMonitorService : Service() {
 
     private fun startMonitoring() {
         if (monitorJob?.isActive == true) return
+        // Liveness beat, independent of the monitor loop's own timing: the watchdog and the
+        // keep-alive job read this to tell "running" from "killed without onDestroy".
+        scope.launch {
+            while (isActive) {
+                protectionState.markAlive()
+                delay(HEARTBEAT_WRITE_MS)
+            }
+        }
         monitorJob = scope.launch {
             while (isActive) {
                 // Never stop the service on a permission check: many OEM AppOps
@@ -252,11 +294,9 @@ class AppLockMonitorService : Service() {
 
     private fun registerNotifDeletedReceiver() {
         val filter = IntentFilter(AppLockNotificationHelper.ACTION_NOTIFICATION_DELETED)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(notifDeletedReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
-        } else {
-            registerReceiver(notifDeletedReceiver, filter)
-        }
+        ContextCompat.registerReceiver(
+            this, notifDeletedReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED
+        )
     }
 
     private fun registerScreenReceiver() {
@@ -278,7 +318,11 @@ class AppLockMonitorService : Service() {
             addAction(Intent.ACTION_SCREEN_ON)
             addAction(Intent.ACTION_USER_PRESENT)
         }
-        registerReceiver(receiver, filter)
+        // Android 13+ requires an explicit export flag on context-registered receivers. These
+        // are protected system broadcasts, so NOT_EXPORTED is both correct and the tightest.
+        ContextCompat.registerReceiver(
+            this, receiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED
+        )
         screenReceiver = receiver
     }
 
@@ -307,12 +351,20 @@ class AppLockMonitorService : Service() {
         screenReceiver?.let { runCatching { unregisterReceiver(it) } }
         screenReceiver = null
         runCatching { unregisterReceiver(notifDeletedReceiver) }
+        // Drop every unlock session: after a restart each locked app must ask again, so a
+        // kill can never leave an app silently unlocked.
         sessionManager.clearAll()
         overlayState.clear()
         serviceManager.onServiceStopped()
-        // Killed by the system (LMK, OEM battery manager, crash): come back quickly.
-        // The receiver no-ops if the user has meanwhile turned protection off.
-        if (!userRequestedStop) watchdog.scheduleRestart()
+        // Stop claiming to be alive the moment we go down, so the watchdog sees the truth
+        // immediately instead of waiting out the staleness window.
+        protectionState.markStopped()
+        // Killed by the system (LMK, OEM battery manager, crash): come back quickly, and keep
+        // the slow channel armed too. The receiver no-ops once nothing is locked any more.
+        if (!userRequestedStop) {
+            watchdog.scheduleRestart()
+            watchdog.ensureKeepAliveJob()
+        }
     }
 
     companion object {
@@ -325,5 +377,8 @@ class AppLockMonitorService : Service() {
         // Notification visibility recheck: fast when apps are locked, idle otherwise.
         private const val RECHECK_ACTIVE_MS = 2_000L
         private const val RECHECK_IDLE_MS = 30_000L
+
+        /** Liveness beat interval; must stay well under AppLockProtectionState.STALE_AFTER_MS. */
+        private const val HEARTBEAT_WRITE_MS = 10_000L
     }
 }

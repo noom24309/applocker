@@ -10,13 +10,18 @@ import app.lock.photo.valut.AdsSdk.RemoteConfig
 import app.lock.photo.valut.R
 import app.lock.photo.valut.core.common.Constants
 import app.lock.photo.valut.databinding.ActivityCreatePinBinding
-import com.apero.nextgen.AdsSdk.nativead.AperoNextGenNativeHelper
+import app.lock.photo.valut.domain.repository.SettingsRepository
+import app.lock.photo.valut.features.auth.pattern.PatternSetupActivity
+import com.nextgen.ads.nativead.NextGenNativeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
- * First step of PIN setup: choose a 4- or 6-digit PIN and enter it. The PIN is
- * held only in an in-memory session (never an Intent extra) and confirmed next.
+ * First step of PIN setup, and the first screen after the splash for a fresh install:
+ * enter a 4-digit PIN. The PIN is held only in an in-memory session (never an Intent
+ * extra) and confirmed next. Users who'd rather draw a pattern switch from here — that
+ * inline shortcut replaced the old unlock-method picker screen.
  */
 @AndroidEntryPoint
 class CreatePinActivity : BasePinActivity() {
@@ -25,21 +30,30 @@ class CreatePinActivity : BasePinActivity() {
     private lateinit var binding: ActivityCreatePinBinding
     private val viewModel: CreatePinViewModel by viewModels()
 
+    @Inject
+    lateinit var settingsRepository: SettingsRepository
+
     override fun createContentView(): View {
         binding = ActivityCreatePinBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewReady() {
-        binding.lengthToggle.check(R.id.btnLength4)
+        // Drawn on the splash background, so the system bars need light icons.
+        useLightSystemBarIcons()
+
+        // Reaching credential setup means onboarding is finished — persist it so relaunches
+        // route here (or onward) instead of repeating onboarding.
+        lifecycleScope.launch { settingsRepository.completeOnboarding() }
+
+        binding.btnUsePattern.setOnClickListener {
+            startActivity(PatternSetupActivity.firstRunIntent(this))
+        }
+
+        // Setup is always a 4-digit PIN — no length picker on this screen.
+        viewModel.setLength(Constants.PIN_LENGTH_4)
         applyPinLength(Constants.PIN_LENGTH_4)
 
-        binding.lengthToggle.addOnButtonCheckedListener { _, checkedId, isChecked ->
-            if (!isChecked) return@addOnButtonCheckedListener
-            val length = if (checkedId == R.id.btnLength6) Constants.PIN_LENGTH_6 else Constants.PIN_LENGTH_4
-            viewModel.setLength(length)
-            applyPinLength(length)
-        }
         loadNativeAd()
 
         observeEvents()
@@ -50,13 +64,13 @@ class CreatePinActivity : BasePinActivity() {
     }
 
     private fun loadNativeAd() {
-        AperoNextGenNativeHelper.loadAndShowNativeAdRuntime(
+        NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
-            nativeId = getString(R.string.OBFull2),
+            nativeId = getString(R.string.NativePassCode),
             layoutId = R.layout.native_medium_ad_layout_new,
             canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.OBFull2),
+            reloadNativeId = getString(R.string.NativePassCode),
             canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
             logTag = "CreatePin"
         )
@@ -67,8 +81,6 @@ class CreatePinActivity : BasePinActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.eventFlow.collect { event ->
                     when (event) {
-                        CreatePinViewModel.Event.WeakPin ->
-                            showError(getString(R.string.pin_weak_warning))
                         CreatePinViewModel.Event.Proceed -> {
                             startActivity(Intent(this@CreatePinActivity, ConfirmPinActivity::class.java))
                         }

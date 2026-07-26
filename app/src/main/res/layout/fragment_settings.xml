@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_bg">
+    android:background="@android:color/transparent">
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/home_bg"
+        android:background="@android:color/transparent"
         android:fillViewport="true"
         android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/fr_ads"
@@ -371,55 +371,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- ===== Preferences ===== -->
-            <TextView
-                style="@style/SettingsSectionHeader"
-                android:text="@string/settings_section_preferences" />
-
-            <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <!-- Notifications -->
-                    <LinearLayout
-                        android:id="@+id/rowNotifications"
-                        style="@style/SettingsRow">
-
-                        <FrameLayout
-                            style="@style/SettingsIconTile"
-                            android:backgroundTint="@color/home_tile_purple">
-
-                            <ImageView
-                                style="@style/SettingsIconImg"
-                                android:src="@drawable/ic_bell"
-                                app:tint="@color/home_primary" />
-                        </FrameLayout>
-
-                        <LinearLayout style="@style/SettingsRowText">
-
-                            <TextView
-                                style="@style/SettingsRowTitle"
-                                android:text="@string/settings_notifications" />
-
-                            <TextView
-                                style="@style/SettingsRowDesc"
-                                android:text="@string/settings_notifications_desc" />
-                        </LinearLayout>
-
-                        <ImageView
-                            style="@style/SettingsRowTrailingIcon"
-                            android:src="@drawable/ic_chevron_right"
-                            app:tint="@color/home_hint" />
-                    </LinearLayout>
-
-                    <View style="@style/SettingsDivider" />
-
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
             <!-- ===== More ===== -->
             <TextView
@@ -432,6 +383,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <!-- Language: opens the same picker the first launch shows -->
+                    <LinearLayout
+                        android:id="@+id/rowLanguage"
+                        style="@style/SettingsRow">
+
+                        <FrameLayout
+                            style="@style/SettingsIconTile"
+                            android:backgroundTint="@color/home_tile_teal">
+
+                            <ImageView
+                                style="@style/SettingsIconImg"
+                                android:src="@drawable/ic_globe"
+                                app:tint="@color/home_primary" />
+                        </FrameLayout>
+
+                        <LinearLayout style="@style/SettingsRowText">
+
+                            <TextView
+                                style="@style/SettingsRowTitle"
+                                android:text="@string/settings_language" />
+
+                            <TextView
+                                style="@style/SettingsRowDesc"
+                                android:text="@string/settings_language_desc" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvLanguageValue"
+                            style="@style/SettingsRowValue"
+                            tools:text="English" />
+
+                        <ImageView
+                            style="@style/SettingsRowTrailingIcon"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/home_hint" />
+                    </LinearLayout>
+
+                    <View style="@style/SettingsDivider" />
 
                     <!-- Privacy Policy -->
                     <LinearLayout

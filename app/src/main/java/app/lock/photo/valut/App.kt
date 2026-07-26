@@ -7,13 +7,17 @@ import androidx.appcompat.app.AppCompatDelegate
 import app.lock.photo.valut.core.lock.AppLifecycleObserver
 import app.lock.photo.valut.core.push.PushNotificationHelper
 import app.lock.photo.valut.core.storage.SecureCacheManager
-import com.apero.nextgen.AdsSdk.config.AperoNextGenConfig
-import com.apero.nextgen.AdsSdk.init.AperoNextGen
-import com.apero.nextgen.AdsSdk.init.AperoNextGenInitCallback
+import com.nextgen.ads.config.NextGenConfig
+import com.nextgen.ads.init.NextGen
+import com.nextgen.ads.init.NextGenInitCallback
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -36,7 +40,14 @@ class App : Application() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         lifecycleObserver.register(this)
         // Cold start: clear any decrypted temp files left behind by a previous crash/kill.
-        runCatching { secureCacheManager.clearAllDecryptedTempFiles() }
+        // This walks and deletes cache files — a killed video session can leave hundreds of MB
+        // behind — so it must never run on the main thread: it would stall the cold start before
+        // the splash gets to draw its first frame. Temp files are UUID-named and never reused
+        // across launches, so nothing waits on this finishing.
+        CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
+            // Cold start: nothing can be mid-import, so wipe the in-flight areas too.
+            runCatching { secureCacheManager.clearAllTempFiles() }
+        }
 
         initializeVioAdmobs()
 
@@ -73,18 +84,18 @@ class App : Application() {
     }
 
     private fun initializeVioAdmobs() {
-        AperoNextGen.initialize(
+        NextGen.initialize(
             application = this,
-            config = AperoNextGenConfig(
+            config = NextGenConfig(
                 adMobAppId = getString(R.string.admob_app_id),
                 enableDebugLogs = BuildConfig.DEBUG,
                 testMode = BuildConfig.DEBUG,
                 testDeviceIds = listOf("69950DC5AA4AFC2ADF73C60F85906DCD"),
                 disableNativeValidator = true,
             ),
-            callback = object : AperoNextGenInitCallback {
+            callback = object : NextGenInitCallback {
                 override fun onInitialized() {
-                    Log.d("Ads", "AperoNextGen initialized")
+                    Log.d("Ads", "NextGen initialized")
 
 
                 }
