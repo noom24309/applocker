@@ -49,10 +49,10 @@ class ForgotPinActivity : BaseActivity(), LockExempt {
         NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
-            nativeId = getString(R.string.NativeRecoveryKey),
+            nativeId = getString(R.string.NativeForgotPin),
             layoutId = R.layout.native_medium_ad_layout_new,
             canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.NativeRecoveryKey),
+            reloadNativeId = getString(R.string.NativeForgotPin),
             canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
             logTag = "ForgotPin"
         )

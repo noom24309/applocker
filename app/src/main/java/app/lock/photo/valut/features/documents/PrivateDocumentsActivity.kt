@@ -67,7 +67,7 @@ class PrivateDocumentsActivity : BaseActivity() {
         // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityPrivateDocumentsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AppAds.loadBottomBanner(this, binding.frAdsBottom, "PrivateDocuments")
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, R.string.BannerDocuments, "PrivateDocuments")
 
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setupTabs()

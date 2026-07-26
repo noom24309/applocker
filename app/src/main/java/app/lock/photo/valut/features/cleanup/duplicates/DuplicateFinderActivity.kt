@@ -34,7 +34,7 @@ class DuplicateFinderActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDuplicateFinderBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AppAds.loadBottomBanner(this, binding.frAdsBottom, "DuplicateFinder")
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, R.string.BannerDuplicateFinder, "DuplicateFinder")
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         adapter = DuplicateAdapter(thumbnailLoader, onToggle = viewModel::toggle)

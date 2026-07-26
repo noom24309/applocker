@@ -6,57 +6,54 @@
     android:id="@+id/overlayRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@drawable/sp_bg">
 
-    <!-- ===== Standard / themed unlock panel ===== -->
+    <!-- ===== Standard / themed unlock panel =====
+         Same look as activity_pattern_unlock: lock badge, centered title/subtitle,
+         borderless dark grid, accent text link. applyTheme() re-colours the root and
+         the title/subtitle for the DARK / GLASS / MINIMAL themes. -->
     <LinearLayout
         android:id="@+id/standardPanel"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingStart="@dimen/screen_padding"
-        android:paddingTop="@dimen/space_xxl"
-        android:paddingEnd="@dimen/screen_padding"
-        android:paddingBottom="@dimen/screen_padding"
         app:layout_constraintBottom_toTopOf="@+id/flAdNative"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginTop="@dimen/space_l"
-            android:background="@drawable/bg_logo_circle"
-            android:backgroundTint="@color/primary_container"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/appIcon"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/applock_overlay_title"
-                android:src="@drawable/ic_lock"
-                app:tint="@color/primary" />
-        </FrameLayout>
+        <!-- Locked app's icon drops in here once loaded; the badge is the placeholder. -->
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/applock_overlay_title"
+            android:src="@drawable/ic_lock_badge" />
 
         <TextView
             android:id="@+id/titlePin"
-            android:layout_width="wrap_content"
+            style="@style/TextAppearance.App.Bold"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_l"
+            android:layout_marginHorizontal="@dimen/screen_padding"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:gravity="center"
             android:text="@string/applock_overlay_title"
-            android:textAppearance="@style/TextAppearance.App.Title" />
+            android:textColor="@color/text_primary"
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/subtitlePin"
+            style="@style/TextAppearance.App.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_s"
+            android:layout_marginHorizontal="@dimen/screen_padding"
+            android:layout_marginTop="@dimen/space_xs"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.App.Body"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption"
             tools:text="Instagram" />
 
         <LinearLayout
@@ -71,17 +68,19 @@
             android:id="@+id/errorPin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_m"
+            android:layout_marginHorizontal="@dimen/screen_padding"
+            android:layout_marginTop="@dimen/space_s"
             android:gravity="center"
             android:textColor="@color/accent_red"
             android:textSize="@dimen/text_caption"
             android:visibility="invisible"
-            tools:text="Wrong PIN" />
+            tools:text="Wrong pattern" />
 
         <TextView
             android:id="@+id/tvLockoutTimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_padding"
             android:layout_marginTop="@dimen/space_xs"
             android:gravity="center"
             android:textColor="@color/accent_amber"
@@ -93,11 +92,36 @@
         <app.lock.photo.valut.core.ui.PatternLockView
             android:id="@+id/patternView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/space_m"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:contentDescription="@string/cd_pattern"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:patternIdleNodeColor="@color/pattern_node_idle"
+            app:patternIdleRingColor="@color/pattern_ring_idle"
+            app:patternNodeColor="@color/pin_accent"
+            app:patternPanelColor="@android:color/transparent" />
+
+        <!-- Pattern mode only; PIN mode puts the fingerprint key inside the keypad. -->
+        <TextView
+            android:id="@+id/btnUseBiometric"
+            style="@style/TextAppearance.App.SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_xs"
+            android:text="@string/biometric_use"
+            android:textColor="@color/pin_accent"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_fingerprint"
+            app:drawableTint="@color/pin_accent"
+            tools:visibility="visible" />
 
         <Space
             android:id="@+id/pinSpacer"
@@ -109,6 +133,8 @@
             android:id="@+id/keypadContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/screen_padding"
+            android:paddingBottom="@dimen/screen_padding"
             android:orientation="vertical">
 
             <include layout="@layout/view_pin_keypad" />
@@ -250,21 +276,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_8sdp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/btnUseBiometric"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Biometric button (root level so native ad can anchor above it) -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnUseBiometric"
-        style="@style/Widget.App.Button.Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/screen_padding"
-        android:text="@string/biometric_use"
-        android:visibility="gone"
-        app:icon="@drawable/ic_fingerprint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

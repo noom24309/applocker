@@ -49,7 +49,7 @@ class PhotoViewerActivity : BaseActivity() {
             override fun onPageSelected(position: Int) = updateBarsForCurrent()
         })
 
-        AppAds.loadBottomBanner(this, binding.frAdsBottom, "PhotoViewer")
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, R.string.BannerPhotoViewer, "PhotoViewer")
 
         binding.btnClose.setOnClickListener { finish() }
         binding.btnFavorite.setOnClickListener { current()?.let { viewModel.toggleFavorite(it.id) } }

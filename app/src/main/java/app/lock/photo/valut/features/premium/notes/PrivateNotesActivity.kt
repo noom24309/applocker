@@ -34,7 +34,7 @@ class PrivateNotesActivity : BaseActivity() {
         // window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         binding = ActivityPrivateNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AppAds.loadBottomBanner(this, binding.frAdsBottom, "PrivateNotes")
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, R.string.BannerNotes, "PrivateNotes")
 
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         adapter = NotesAdapter(

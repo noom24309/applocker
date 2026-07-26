@@ -74,7 +74,7 @@ class VideoPlayerActivity : BaseActivity() {
         keepLandscapeControlsWithController()
 
         observe()
-        AppAds.loadBottomBanner(this, binding.frAdsBottom, "VideoPlayer")
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, R.string.BannerVideoPlayer, "VideoPlayer")
         applyOrientation(resources.configuration.orientation)
     }
 
@@ -82,12 +82,6 @@ class VideoPlayerActivity : BaseActivity() {
         super.onSaveInstanceState(outState)
         outState.putLong(STATE_POSITION, player?.currentPosition ?: resumePosition)
     }
-
-    /**
-     * The activity handles rotation itself (configChanges in the manifest), so the player keeps
-     * playing across it — only the chrome changes: portrait keeps the header, actions and the
-     * banner, landscape gives the video the whole screen.
-     */
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         applyOrientation(newConfig.orientation)

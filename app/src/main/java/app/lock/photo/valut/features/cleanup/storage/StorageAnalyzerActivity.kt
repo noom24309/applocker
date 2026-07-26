@@ -31,7 +31,7 @@ class StorageAnalyzerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStorageAnalyzerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AppAds.loadBottomBanner(this, binding.frAdsBottom, "StorageAnalyzer")
+        AppAds.loadBottomBanner(this, binding.frAdsBottom, R.string.BannerStorageAnalyzer, "StorageAnalyzer")
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.btnClearTemp.setOnClickListener { viewModel.clearTempCache() }
         binding.btnDuplicates.setOnClickListener { startActivity(DuplicateFinderActivity.intent(this)) }

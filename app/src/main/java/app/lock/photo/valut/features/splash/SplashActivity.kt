@@ -115,7 +115,9 @@ class SplashActivity : BaseActivity(), LockExempt {
         NextGenInterstitial.register(
             NextGenInterstitialConfig(
                 placement = "SPLASH_PLACEMENT",
-                highAdUnitId = getString(R.string.InterSplash),
+                // High floor pehle; na bhare to normal unit fallback ban jati hai.
+                highAdUnitId = getString(R.string.InterSplashHigh),
+                lowAdUnitId = getString(R.string.InterSplash),
                 enabled = RemoteConfig.interSplash&& RemoteConfig.enableAllAds,
                 counter = 1,
                 minShowGapMs = 0L,

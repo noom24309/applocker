@@ -18,8 +18,8 @@ android {
         applicationId "com.privatelock.vault.applock"
         minSdk 24
         targetSdk 36
-        versionCode 12
-        versionName "1.1.2"
+        versionCode 13
+        versionName "1.1.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,23 +33,45 @@ android {
             resValue "string", "admob_app_id", "ca-app-pub-5736130092873918~7051156322"
             resValue "string", "admob_app_open_id", "ca-app-pub-5736130092873918/2742843280"
             resValue "string", "nativeSplash", "ca-app-pub-5736130092873918/6943345118"
+            resValue "string", "InterSplashHigh", "ca-app-pub-5736130092873918/5536474651"
             resValue "string", "InterSplash", "ca-app-pub-5736130092873918/6045196419"
+            resValue "string", "InterMainHigh", "ca-app-pub-5736130092873918/7535952039"
             resValue "string", "InterMain", "ca-app-pub-5736130092873918/7873283403"
 
             resValue "string", "NativeLanguage", "ca-app-pub-5736130092873918/9004999300"
-            resValue "string", "NativePassCode", "ca-app-pub-5736130092873918/9004999300"
-            resValue "string", "NativePassCodeConfirm", "ca-app-pub-5736130092873918/9004999300"
-            resValue "string", "NativeRecoveryKey", "ca-app-pub-5736130092873918/9004999300"
-            resValue "string", "NativeBioMatric", "ca-app-pub-5736130092873918/9004999300"
-
-            resValue "string", "NativePermissions", "ca-app-pub-5736130092873918/9004999300"
+            resValue "string", "NativePassCode", "ca-app-pub-5736130092873918/4101980816"
+            resValue "string", "NativePassCodeConfirm", "ca-app-pub-5736130092873918/1475817474"
+            resValue "string", "NativeRecoveryKey", "ca-app-pub-5736130092873918/5181251436"
+            resValue "string", "NativeBioMatric", "ca-app-pub-5736130092873918/3868169765"
+            resValue "string", "NativePermissions", "ca-app-pub-5736130092873918/9162735803"
             resValue "string", "NativeAppList", "ca-app-pub-5736130092873918/7612026581"
             resValue "string", "NativeValut", "ca-app-pub-5736130092873918/5247120065"
             resValue "string", "NativeTools", "ca-app-pub-5736130092873918/8925108253"
             resValue "string", "NativeOverlay", "ca-app-pub-5736130092873918/1224114578"
 
-            resValue "string", "bannerAll", "ca-app-pub-5736130092873918/6298944915"
-            resValue "string", "nativeAll", "ca-app-pub-5736130092873918/7612026581"
+            // Ex-"nativeAll" screens — ab har screen ki apni unit.
+            resValue "string", "NativeMediaGrid", "ca-app-pub-5736130092873918/6778504218"
+            resValue "string", "NativeAppLockHome", "ca-app-pub-5736130092873918/2634979145"
+            resValue "string", "NativeLargeFiles", "ca-app-pub-5736130092873918/9579781586"
+            resValue "string", "NativeVaultHealth", "ca-app-pub-5736130092873918/7664064688"
+            resValue "string", "NativePatternUnlock", "ca-app-pub-5736130092873918/5276620206"
+
+            // NativePassCode se alag kiye gaye screens.
+            resValue "string", "NativeCreatePin", "ca-app-pub-5736130092873918/5037901340"
+            resValue "string", "NativeChangePin", "ca-app-pub-5736130092873918/4742267739"
+            resValue "string", "NativePatternSetup", "ca-app-pub-5736130092873918/2839259209"
+
+            // NativeRecoveryKey se alag kiya gaya.
+            resValue "string", "NativeForgotPin", "ca-app-pub-5736130092873918/7727523729"
+
+            resValue "string", "BannerHome", "ca-app-pub-5736130092873918/6298944915"
+            resValue "string", "BannerSettings", "ca-app-pub-5736130092873918/3222402584"
+            resValue "string", "BannerPhotoViewer", "ca-app-pub-5736130092873918/3305062988"
+            resValue "string", "BannerVideoPlayer", "ca-app-pub-5736130092873918/7145189936"
+            resValue "string", "BannerNotes", "ca-app-pub-5736130092873918/9596239240"
+            resValue "string", "BannerDocuments", "ca-app-pub-5736130092873918/4519026597"
+            resValue "string", "BannerStorageAnalyzer", "ca-app-pub-5736130092873918/6970075904"
+            resValue "string", "BannerDuplicateFinder", "ca-app-pub-5736130092873918/3205944922"
         }
 
         debug {
@@ -60,7 +82,9 @@ android {
             resValue "string", "admob_app_id", "ca-app-pub-3940256099942544~3347511713"
             resValue "string", "admob_app_open_id", "ca-app-pub-3940256099942544/9257395921"
             resValue "string", "nativeSplash", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "InterSplashHigh", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "InterSplash", "ca-app-pub-3940256099942544/1033173712"
+            resValue "string", "InterMainHigh", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "InterMain", "ca-app-pub-3940256099942544/1033173712"
 
             resValue "string", "NativeLanguage", "ca-app-pub-3940256099942544/2247696110"
@@ -75,8 +99,25 @@ android {
             resValue "string", "NativeTools", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "NativeOverlay", "ca-app-pub-3940256099942544/2247696110"
 
-            resValue "string", "bannerAll", "ca-app-pub-3940256099942544/6300978111"
-            resValue "string", "nativeAll", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeMediaGrid", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeAppLockHome", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeLargeFiles", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeVaultHealth", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativePatternUnlock", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeCreatePin", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeChangePin", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativePatternSetup", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "NativeForgotPin", "ca-app-pub-3940256099942544/2247696110"
+
+
+            resValue "string", "BannerHome", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "BannerSettings", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "BannerPhotoViewer", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "BannerVideoPlayer", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "BannerNotes", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "BannerDocuments", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "BannerStorageAnalyzer", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "BannerDuplicateFinder", "ca-app-pub-3940256099942544/6300978111"
 
 
         }

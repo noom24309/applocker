@@ -82,10 +82,10 @@ class AppLockActivity : BaseActivity() {
         NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.frAdsBottom,
-            nativeId = getString(R.string.nativeAll),
+            nativeId = getString(R.string.NativeAppLockHome),
             layoutId = R.layout.native_medium_ad_layout_new,
             canShowAds = RemoteConfig.nativeHome && RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.nativeAll),
+            reloadNativeId = getString(R.string.NativeAppLockHome),
             canReloadAds = RemoteConfig.nativeHome && RemoteConfig.enableAllAds,
             logTag = "AppLockHome"
         )

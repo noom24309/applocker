@@ -142,10 +142,10 @@ class PatternUnlockActivity : BaseActivity(), LockScreen {
         NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
-            nativeId = getString(R.string.nativeAll),
+            nativeId = getString(R.string.NativePatternUnlock),
             layoutId = R.layout.native_medium_ad_layout_new,
             canShowAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.nativeAll),
+            reloadNativeId = getString(R.string.NativePatternUnlock),
             canReloadAds = RemoteConfig.nativePattern&& RemoteConfig.enableAllAds,
                     logTag = "Pattern_Unlock"
         )

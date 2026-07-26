@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import app.lock.photo.valut.core.ui.showToast
 import androidx.activity.viewModels
+import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -183,17 +184,27 @@ class AppLockOverlayActivity : BaseActivity(), LockExempt {
 
     // --- theming ---
 
+    private fun color(@ColorRes id: Int) = ContextCompat.getColor(this, id)
+
     private fun applyTheme(theme: LockTheme) {
-        val (bg, text) = when (theme) {
-            LockTheme.DARK -> R.color.overlay_dark_bg to R.color.overlay_dark_text
-            LockTheme.GLASS -> R.color.overlay_glass_bg to R.color.overlay_dark_text
-            LockTheme.MINIMAL -> R.color.white to R.color.text_primary
-            else -> R.color.background to R.color.text_primary
+        // DEFAULT keeps the gradient set in XML — the same backdrop the PIN/pattern
+        // screens use, so the two-tone title/subtitle from those layouts stays intact.
+        // The other themes are flat colours and repaint everything in one tone.
+        val text = when (theme) {
+            LockTheme.DARK -> R.color.overlay_dark_text
+            LockTheme.GLASS -> R.color.overlay_dark_text
+            LockTheme.MINIMAL -> R.color.text_primary
+            else -> null
         }
-        binding.overlayRoot.setBackgroundColor(ContextCompat.getColor(this, bg))
-        val textColor = ContextCompat.getColor(this, text)
+        when (theme) {
+            LockTheme.DARK -> binding.overlayRoot.setBackgroundColor(color(R.color.overlay_dark_bg))
+            LockTheme.GLASS -> binding.overlayRoot.setBackgroundColor(color(R.color.overlay_glass_bg))
+            LockTheme.MINIMAL -> binding.overlayRoot.setBackgroundColor(color(R.color.white))
+            else -> binding.overlayRoot.setBackgroundResource(R.drawable.sp_bg)
+        }
+        val textColor = color(text ?: R.color.text_primary)
         binding.titlePin.setTextColor(textColor)
-        binding.subtitlePin.setTextColor(textColor)
+        if (text != null) binding.subtitlePin.setTextColor(textColor)
         keyViews.forEach { (it as? TextView)?.setTextColor(textColor) }
     }
 

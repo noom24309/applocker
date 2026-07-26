@@ -58,10 +58,10 @@ class ChangePinActivity : BasePinActivity() {
         NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.flAdNative,
-            nativeId = getString(R.string.NativePassCode),
+            nativeId = getString(R.string.NativeChangePin),
             layoutId = R.layout.native_medium_ad_layout_new,
             canShowAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.NativePassCode),
+            reloadNativeId = getString(R.string.NativeChangePin),
             canReloadAds = RemoteConfig.nativeHome&& RemoteConfig.enableAllAds,
             logTag = "ChangePin"
         )

@@ -85,7 +85,9 @@ class MainActivity : BaseActivity() {
 
         NextGenInterstitial.InterAdLoadWithCounter(
             placement = "MainAd",
-            highAdUnitId = getString(R.string.InterMain),
+            // High floor pehle; na bhare to normal unit fallback ban jati hai.
+            highAdUnitId = getString(R.string.InterMainHigh),
+            lowAdUnitId = getString(R.string.InterMain),
             counter = 2,
             enabled = RemoteConfig.interHome && RemoteConfig.enableAllAds, // TODO: yahan Remote Config ki value pass karein
             logTag = "MainAd",
@@ -248,11 +250,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun loadBanner() {
-        NextGenBanner.loadAndShowCollapsibleBanner(
+        NextGenBanner.loadAndShowBanner(
             activity = this,
             container = binding.frAds,
-            bannerId = getString(R.string.bannerAll), // TODO: apni collapsible id
-            placement = "bottom", // container screen ke bottom par hai
+            bannerId = getString(R.string.BannerHome),
             shimmerLayout = R.layout.layout_banner_control,
             canShowAds = RemoteConfig.bannerHome && RemoteConfig.enableAllAds, // TODO: yahan Remote Config ki value pass karein
             canReloadAds = RemoteConfig.bannerHome&& RemoteConfig.enableAllAds, // TODO: Remote Config — resume par reload + replace

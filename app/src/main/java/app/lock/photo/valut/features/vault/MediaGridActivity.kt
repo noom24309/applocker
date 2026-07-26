@@ -87,10 +87,10 @@ class MediaGridActivity : SecureVaultActivity() {
         NextGenNativeHelper.loadAndShowNativeAdRuntime(
             activity = this,
             container = binding.frAdsBottom,
-            nativeId = getString(R.string.nativeAll),
+            nativeId = getString(R.string.NativeMediaGrid),
             layoutId = R.layout.native_medium_ad_layout_new,
             canShowAds = RemoteConfig.nativeValut && RemoteConfig.enableAllAds,
-            reloadNativeId = getString(R.string.nativeAll),
+            reloadNativeId = getString(R.string.NativeMediaGrid),
             canReloadAds = RemoteConfig.nativeValut && RemoteConfig.enableAllAds,
             logTag = "MediaGrid"
         )
